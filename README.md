@@ -7,6 +7,14 @@
 This is a public project that has been published in Mykit. You can also output this project in Android Studio.
 
 ## screenshot in App
+<div align="center">
+
+<img style="width : 50% ; height : 100%; padding-right : 20px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img1.jpg"/>
+<img style="width : 50% ; height : 100%; padding-right : 20px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img2.jpg"/>
+<img style="width : 50% ; height : 100%; padding-right : 20px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img3.jpg"/>
+
+
+</div>
 
 ## Beta
 
