@@ -1,0 +1,107 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/bg"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="8dp"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+		<com.allenliu.badgeview.BadgeView
+			android:id="@+id/mycolor"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:background="@android:color/transparent" />
+		<ImageView
+			android:id="@+id/redo"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/redo"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<ImageView
+			android:id="@+id/search"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/textsearch"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<ImageView
+			android:id="@+id/romved"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/delete"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<ImageView
+			android:id="@+id/colorpicker"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/color"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<ImageView
+			android:id="@+id/format"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/codeformat"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<ImageView
+			android:id="@+id/save"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/savetext"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<com.allenliu.badgeview.BadgeView
+			android:id="@+id/colorAma"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:translationX="-20.0dp"
+			android:translationY="-4.0dp" />
+		<ImageView
+			android:id="@+id/pastme"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/pastecode"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+		<ImageView
+			android:id="@+id/link"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/link"
+			android:scaleType="centerInside" />
+		<ImageView
+			android:id="@+id/undo"
+			android:focusable="false"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:padding="8dp"
+			android:src="@drawable/undos"
+			android:scaleType="centerInside"
+			android:layout_weight="1" />
+	</LinearLayout>
+</LinearLayout>

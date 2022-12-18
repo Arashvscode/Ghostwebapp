@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dkplayer_theme_color">#39C5BB</color>
+    <color name="dkplayer_theme_color_translucent">#9939C5BB</color>
+    <color name="dkplayer_background_color">#4D000000</color>
+    <color name="mahv">#00000000</color>
+    <color name="normal_white">#ffcccccc</color>
+    <color name="pressed_white">#ffe4e4e4</color>
+    <color name="normal_black">#ff626262</color>
+    <color name="pressed_black">#ff000000</color>
+    <color name="Background_yellow">#ff000000</color>
+    <color name="Background_black1">#ff000000</color>
+    <color name="Background_black2">#ffe4e4e4</color>
+    <color name="Background_blue">#ffe4e4e4</color>
+    <color name="Background_bright">#ffe4e4e4</color>
+    <color name="Background_full_bright">#ffe4e4e4</color>
+    <color name="Background_dark">#ff000000</color>
+    <color name="Background_full_dark">#ff000000</color>
+    <color name="background_boyish">#fff5f5f5</color>
+    <color name="background_girly">#ff000000</color>
+    <color name="Background_black_glass">#ff000000</color>
+    <color name="Background_white_glass">#ffe4e4e4</color>
+</resources>

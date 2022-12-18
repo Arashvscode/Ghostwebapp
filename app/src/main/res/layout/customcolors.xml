@@ -1,0 +1,73 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/_coordinator"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/_app_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/AppTheme.AppBarOverlay">
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="?attr/colorPrimary"
+			app:popupTheme="@style/AppTheme.PopupOverlay" />
+	</com.google.android.material.appbar.AppBarLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+		<LinearLayout
+			android:id="@+id/linear1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:gravity="right|center_vertical"
+			android:orientation="horizontal">
+			<TextView
+				android:id="@+id/textview1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="انتخاب تم "
+				android:textSize="25sp"
+				android:textStyle="bold"
+				android:textColor="#FFFFFF" />
+			<ImageView
+				android:id="@+id/imageview1"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:src="@drawable/arrowr"
+				android:scaleType="centerInside" />
+		</LinearLayout>
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/input"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:endIconMode="custom">
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/edittext1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:background="@android:color/transparent"
+				android:textSize="12sp"
+				android:textColor="#FFFFFF"
+				android:textColorHint="#FFFFFF"
+				android:fontFamily="@font/GhostFont" />
+		</com.google.android.material.textfield.TextInputLayout>
+		<GridView
+			android:id="@+id/gridview1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:numColumns="3"
+			android:stretchMode="columnWidth" />
+	</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,100 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<androidx.cardview.widget.CardView
+		android:id="@+id/mcard"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="6dp"
+		android:background="#111111"
+		android:orientation="vertical"
+		app:cardElevation="3dp"
+		app:cardCornerRadius="14dp">
+		<LinearLayout
+			android:id="@+id/bg"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:orientation="vertical">
+			<LinearLayout
+				android:id="@+id/linear2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="right"
+				android:orientation="horizontal">
+				<TextView
+					android:id="@+id/textview1"
+					android:focusable="false"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="قالب بندی کد"
+					android:textSize="18sp"
+					android:textColor="#FFFFB9" />
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/linear3"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:orientation="horizontal">
+				<TextView
+					android:id="@+id/textview2"
+					android:focusable="false"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="لطفا نوع قالب بندی کد خودتان را مشخص کنید برای نمونه برای css {} یا برای html &lt;&gt;\n"
+					android:textSize="16sp"
+					android:textColor="#FFFFB9" />
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/linear4"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+				<TextView
+					android:id="@+id/mhtml"
+					android:focusable="false"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="html&lt;&gt;"
+					android:textSize="16sp"
+					android:textColor="#FFFFC1" />
+				<LinearLayout
+					android:id="@+id/linear5"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:orientation="horizontal"
+					android:layout_weight="1" />
+				<TextView
+					android:id="@+id/mjson"
+					android:focusable="false"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="json"
+					android:textSize="16sp"
+					android:textColor="#FFFFB9" />
+				<TextView
+					android:id="@+id/mcss"
+					android:focusable="false"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="css{}"
+					android:textSize="16sp"
+					android:textColor="#FFFFC1" />
+			</LinearLayout>
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+</LinearLayout>

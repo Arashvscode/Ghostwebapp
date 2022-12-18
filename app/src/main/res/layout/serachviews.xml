@@ -1,0 +1,110 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/bg"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/linear2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:orientation="horizontal">
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/input1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+				<EditText
+					android:id="@+id/editorser"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:textSize="16sp"
+					android:textColor="#FDA893"
+					android:hint="جستجو کنید"
+					android:textColorHint="#FFFFFF"
+					android:focusable="true"
+					
+					android:fontFamily="@font/GhostFont" />
+			</com.google.android.material.textfield.TextInputLayout>
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/cuser"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:orientation="horizontal">
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/input2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+				<EditText
+					android:id="@+id/editorrep"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:textSize="16sp"
+					android:textColor="#FDA893"
+					android:hint="جایگزین کردن متن"
+					android:textColorHint="#FFFFFF"
+					android:focusable="true"
+					
+					android:fontFamily="@font/GhostFont" />
+			</com.google.android.material.textfield.TextInputLayout>
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/linear4"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+			<Button
+				android:id="@+id/repall"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="جایگزینی همه"
+				android:textSize="12sp"
+				android:textColor="#000000"
+				android:layout_weight="1" />
+			<Button
+				android:id="@+id/rep"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="جایگزین"
+				android:textSize="12sp"
+				android:textColor="#000000"
+				android:layout_weight="1" />
+			<Button
+				android:id="@+id/mis"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="قبلی"
+				android:textSize="12sp"
+				android:textColor="#000000"
+				android:layout_weight="1" />
+			<Button
+				android:id="@+id/ser"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:text="بعدی"
+				android:textSize="12sp"
+				android:textColor="#000000"
+				android:layout_weight="1" />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

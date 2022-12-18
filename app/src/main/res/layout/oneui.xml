@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:id="@+id/mob"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:gravity="center_vertical"
+	>
+
+	<LinearLayout
+        android:id="@+id/display"
+		android:gravity="center_horizontal|center_vertical"
+		android:layout_width="30dp"
+		android:layout_height="30dp"
+		android:paddingHorizontal="4dp"
+		android:layout_marginLeft="8dp">
+		
+
+		<com.google.android.material.textview.MaterialTextView
+			android:gravity="center_horizontal|center_vertical"
+			android:id="@+id/tv1"
+			android:paddingHorizontal="4dp"
+			android:layout_marginLeft="0dp"
+			android:fontFamily="@font/GhostFont"
+			android:text="K"
+			android:textSize="17sp"
+			android:textStyle="bold"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="#FFFFFF"/>
+
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:paddingLeft="8dp"
+		android:paddingRight="8dp"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/res"
+			android:textSize="15dp"
+            android:fontFamily="@font/GhostFont"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Text"
+			android:textColor="#FFFDFD"
+			android:typeface="normal"/>
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/iogore"
+			android:textSize="12dp"
+            android:fontFamily="@font/GhostFont"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Text"
+			android:textColor="#FFFFFF"/>
+
+	</LinearLayout>
+
+</LinearLayout>
