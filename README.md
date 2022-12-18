@@ -1,5 +1,9 @@
 # Ghostweb Office main
 
+<div align = "center">
+  <img style="width :50%; height :50%;" src ="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/icon.png"/>
+</div>
+
 This is a public project that has been published in Mykit. You can also output this project in Android Studio.
 
 ## Beta
