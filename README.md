@@ -7,19 +7,18 @@
 This is a public project that has been published in Mykit. You can also output this project in Android Studio.
 
 ## screenshot in App
-<div align="center">
+<div style="display: inline;">
 
-<img style="width : 50% ; height : 100%; padding-right : 20px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img1.jpg"/>
-<img style="width : 50% ; height : 100%; padding-right : 20px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img2.jpg"/>
-<img style="width : 50% ; height : 100%; padding-right : 20px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img3.jpg"/>
-
+<img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img1.jpg"/>
+<img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img2.jpg"/>
+<img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img3.jpg"/>
 
 </div>
 
 ## Beta
 
 This source is beta but currently it cannot generate Apk output
-
+<span>
 ## Supported features
 
 - [x] play Html file
