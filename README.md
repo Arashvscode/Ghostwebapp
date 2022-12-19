@@ -4,7 +4,7 @@
   <img style="width :50%; height :50%;" src ="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/icon.png"/>
 </div>
 
-This is a public project that has been published in Mykit. You can also output this project in Android Studio.
+This is a public project that has been published in Myket. You can also output this project in Android Studio.
 
 ## screenshot in App
 <div style="display: inline;">
