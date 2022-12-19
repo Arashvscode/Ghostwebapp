@@ -15,6 +15,11 @@ This is a public project that has been published in Myket. You can also output t
 
 </div>
 
+## Download 
+<p align="left">
+<a href="https://myket.ir/app/Ninja.coder.Ghostemane.code?utm_source=search-ads-gift&utm_medium=cpc"><img src="https://myket.ir/core/images/logo/get-en.png" width="200"/> </a>
+</p>
+
 ## Beta
 
 This source is beta but currently it cannot generate Apk output
