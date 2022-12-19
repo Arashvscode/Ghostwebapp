@@ -601,21 +601,14 @@ public class CodeeditorActivity extends AppCompatActivity {
 		
 		_EditorSummery();
 		imap = new HashMap<>();
-		if (FileUtil.isExistFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost")) {
-				try{
-				imap = new Gson().fromJson(FileUtil.readFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"), new TypeToken<HashMap<String, Object>>(){}.getType());
-			}catch(Exception e){
-				 
-			}
+		if (FileUtil.isExistFile("storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost")) {
+			imap = new Gson().fromJson(FileUtil.readFile("storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"), new TypeToken<HashMap<String, Object>>(){}.getType());
 		}
 		else {
-				try{
-				java.io.InputStream inputstream1 = getAssets().open("GhostThemeapp.ghost");
-				imap = new Gson().fromJson(SketchwareUtil.copyFromInputStream(inputstream1), new TypeToken<HashMap<String, Object>>(){}.getType());
-			}catch(Exception e){
-				SketchwareUtil.showMessage(getApplicationContext(), e.toString());
-			}
-		}
+			String path = "{\"ToolbarTextColor\":\"#ffedc9ff\",\"BLOCK_LINE_CURRENT\":\"#ffb9eeff\",\"LINE_DIVIDER\":\"#ffdcd7ff\",\"SyombolBarTextColor\":\"#fff5aeff\",\"HTML_TAG\":\"#ffe8bcff\",\"FabColorStroker\":\"#fff2bcff\",\"LINE_NUMBER\":\"#fffcbcff\",\"KEYWORD\":\"#ffddaeff\",\"AUTO_COMP_PANEL_CORNER\":\"#ffdcd7ff\",\"SELECTION_HANDLE\":\"#ffffffff\",\"TabImageColorFilter\":\"#ffd3bcff\",\"AUTO_COMP_PANEL_BG\":\"#ff1c1b20\",\"COMMENT\":\"#626262\",\"ToolbarColor\":\"#ff1c1b20\",\"IDENTIFIER_NAME\":\"#fff0be4b\",\"DisplayTextColorTab\":\"#ffd7e1ff\",\"NON_PRINTABLE_CHAR\":\"#ffff438a\",\"SELECTION_INSERT\":\"#ffffffff\",\"Ninja\":\"#ffffa1af\",\"TabTextColor\":\"#fff5c9ff\",\"BLOCK_LINE\":\"#ffaea2ff\",\"LITERAL\":\"#ffffaed9\",\"FabBackgroundColorColor\":\"#ff1c1b20\",\"ATTRIBUTE_VALUE\":\"#ffffaeb5\",\"TabBack\":\"#ffd3bcff\",\"ImageColor\":\"#ffe4c9ff\",\"TEXT_NORMAL\":\"#ffffffff\",\"ATTRIBUTE_NAME\":\"#FF1B4AD7\",\"print\":\"#ffc2a1ff\",\"OPERATOR\":\"#ffffa1f6\",\"CURRENT_LINE\":\"#20171717\",\"WHOLE_BACKGROUND\":\"#02FFFFFF\",\"BackgroundColorLinear\":\"#ff1c1b20\",\"FabImageColor\":\"#ffffbcda\",\"LINE_NUMBER_BACKGROUND\":\"#00FFFFFF\"}";
+			FileUtil.writeFile("storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost", path);
+		}
+		
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		_coderuner();
 		//SymbolInputView inputView = findViewById(R.id.sysbar);
@@ -630,288 +623,42 @@ public class CodeeditorActivity extends AppCompatActivity {
 		
 		_managerpanel(panelSattinges);
 		themenotfound.setVisibility(View.GONE);
-		if (imap.containsKey("BackgroundColorLinear")) {
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
-					   Window Hsi = this.getWindow();
-				 Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				 Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		var themeForJson = new a.a.SetThemeForJson();
+				themeForJson.setThemeCodeEditor(editor,imap,false,this);
+		        themeForJson.addTextColor(tvtitle, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(typeVl, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(bar1, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(bar2, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview3, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview4, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview5, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview6, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview7, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview8, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview9, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview10, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview11, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview12, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview13, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+				themeForJson.AddthemetoSattos(this, imap);
+				themeForJson.addBackground(this, imap, "ToolbarColor", CustomToolbar, 0xff030b34);
+				themeForJson.addBackground(this, imap, "BackgroundColorLinear", Mainlinear, 0xff02102c);
+				themeForJson.addImageColor(imageRagexHtmlFormat, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+				themeForJson.addImageColor(imageview1, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+				themeForJson.addImageColor(amber, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+				themeForJson.mfabcolor(this, _fab, imap);
+				themeForJson.mfab2(this, _fab, imap);
 				
-					   Hsi.setStatusBarColor(Color.parseColor(imap.get("BackgroundColorLinear").toString())); Hsi.setNavigationBarColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
-			}
-		}
-		else {
-			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
-					   Window Hsi = this.getWindow();
-				 Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				 Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				
-					   Hsi.setStatusBarColor(Color.parseColor("#ff02102c")); Hsi.setNavigationBarColor(Color.parseColor("#ff02102c"));
-			}
-			_dialogError();
-		}
 		_sttingpp();
 		editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
 		editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
 		editor.getColorScheme().setColor(EditorColorScheme.MATCHED_TEXT_BACKGROUND, Color.parseColor("#75800F31"));
-		if (imap.containsKey("ToolbarColor")) {
-			CustomToolbar.setBackgroundColor(Color.parseColor(imap.get("ToolbarColor").toString()));
-		}
-		else {
-			CustomToolbar.setBackgroundColor(Color.parseColor("#ff030b34"));
-			_dialogError();
-		}
-		_fab.shrink();
-		///all parament color html 
-		if (imap.containsKey("OPERATOR")) {
-			editor.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor(imap.get("OPERATOR").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor("#ffa1aaff"));
-			_dialogError();
-		}
-		if (imap.containsKey("BLOCK_LINE")) {
-			editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE, Color.parseColor(imap.get("BLOCK_LINE").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE, Color.parseColor("#ffaea2ff"));
-			_dialogError();
-		}
-		if (imap.containsKey("BLOCK_LINE_CURRENT")) {
-			editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE_CURRENT, Color.parseColor(imap.get("BLOCK_LINE_CURRENT").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE_CURRENT, Color.parseColor("#ffb9eeff"));
-			_dialogError();
-		}
-		if (imap.containsKey("NON_PRINTABLE_CHAR")) {
-			editor.getColorScheme().setColor(EditorColorScheme.NON_PRINTABLE_CHAR, Color.parseColor(imap.get("NON_PRINTABLE_CHAR").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.NON_PRINTABLE_CHAR, Color.parseColor("#ffb9ffcb"));
-			_dialogError();
-		}
-		if (imap.containsKey("CURRENT_LINE")) {
-			editor.getColorScheme().setColor(EditorColorScheme.CURRENT_LINE, Color.parseColor(imap.get("CURRENT_LINE").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.CURRENT_LINE, Color.parseColor("#20171717"));
-			_dialogError();
-		}
-		if (imap.containsKey("SELECTION_INSERT")) {
-			editor.getColorScheme().setColor(EditorColorScheme.SELECTION_INSERT, Color.parseColor(imap.get("SELECTION_INSERT").toString()));
-			editor.getColorScheme().setColor(EditorColorScheme.SELECTION_INSERT, Color.parseColor("#ffffffff"));
-		}
-		else {
-			_dialogError();
-		}
-		if (imap.containsKey("SELECTION_HANDLE")) {
-			editor.getColorScheme().setColor(EditorColorScheme.SELECTION_HANDLE, Color.parseColor(imap.get("SELECTION_HANDLE").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.SELECTION_HANDLE, Color.parseColor("#ffffffff"));
-			_dialogError();
-		}
-		if (imap.containsKey("LINE_NUMBER")) {
-			editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER, Color.parseColor(imap.get("LINE_NUMBER").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER, Color.parseColor("#ff748979"));
-			_dialogError();
-		}
-		if (imap.containsKey("LINE_DIVIDER")) {
-			editor.getColorScheme().setColor(EditorColorScheme.LINE_DIVIDER, Color.parseColor(imap.get("LINE_DIVIDER").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.LINE_DIVIDER, Color.parseColor("#ff91b68f"));
-			_dialogError();
-		}
-		if (imap.containsKey("ATTRIBUTE_VALUE")) {
-			editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_VALUE, Color.parseColor(imap.get("ATTRIBUTE_VALUE").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_VALUE, Color.parseColor("#ffffdcb9"));
-			_dialogError();
-		}
-		if (imap.containsKey("ATTRIBUTE_NAME")) {
-			editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_NAME, Color.parseColor(imap.get("ATTRIBUTE_NAME").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_NAME, Color.parseColor("#FF1B4AD7"));
-			_dialogError();
-		}
-		if (imap.containsKey("HTML_TAG")) {
-			editor.getColorScheme().setColor(EditorColorScheme.HTML_TAG, Color.parseColor(imap.get("HTML_TAG").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.HTML_TAG, Color.parseColor("#ffffa1d9"));
-			_dialogError();
-		}
-		if (imap.containsKey("TEXT_NORMAL")) {
-			editor.getColorScheme().setColor(EditorColorScheme.TEXT_NORMAL, Color.parseColor(imap.get("TEXT_NORMAL").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.TEXT_NORMAL, Color.parseColor("#ffebffd7"));
-			_dialogError();
-		}
-		if (imap.containsKey("IDENTIFIER_NAME")) {
-			editor.getColorScheme().setColor(EditorColorScheme.IDENTIFIER_NAME, Color.parseColor(imap.get("IDENTIFIER_NAME").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.IDENTIFIER_NAME, Color.parseColor("#626262"));
-			_dialogError();
-		}
-		if (imap.containsKey("COMMENT")) {
-			editor.getColorScheme().setColor(EditorColorScheme.COMMENT, Color.parseColor(imap.get("COMMENT").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.COMMENT, Color.parseColor("#fff0be4b"));
-			_dialogError();
-		}
-		//// for css and other....
-		if (imap.containsKey("KEYWORD")) {
-			editor.getColorScheme().setColor(EditorColorScheme.KEYWORD, Color.parseColor(imap.get("KEYWORD").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.KEYWORD, Color.parseColor("#ffffa1a1"));
-			_dialogError();
-		}
-		if (imap.containsKey("print")) {
-			editor.getColorScheme().setColor(EditorColorScheme.print, Color.parseColor(imap.get("print").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.print, Color.parseColor("#ffb4a1ff"));
-			_dialogError();
-		}
-		if (imap.containsKey("Ninja")) {
-			editor.getColorScheme().setColor(EditorColorScheme.Ninja, Color.parseColor(imap.get("Ninja").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.Ninja, Color.parseColor("#ffffac94"));
-			_dialogError();
-		}
-		if (imap.containsKey("LITERAL")) {
-			editor.getColorScheme().setColor(EditorColorScheme.LITERAL, Color.parseColor(imap.get("LITERAL").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.LITERAL, Color.parseColor("#ffdea1ff"));
-			_dialogError();
-		}
-		if (imap.containsKey("AUTO_COMP_PANEL_BG")) {
-			editor.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_BG, Color.parseColor(imap.get("AUTO_COMP_PANEL_BG").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_BG, Color.parseColor("#ff000a1a"));
-			_dialogError();
-		}
-		if (imap.containsKey("AUTO_COMP_PANEL_CORNER")) {
-			editor.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_CORNER, Color.parseColor(imap.get("AUTO_COMP_PANEL_CORNER").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_CORNER, Color.parseColor("#ff94ffe7"));
-			_dialogError();
-		}
-		if (imap.containsKey("LINE_NUMBER_BACKGROUND")) {
-			editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, Color.parseColor(imap.get("LINE_NUMBER_BACKGROUND").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, Color.parseColor("#00FFFFFF"));
-			_dialogError();
-		}
-		if (imap.containsKey("WHOLE_BACKGROUND")) {
-			editor.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor(imap.get("WHOLE_BACKGROUND").toString()));
-		}
-		else {
-			editor.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#02FFFFFF"));
-			_dialogError();
-		}
-		if (imap.containsKey("BackgroundColorLinear")) {
-			Mainlinear.setBackgroundColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
-		}
-		else {
-			Mainlinear.setBackgroundColor(Color.parseColor("#ff02102c"));
-			_dialogError();
-		}
-		if (imap.containsKey("ToolbarTextColor")) {
-			tvtitle.setTextColor(Color.parseColor(imap.get("ToolbarTextColor").toString()));
-		}
-		else {
-			tvtitle.setTextColor(Color.parseColor("#ffbce1ff"));
-			_dialogError();
-		}
-		if (imap.containsKey("ImageColor")) {
-			backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)66, Color.parseColor(imap.get("ImageColor").toString())));
-			amber.setImageTintList(new android.content.res.ColorStateList(new int[][] {{-android.R.attr.state_pressed},{android.R.attr.state_pressed}},new int[]{Color.parseColor(imap.get("ImageColor").toString()),Color.parseColor(imap.get("ImageColor").toString())}));
-			imageRagexHtmlFormat.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			imageview1.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-		}
-		else {
-			backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)66, Color.parseColor("#ff94e7ff")));
-			amber.setImageTintList(new android.content.res.ColorStateList(new int[][] {{-android.R.attr.state_pressed},{android.R.attr.state_pressed}},new int[]{Color.parseColor("#ff94e7ff"),Color.parseColor("#ff94e7ff")}));
-			imageRagexHtmlFormat.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			imageview1.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			_dialogError();
-		}
 		tvtitle.setText("GhostWeb IDE");
-		if (imap.containsKey("FabBackgroundColorColor")) {
-			_fab.setText("Run Code");
-			_fab.setTextColor(0xFFF8B09A);
-			_fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(imap.get("FabBackgroundColorColor").toString())));
-			
-		}
-		else {
-			_fab.setText("Run Code");
-			_fab.setTextColor(0xFFF8B09A);
-			_fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ff000c2f")));
-			
-			_dialogError();
-		}
-		if (imap.containsKey("FabColorStroker") && imap.containsKey("FabImageColor")) {
-			_fab.setStrokeColor(ColorStateList.valueOf(Color.parseColor(imap.get("FabColorStroker").toString())));
-			_fab.setStrokeWidth(1);
-			_fab.setIconTint(ColorStateList.valueOf(Color.parseColor(imap.get("FabImageColor").toString())));
-		}
-		else {
-			_fab.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#ffaebdff")));
-			_fab.setStrokeWidth(1);
-			_fab.setIconTint(ColorStateList.valueOf(Color.parseColor("#ffc9f2ff")));
-			_dialogError();
-		}
 		_Animwork(_fab);
 		proanjctor.setVisibility(View.GONE);
 		_Anim01(editor);
-		if (imap.containsKey("SyombolBarTextColor")) {
-			bar1.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			bar2.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview3.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview4.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview5.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview6.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview7.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview8.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview9.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview10.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview11.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview12.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview13.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-			textview14.setTextColor(Color.parseColor(imap.get("SyombolBarTextColor").toString()));
-		}
-		else {
-			bar1.setTextColor(0xFF2196F3);
-			bar2.setTextColor(0xFF2196F3);
-			textview3.setTextColor(0xFF2196F3);
-			textview4.setTextColor(0xFF2196F3);
-			textview5.setTextColor(0xFF2196F3);
-			textview6.setTextColor(0xFF2196F3);
-			textview7.setTextColor(0xFF2196F3);
-			textview8.setTextColor(0xFF2196F3);
-			textview9.setTextColor(0xFF2196F3);
-			textview10.setTextColor(0xFF2196F3);
-			textview11.setTextColor(0xFF2196F3);
-			textview12.setTextColor(0xFF2196F3);
-			textview13.setTextColor(0xFF2196F3);
-			textview14.setTextColor(0xFF2196F3);
-			_dialogError();
-		}
 	}
 	
 	
@@ -1337,7 +1084,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 		save.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				_fab.setVisibility(View.GONE);
 				if (editor.getText().toString().isEmpty()) {
 					ViewGroup v = (ViewGroup) ((ViewGroup) CodeeditorActivity.this .findViewById(android.R.id.content)).getChildAt(0);
 					
@@ -1362,7 +1108,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 					card.setCardBackgroundColor(0xFF1F1B1C);
 					card.setRadius((float)20);
 					card.setCardElevation((float)3);
-					_fab.setVisibility(View.VISIBLE);
 					snackbar.dismiss();                    
 					  
 					                
@@ -1398,7 +1143,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 								card.setCardBackgroundColor(0xFF1F1B1C);
 								card.setRadius((float)20);
 								card.setCardElevation((float)3);
-								_fab.setVisibility(View.VISIBLE);
 								snackbar.dismiss();                    
 								  
 								                
@@ -4096,7 +3840,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 										popup.dismiss();
 								} });
 						
-						AnimUtils.O(popupView);
+						AnimUtils.Amin03(popupView);
 						AnimUtils.Worker(c1); 
 						AnimUtils.Worker(c2);
 						AnimUtils.Worker(c3);
