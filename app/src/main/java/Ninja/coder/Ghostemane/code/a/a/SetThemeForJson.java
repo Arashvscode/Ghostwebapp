@@ -1,4 +1,4 @@
-package Ninja.coder.Ghostemane.code.a.a;
+package a.a;
 
 import android.graphics.Color;
 import io.github.rosemoe.sora.widget.CodeEditor;
@@ -33,8 +33,8 @@ public class SetThemeForJson {
 		return this;
 	}
 
-	public SetThemeForJson setThemeCodeEditor(CodeEditor editor, HashMap<String, Object> imap) {
-		imap = new HashMap<>();
+	public SetThemeForJson setThemeCodeEditor(CodeEditor editor, HashMap<String, Object> imap ,boolean chackHashMap) {
+		setHashMapInabel(chackHashMap,imap);
 
 		if (imap.containsKey("OPERATOR")) {
 			editor.getColorScheme().setColor(EditorColorScheme.OPERATOR,
@@ -174,6 +174,16 @@ public class SetThemeForJson {
 			editor.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#02FFFFFF"));
 		}
 
+		return this;
+	}
+	public SetThemeForJson setHashMapInabel(boolean isEnabel , HashMap<String,Object> imap){
+		if(isEnabel){
+			isEnabel = true;
+			imap = new HashMap<>();
+		}else{
+			isEnabel = false;
+		}
+		
 		return this;
 	}
 }
