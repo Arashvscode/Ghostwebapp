@@ -22,7 +22,8 @@ public class Save extends Activity {
 			context.startActivity(i);
         
 			return true;
-		} catch (Exception ignored) {
+		} catch (Exception e) {
+                      e.printStackTrace();
 			return false;
 		}
 	}
