@@ -13,7 +13,7 @@ import androidx.appcompat.app.*;
 import Ninja.coder.Ghostemane.code.R;
 
 public class Theme extends AppCompatActivity {
-	public static int[] ThumbId = new int[]{Integer.valueOf(R.mipmap.theme_1).intValue(), Integer.valueOf(R.mipmap.theme_2).intValue(), Integer.valueOf(R.mipmap.theme_3).intValue(), Integer.valueOf(R.mipmap.theme_4).intValue(), Integer.valueOf(R.mipmap.theme_5).intValue(), Integer.valueOf(R.mipmap.theme_6).intValue(), Integer.valueOf(R.mipmap.theme_7).intValue(), Integer.valueOf(R.mipmap.theme_8).intValue(), Integer.valueOf(R.mipmap.theme_9).intValue(), Integer.valueOf(R.mipmap.theme_10).intValue(),Integer.valueOf(R.mipmap.theme_11).intValue(),Integer.valueOf(R.mipmap.theme_12).intValue()};
+	public static int[] ThumbId = new int[]{Integer.valueOf(R.mipmap.theme_1).intValue(), Integer.valueOf(R.mipmap.theme_2).intValue(), Integer.valueOf(R.mipmap.theme_3).intValue(), Integer.valueOf(R.mipmap.theme_4).intValue(), Integer.valueOf(R.mipmap.theme_5).intValue(), Integer.valueOf(R.mipmap.theme_6).intValue(), Integer.valueOf(R.mipmap.theme_7).intValue(), Integer.valueOf(R.mipmap.theme_8).intValue(), Integer.valueOf(R.mipmap.theme_9).intValue(), Integer.valueOf(R.mipmap.theme_10).intValue(),Integer.valueOf(R.mipmap.theme_11).intValue(),Integer.valueOf(R.mipmap.theme_12).intValue() ,Integer.valueOf(R.mipmap.theme_12).intValue() };
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,6 +72,10 @@ public class Theme extends AppCompatActivity {
 					Theme.this.saveTheme("Theme", "12");
 					Toast.makeText(Theme.this, "تم کیبورد تغییر کرد.", 0).show();
 					return;
+                    case 12:
+                    Theme.this.saveTheme("Theme", "13");
+					Toast.makeText(Theme.this, "تم کیبورد تغییر کرد.", 0).show();
+                    break;
 					default:
 					return;
 				}

@@ -158,7 +158,10 @@ public class KeyboardSamsung extends InputMethodService implements KeyboardView.
 		} else if (Theme == 12) {
 			LL = (LinearLayout) getLayoutInflater().inflate(R.layout.keyboard_white_glass,null);
 			safahat_dark();
-		}
+		}else if(Theme == 13){
+            LL = (LinearLayout) getLayoutInflater().inflate(R.layout.keyboard_ninja,null);
+			safahat_dark();
+        }
 		
 		
 		sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
