@@ -1,0 +1,84 @@
+<!--
+  ~ Copyright (C) 2015 Pedro Vicente Gomez Sanchez.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/relative_layout" >
+
+    <!-- Filter Layout -->
+
+    <RelativeLayout
+        android:id="@+id/filter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filter_layout_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black" >
+
+        <!-- Share ImageButton -->
+
+        <ImageButton
+            android:id="@+id/ib_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"   
+            android:src="@android:drawable/ic_menu_share" />
+
+        <!-- Filter Layout -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/ib_share"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/et_filter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:background="#FF151515"
+                android:hint="et_filter_hint_text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFFFF"
+                android:textColorHint="#FF6F6868" />
+
+            <Spinner
+                android:id="@+id/sp_filter"
+                android:spinnerMode="dropdown"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- ListView full of traces -->
+
+    <ListView
+        android:id="@+id/lv_traces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/filter"      
+        android:dividerHeight="1dp"
+        android:scrollbarThumbVertical="@drawable/scrollbar"
+        android:stackFromBottom="true" />
+
+</merge>
