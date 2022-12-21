@@ -46,7 +46,7 @@ public class HTMLAutoComplete implements AutoCompleteProvider {
 
 		for (String ddd : HTMLLanguage.JS)
 			if (ddd.toLowerCase().startsWith(prefix.toLowerCase()))
-				items.add(dddAsCompletion(ddd, "JavaScrpit KeyWord"));
+				items.add(dddAsCompletion(ddd, "JavaScrpit Keyword);
 
 		for (String php : HTMLLanguage.PHP)
 			if (php.startsWith(prefix))
@@ -66,13 +66,13 @@ public class HTMLAutoComplete implements AutoCompleteProvider {
 	}
 
 	private CompletionItem dddAsCompletion(String ddd, String desc) {
-		final CompletionItem item = new CompletionItem(ddd, ddd.concat(" "), desc);
+		final CompletionItem item = new CompletionItem(ddd, ddd.concat("\t"), desc);
 		item.cursorOffset(item.commit.length() - 1);
 		return item;
 	}
 
 	private CompletionItem mcssAsCompletion(String mcss, String desc) {
-		final CompletionItem item = new CompletionItem(mcss, mcss.concat(": ;"), desc);
+		final CompletionItem item = new CompletionItem(mcss, mcss.concat("\t"), desc);
 		item.cursorOffset(item.commit.length() - 1);
 		return item;
 	}
