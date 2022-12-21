@@ -239,26 +239,24 @@ public class Background extends AppCompatActivity  {
 
 		Back_Tedad();
 
-		asli.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View p1) {
+		asli.setOnClickListener( v ->{
+				
 					if (asli.isChecked()) {
 						Save("Background", "asli");
 					}
 					Background_asli();
 					Back_Tedad();
-				}
+				
 			});
 
-		waliper.setOnClickListener(new OnClickListener(){
-				@Override
-				public void onClick(View p1) {
+		waliper.setOnClickListener((v) ->{
+				
 					if (waliper.isChecked()) {
 						Save("Background", "waliper");
 					}
 					Background_waliper();
 					Back_Tedad();
-				}
+				
 			});
 
 		gallary.setOnClickListener(new OnClickListener(){
