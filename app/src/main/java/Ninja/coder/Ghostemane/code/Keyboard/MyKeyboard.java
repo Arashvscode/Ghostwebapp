@@ -15,7 +15,7 @@ import Ninja.coder.Ghostemane.code.ApplicationLoader;
 
 public class MyKeyboard extends Keyboard {
 
-    static class MyKeyboards extends Key {
+   public static class MyKeyboards extends Key {
         int[] a = new int[]{16842915};
         int[] b = new int[]{16842919, 16842915};
         int[] c = new int[]{16842919, 16842915};
