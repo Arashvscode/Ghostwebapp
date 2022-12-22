@@ -74,7 +74,6 @@ import com.mukesh.*;
 import com.neo.highlight.*;
 import com.tapadoo.alerter.*;
 import com.zip4j.*;
-import io.github.rosemoe.sora.langs.base.*;
 import java.io.*;
 import java.io.InputStream;
 import java.text.*;
@@ -271,6 +270,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private RequestNetwork AppUpdeat;
 	private RequestNetwork.RequestListener _AppUpdeat_request_listener;
 	private Intent finalintentpostfont = new Intent();
+	private Intent intentgetLogCat = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -1941,7 +1941,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							         try {
 								
-																	new net.lingala.zip4j.ZipFile(new java.io.File("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("hh:mm").format(mCalender.getTime()).concat("theme.AA")))).addFile(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"));							
+													new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("hh:mm").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
 								SketchwareUtil.showMessage(getApplicationContext(), "انجام شد در پوشه برنامه");
 								
 											} catch (net.lingala.zip4j.exception.ZipException e) {
@@ -1963,7 +1963,7 @@ public class FiledirActivity extends AppCompatActivity {
 					else {
 						try {
 							
-																new net.lingala.zip4j.ZipFile(new java.io.File("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("hh:mm").format(mCalender.getTime()).concat("theme.AA")))).addFile(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"));							
+												new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("hh:mm").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
 							SketchwareUtil.showMessage(getApplicationContext(), "انجام شد در پوشه برنامه");
 							
 										} catch (net.lingala.zip4j.exception.ZipException e) {
@@ -1973,12 +1973,16 @@ public class FiledirActivity extends AppCompatActivity {
 					_drawer.closeDrawer(GravityCompat.START);
 				}
 				if (_position == 10) {
+					intentgetLogCat.setClass(getApplicationContext(), LogcatviewActivity.class);
+					startActivity(intentgetLogCat);
+				}
+				if (_position == 11) {
 					_drawer.closeDrawer(GravityCompat.START);
 					finishAffinity();
 				}
 						}
 				});
-		for(int _repeat471 = 0; _repeat471 < (int)(11); _repeat471++) {
+		for(int _repeat471 = 0; _repeat471 < (int)(12); _repeat471++) {
 			{
 				HashMap<String, Object> _item = new HashMap<>();
 				_item.put("key", "");
@@ -4950,6 +4954,11 @@ public class FiledirActivity extends AppCompatActivity {
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 10) {
+				img.setImageResource(R.drawable.log);
+				tv.setText("ظبط کننده خطا");
+				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+			}
+			if (_position == 11) {
 				img.setImageResource(R.drawable.exit);
 				tv.setText("خروج از برنامه");
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);

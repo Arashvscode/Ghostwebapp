@@ -1,10 +1,8 @@
 package Ninja.coder.Ghostemane.code;
 
-import android.Manifest;
 import android.animation.*;
 import android.app.*;
 import android.content.*;
-import android.content.pm.PackageManager;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
@@ -19,11 +17,11 @@ import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -52,72 +50,77 @@ import storage.sdcard.*;
 import xyz.doikki.videoplayer.*;
 import xyz.doikki.videoplayer.exo.*;
 import xyz.doikki.videoplayer.ijk.*;
+import com.github.pedrovgs.lynx.LynxActivity;
+import com.github.pedrovgs.lynx.LynxConfig;
+import com.github.pedrovgs.lynx.LynxView;
+import com.github.pedrovgs.lynx.LynxShakeDetector;
 
-public class MdcodeviewActivity extends AppCompatActivity {
+public class LogcatviewActivity extends AppCompatActivity {
+	
+	private static final String LYNX_CONFIG_EXTRA = "extra_lynx_config";
 	
 	private LinearLayout linear1;
-	private MarkdownView M;
+	private LynxView post;
+	private TextView textview1;
+	private ImageView imageview1;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.mdcodeview);
+		setContentView(R.layout.logcatview);
 		initialize(_savedInstanceState);
-		
-		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-		} else {
-			initializeLogic();
-		}
-	}
-	
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		if (requestCode == 1000) {
-			initializeLogic();
-		}
+		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
 		linear1 = findViewById(R.id.linear1);
-		M = findViewById(R.id.M);
-		
-		//no listener code
-		
-		//no listener code
-		
-		//webviewOnProgressChanged
-		M.setWebChromeClient(new WebChromeClient() {
-				@Override public void onProgressChanged(WebView view, int _newProgress) {
-					
-				}
-		});
-		
-		M.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
-				final String _url = _param2;
-				
-				super.onPageStarted(_param1, _param2, _param3);
-			}
-			
-			@Override
-			public void onPageFinished(WebView _param1, String _param2) {
-				final String _url = _param2;
-				
-				super.onPageFinished(_param1, _param2);
-			}
-		});
+		post = findViewById(R.id.post);
+		textview1 = findViewById(R.id.textview1);
+		imageview1 = findViewById(R.id.imageview1);
 	}
 	
 	private void initializeLogic() {
-		M.setOpenUrlInBrowser(true);
-		_setShow(FileUtil.readFile(getIntent().getStringExtra("v")));
+		
+		LynxConfig lynxConfig = getLynxConfig();
+		_configureLynxView(lynxConfig);
+		_disableLynxShakeDetector();
 	}
 	
-	public void _setShow(final String _p) {
-		M.setMarkDownText(_p);
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		_enableLynxShakeDetector();
+	}
+	
+	
+		private LynxConfig getLynxConfig() {
+				Bundle extras = getIntent().getExtras();
+				LynxConfig lynxConfig = new LynxConfig();
+				if (extras != null && extras.containsKey(LYNX_CONFIG_EXTRA)) {
+						lynxConfig = (LynxConfig) extras.getSerializable(LYNX_CONFIG_EXTRA);
+				}
+				return lynxConfig;
+		}
+		
+	public void _enableLynxShakeDetector() {
+		LynxShakeDetector.enable();
+	}
+	
+	
+	public void _disableLynxShakeDetector() {
+		LynxShakeDetector.disable();
+	}
+	
+	
+	public void _configureLynxView(final LynxConfig _lynxConfig) {
+		LynxView lynxView = (LynxView) findViewById(R.id.post);
+				lynxView.setLynxConfig(_lynxConfig);
+	}
+	
+	
+	public void _extar() {
+		
 	}
 	
 	

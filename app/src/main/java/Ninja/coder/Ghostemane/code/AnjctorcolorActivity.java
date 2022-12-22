@@ -50,7 +50,6 @@ import com.mukesh.*;
 import com.neo.highlight.*;
 import com.tapadoo.alerter.*;
 import com.zip4j.*;
-import io.github.rosemoe.sora.langs.base.*;
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -100,8 +99,7 @@ import android.content.ClipboardManager;
 import Ninja.coder.Ghostemane.code.EditorSearch.CodeEditorSearch;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
-
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class AnjctorcolorActivity extends AppCompatActivity {
 	
@@ -1183,37 +1181,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _dialogError() {
-		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(AnjctorcolorActivity.this);
-		    di.setTitle("شکست تم ");
-		di.setMessage("تم دچار نقص شده است ممکن است تم را دستی ویرایش کرده باشید یا یک ویژگی جدید به تم اضافه شده باشد لطفاً گزینه تعمیر را بزنید تا تم برای شما باز تولید شود");
-		di.setNeutralButton("تعمیر", (p, d) -> {
-			
-			         SketchwareUtil.showMessage(getApplicationContext(), "شروع باز نویسی تم");
-			FileUtil.deleteFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost");
-			pvr = new TimerTask() {
-				@Override
-				public void run() {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							finishAffinity();
-						}
-					});
-				}
-			};
-			_timer.schedule(pvr, (int)(2000));
-			
-						});
-		di.setCancelable(false);
-		di.show();
-		
-		
-		
-		
-	}
-	
-	
 	public void _editorcolor() {
 		final com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = new com.google.android.material.bottomsheet.BottomSheetDialog(AnjctorcolorActivity.this);
 		
@@ -1226,12 +1193,13 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		ImageView more = (ImageView) bottomSheetView.findViewById(R.id.more);
 		ImageView close = (ImageView) bottomSheetView.findViewById(R.id.close);
 		var setThemeForJson = new a.a.SetThemeForJson();
-				setThemeForJson.setThemeCodeEditor(editor,imap,false);
+				setThemeForJson.setThemeCodeEditor(editor,imap,false,AnjctorcolorActivity.this);
 				
 		java = "package com.myapp.byNinjacoder;\n\nimport java.util.*;\n\npublic class Ninjacoder{\n	public static void postone(int[] p){\n		var input = new Scanner(System.in);\n		int pvr = input.nextInt();\n		if(pvr == 10){\n			System.out.format(\"hello +%d\",pvr);\n		}else{\n			System.out.println(\"Error\");\n	\n		}\n	}\n	\n	protected void Inmap(HashMap<Object,Integer,Boolean>> los){\n		\n		los.put(\"Key\",1,true);\n		los.put(\"Key2\",2,true);\n		los.put(\"Key3\",3,true);\n		los.put(\"Key4\",4,true);\n		los.put(\"Key5\",1,true);\n		los.put(\"Key6\",1,true);\n		los.put(\"Key7\",1,true);\n		los.put(\"Key8\",1,true);\n		los.put(\"Key9\",1,true);\n	}\n}\n";
 		editor.setText(java); 
 		
 		editor.setEditorLanguage(new io.github.rosemoe.sora.langs.java.JavaLanguage()); 
+		editor.setEditable(false);
 		close.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
 				
 				bottomSheetDialog.dismiss();
@@ -1285,7 +1253,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 				
 			}
 		});
-		editor.setEnabled(false);
 		bottomSheetDialog.setCancelable(false);
 		bottomSheetDialog.show();
 	}
@@ -1341,4 +1308,4 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	public int getDisplayHeightPixels() {
 		return getResources().getDisplayMetrics().heightPixels;
 	}
-}
+}

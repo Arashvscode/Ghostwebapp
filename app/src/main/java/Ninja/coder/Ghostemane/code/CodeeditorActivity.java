@@ -60,7 +60,6 @@ import com.mukesh.*;
 import com.neo.highlight.*;
 import com.tapadoo.alerter.*;
 import com.zip4j.*;
-import io.github.rosemoe.sora.langs.base.*;
 import java.io.*;
 import java.io.InputStream;
 import java.text.*;
@@ -3817,6 +3816,18 @@ public class CodeeditorActivity extends AppCompatActivity {
 						
 						 
 						
+						 TextView   mtv1 = popupView.findViewById(R.id.mtv1);
+						
+						 
+						
+						 TextView   mtv2 = popupView.findViewById(R.id.mtv2);
+						
+						 
+						
+						 TextView   mtv3 = popupView.findViewById(R.id.mtv3);
+						
+						 
+						
 						 androidx.cardview.widget.CardView   mcard = popupView.findViewById(R.id.mcard);
 						
 						 
@@ -3844,9 +3855,24 @@ public class CodeeditorActivity extends AppCompatActivity {
 						AnimUtils.Worker(c1); 
 						AnimUtils.Worker(c2);
 						AnimUtils.Worker(c3);
-						mcard.setCardBackgroundColor(0xFF1F1B1C);
+						if (imap.containsKey("BackgroundColorLinear")) {
+							mcard.setCardBackgroundColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
+						}
+						else {
+							mcard.setCardBackgroundColor(0xFF1F1B1C);
+						}
 						mcard.setRadius((float)10);
 						mcard.setCardElevation((float)3);
+						if (imap.containsKey("TabTextColor")) {
+							mtv1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+							mtv2.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+							mtv3.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+						}
+						else {
+							mtv1.setTextColor(0xFFE0E0E0);
+							mtv2.setTextColor(0xFFE0E0E0);
+							mtv3.setTextColor(0xFFE0E0E0);
+						}
 						popup.setAnimationStyle(android.R.style.Animation_Dialog);
 						
 						popup.showAsDropDown(linear5, 0,0);
