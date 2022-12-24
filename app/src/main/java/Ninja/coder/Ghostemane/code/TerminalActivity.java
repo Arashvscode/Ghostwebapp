@@ -1,8 +1,10 @@
 package Ninja.coder.Ghostemane.code;
 
+import android.Manifest;
 import android.animation.*;
 import android.app.*;
 import android.content.*;
+import android.content.pm.PackageManager;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
@@ -23,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -34,6 +38,8 @@ import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
 import com.google.android.material.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lxj.xpopup.*;
 import com.mukesh.*;
 import com.neo.highlight.*;
@@ -42,6 +48,7 @@ import com.zip4j.*;
 import java.io.*;
 import java.text.*;
 import java.util.*;
+import java.util.HashMap;
 import java.util.regex.*;
 import org.antlr.v4.runtime.*;
 import org.benf.cfr.reader.*;
@@ -56,6 +63,8 @@ import io.github.rosemoe.sora.langs.universal.*;
 import io.github.rosemoe.sora.widget.CodeEditor;
 
 public class TerminalActivity extends AppCompatActivity {
+	
+	private HashMap<String, Object> imap = new HashMap<>();
 	
 	private LinearLayout linear3;
 	private LinearLayout linear4;
@@ -74,7 +83,20 @@ public class TerminalActivity extends AppCompatActivity {
 		super.onCreate(_savedInstanceState);
 		setContentView(R.layout.terminal);
 		initialize(_savedInstanceState);
-		initializeLogic();
+		
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
+		} else {
+			initializeLogic();
+		}
+	}
+	
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == 1000) {
+			initializeLogic();
+		}
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
@@ -113,13 +135,9 @@ public class TerminalActivity extends AppCompatActivity {
 				slector.setElevation(d*5);
 				slector.setBackground(SketchUi);
 				meditor.setLineNumberEnabled(false);
-				meditor.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#1F1B1C"));
-				meditor.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.TEXT_NORMAL, Color.parseColor("#FF00FF40"));
-				meditor.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.Ninja, Color.parseColor("#FF00C4FF"));
-				meditor.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.LITERAL, Color.parseColor("#FFA600FF"));
-				meditor.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.COMMENT, Color.parseColor("#FFE49454"));
-				meditor.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.OPERATOR, Color.parseColor("#FF3D9C76"));
-				meditor.setAutoCompletionEnabled(false);
+				final var theme = new a.a.SetThemeForJson();
+				theme.setThemeCodeEditor(meditor,imap,false,TerminalActivity.this);
+				
 				new AsyncTask<String, String, String>() {
 					@Override
 					protected void onPreExecute() {
@@ -201,15 +219,12 @@ public class TerminalActivity extends AppCompatActivity {
 	
 	private void initializeLogic() {
 		term.setEditorLanguage(new UniversalLanguage(new io.github.rosemoe.sora.langs.desc.ShellDescription()));
-		term.setLineNumberEnabled(false);
-		term.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#1F1B1C"));
-		term.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.TEXT_NORMAL, Color.parseColor("#FF00FF40"));
-		term.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.Ninja, Color.parseColor("#FF00C4FF"));
-		term.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.LITERAL, Color.parseColor("#FFA600FF"));
-		term.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.COMMENT, Color.parseColor("#FFE49454"));
-		term.getColorScheme().setColor(io.github.rosemoe.sora.widget.EditorColorScheme.OPERATOR, Color.parseColor("#FF3D9C76"));
-		term.setAutoCompletionEnabled(false);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+		term.setLineNumberEnabled(false);
+		imap = new HashMap<>();
+		imap = new Gson().fromJson(FileUtil.readFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"), new TypeToken<HashMap<String, Object>>(){}.getType());
+		 var theme2 = new a.a.SetThemeForJson();
+		theme2.setThemeCodeEditor(term,imap,false,TerminalActivity.this);
 	}
 	
 	

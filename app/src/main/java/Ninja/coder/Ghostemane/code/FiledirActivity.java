@@ -1653,7 +1653,7 @@ public class FiledirActivity extends AppCompatActivity {
 		}
 		Alerter.create(FiledirActivity.this) 
 		.setTitle("GhostWeb IDE")
-		.setText("Version Used = 1.4.6_Rc01")
+		.setText("Version Used = 1.4.6")
 		.setBackgroundColorInt(0xFF1F1B1C)
 		.show();
 		alterDialogDel = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
@@ -1941,7 +1941,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							         try {
 								
-													new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("hh:mm").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
+													new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
 								SketchwareUtil.showMessage(getApplicationContext(), "انجام شد در پوشه برنامه");
 								
 											} catch (net.lingala.zip4j.exception.ZipException e) {
@@ -1963,7 +1963,7 @@ public class FiledirActivity extends AppCompatActivity {
 					else {
 						try {
 							
-												new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("hh:mm").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
+												new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
 							SketchwareUtil.showMessage(getApplicationContext(), "انجام شد در پوشه برنامه");
 							
 										} catch (net.lingala.zip4j.exception.ZipException e) {
@@ -4897,70 +4897,70 @@ public class FiledirActivity extends AppCompatActivity {
 			final LinearLayout lps = _view.findViewById(R.id.lps);
 			if (_position == 0) {
 				img.setImageResource(R.drawable.cog);
-				tv.setText("تنظیمات برنامه");
+				tv.setText(getResources().getString(R.string.sting));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 1) {
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 				img.setImageResource(R.drawable.javanull);
-				tv.setText("کد های جاوا");
+				tv.setText(getResources().getString(R.string.java));
 			}
 			if (_position == 2) {
 				img.setImageResource(R.drawable.googleplay);
-				tv.setText("ثبت نظر در مایکت");
+				tv.setText(getResources().getString(R.string.googleplay));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 3) {
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 				img.setImageResource(R.drawable.console);
-				tv.setText("ترمینال");
+				tv.setText(getResources().getString(R.string.ter));
 			}
 			if (_position == 4) {
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 				if (staticStorage) {
 					staticStorage = true;
 					img.setImageResource(R.drawable.folderhome);
-					tv.setText("حافظه داخلی");
+					tv.setText(getResources().getString(R.string.sdcard2));
 				}
 				else {
 					img.setImageResource(R.drawable.sdcard);
-					tv.setText("حافظه خارجی");
+					tv.setText(getResources().getString(R.string.sdcard1));
 					staticStorage = false;
 				}
 			}
 			if (_position == 5) {
 				img.setImageResource(R.drawable.information);
-				tv.setText("درباره برنامه");
+				tv.setText(getResources().getString(R.string.about));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 6) {
 				img.setImageResource(R.drawable.school);
-				tv.setText("اموزش Html");
+				tv.setText(getResources().getString(R.string.htmlle));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 7) {
 				img.setImageResource(R.drawable.keyboard);
-				tv.setText("کیبورد");
+				tv.setText(getResources().getString(R.string.keyboard));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 8) {
 				img.setImageResource(R.drawable.keyboardlisnertalluserpost_1);
-				tv.setText("برسی بروز رسانی");
+				tv.setText(getResources().getString(R.string.up));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 9) {
 				img.setImageResource(R.drawable.keyboardlisnertalluserpost_2);
-				tv.setText("پشتیبان گیری از تم");
+				tv.setText(getResources().getString(R.string.themebackoup));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 10) {
 				img.setImageResource(R.drawable.log);
-				tv.setText("ظبط کننده خطا");
+				tv.setText(getResources().getString(R.string.logcater));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 			if (_position == 11) {
 				img.setImageResource(R.drawable.exit);
-				tv.setText("خروج از برنامه");
+				tv.setText(getResources().getString(R.string.exitapp));
 				img.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			}
 						

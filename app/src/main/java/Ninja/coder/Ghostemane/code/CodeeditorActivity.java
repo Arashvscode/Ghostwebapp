@@ -132,7 +132,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private LinearLayout Mainlinear;
 	private LinearLayout multytab;
 	private FrameLayout FrameLayout01;
-	private LinearLayout panelSattinges;
 	private LinearLayout showPanelSearch;
 	private LinearLayout newLayoutSymbolBar;
 	private LinearLayout CustomToolbar;
@@ -149,6 +148,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private ImageView imageview1;
 	private ImageView imageRagexHtmlFormat;
 	private ImageView amber;
+	private ImageView menupopnew;
 	private CodeEditor editor;
 	private FrameLayout FrameLayout02;
 	private ProgressBar proanjctor;
@@ -217,7 +217,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 		Mainlinear = findViewById(R.id.Mainlinear);
 		multytab = findViewById(R.id.multytab);
 		FrameLayout01 = findViewById(R.id.FrameLayout01);
-		panelSattinges = findViewById(R.id.panelSattinges);
 		showPanelSearch = findViewById(R.id.showPanelSearch);
 		newLayoutSymbolBar = findViewById(R.id.newLayoutSymbolBar);
 		CustomToolbar = findViewById(R.id.CustomToolbar);
@@ -234,6 +233,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 		imageview1 = findViewById(R.id.imageview1);
 		imageRagexHtmlFormat = findViewById(R.id.imageRagexHtmlFormat);
 		amber = findViewById(R.id.amber);
+		menupopnew = findViewById(R.id.menupopnew);
 		editor = findViewById(R.id.editor);
 		FrameLayout02 = findViewById(R.id.FrameLayout02);
 		proanjctor = findViewById(R.id.proanjctor);
@@ -336,6 +336,13 @@ public class CodeeditorActivity extends AppCompatActivity {
 				further.setClass(getApplicationContext(), CustomcolorsActivity.class);
 				further.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 				startActivity(further);
+			}
+		});
+		
+		menupopnew.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				_managerpanel(menupopnew);
 			}
 		});
 		
@@ -571,32 +578,13 @@ public class CodeeditorActivity extends AppCompatActivity {
 		di = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
 		stopIntarsenl.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFF44336));
 		fileinfo.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFEB3B));
+		backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFFFFF));
 		_textAim();
 		_themeInstallLojic();
 		imageRagexHtmlFormat.setVisibility(View.GONE);
-		showPanelSearch.setVisibility(View.GONE);
-		new AsyncTask<String, String, String>() {
-			@Override
-			protected void onPreExecute() {
-				recyclerview1.setVisibility(View.GONE);
-				editor.setVisibility(View.GONE);
-				panelSattinges.setVisibility(View.GONE);
-				progressbar1.setVisibility(View.VISIBLE);
-			}
-			@Override
-			protected String doInBackground(String... params) {
-				String _param = params[0];
-				_poz();
-				return "";
-			}
-			@Override
-			protected void onPostExecute(String _result) {
-				recyclerview1.setVisibility(View.VISIBLE);
-				editor.setVisibility(View.VISIBLE);
-				panelSattinges.setVisibility(View.VISIBLE);
-				progressbar1.setVisibility(View.GONE);
-			}
-		}.execute("");
+		showPanelSearch.setVisibility(View.VISIBLE);
+		_poz();
+		progressbar1.setVisibility(View.GONE);
 		
 		_EditorSummery();
 		imap = new HashMap<>();
@@ -620,8 +608,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 		
 		editor.setLineNumberAlign(Paint.Align.CENTER);
 		
-		_managerpanel(panelSattinges);
-		themenotfound.setVisibility(View.GONE);
 		var themeForJson = new a.a.SetThemeForJson();
 				themeForJson.setThemeCodeEditor(editor,imap,false,this);
 		        themeForJson.addTextColor(tvtitle, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
@@ -658,6 +644,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 		_Animwork(_fab);
 		proanjctor.setVisibility(View.GONE);
 		_Anim01(editor);
+		themenotfound.setVisibility(View.GONE);
 	}
 	
 	
@@ -866,39 +853,42 @@ public class CodeeditorActivity extends AppCompatActivity {
 	
 	
 	public void _managerpanel(final View _view) {
-		LayoutInflater hsi = LayoutInflater.from(CodeeditorActivity.this);
-		LinearLayout mninjacoder = (LinearLayout) hsi.inflate(R.layout.managerpanel, null, false);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT);
-		mninjacoder.setLayoutParams(params);
-		  
-		final LinearLayout bg = mninjacoder.findViewById(R.id.bg);
-		final ImageView colorpicker = mninjacoder.findViewById(R.id.colorpicker);
-		final ImageView undo = mninjacoder.findViewById(R.id.undo);
-		final ImageView redo = mninjacoder.findViewById(R.id.redo);
-		final com.allenliu.badgeview.BadgeView mycolor = mninjacoder.findViewById(R.id.mycolor);
-		final ImageView romved = mninjacoder.findViewById(R.id.romved);
-		final ImageView save = mninjacoder.findViewById(R.id.save);
-		final ImageView pastme = mninjacoder.findViewById(R.id.pastme);
-		final ImageView format = mninjacoder.findViewById(R.id.format);
-		final ImageView search = mninjacoder.findViewById(R.id.search);
-		final com.allenliu.badgeview.BadgeView colorAma = mninjacoder.findViewById(R.id.colorAma);
-		final ImageView link = mninjacoder.findViewById(R.id.link);
-		_Animwork(colorpicker);
-		_Animwork(undo);
-		_Animwork(redo);
-		_Animwork(romved);
-		_Animwork(save);
-		_Animwork(pastme);
-		_Animwork(format);
-		_Animwork(search);
-		_Animwork(link);
+		View popupView = getLayoutInflater().inflate(R.layout.managerpanel, null);
+		final PopupWindow popup = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+		LinearLayout bg = popupView.findViewById(R.id.bg);
+		ImageView colorpicker = popupView.findViewById(R.id.colorpicker);
+		ImageView undo = popupView.findViewById(R.id.undo);
+		ImageView redo = popupView.findViewById(R.id.redo);
+		ImageView link = popupView.findViewById(R.id.link);
+		ImageView save = popupView.findViewById(R.id.save);
+		ImageView format = popupView.findViewById(R.id.format);
+		ImageView search = popupView.findViewById(R.id.search);
+		ImageView romved = popupView.findViewById(R.id.romved);
+		com.allenliu.badgeview.BadgeView mycolor = popupView.findViewById(R.id.mycolor);
+		LinearLayout colorpickers = popupView.findViewById(R.id.colorpickers);
+		LinearLayout undos = popupView.findViewById(R.id.undos);
+		LinearLayout redos = popupView.findViewById(R.id.redos);
+		LinearLayout links = popupView.findViewById(R.id.links);
+		LinearLayout saves = popupView.findViewById(R.id.saves);
+		LinearLayout formats = popupView.findViewById(R.id.formats);
+		LinearLayout searchs = popupView.findViewById(R.id.searchs);
+		LinearLayout romveds = popupView.findViewById(R.id.romveds);
+		
+		bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF1F1B1C));
+		_Animwork(colorpickers);
+		_Animwork(undos);
+		_Animwork(redos);
+		_Animwork(romveds);
+		_Animwork(saves);
+		_Animwork(formats);
+		_Animwork(searchs);
+		_Animwork(links);
 		if (imap.containsKey("LINE_DIVIDER")) {
 			_Ripple_Drawable(colorpicker, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(undo, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(redo, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(romved, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(save, imap.get("LINE_DIVIDER").toString());
-			_Ripple_Drawable(pastme, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(format, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(search, imap.get("LINE_DIVIDER").toString());
 			_Ripple_Drawable(link, imap.get("LINE_DIVIDER").toString());
@@ -909,7 +899,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 			_Ripple_Drawable(redo, "#ff91b68f");
 			_Ripple_Drawable(romved, "#ff91b68f");
 			_Ripple_Drawable(save, "#ff91b68f");
-			_Ripple_Drawable(pastme, "#ff91b68f");
 			_Ripple_Drawable(format, "#ff91b68f");
 			_Ripple_Drawable(search, "#ff91b68f");
 			_Ripple_Drawable(link, "#ff91b68f");
@@ -921,7 +910,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 			redo.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
 			romved.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
 			save.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			pastme.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
 			format.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
 			search.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
 			link.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
@@ -932,7 +920,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 			redo.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
 			romved.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
 			save.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			pastme.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
 			format.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
 			search.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
 			link.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
@@ -942,251 +929,192 @@ public class CodeeditorActivity extends AppCompatActivity {
 		mycolor.setTextSize((int)12);
 		mycolor.setTextColor(0xFFFFFFFF);
 		mycolor.setBadgeCount("0");
-		colorpicker.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				ColorPickerDialogBuilder
-				.with(CodeeditorActivity.this)
-				.setTitle("لطفا رنگ را انتخاب کنید")
-				//.initialColor(getColor(R.color.Ninja))
-				.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
-				.showColorPreview(true)
-				.showColorEdit(true)
-				.density(22)
-				.showColorEdit(true)
-				.setOnColorSelectedListener(new OnColorSelectedListener() {
-						@Override
-						public void onColorSelected(int selectedColor) {
-								
-						}
-				})
-				.setPositiveButton("انتخاب", new ColorPickerClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
-								
-								
-								String rgs = Integer.toHexString(selectedColor);
-								
-								SketchwareUtil.CustomToast(getApplicationContext(), "رنگ کپی شد" + rgs, 0xFFFFFFFF, 15, 0xFF1F1B1C, 15, SketchwareUtil.CENTER);
-								try {
-										((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE))
-										.setPrimaryClip(ClipData.newPlainText("clipboard",
-										"#".concat(rgs).replace("#ff", "#")));
-								} catch (Exception exception) {
-										exception.printStackTrace();
-										
-								}
-								
-								editor.pasteText();
-								//editor.setSelection(editor.getCursor().getRightLine(), editor.getCursor().getRightColumn());
-								
-								
-								
-								
-						}
-				})
-				.setNegativeButton("لغو", new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-								
-								SketchwareUtil.showMessage(getApplicationContext(), "لغو شد");
-								
-						}
-				})
+		colorpickers.setOnClickListener(v->{
 				
-				
-				.build()
-				.show();
-				
-			}
-		});
-		undo.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				
-				_postUndo();
-			}
-		});
-		redo.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_postRedo();
-			}
-		});
-		romved.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				editor.setText("");
-			}
-		});
-		editor.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				try { 
-					String textSpan = editor.getText().toString();
-					final int selection = editor.getCursor().getLeft();
-					final Pattern pattern = Pattern.compile("(#?)(\\w+)");
-					final Matcher matcher = pattern.matcher(textSpan);
-					int start = 0;
-					int end = 0;
-					
-					String currentWordddddddd = "";
-					try { 
-							while (matcher.find()) {
-									start = matcher.start();
-									end = matcher.end();
-									if (start <= selection && selection <= end) {
-											currentWordddddddd = textSpan.substring(start, end).toString();
-											currentWord = currentWordddddddd;
-									}
-							}
-					} catch (Exception rr) { 
-							rr.printStackTrace();
+			
+				 ColorPickerDialogBuilder
+			.with(CodeeditorActivity.this)
+			.setTitle("لطفا رنگ را انتخاب کنید")
+			//.initialColor(getColor(R.color.Ninja))
+			.wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+			.showColorPreview(true)
+			.showColorEdit(true)
+			.density(22)
+			.showColorEdit(true)
+			.setOnColorSelectedListener(new OnColorSelectedListener() {
+					@Override
+					public void onColorSelected(int selectedColor) {
+							
 					}
-					
-					if (!currentWord.isEmpty()) {
-						if (currentWord.contains("#")) {
+			})
+			.setPositiveButton("انتخاب", new ColorPickerClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+							
+							
+							String rgs = Integer.toHexString(selectedColor);
+							
+							SketchwareUtil.CustomToast(getApplicationContext(), "رنگ کپی شد" + rgs, 0xFFFFFFFF, 15, 0xFF1F1B1C, 15, SketchwareUtil.CENTER);
+							try {
+									((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE))
+									.setPrimaryClip(ClipData.newPlainText("clipboard",
+									"#".concat(rgs).replace("#ff", "#")));
+							} catch (Exception exception) {
+									exception.printStackTrace();
+									
+							}
+							
+							editor.pasteText();
+							//editor.setSelection(editor.getCursor().getRightLine(), editor.getCursor().getRightColumn());
+							
+							
+							
+							
+					}
+			})
+			.setNegativeButton("لغو", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+							
+							SketchwareUtil.showMessage(getApplicationContext(), "لغو شد");
+							
+					}
+			})
+			
+			
+			.build()
+			.show();
+			
+			popup.dismiss();
+		});
+		undos.setOnClickListener(v->{
+				
+			
+				 popup.dismiss();
+			_postUndo();
+		});
+		redos.setOnClickListener(v->{
+				
+			
+				 popup.dismiss();
+			_postRedo();
+		});
+		romveds.setOnClickListener(v->{
+				
+			
+				 editor.setText("");
+			popup.dismiss();
+		});
+		editor.setOnClickListener(v->{
+				
+			
+				 try { 
+				String textSpan = editor.getText().toString();
+				final int selection = editor.getCursor().getLeft();
+				final Pattern pattern = Pattern.compile("(#?)(\\w+)");
+				final Matcher matcher = pattern.matcher(textSpan);
+				int start = 0;
+				int end = 0;
+				
+				String currentWordddddddd = "";
+				try { 
+						while (matcher.find()) {
+								start = matcher.start();
+								end = matcher.end();
+								if (start <= selection && selection <= end) {
+										currentWordddddddd = textSpan.substring(start, end).toString();
+										currentWord = currentWordddddddd;
+								}
+						}
+				} catch (Exception rr) { 
+						rr.printStackTrace();
+				}
+				
+				if (!currentWord.isEmpty()) {
+					if (currentWord.contains("#")) {
+						try {
+							    
+							mycolor.setBadgeBackground(Color.parseColor(currentWord));
+							mycolor.setBadgeCount("#");
+							mycolor.setTextSize((int)12);
+							mycolor.setTextColor(0xFFFFFFFF);
+						} catch (IllegalArgumentException iae) {
+							    
+						}
+					}
+					else {
+						if (currentWord.toLowerCase().contains("0xff")) {
 							try {
 								    
+								currentWord = currentWord.replace("0xff", "#");
+								currentWord = currentWord.replace("0xFF", "#");
+								mycolor.setBadgeCount("0xff");
 								mycolor.setBadgeBackground(Color.parseColor(currentWord));
-								mycolor.setBadgeCount("#");
-								mycolor.setTextSize((int)12);
 								mycolor.setTextColor(0xFFFFFFFF);
+								mycolor.setTextSize((int)12);
 							} catch (IllegalArgumentException iae) {
 								    
 							}
 						}
 						else {
-							if (currentWord.toLowerCase().contains("0xff")) {
-								try {
-									    
-									currentWord = currentWord.replace("0xff", "#");
-									currentWord = currentWord.replace("0xFF", "#");
-									mycolor.setBadgeCount("0xff");
-									mycolor.setBadgeBackground(Color.parseColor(currentWord));
-									mycolor.setTextColor(0xFFFFFFFF);
-									mycolor.setTextSize((int)12);
-								} catch (IllegalArgumentException iae) {
-									    
-								}
-							}
-							else {
-								mycolor.setBadgeBackground(Color.TRANSPARENT);
-							}
+							mycolor.setBadgeBackground(Color.TRANSPARENT);
 						}
 					}
-				} catch (Exception e){
-					e.printStackTrace();
 				}
+			} catch (Exception e){
+				e.printStackTrace();
 			}
+			popup.dismiss();
 		});
-		save.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				if (editor.getText().toString().isEmpty()) {
-					ViewGroup v = (ViewGroup) ((ViewGroup) CodeeditorActivity.this .findViewById(android.R.id.content)).getChildAt(0);
-					
-					final var snackbar = com.google.android.material.snackbar.Snackbar.make(v, "", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT);
-					  
-					                
-					                View customSnackView = getLayoutInflater().inflate(R.layout.customsneakbar, null);
-					  
-					                
-					                snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-					  
-					                
-					                var snackbarLayout = (com.google.android.material.snackbar.Snackbar.SnackbarLayout) snackbar.getView();
-					  
-					                
-					                snackbarLayout.setPadding(0, 0, 0, 0);
-					  
-					                
-					                androidx.cardview.widget.CardView card = customSnackView.findViewById(R.id.card);           
-					TextView tv1 = customSnackView.findViewById(R.id.tv1);           
-					tv1.setText("خطا متن نمیتواند خالی باشد برای ذخیره شدن");
-					card.setCardBackgroundColor(0xFF1F1B1C);
-					card.setRadius((float)20);
-					card.setCardElevation((float)3);
-					snackbar.dismiss();                    
-					  
-					                
-					                snackbarLayout.addView(customSnackView, 0);
-					                  
-					                snackbar.show();
-				}
-				else {
-					try{
-						if (shp.contains("pos_path")) {
-							if (!shp.getString("pos_path", "").equals("")) {
-								FileUtil.writeFile(shp.getString("pos_path", ""), editor.getText().toString());
-								ViewGroup v = (ViewGroup) ((ViewGroup) CodeeditorActivity.this .findViewById(android.R.id.content)).getChildAt(0);
-								
-								final var snackbar = com.google.android.material.snackbar.Snackbar.make(v, "", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT);
-								  
-								                
-								                View customSnackView = getLayoutInflater().inflate(R.layout.customsneakbar, null);
-								  
-								                
-								                snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-								  
-								                
-								                var snackbarLayout = (com.google.android.material.snackbar.Snackbar.SnackbarLayout) snackbar.getView();
-								  
-								                
-								                snackbarLayout.setPadding(0, 0, 0, 0);
-								  
-								                
-								                androidx.cardview.widget.CardView card = customSnackView.findViewById(R.id.card);           
-								TextView tv1 = customSnackView.findViewById(R.id.tv1);           
-								tv1.setText("Saved file ".concat(Uri.parse(shp.getString("pos_path", "")).getLastPathSegment()));
-								card.setCardBackgroundColor(0xFF1F1B1C);
-								card.setRadius((float)20);
-								card.setCardElevation((float)3);
-								snackbar.dismiss();                    
-								  
-								                
-								                snackbarLayout.addView(customSnackView, 0);
-								                  
-								                snackbar.show();
-							}
-							else {
-								SketchwareUtil.showMessage(getApplicationContext(), "Error not File saved!");
-							}
+		saves.setOnClickListener(v->{
+				
+			
+				 if (editor.getText().toString().isEmpty()) {
+				SketchwareUtil.showMessage(getApplicationContext(), "خطا متن خالی نمیشود ذخیره شود");
+			}
+			else {
+				try{
+					if (shp.contains("pos_path")) {
+						if (!shp.getString("pos_path", "").equals("")) {
+							FileUtil.writeFile(shp.getString("pos_path", ""), editor.getText().toString());
+							Alerter.create(CodeeditorActivity.this) 
+							.setTitle("file saved")
+							.setText("Saved file ".concat(Uri.parse(shp.getString("pos_path", "")).getLastPathSegment()))
+							.setBackgroundColorInt(0xFF1F1B1C)
+							.show();
 						}
-					}catch(Exception e){
-						SketchwareUtil.showMessage(getApplicationContext(), "Error not File saved!");
+						else {
+							SketchwareUtil.showMessage(getApplicationContext(), "Error not File saved!");
+						}
 					}
-				}
-				if (imap.containsKey("ImageColor")) {
-					save.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-				}
-				else {
-					save.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-					_dialogError();
+				}catch(Exception e){
+					SketchwareUtil.showMessage(getApplicationContext(), "Error not File saved!");
 				}
 			}
-		});
-		pastme.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				editor.pasteText();
-				//editor.setSelection(editor.getCursor().getRightLine(), editor.getCursor().getRightColumn());
+			if (imap.containsKey("ImageColor")) {
+				save.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
 			}
-		});
-		format.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_codestyle(shp.getString("pos_path", ""));
-				save.performClick();
+			else {
+				save.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+				_dialogError();
 			}
+			popup.dismiss();
 		});
-		search.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_a();
-			}
+		formats.setOnClickListener(v->{
+				
+			
+				 _codestyle(shp.getString("pos_path", ""));
+			popup.dismiss();
+			saves.performClick();
 		});
 		proanjctor.setVisibility(View.GONE);
+		searchs.setOnClickListener((view) -> {
+			
+			       popup.dismiss();
+			_a();
+			
+			
+		});
 		editor.setEventListener(new io.github.rosemoe.sora.interfaces.EditorEventListener() {
 			
 			   		public boolean onRequestFormat(CodeEditor editor, boolean b) {
@@ -1305,7 +1233,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 			
 			
 		});
-		link.setOnClickListener((view) -> {
+		links.setOnClickListener((view) -> {
 			
 			       		 LinearLayout linearLayout = new LinearLayout(getApplicationContext());
 					linearLayout.setLayoutParams(new LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
@@ -1369,7 +1297,11 @@ public class CodeeditorActivity extends AppCompatActivity {
 			
 			
 		});
-		panelSattinges.addView(mninjacoder);
+		popup.setAnimationStyle(android.R.style.Animation_Dialog);
+		
+		popup.showAsDropDown(_view, 0,0);
+		
+		popup.setBackgroundDrawable(new BitmapDrawable());
 	}
 	
 	
@@ -2129,14 +2061,14 @@ public class CodeeditorActivity extends AppCompatActivity {
 		if (shp.contains("path")) {
 			if (!shp.getString("path", "").equals("")) {
 				tabs_listmap = new Gson().fromJson(shp.getString("path", ""), new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
-				recyclerview1.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
 				recyclerview1.setAdapter(new Recyclerview1Adapter(tabs_listmap));
+				recyclerview1.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
 				recyclerview1.setHasFixedSize(true);
 			}
 		}
 		if (FileUtil.isExistFile(shp.getString("pos_path", ""))) {
-			 ((LinearLayoutManager) recyclerview1.getLayoutManager()).scrollToPositionWithOffset((int)Math.floor(Double.parseDouble(shp.getString("positionTabs", ""))), (int)0);
 			_codeEditor(shp.getString("pos_path", ""));
+			 ((LinearLayoutManager) recyclerview1.getLayoutManager()).scrollToPositionWithOffset((int)Math.floor(Double.parseDouble(shp.getString("positionTabs", ""))), (int)0);
 		}
 	}
 	
@@ -3156,114 +3088,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 	
 	
 	public void _finalShowPanelSeach() {
-		LayoutInflater hh = LayoutInflater.from(CodeeditorActivity.this);
-		LinearLayout mninjacoder = (LinearLayout) hh.inflate(R.layout.fromsheets, null, false);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT);
-		mninjacoder.setLayoutParams(params);
-		  
-		final TextView tani = mninjacoder.findViewById(R.id.tani);
-		final EditText editorrep = mninjacoder.findViewById(R.id.editorrep);
-		final EditText editorser = mninjacoder.findViewById(R.id.editorser);
-		final ImageButton imageclose = mninjacoder.findViewById(R.id.imageclose);
-		final Button mis = mninjacoder.findViewById(R.id.mis);
-		final Button ser = mninjacoder.findViewById(R.id.ser);
-		final Button rep = mninjacoder.findViewById(R.id.rep);
-		final Button repall = mninjacoder.findViewById(R.id.repall);
-		final com.google.android.material.textfield.TextInputLayout input1 = mninjacoder.findViewById(R.id.input1);
-		final com.google.android.material.textfield.TextInputLayout input2 = mninjacoder.findViewById(R.id.input2);
 		
-		
-		editorser.addTextChangedListener(new TextWatcher() {
-				@Override
-				public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
-						final String _charSeq = _param1.toString();
-						editor.getSearcher().search(_charSeq);
-				}
-				
-				@Override
-				public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
-						
-				}
-				
-				@Override
-				public void afterTextChanged(Editable _param1) {
-						
-				}
-		});
-		
-		mis.setOnClickListener((view) -> {
-				
-				try {
-						editor.getSearcher().gotoLast();
-				} catch (IllegalStateException e) {
-						e.printStackTrace();
-				}
-				
-				tani.setOnClickListener(cd -> {
-						//	Mp(a, "اذیت نکن عه");
-				});
-				
-		});
-		ser.setOnClickListener((view) -> {
-				
-				try {
-						editor.getSearcher().gotoNext();
-				} catch (IllegalStateException e) {
-						e.printStackTrace();
-				}
-				
-		});
-		rep.setOnClickListener((view) -> {
-				
-				if (editorrep.getText().toString().isEmpty()) {
-						//	Mp(a, "متن نمیتواند خالی باشد");
-						SketchwareUtil.showMessage(getApplicationContext(), " متن خالی است");
-				} else {
-						showPanelSearch.setVisibility(View.GONE);
-						panelSattinges.setVisibility(View.VISIBLE);
-						newLayoutSymbolBar.setVisibility(View.VISIBLE);
-						try {
-								editor.getSearcher().replaceThis(editorrep.getText().toString());
-						} catch (IllegalStateException e) {
-								e.printStackTrace();
-						}
-				}
-				
-		});
-		repall.setOnClickListener((view) -> {
-				
-				if (editorrep.getText().toString().isEmpty()) {
-						//	Mp(a, "متن نمیتواند خالی باشد");
-						
-						SketchwareUtil.showMessage(getApplicationContext(), " متن خالی است");
-				} else {
-						showPanelSearch.setVisibility(View.GONE);
-						panelSattinges.setVisibility(View.VISIBLE);
-						newLayoutSymbolBar.setVisibility(View.VISIBLE);
-						try {
-								editor.getSearcher().replaceAll(editorrep.getText().toString());
-						} catch (IllegalStateException e) {
-								e.printStackTrace();
-						}
-				}
-				
-		});
-		
-		editorser.setOnClickListener(v ->{
-					panelSattinges.setVisibility(View.GONE);
-					newLayoutSymbolBar.setVisibility(View.GONE);
-			    
-		});
-		
-		imageclose.setOnClickListener((view) -> {
-			
-			       showPanelSearch.setVisibility(View.GONE);
-			panelSattinges.setVisibility(View.VISIBLE);
-			newLayoutSymbolBar.setVisibility(View.VISIBLE);
-			
-			
-		});
-		showPanelSearch.addView(mninjacoder);
 	}
 	
 	
@@ -3513,7 +3338,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 		@Override
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			LayoutInflater _inflater = getLayoutInflater();
-			View _v = _inflater.inflate(R.layout.listeditor, null);
+			View _v = _inflater.inflate(R.layout.newlist, null);
 			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 			_v.setLayoutParams(_lp);
 			return new ViewHolder(_v);
@@ -3523,15 +3348,12 @@ public class CodeeditorActivity extends AppCompatActivity {
 		public void onBindViewHolder(ViewHolder _holder, final int _position) {
 			View _view = _holder.itemView;
 			
-			final LinearLayout linear3 = _view.findViewById(R.id.linear3);
-			final LinearLayout linear4 = _view.findViewById(R.id.linear4);
+			final LinearLayout linear1 = _view.findViewById(R.id.linear1);
 			final LinearLayout linear5 = _view.findViewById(R.id.linear5);
 			final LinearLayout selector = _view.findViewById(R.id.selector);
 			final ImageView imageview2 = _view.findViewById(R.id.imageview2);
 			final TextView textview1 = _view.findViewById(R.id.textview1);
-			final LinearLayout close = _view.findViewById(R.id.close);
 			
-			close.setVisibility(View.GONE);
 			_fab.shrink();
 			if (_data.isEmpty()) {
 				
@@ -3558,11 +3380,11 @@ public class CodeeditorActivity extends AppCompatActivity {
 					selector.setElevation(d*4);
 					selector.setBackground(SketchUi);
 				}
-				if (imap.containsKey("TabImageColorFilter")) {
-					close.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.parseColor(imap.get("TabImageColorFilter").toString())));
+				if (false) {
+					
 				}
 				else {
-					close.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.parseColor("#fffad7ff")));
+					
 				}
 				textview1.setText(Uri.parse(_data.get((int)_position).get("path").toString()).getLastPathSegment().toLowerCase());
 				if (FileUtil.isDirectory(_data.get((int)_position).get("path").toString())) {
@@ -3704,7 +3526,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 					_Anim01(imageview2);
 					_Anim01(editor);
 					selector.setVisibility(View.VISIBLE);
-					close.setVisibility(View.VISIBLE);
 					n = 0;
 					if (imap.containsKey("TabTextColor")) {
 						textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
@@ -3716,7 +3537,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 				else {
 					selector.setVisibility(View.GONE);
 					n = 0;
-					close.setVisibility(View.INVISIBLE);
 					_Bounce(textview1);
 					_Bounce(imageview2);
 					_Anim01(editor);
@@ -3745,7 +3565,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 										textview1.setTextColor(Color.parseColor("#f4ffc6bc"));
 									}
 									selector.setVisibility(View.VISIBLE);
-									close.setVisibility(View.VISIBLE);
 									_Anim01(imageview2);
 									_Anim01(textview1);
 									n = 0;
@@ -3759,12 +3578,11 @@ public class CodeeditorActivity extends AppCompatActivity {
 									else {
 										textview1.setTextColor(Color.parseColor("#ffc9fff2"));
 									}
-									n = 0;
-									close.setVisibility(View.INVISIBLE);
 									_Bounce(textview1);
 									_Bounce(imageview2);
 									
 									_Anim01(editor);
+									n = 0;
 								}
 							}
 							else {
@@ -3883,11 +3701,9 @@ public class CodeeditorActivity extends AppCompatActivity {
 				});
 				if (imap.containsKey("TabBack")) {
 					_Ripple_Drawable(linear5, imap.get("TabBack").toString());
-					_Ripple_Drawable(close, imap.get("TabBack").toString());
 				}
 				else {
 					_Ripple_Drawable(linear5, "#ffd1aeff");
-					_Ripple_Drawable(close, "#ffd1aeff");
 				}
 				shp.edit().putString("path", new Gson().toJson(_data)).commit();
 			}
