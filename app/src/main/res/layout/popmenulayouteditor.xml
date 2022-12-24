@@ -26,7 +26,7 @@
 				android:padding="8dp"
 				android:orientation="horizontal">
 				<TextView
-					android:id="@+id/close"
+					android:id="@+id/mtv1"
 					android:focusable="false"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -34,7 +34,8 @@
 					android:text="Close"
 					android:textSize="16sp"
 					android:textColor="#EEEEEE"
-					android:layout_weight="1" />
+					android:layout_weight="1"
+					android:fontFamily="@font/GhostFont" />
 			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/c2"
@@ -43,7 +44,7 @@
 				android:padding="8dp"
 				android:orientation="horizontal">
 				<TextView
-					android:id="@+id/textview2"
+					android:id="@+id/mtv2"
 					android:focusable="false"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -51,7 +52,8 @@
 					android:text="Close Other"
 					android:textSize="16sp"
 					android:textColor="#EEEEEE"
-					android:layout_weight="1" />
+					android:layout_weight="1"
+					android:fontFamily="@font/GhostFont" />
 			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/c3"
@@ -60,7 +62,7 @@
 				android:padding="8dp"
 				android:orientation="horizontal">
 				<TextView
-					android:id="@+id/textview3"
+					android:id="@+id/mtv3"
 					android:focusable="false"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -68,7 +70,8 @@
 					android:text="Close All"
 					android:textSize="16sp"
 					android:textColor="#EEEEEE"
-					android:layout_weight="1" />
+					android:layout_weight="1"
+					android:fontFamily="@font/GhostFont" />
 			</LinearLayout>
 		</LinearLayout>
 	</androidx.cardview.widget.CardView>

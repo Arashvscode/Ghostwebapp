@@ -115,13 +115,19 @@
 								android:padding="5dp"
 								android:src="@drawable/focused"
 								android:scaleType="centerInside" />
+							<ImageView
+								android:id="@+id/menupopnew"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:src="@drawable/ic_grain_white"
+								android:scaleType="center" />
 						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
 				<ProgressBar
 					android:id="@+id/progressbar1"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
 					android:padding="8dp"
 					android:indeterminate="true"
 					style="?android:progressBarStyleHorizontal" />
@@ -163,12 +169,6 @@
 						android:layout_gravity="right" />
 				</FrameLayout>
 			</FrameLayout>
-			<LinearLayout
-				android:id="@+id/panelSattinges"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:padding="8dp"
-				android:orientation="horizontal" />
 			<LinearLayout
 				android:id="@+id/showPanelSearch"
 				android:layout_width="0dp"
@@ -330,6 +330,6 @@
 		android:layout_marginLeft="16dp"
 		android:layout_marginTop="16dp"
 		android:layout_marginRight="16dp"
-		android:layout_marginBottom="119dp"
+		android:layout_marginBottom="60dp"
 		android:layout_gravity="right|bottom" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
