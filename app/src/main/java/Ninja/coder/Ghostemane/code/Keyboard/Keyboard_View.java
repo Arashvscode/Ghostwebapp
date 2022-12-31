@@ -2,18 +2,17 @@ package Ninja.coder.Ghostemane.code.Keyboard;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.Keyboard.Key;
 import android.inputmethodservice.KeyboardView;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import java.util.regex.Matcher;
-import android.graphics.*;
 import java.util.regex.Pattern;
-import android.graphics.drawable.Drawable;
 import Ninja.coder.Ghostemane.code.R;
 
 
@@ -22,7 +21,7 @@ public class Keyboard_View extends KeyboardView {
 	public Keyboard_View(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-    String Theme ="";
+	String Theme ="";
 	
 	public void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -48,6 +47,8 @@ public class Keyboard_View extends KeyboardView {
 			paint2.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"font/naskh.ttf"));
 		} else if (Font.equals("7")) { 
 			paint2.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"font/tabssom.ttf"));
+		} else if (Font.equals("8")) { 
+			paint2.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"GhostFont.ttf"));
 		}
 		
 		Theme = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("Theme", "5");
@@ -76,6 +77,8 @@ public class Keyboard_View extends KeyboardView {
 		} else if (Theme.equals("11")) {
 			paint2.setColor(Integer.valueOf(0xFF000000));
 		} else if (Theme.equals("12")) {
+			paint2.setColor(Integer.valueOf(0xFFFFFFFF));
+		} else if(Theme.equals("13")) {
 			paint2.setColor(Integer.valueOf(0xFFFFFFFF));
 		}
 		paint2.setTextSize(getPrefInt(PreferenceManager.getDefaultSharedPreferences(getContext()),"TextSize2", 20));
@@ -160,9 +163,12 @@ public class Keyboard_View extends KeyboardView {
 				canvas.drawText("غ", (float) (key.x + ((key.width / 7) * 2)), (float) ((key.y + (key.height / 3)) + (key.height / 16)), paint2);
 			}
 			if (key.codes[0] == 10) {
-				if (Theme.equals("5")) {
-					drawKeyBackground(R.drawable.hp110, canvas, key);
+				if (Theme.equals("13")) {
+					drawKeyBackground(R.drawable.enter_key, canvas, key);
+				} else {
+					
 				}
+				
 				
 			}
 			
@@ -193,14 +199,16 @@ public class Keyboard_View extends KeyboardView {
 		String prefVal = prefs.getString(prefName, Integer.toString(defVal));
 		return getIntFromString(prefVal, defVal);
 	}
-	private void drawKeyBackground(int drawableId, Canvas canvas, MyKeyboard.Key key) {
+	private void drawKeyBackground(int drawableId, Canvas canvas, Keyboard.Key key) {
 		Drawable npd = getContext().getResources().getDrawable(drawableId);
 		int[] drawableState = key.getCurrentDrawableState();
 		if (key.codes[0] != 0) {
 			npd.setState(drawableState);
+			
 		}
 		npd.setBounds(key.x, key.y, key.x + key.width, key.y + key.height);
 		npd.draw(canvas);
 	}
+	
 	
 }
