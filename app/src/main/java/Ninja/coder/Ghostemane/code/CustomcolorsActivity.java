@@ -55,6 +55,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.*;
+import meorg.jsoup.*;
 import org.antlr.v4.runtime.*;
 import org.benf.cfr.reader.*;
 import org.beyka.tiffbitmapfactory.*;

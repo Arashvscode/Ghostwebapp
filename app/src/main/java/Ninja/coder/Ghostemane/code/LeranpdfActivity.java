@@ -17,6 +17,7 @@ import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
+import android.widget.LinearLayout;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -48,53 +49,37 @@ import storage.sdcard.*;
 import xyz.doikki.videoplayer.*;
 import xyz.doikki.videoplayer.exo.*;
 import xyz.doikki.videoplayer.ijk.*;
-import project.gouid.customer.CoreWebView;
 
-public class GouidhtmlActivity extends AppCompatActivity {
+public class LeranpdfActivity extends AppCompatActivity {
 	
-	private CoreWebView run;
+	private LinearLayout linear1;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.gouidhtml);
+		setContentView(R.layout.leranpdf);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
-		run = findViewById(R.id.run);
-		
-		//no listener code
-		
-		//no listener code
-		
-		//webviewOnProgressChanged
-		run.setWebChromeClient(new WebChromeClient() {
-				@Override public void onProgressChanged(WebView view, int _newProgress) {
-					
-				}
-		});
-		
-		run.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
-				final String _url = _param2;
-				
-				super.onPageStarted(_param1, _param2, _param3);
-			}
-			
-			@Override
-			public void onPageFinished(WebView _param1, String _param2) {
-				final String _url = _param2;
-				
-				super.onPageFinished(_param1, _param2);
-			}
-		});
+		linear1 = findViewById(R.id.linear1);
 	}
 	
 	private void initializeLogic() {
-		run.getUrl("file:///android_asset/index.html");
+		if (getIntent().hasExtra("android")) {
+			linear1.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("android")));
+		}
+		else {
+			if (getIntent().hasExtra("css")) {
+				linear1.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("css")));
+			}
+			else {
+				if (getIntent().hasExtra("java")) {
+					linear1.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("java")));
+				}
+			}
+		}
 	}
 	
 	

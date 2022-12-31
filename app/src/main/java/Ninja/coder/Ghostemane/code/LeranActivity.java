@@ -1,9 +1,11 @@
 package Ninja.coder.Ghostemane.code;
 
+import android.Manifest;
 import android.animation.*;
 import android.app.*;
 import android.content.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
@@ -16,6 +18,7 @@ import android.text.*;
 import android.text.style.*;
 import android.util.*;
 import android.view.*;
+import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
@@ -29,6 +32,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -62,103 +67,133 @@ import xyz.doikki.videoplayer.*;
 import xyz.doikki.videoplayer.exo.*;
 import xyz.doikki.videoplayer.ijk.*;
 
-public class ResultActivity extends AppCompatActivity {
+public class LeranActivity extends AppCompatActivity {
 	
-	private ArrayList<HashMap<String, Object>> cdMapResu = new ArrayList<>();
+	private ArrayList<HashMap<String, Object>> mmap = new ArrayList<>();
 	
-	private LinearLayout linear1;
+	private LinearLayout main;
 	private LinearLayout linear2;
-	private ListView listview1;
+	private ListView mlistview;
 	private TextView textview1;
 	private ImageView imageview1;
 	
-	private Intent i1 = new Intent();
-	private Intent i2 = new Intent();
-	private Intent i3 = new Intent();
+	private ProgressDialog pv;
+	private Intent intent = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.result);
+		setContentView(R.layout.leran);
 		initialize(_savedInstanceState);
-		initializeLogic();
+		
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
+		|| ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+		} else {
+			initializeLogic();
+		}
+	}
+	
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == 1000) {
+			initializeLogic();
+		}
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
-		linear1 = findViewById(R.id.linear1);
+		main = findViewById(R.id.main);
 		linear2 = findViewById(R.id.linear2);
-		listview1 = findViewById(R.id.listview1);
+		mlistview = findViewById(R.id.mlistview);
 		textview1 = findViewById(R.id.textview1);
 		imageview1 = findViewById(R.id.imageview1);
 		
-		listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4) {
 				final int _position = _param3;
 				if (_position == 0) {
-					i3.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Theme.class);
-					startActivity(i3);
+					intent.setClass(getApplicationContext(), LeranpdfActivity.class);
+					intent.putExtra("java", "/sdcard/GhostwebIde/.lp/finaljavabook.pdf");
+					startActivity(intent);
 				}
 				if (_position == 1) {
-					i1.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Background.class);
-					startActivity(i1);
+					intent.setClass(getApplicationContext(), LeranpdfActivity.class);
+					intent.putExtra("css", "/sdcard/GhostwebIde/.lp/css.pdf");
+					startActivity(intent);
 				}
 				if (_position == 2) {
-					///result code By Ninja coder.ir my love java
-					
-					
-					GradientDrawable b = new GradientDrawable();
-							b.setColor(0xFF1F1B1C);
-							b.setCornerRadius(25);
-							b.setStroke(1, 0xFFFDA893);
-					var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(ResultActivity.this);
-					    di.setTitle("ذخیره و بازیابی");
-					di.setMessage("با انتخاب یکی از گزینه ها ذخیره یا ریست کردن داده های کیبورد برنامه از اول اجرا میشود ولی همچنان تنظیمات برنامه ثابت است فقط تنظیمات کیبورد قابل تغییر است");
-					di.setNeutralButton("ذخیره", (p, d) -> {
-						
-						         i2.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Save.class);
-						startActivity(i2);
-						
-									});
-					di.setPositiveButton("ریست", (p1, d2) -> {
-						
-						         i2.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Reset.class);
-						startActivity(i2);
-						
-									});
-					di.setBackground(b);
-					di.show();
-					
-					
-					
-					
+					intent.setClass(getApplicationContext(), LeranpdfActivity.class);
+					intent.putExtra("android", "/sdcard/GhostwebIde/.lp/Androidlearning.pdf");
+					startActivity(intent);
 				}
 				if (_position == 3) {
-					i3.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Setting.class);
-					startActivity(i3);
+					intent.setClass(getApplicationContext(), GouidhtmlActivity.class);
+					startActivity(intent);
 				}
+			}
+		});
+		
+		imageview1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				onBackPressed();
 			}
 		});
 	}
 	
 	private void initializeLogic() {
-		for (int v = 0; v < (int)(4); v++) {
+		  pv = new ProgressDialog(LeranActivity.this ,ProgressDialog.THEME_DEVICE_DEFAULT_DARK);
+		///result code By Ninja coder.ir my love java
+		
+		
+		GradientDrawable g = new GradientDrawable();
+				g.setColor(0xFF1F1B1C);
+				g.setCornerRadius(15);
+				g.setStroke(1, 0xFFFDA893);
+		pv.getWindow().setBackgroundDrawable(g);
+		FileUtil.makeDir("/sdcard/GhostwebIde/.lp/");
+		if (!(FileUtil.isExistFile("/sdcard/GhostwebIde/.lp/Androidlearning.pdf") || (FileUtil.isExistFile("/sdcard/GhostwebIde/.lp/css.pdf") || FileUtil.isExistFile("/sdcard/GhostwebIde/.lp/finaljavabook.pdf")))) {
+			new AsyncTask<String, String, String>() {
+				@Override
+				protected void onPreExecute() {
+					pv.setTitle("در حال نصب");
+					pv.setMessage("صبر کنید....");
+					pv.show();
+				}
+				@Override
+				protected String doInBackground(String... params) {
+					String _param = params[0];
+					
+					AssetsSoft assetsSoft = new AssetsSoft();
+							assetsSoft.unzipFromAssets(LeranActivity.this,"le.zip","/sdcard/GhostwebIde/.lp/");
+					return "";
+				}
+				@Override
+				protected void onPostExecute(String _result) {
+					pv.setMessage("انجام شد");
+					pv.dismiss();
+				}
+			}.execute("");
+		}
+		for (int mmm = 0; mmm < (int)(4); mmm++) {
 			{
 				HashMap<String, Object> _item = new HashMap<>();
 				_item.put("p", "");
-				cdMapResu.add(_item);
+				mmap.add(_item);
 			}
 			
 		}
-		listview1.setAdapter(new Listview1Adapter(cdMapResu));
-		((BaseAdapter)listview1.getAdapter()).notifyDataSetChanged();
+		mlistview.setAdapter(new MlistviewAdapter(mmap));
+		((BaseAdapter)mlistview.getAdapter()).notifyDataSetChanged();
 	}
 	
-	public class Listview1Adapter extends BaseAdapter {
+	public class MlistviewAdapter extends BaseAdapter {
 		
 		ArrayList<HashMap<String, Object>> _data;
 		
-		public Listview1Adapter(ArrayList<HashMap<String, Object>> _arr) {
+		public MlistviewAdapter(ArrayList<HashMap<String, Object>> _arr) {
 			_data = _arr;
 		}
 		
@@ -182,29 +217,28 @@ public class ResultActivity extends AppCompatActivity {
 			LayoutInflater _inflater = getLayoutInflater();
 			View _view = _v;
 			if (_view == null) {
-				_view = _inflater.inflate(R.layout.anifie, null);
+				_view = _inflater.inflate(R.layout.helper, null);
 			}
 			
 			final LinearLayout linear1 = _view.findViewById(R.id.linear1);
-			final TextView textview1 = _view.findViewById(R.id.textview1);
 			final ImageView imageview1 = _view.findViewById(R.id.imageview1);
+			final TextView textview1 = _view.findViewById(R.id.textview1);
 			
-			imageview1.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 			if (_position == 0) {
-				imageview1.setImageResource(R.drawable.keyboardlisnertalluserpost_2);
-				textview1.setText("تغییر تم");
+				textview1.setText("دوره حرفه ای جاوا");
+				imageview1.setImageResource(R.drawable.alcs_2);
 			}
 			if (_position == 1) {
-				textview1.setText("پس زمینه شخصی");
-				imageview1.setImageResource(R.drawable.keyboardlisnertalluserpost_3);
+				imageview1.setImageResource(R.drawable.ale);
+				textview1.setText("دوره حرفه ای متخصص اندروید شو");
 			}
 			if (_position == 2) {
-				imageview1.setImageResource(R.drawable.keyboardlisnertalluserpost_1);
-				textview1.setText("ذخیره و بازیابی");
+				imageview1.setImageResource(R.drawable.alcs_1);
+				textview1.setText("دوره تخصصی css3 ");
 			}
 			if (_position == 3) {
-				imageview1.setImageResource(R.drawable.keyboardlisnertalluserpost_4);
-				textview1.setText("بیشتر");
+				imageview1.setImageResource(R.drawable.alht);
+				textview1.setText("دوره تخصصی html5 ");
 			}
 			
 			return _view;

@@ -43,8 +43,6 @@ import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
 import com.google.android.material.*;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.lxj.xpopup.*;
 import com.mukesh.*;
 import com.neo.highlight.*;
@@ -59,6 +57,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.*;
+import meorg.jsoup.*;
 import org.antlr.v4.runtime.*;
 import org.benf.cfr.reader.*;
 import org.beyka.tiffbitmapfactory.*;
@@ -85,7 +84,6 @@ public class AboutActivity extends AppCompatActivity {
 	private RecyclerView recyclerview1;
 	private CircleImageView uo;
 	private TextView textview1;
-	private TextView textview2;
 	private LinearLayout linear9;
 	private LinearLayout linear10;
 	private TextView Storageview;
@@ -101,9 +99,9 @@ public class AboutActivity extends AppCompatActivity {
 	private ImageView imageview1;
 	private TextView textview3;
 	
-	private RequestNetwork requ;
-	private RequestNetwork.RequestListener _requ_request_listener;
 	private Intent github = new Intent();
+	private RequestNetwork sazndeh;
+	private RequestNetwork.RequestListener _sazndeh_request_listener;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -123,7 +121,6 @@ public class AboutActivity extends AppCompatActivity {
 		recyclerview1 = findViewById(R.id.recyclerview1);
 		uo = findViewById(R.id.uo);
 		textview1 = findViewById(R.id.textview1);
-		textview2 = findViewById(R.id.textview2);
 		linear9 = findViewById(R.id.linear9);
 		linear10 = findViewById(R.id.linear10);
 		Storageview = findViewById(R.id.Storageview);
@@ -138,7 +135,7 @@ public class AboutActivity extends AppCompatActivity {
 		tvabs = findViewById(R.id.tvabs);
 		imageview1 = findViewById(R.id.imageview1);
 		textview3 = findViewById(R.id.textview3);
-		requ = new RequestNetwork(this);
+		sazndeh = new RequestNetwork(this);
 		
 		githubs.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -149,18 +146,21 @@ public class AboutActivity extends AppCompatActivity {
 			}
 		});
 		
-		_requ_request_listener = new RequestNetwork.RequestListener() {
+		_sazndeh_request_listener = new RequestNetwork.RequestListener() {
 			@Override
 			public void onResponse(String _param1, String _param2, HashMap<String, Object> _param3) {
 				final String _tag = _param1;
 				final String _response = _param2;
 				final HashMap<String, Object> _responseHeaders = _param3;
 				try{
-					mp = new Gson().fromJson(_response, new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
+					org.jsoup.nodes.Document d = org.jsoup.Jsoup.parse(_response);
+					org.jsoup.select.Elements im = d.getElementsByClass("avatar avatar-user width-full border color-bg-default");
+					org.jsoup.select.Elements bv = d.getElementsByClass("p-nickname vcard-username d-block");
+					Glide.with(getApplicationContext()).load(Uri.parse(im.attr("src"))).into(uo);
+					textview1.setText(bv.text());
 				}catch(Exception e){
 					 
 				}
-				recyclerview1.setAdapter(new Recyclerview1Adapter(mp));
 			}
 			
 			@Override
@@ -190,7 +190,6 @@ public class AboutActivity extends AppCompatActivity {
 			sdcardPro.setProgress((int)0);
 		}
 		
-		requ.startRequestNetwork(RequestNetworkController.GET, "https://raw.githubusercontent.com/Arashvscode/Arashvscode/main/G.jsonx", "", _requ_request_listener);
 		MaterialRippleLayout.on(githubs)
 		           .rippleColor(0xFFFDA893)
 		           .create();
@@ -231,6 +230,7 @@ public class AboutActivity extends AppCompatActivity {
 				{
 						e.printStackTrace();
 				};
+		sazndeh.startRequestNetwork(RequestNetworkController.GET, "https://github.com/Arashvscode", "b", _sazndeh_request_listener);
 	}
 	
 	public void _totalStorage(final double _total, final double _Anviad) {

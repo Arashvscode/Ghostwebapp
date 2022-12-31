@@ -13,6 +13,7 @@ import android.text.*;
 import android.text.style.*;
 import android.util.*;
 import android.view.*;
+import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
@@ -42,6 +43,7 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 import java.util.regex.*;
+import meorg.jsoup.*;
 import org.antlr.v4.runtime.*;
 import org.benf.cfr.reader.*;
 import org.beyka.tiffbitmapfactory.*;
@@ -77,6 +79,13 @@ public class LogcatviewActivity extends AppCompatActivity {
 		post = findViewById(R.id.post);
 		textview1 = findViewById(R.id.textview1);
 		imageview1 = findViewById(R.id.imageview1);
+		
+		imageview1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				onBackPressed();
+			}
+		});
 	}
 	
 	private void initializeLogic() {

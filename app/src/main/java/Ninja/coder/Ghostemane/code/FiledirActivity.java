@@ -86,6 +86,7 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.*;
+import meorg.jsoup.*;
 import org.antlr.v4.runtime.*;
 import org.benf.cfr.reader.*;
 import org.beyka.tiffbitmapfactory.*;
@@ -1913,7 +1914,7 @@ public class FiledirActivity extends AppCompatActivity {
 					_drawer.closeDrawer(GravityCompat.START);
 				}
 				if (_position == 6) {
-					getabout.setClass(getApplicationContext(), GouidhtmlActivity.class);
+					getabout.setClass(getApplicationContext(), LeranActivity.class);
 					startActivity(getabout);
 					_drawer.closeDrawer(GravityCompat.START);
 				}
@@ -1992,6 +1993,10 @@ public class FiledirActivity extends AppCompatActivity {
 		}
 		_drawer_mlist.setAdapter(new MyListViewListAdapter(hsi));
 		((BaseAdapter)_drawer_mlist.getAdapter()).notifyDataSetChanged();
+		GradientDrawable abs = new GradientDrawable();
+		abs.setCornerRadius(55f);
+		abs.setColor(Color.parseColor("#91FF95A1"));
+		_drawer_mlist.setSelector(abs);
 	}
 	
 	@Override
