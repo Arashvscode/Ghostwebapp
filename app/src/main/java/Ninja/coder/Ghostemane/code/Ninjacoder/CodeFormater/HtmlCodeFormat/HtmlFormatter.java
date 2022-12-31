@@ -86,13 +86,12 @@ public class HtmlFormatter {
 						tags.get(currentTagHolderPos).setHasText();
 						sb.append(xpp.getText());
 						sb.append("</" + tags.get(currentTagHolderPos).tagName + ">");
-					//	sb.append("}" + tags.get(currentTagHolderPos).tagName + "{");
+				
 					}
 				} else if (currentTagPos == XmlPullParser.COMMENT) {
 					sb.append("\n");
 					sb.append("<!--" + xpp.getText() + "-->");
-					sb.append("/*" + xpp.getText() + "*/");
-					sb.append("//" + xpp.getText());
+					
 				}
 
 				//	Add formater css
