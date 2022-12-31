@@ -10,7 +10,7 @@ This is a public project that has been published in Myket. You can also output t
 ## screenshot in App
 <div style="display: inline;">
 
-<img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img1.jpg"/>
+<img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img1.png"/>
 <img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img2.jpg"/>
 <img style="width : 30% ; height : 100%; padding-right : 30px;" src="https://raw.githubusercontent.com/Arashvscode/Ghostwebapp/main/image/img3.jpg"/>
 
