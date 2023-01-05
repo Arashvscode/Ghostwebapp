@@ -158,7 +158,7 @@ public class HTMLLanguage implements EditorLanguage {
 		"active", "checked", "disabled", "empty", "enabled", "first-child", "first-of-type", "focus", "hover",
 		"indeterminate", "invalid", "last-child", "last-of-type", "link", "not", "nth-child", "nth-last-child",
 		"nth-last-of-type", "nth-of-type", "only-child", "only-of-type", "required", "root", "target", "valid",
-		"visited", "border-radius", "radius"
+		"visited", "border-radius", "radius","grid-template","grid","grid-area","grid-auto-columns","grid-auto-flow","grid-auto-rows","grid-column","grid-column-end","grid-column-start","grid-gap","grid-row-gap","grid-column-gap","grid-row-start","grid-template-columns"
 		
 	};
 	
