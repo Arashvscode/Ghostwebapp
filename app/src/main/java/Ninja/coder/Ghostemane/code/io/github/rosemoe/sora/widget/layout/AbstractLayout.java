@@ -23,13 +23,17 @@
  */
 package io.github.rosemoe.sora.widget.layout;
 
+import java.util.List;
+
+import io.github.rosemoe.sora.data.Span;
+import io.github.rosemoe.sora.graphics.GraphicTextRow;
 import io.github.rosemoe.sora.text.Content;
 import io.github.rosemoe.sora.text.ContentLine;
 import io.github.rosemoe.sora.widget.CodeEditor;
 
 /**
- * Base layout implementation of {@link Layout}
- * This class has basic methods for its subclasses to measure texts
+ * Base layout implementation of {@link Layout}.
+ * It provides some convenient methods to editor instance and text measuring.
  *
  * @author Rose
  */
@@ -41,56 +45,33 @@ public abstract class AbstractLayout implements Layout {
     public AbstractLayout(CodeEditor editor, Content text) {
         this.editor = editor;
         this.text = text;
-        updateMeasureCaches(0, text == null ? 0 : text.getLineCount());
     }
 
-    protected float measureText(CharSequence text, int start, int end) {
-        return editor.measureText(text, start, end - start);
+    protected List<Span> getSpans(int line) {
+        return editor.getSpansForLine(line);
     }
 
-    protected float[] orderedFindCharIndex(float targetOffset, ContentLine str, int index, int end) {
-        return editor.findFirstVisibleChar(-targetOffset, index, end, 0, str);
+    protected float[] orderedFindCharIndex(float targetOffset, ContentLine str, int line, int index, int end) {
+        var gtr = GraphicTextRow.obtain();
+        gtr.set(str, index, end, editor.getTabWidth(), getSpans(line), editor.getTextPaint());
+        var res = gtr.findOffsetByAdvance(index, targetOffset);
+        GraphicTextRow.recycle(gtr);
+        return res;
     }
 
-    protected float[] orderedFindCharIndex(float targetOffset, ContentLine str) {
-       return orderedFindCharIndex(targetOffset, str, 0, str.length());
+    protected float[] orderedFindCharIndex(float targetOffset, ContentLine str, int line) {
+       return orderedFindCharIndex(targetOffset, str, line, 0, str.length());
     }
 
-    private void updateMeasureCaches(int startLine, int endLine) {
-        if (text == null) {
-            return;
-        }
-        if (text.getLineCount() > 10000) {
-            // Disable the cache if text is too large
-            while (startLine <= endLine && startLine < text.getLineCount()) {
-                text.getLine(startLine).widthCache = null;
-                startLine++;
-            }
-        } else {
-            while (startLine <= endLine && startLine < text.getLineCount()) {
-                ContentLine line = text.getLine(startLine);
-                // Do not create cache for long lines
-                if (line.length() < 128) {
-                    if (line.widthCache == null) {
-                        line.widthCache = new float[128];
-                    }
-                    editor.getTextPaint().getTextWidths(line.value, 0, line.length(), line.widthCache);
-                } else {
-                    line.widthCache = null;
-                }
-                startLine++;
-            }
-        }
-    }
 
     @Override
     public void afterDelete(Content content, int startLine, int startColumn, int endLine, int endColumn, CharSequence deletedContent) {
-        updateMeasureCaches(startLine, endLine);
+
     }
 
     @Override
     public void afterInsert(Content content, int startLine, int startColumn, int endLine, int endColumn, CharSequence insertedContent) {
-        updateMeasureCaches(startLine, endLine);
+
     }
 
     @Override
@@ -99,8 +80,4 @@ public abstract class AbstractLayout implements Layout {
         text = null;
     }
 
-    @Override
-    public void updateCache(int startLine, int endLine) {
-        updateMeasureCaches(0, text == null ? 0 : text.getLineCount());
-    }
 }

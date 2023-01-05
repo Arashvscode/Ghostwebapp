@@ -35,8 +35,6 @@ import io.github.rosemoe.sora.text.LineRemoveListener;
  */
 public interface Layout extends LineRemoveListener, ContentListener {
 
-    void updateCache(int startLine, int endLine);
-
     /**
      * Called by editor to destroy this layout
      * This means the layout will never be used again
