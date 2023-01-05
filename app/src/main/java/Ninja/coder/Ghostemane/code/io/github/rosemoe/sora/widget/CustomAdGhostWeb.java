@@ -30,14 +30,14 @@ import java.util.HashMap;
 
 @SuppressWarnings("CanBeFinal")
 class CustomAdGhostWeb extends EditorCompletionAdapter {
-
+	
 	@Override
 	public int getItemHeight() {
 		// 45 dp
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 45,
-				getContext().getResources().getDisplayMetrics());
+		getContext().getResources().getDisplayMetrics());
 	}
-
+	
 	@Override
 	public View getView(int pos, View view, ViewGroup parent, boolean isCurrentCursorPosition) {
 		if (view == null) {
@@ -53,7 +53,7 @@ class CustomAdGhostWeb extends EditorCompletionAdapter {
 		var index = TextUtils.indexOf(item.label.toLowerCase(Locale.ROOT), prefix.toLowerCase(Locale.ROOT));
 		if (index != -1) {
 			label.setSpan(new ForegroundColorSpan(0xFFFF9193), index, index + prefix.length(),
-					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		tv.setText(label);
 		AnimUtils.O(view);
@@ -62,23 +62,34 @@ class CustomAdGhostWeb extends EditorCompletionAdapter {
 		tv.setText(item.desc);
 		tv1.setText(item.desc.subSequence(0, 1));
 		String lastItemPost = tv1.getText().toString();
+        String lastItemPost2 = tv.getText().toString();
 		if (lastItemPost.endsWith("H")) {
-			SetBackGroundItem(Color.parseColor("#FF6CF550"), display);
+			SetBackgroundItem(Color.parseColor("#FF6CF550"), display);
 		} else if (lastItemPost.endsWith("Q")) {
 		} else if (lastItemPost.endsWith("C")) {
-			SetBackGroundItem(Color.parseColor("#FFFF6F15"), display);
+			SetBackgroundItem(Color.parseColor("#FFFF6F15"), display);
 		} else if (lastItemPost.endsWith("K")) {
-			SetBackGroundItem(Color.parseColor("#FFB1014D"), display);
+			SetBackgroundItem(Color.parseColor("#FFB1014D"), display);
 		} else if (lastItemPost.endsWith("P")) {
-			SetBackGroundItem(Color.parseColor("#FFA614FB"), display);
+			SetBackgroundItem(Color.parseColor("#FFA614FB"), display);
 		} else if (lastItemPost.endsWith("J")) {
-			SetBackGroundItem(Color.parseColor("#FFFF4D5A"), display);
-		}
+			SetBackgroundItem(Color.parseColor("#FFFF4D5A"), display);
+		}else if(lastItemPost.endsWith("K") || lastItemPost.endsWith("k")){
+			SetBackgroundItem(Color.parseColor("#FF6D2FBD"),display);
+		}else if(lastItemPost.endsWith("D")|| lastItemPost.endsWith("d") || lastItemPost.endsWith("I")){
+			SetBackgroundItem(Color.parseColor("#FFBF2E2E"),display);
+		}else if(lastItemPost2.endsWith("green") || lastItemPost2.equals("green")){
+			SetBackgroundItem(Color.GREEN,display);
+		}else if (lastItemPost2.startsWith("red") || lastItemPost2.equals("red")){
+			SetBackgroundItem(Color.RED,display);
+		}else{
+            SetBackgroundItem(Color.BLACK,display);
+        }
 		view.setTag(pos);
 		return view;
 	}
-
-	protected void SetBackGroundItem(int colors, View view) {
+	
+	protected void SetBackgroundItem(int colors, View view) {
 		GradientDrawable pos = new GradientDrawable();
 		pos.setColor(colors);
 		pos.setCornerRadius((float) 18);
