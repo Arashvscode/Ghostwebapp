@@ -44,14 +44,6 @@
 				android:text="GhostWeb IDE"
 				android:textSize="20sp"
 				android:textColor="#FDA893" />
-			<TextView
-				android:id="@+id/textview2"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:padding="8dp"
-				android:text="version 1.1.5"
-				android:textSize="14sp"
-				android:textColor="#FDA893" />
 		</LinearLayout>
 		<LinearLayout
 			android:id="@+id/linear7"
@@ -187,8 +179,8 @@
 		</LinearLayout>
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/recyclerview1"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
 			android:padding="8dp" />
 	</LinearLayout>
 </LinearLayout>

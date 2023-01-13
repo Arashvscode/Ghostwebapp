@@ -47,7 +47,7 @@
 						android:layout_height="wrap_content"
 						android:padding="4dp"
 						android:text="مشاهده کنید"
-						android:textSize="20sp"
+						android:textSize="18sp"
 						android:textColor="#BA68C8" />
 					<TextView
 						android:id="@+id/textview1"

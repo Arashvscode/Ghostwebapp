@@ -34,7 +34,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
-				android:text="انتخاب تم "
+				android:text="انتخاب رنگ"
 				android:textSize="25sp"
 				android:textStyle="bold"
 				android:textColor="#FFFFFF" />
@@ -62,12 +62,10 @@
 				android:textColorHint="#FFFFFF"
 				android:fontFamily="@font/GhostFont" />
 		</com.google.android.material.textfield.TextInputLayout>
-		<GridView
-			android:id="@+id/gridview1"
-			android:layout_width="wrap_content"
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/recyclerview1"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:padding="8dp"
-			android:numColumns="3"
-			android:stretchMode="columnWidth" />
+			android:padding="8dp" />
 	</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

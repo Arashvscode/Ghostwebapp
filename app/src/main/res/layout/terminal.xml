@@ -6,17 +6,15 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 	<LinearLayout
-		android:id="@+id/linear3"
+		android:id="@+id/main"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="#111111"
 		android:orientation="vertical">
 		<LinearLayout
-			android:id="@+id/linear4"
+			android:id="@+id/mrun"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp"
-			android:background="#1F1B1C"
 			android:gravity="right"
 			android:orientation="horizontal">
 			<ImageView
@@ -31,15 +29,13 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp"
-			android:background="#1F1B1C"
 			android:orientation="vertical"
 			android:layout_weight="1" />
 		<LinearLayout
-			android:id="@+id/linear5"
+			android:id="@+id/mpanl"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp"
-			android:background="#1F1B1C"
 			android:orientation="horizontal">
 			<TextView
 				android:id="@+id/arrowup"
@@ -78,7 +74,7 @@
 				android:textColor="#F8B09A"
 				android:layout_weight="1" />
 			<TextView
-				android:id="@+id/textview5"
+				android:id="@+id/undo"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
@@ -87,7 +83,7 @@
 				android:textColor="#F8B09A"
 				android:layout_weight="1" />
 			<TextView
-				android:id="@+id/textview7"
+				android:id="@+id/redo"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"

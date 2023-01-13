@@ -13,26 +13,94 @@
 		android:orientation="vertical">
 		<androidx.cardview.widget.CardView
 			android:id="@+id/cardview1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="300dp"
+			android:layout_margin="10dp"
+			android:background="#1F1B1C"
 			android:orientation="vertical"
 			app:cardElevation="3dp"
-			app:cardCornerRadius="13dp">
+			app:cardCornerRadius="9dp">
 			<LinearLayout
 				android:id="@+id/linear2"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:padding="8dp"
-				android:background="@android:color/transparent"
-				android:gravity="center_horizontal|center_vertical"
+				android:background="#1F1B1C"
 				android:orientation="vertical">
-				<ImageView
-					android:id="@+id/imageview2"
-					android:layout_width="250dp"
-					android:layout_height="250dp"
-					android:layout_marginTop="20dp"
-					android:src="@drawable/icon"
-					android:scaleType="fitCenter" />
+				<LinearLayout
+					android:id="@+id/linear3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="vertical">
+					<ImageView
+						android:id="@+id/imageview2"
+						android:layout_width="50dp"
+						android:layout_height="50dp"
+						android:src="@drawable/icon"
+						android:scaleType="fitCenter"
+						android:translationX="2.0dp" />
+					<TextView
+						android:id="@+id/textview1"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:text="GhostWeb IDE"
+						android:textSize="16sp"
+						android:textColor="#EEEEEE"
+						android:translationX="3.0dp"
+						android:layout_weight="1" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/linear4"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:orientation="vertical"
+					android:layout_weight="1">
+					<TextView
+						android:id="@+id/textview2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:gravity="left|center_vertical"
+						android:text="Ghost web best ide Web For Android mobile \nFast open source with the ability to customize the code editor and many other features..."
+						android:textSize="16sp"
+						android:textColor="#E0E0E0"
+						android:layout_weight="1" />
+					<ProgressBar
+						android:id="@+id/progressbar1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:indeterminate="true"
+						style="?android:progressBarStyleHorizontal" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/linear5"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:orientation="horizontal">
+					<TextView
+						android:id="@+id/textview3"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:text="Version : "
+						android:textSize="12sp"
+						android:textStyle="bold"
+						android:textColor="#E0E0E0"
+						android:translationX="2.0dp" />
+					<TextView
+						android:id="@+id/textview4"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:text="1.4.7"
+						android:textSize="12sp"
+						android:textColor="#E0E0E0" />
+				</LinearLayout>
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
 	</LinearLayout>

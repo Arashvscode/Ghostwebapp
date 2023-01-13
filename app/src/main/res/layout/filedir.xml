@@ -114,6 +114,13 @@
 								android:padding="8dp" />
 						</LinearLayout>
 					</LinearLayout>
+					<GridView
+						android:id="@+id/gridview1"
+						android:layout_width="0dp"
+						android:layout_height="0dp"
+						android:padding="8dp"
+						android:numColumns="3"
+						android:stretchMode="columnWidth" />
 					<ListView
 						android:id="@+id/CandishenListview1GetMethodFile"
 						android:layout_width="match_parent"
@@ -166,6 +173,8 @@
 								android:id="@+id/copy"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
+								android:layout_marginLeft="2dp"
+								android:layout_marginRight="2dp"
 								android:padding="8dp"
 								android:text="copy"
 								android:textSize="12sp"
@@ -174,6 +183,8 @@
 								android:id="@+id/del1"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
+								android:layout_marginLeft="2dp"
+								android:layout_marginRight="2dp"
 								android:padding="8dp"
 								android:text="romve"
 								android:textSize="12sp"
@@ -190,6 +201,8 @@
 								android:id="@+id/cansel"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
+								android:layout_marginLeft="2dp"
+								android:layout_marginRight="2dp"
 								android:padding="8dp"
 								android:text="dismiss"
 								android:textSize="12sp"
@@ -206,6 +219,8 @@
 								android:id="@+id/cuts"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
+								android:layout_marginLeft="2dp"
+								android:layout_marginRight="2dp"
 								android:padding="8dp"
 								android:text="move"
 								android:textSize="12sp"

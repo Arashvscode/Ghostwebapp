@@ -15,8 +15,7 @@
 			android:layout_height="match_parent"
 			android:background="#1F1B1C"
 			android:gravity="center_vertical"
-			android:orientation="vertical"
-			android:layout_weight="1">
+			android:orientation="vertical">
 			<LinearLayout
 				android:id="@+id/multytab"
 				android:layout_width="match_parent"
@@ -96,30 +95,33 @@
 								android:textColor="#F44336"
 								android:layout_weight="1" />
 							<ImageView
-								android:id="@+id/imageview1"
-								android:layout_width="50dp"
-								android:layout_height="30dp"
-								android:src="@drawable/log"
-								android:scaleType="centerInside" />
+								android:id="@+id/redo"
+								android:layout_width="25dp"
+								android:layout_height="25dp"
+								android:layout_marginRight="9dp"
+								android:src="@drawable/redo"
+								android:scaleType="fitCenter" />
 							<ImageView
-								android:id="@+id/imageRagexHtmlFormat"
-								android:layout_width="30dp"
-								android:layout_height="30dp"
-								android:padding="5dp"
-								android:src="@drawable/flash"
-								android:scaleType="centerInside" />
+								android:id="@+id/undo"
+								android:layout_width="25dp"
+								android:layout_height="25dp"
+								android:layout_marginLeft="9dp"
+								android:layout_marginRight="9dp"
+								android:src="@drawable/undos"
+								android:scaleType="fitCenter" />
 							<ImageView
-								android:id="@+id/amber"
-								android:layout_width="30dp"
-								android:layout_height="30dp"
-								android:padding="5dp"
-								android:src="@drawable/focused"
+								android:id="@+id/st"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_marginRight="5dp"
+								android:src="@drawable/ic_settings_white"
 								android:scaleType="centerInside" />
 							<ImageView
 								android:id="@+id/menupopnew"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:src="@drawable/ic_grain_white"
+								android:layout_marginLeft="6dp"
+								android:src="@drawable/ic_more_vert_white"
 								android:scaleType="center" />
 						</LinearLayout>
 					</LinearLayout>
@@ -180,7 +182,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
+				android:gravity="center_vertical"
 				android:orientation="horizontal">
+				<com.allenliu.badgeview.BadgeView
+					android:id="@+id/badgeview3"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:padding="2dp"
+					android:layout_weight="1" />
 				<TextView
 					android:id="@+id/textview14"
 					android:layout_width="wrap_content"
@@ -323,7 +332,8 @@
 			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>
-	<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+     <Ninja.coder.Ghostemane.code.ExrtaFab
+     app:shapeAppearanceOverlay="@style/fab_square" 
 		android:id="@+id/_fab"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -332,4 +342,4 @@
 		android:layout_marginRight="16dp"
 		android:layout_marginBottom="60dp"
 		android:layout_gravity="right|bottom" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,41 +6,43 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 	<LinearLayout
-		android:id="@+id/linear1"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:id="@+id/main"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:orientation="vertical">
 		<LinearLayout
-			android:id="@+id/linear5"
+			android:id="@+id/linear2"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp"
 			android:gravity="center_vertical"
 			android:orientation="horizontal">
-			<ImageView
-				android:id="@+id/imageview2"
-				android:focusable="false"
-				android:layout_width="30dp"
-				android:layout_height="30dp"
-				android:src="@drawable/default_image"
-				android:scaleType="centerInside" />
 			<TextView
 				android:id="@+id/textview1"
-				android:focusable="false"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="8dp"
-				android:text="TextView"
-				android:textSize="12sp"
-				android:textColor="#000000"
-				android:fontFamily="@font/GhostFont" />
+				android:gravity="right"
+				android:text="آموزش کده گوست وب"
+				android:textSize="20sp"
+				android:textColor="#F5F5F5"
+				android:layout_weight="1" />
+			<ImageView
+				android:id="@+id/imageview1"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:padding="3dp"
+				android:src="@drawable/arrowr"
+				android:scaleType="fitCenter"
+				android:layout_gravity="center_vertical" />
 		</LinearLayout>
-		<LinearLayout
-			android:id="@+id/selector"
+		<ListView
+			android:id="@+id/mlistview"
 			android:layout_width="match_parent"
-			android:layout_height="5dp"
+			android:layout_height="wrap_content"
 			android:padding="8dp"
-			android:background="#000000"
-			android:orientation="horizontal" />
+			android:dividerHeight="0dp"
+			android:divider="@null"
+			android:choiceMode="none" />
 	</LinearLayout>
 </LinearLayout>

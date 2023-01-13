@@ -275,7 +275,8 @@
 						android:padding="8dp"
 						android:text="BLOCK_LINE_CURRENT"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear12"
 						android:layout_width="match_parent"
@@ -297,7 +298,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview5"
 							android:layout_width="40dp"
@@ -320,7 +322,8 @@
 						android:padding="8dp"
 						android:text="NON_PRINTABLE_CHAR"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear15"
 						android:layout_width="match_parent"
@@ -342,7 +345,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview6"
 							android:layout_width="40dp"
@@ -365,7 +369,8 @@
 						android:padding="8dp"
 						android:text="LINE_DIVIDER"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear22"
 						android:layout_width="match_parent"
@@ -387,7 +392,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview7"
 							android:layout_width="40dp"
@@ -410,7 +416,8 @@
 						android:padding="8dp"
 						android:text="LINE_NUMBER"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear23"
 						android:layout_width="match_parent"
@@ -432,7 +439,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview8"
 							android:layout_width="40dp"
@@ -455,7 +463,8 @@
 						android:padding="8dp"
 						android:text="ATTRIBUTE_VALUE"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear24"
 						android:layout_width="match_parent"
@@ -476,7 +485,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview9"
 							android:layout_width="40dp"
@@ -499,7 +509,8 @@
 						android:padding="8dp"
 						android:text="TEXT_NORMAL"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear26"
 						android:layout_width="match_parent"
@@ -521,7 +532,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview10"
 							android:layout_width="40dp"
@@ -544,7 +556,8 @@
 						android:padding="8dp"
 						android:text="BackgroundColorLinear"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear28"
 						android:layout_width="match_parent"
@@ -566,7 +579,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview11"
 							android:layout_width="40dp"
@@ -589,7 +603,8 @@
 						android:padding="8dp"
 						android:text="ImageColor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear29"
 						android:layout_width="match_parent"
@@ -611,7 +626,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview12"
 							android:layout_width="40dp"
@@ -634,7 +650,8 @@
 						android:padding="8dp"
 						android:text="FabBackgroundColorColor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear35"
 						android:layout_width="match_parent"
@@ -656,7 +673,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview13"
 							android:layout_width="40dp"
@@ -679,7 +697,8 @@
 						android:padding="8dp"
 						android:text="FabImageColor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear37"
 						android:layout_width="match_parent"
@@ -701,7 +720,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview14"
 							android:layout_width="40dp"
@@ -746,7 +766,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview15"
 							android:layout_width="40dp"
@@ -769,7 +790,8 @@
 						android:padding="8dp"
 						android:text="ToolbarColor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear41"
 						android:layout_width="match_parent"
@@ -791,7 +813,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview16"
 							android:layout_width="40dp"
@@ -814,7 +837,8 @@
 						android:padding="8dp"
 						android:text="SyombolBarTextColor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear43"
 						android:layout_width="match_parent"
@@ -836,7 +860,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview17"
 							android:layout_width="40dp"
@@ -859,7 +884,8 @@
 						android:padding="8dp"
 						android:text="Prointor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear45"
 						android:layout_width="match_parent"
@@ -881,7 +907,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview18"
 							android:layout_width="40dp"
@@ -904,7 +931,8 @@
 						android:padding="8dp"
 						android:text="TabBackground"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear47"
 						android:layout_width="match_parent"
@@ -926,7 +954,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview19"
 							android:layout_width="40dp"
@@ -949,7 +978,8 @@
 						android:padding="8dp"
 						android:text="TabTextColor"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear49"
 						android:layout_width="match_parent"
@@ -971,7 +1001,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview22"
 							android:layout_width="40dp"
@@ -994,7 +1025,8 @@
 						android:padding="8dp"
 						android:text="TabImageColorFilter"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear51"
 						android:layout_width="match_parent"
@@ -1016,7 +1048,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview21"
 							android:layout_width="40dp"
@@ -1039,7 +1072,8 @@
 						android:padding="8dp"
 						android:text="Ninja"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear53"
 						android:layout_width="match_parent"
@@ -1061,7 +1095,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview23"
 							android:layout_width="40dp"
@@ -1084,7 +1119,8 @@
 						android:padding="8dp"
 						android:text="DisplayTextColorTab"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear55"
 						android:layout_width="match_parent"
@@ -1106,7 +1142,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview24"
 							android:layout_width="40dp"
@@ -1129,7 +1166,8 @@
 						android:padding="8dp"
 						android:text="FabColorStroker"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear57"
 						android:layout_width="match_parent"
@@ -1151,7 +1189,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview25"
 							android:layout_width="40dp"
@@ -1174,7 +1213,8 @@
 						android:padding="8dp"
 						android:text="LITERAL"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear59"
 						android:layout_width="match_parent"
@@ -1196,7 +1236,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview26"
 							android:layout_width="40dp"
@@ -1219,7 +1260,8 @@
 						android:padding="8dp"
 						android:text="AUTO_COMP_PANEL_CORNER"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
 						android:id="@+id/linear61"
 						android:layout_width="match_parent"
@@ -1241,7 +1283,8 @@
 							android:text="TextView"
 							android:textSize="12sp"
 							android:textColor="#FFFFFF"
-							android:layout_weight="1" />
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
 						<ImageView
 							android:id="@+id/imageview27"
 							android:layout_width="40dp"
@@ -1264,37 +1307,39 @@
 						android:padding="8dp"
 						android:text="AUTO_COMP_PANEL_BG"
 						android:textSize="12sp"
-						android:textColor="#FFFFFF" />
-				</LinearLayout>
-				<LinearLayout
-					android:id="@+id/linear64"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:gravity="center_vertical"
-					android:orientation="horizontal">
+						android:textColor="#FFFFFF"
+						android:fontFamily="@font/GhostFont" />
 					<LinearLayout
-						android:id="@+id/linearAUTO_COMP_PANEL_BG"
-						android:layout_width="30dp"
-						android:layout_height="30dp"
-						android:padding="8dp"
-						android:orientation="horizontal" />
-					<TextView
-						android:id="@+id/textviewAUTO_COMP_PANEL_BG"
-						android:layout_width="wrap_content"
+						android:id="@+id/linear64"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
-						android:text="TextView"
-						android:textSize="12sp"
-						android:textColor="#FFFFFF"
-						android:layout_weight="1" />
-					<ImageView
-						android:id="@+id/imageview28"
-						android:layout_width="40dp"
-						android:layout_height="40dp"
-						android:padding="8dp"
-						android:src="@drawable/color"
-						android:scaleType="centerInside" />
+						android:gravity="center_vertical"
+						android:orientation="horizontal">
+						<LinearLayout
+							android:id="@+id/linearAUTO_COMP_PANEL_BG"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:padding="8dp"
+							android:orientation="horizontal" />
+						<TextView
+							android:id="@+id/textviewAUTO_COMP_PANEL_BG"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="TextView"
+							android:textSize="12sp"
+							android:textColor="#FFFFFF"
+							android:layout_weight="1"
+							android:fontFamily="@font/GhostFont" />
+						<ImageView
+							android:id="@+id/imageview28"
+							android:layout_width="40dp"
+							android:layout_height="40dp"
+							android:padding="8dp"
+							android:src="@drawable/color"
+							android:scaleType="centerInside" />
+					</LinearLayout>
 				</LinearLayout>
 			</LinearLayout>
 		</androidx.core.widget.NestedScrollView>
