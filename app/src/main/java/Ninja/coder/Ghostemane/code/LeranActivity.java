@@ -79,6 +79,9 @@ public class LeranActivity extends AppCompatActivity {
 	
 	private ProgressDialog pv;
 	private Intent intent = new Intent();
+	private Intent mjava = new Intent();
+	private Intent mandroid = new Intent();
+	private Intent mcss = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -114,19 +117,19 @@ public class LeranActivity extends AppCompatActivity {
 			public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4) {
 				final int _position = _param3;
 				if (_position == 0) {
-					intent.setClass(getApplicationContext(), LeranpdfActivity.class);
-					intent.putExtra("java", "/sdcard/GhostwebIde/.lp/finaljavabook.pdf");
-					startActivity(intent);
+					mjava.setClass(getApplicationContext(), LeranpdfActivity.class);
+					mjava.putExtra("java", "/sdcard/GhostwebIde/.lp/finaljavabook.pdf");
+					startActivity(mjava);
 				}
 				if (_position == 1) {
-					intent.setClass(getApplicationContext(), LeranpdfActivity.class);
-					intent.putExtra("css", "/sdcard/GhostwebIde/.lp/css.pdf");
-					startActivity(intent);
+					mandroid.setClass(getApplicationContext(), LeranpdfActivity.class);
+					mandroid.putExtra("android", "/sdcard/GhostwebIde/.lp/Androidlearning.pdf");
+					startActivity(mandroid);
 				}
 				if (_position == 2) {
-					intent.setClass(getApplicationContext(), LeranpdfActivity.class);
-					intent.putExtra("android", "/sdcard/GhostwebIde/.lp/Androidlearning.pdf");
-					startActivity(intent);
+					mcss.setClass(getApplicationContext(), LeranpdfActivity.class);
+					mcss.putExtra("css", "/sdcard/GhostwebIde/.lp/css.pdf");
+					startActivity(mcss);
 				}
 				if (_position == 3) {
 					intent.setClass(getApplicationContext(), GouidhtmlActivity.class);

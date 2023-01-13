@@ -98,8 +98,6 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import io.github.rosemoe.sora.langs.python.*;
 import io.github.rosemoe.sora.langs.python.PythonLanguage;
 import Ninjacoder.CodeFormater.HtmlCodeFormat.HtmlFormatter;
-import io.github.rosemoe.sora.langs.xml.*;
-import io.github.rosemoe.sora.langs.xml.XMLLanguage;
 import com.flask.colorpicker.*;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import android.content.ClipData;
@@ -107,7 +105,9 @@ import android.content.ClipboardManager;
 import Ninja.coder.Ghostemane.code.EditorSearch.CodeEditorSearch;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import io.github.rosemoe.sora.event.ContentChangeEvent;
+import io.github.rosemoe.sora.event.SelectionChangeEvent;
 
 public class CodeeditorActivity extends AppCompatActivity {
 	
@@ -180,7 +180,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private RequestNetwork.RequestListener _constreust_request_listener;
 	private AlertDialog.Builder myDialog;
 	private Intent res = new Intent();
-	private SharedPreferences at;
 	private TimerTask ask;
 	private AlertDialog.Builder di;
 	private Intent jsonview = new Intent();
@@ -191,6 +190,8 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private SharedPreferences re;
 	private SharedPreferences war;
 	private SharedPreferences kos;
+	private SharedPreferences tab100;
+	private SharedPreferences setfont;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -261,13 +262,14 @@ public class CodeeditorActivity extends AppCompatActivity {
 		qo = getSharedPreferences("qo", Activity.MODE_PRIVATE);
 		constreust = new RequestNetwork(this);
 		myDialog = new AlertDialog.Builder(this);
-		at = getSharedPreferences("at", Activity.MODE_PRIVATE);
 		di = new AlertDialog.Builder(this);
 		vb = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 		getvb = getSharedPreferences("getvb", Activity.MODE_PRIVATE);
 		re = getSharedPreferences("re", Activity.MODE_PRIVATE);
 		war = getSharedPreferences("war", Activity.MODE_PRIVATE);
 		kos = getSharedPreferences("kos", Activity.MODE_PRIVATE);
+		tab100 = getSharedPreferences("tab100", Activity.MODE_PRIVATE);
+		setfont = getSharedPreferences("setfont", Activity.MODE_PRIVATE);
 		
 		stopIntarsenl.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -470,7 +472,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 		textview3.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				_sysba("{\n}");
+				_sysba("{");
 			}
 		});
 		
@@ -675,8 +677,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private void initializeLogic() {
 		CrashHandler.INSTANCE.init(this);
 		_fab.shrink();
-		editor.setSelection((int)(int)editor.getCursor().getLeftColumn(), (int)editor.getCursor().getRightColumn());
-		di = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
 		stopIntarsenl.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFF44336));
 		fileinfo.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFEB3B));
 		backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFFFFF));
@@ -685,7 +685,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 		showPanelSearch.setVisibility(View.VISIBLE);
 		_poz();
 		progressbar1.setVisibility(View.GONE);
-		
+		editor.setCursorWidth(3f);
 		badgeview3.setBadgeBackground(Color.TRANSPARENT);
 		badgeview3.setBadgeCount("");
 		_EditorSummery();
@@ -745,14 +745,40 @@ public class CodeeditorActivity extends AppCompatActivity {
 		
 		
 		_sttingpp();
-		editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
-		editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
-		editor.getColorScheme().setColor(EditorColorScheme.MATCHED_TEXT_BACKGROUND, Color.parseColor("#75800F31"));
 		tvtitle.setText("GhostWeb IDE");
 		_Animwork(_fab);
 		proanjctor.setVisibility(View.GONE);
 		_Anim01(editor);
 		themenotfound.setVisibility(View.GONE);
+		ask = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						FileUtil.writeFile(shp.getString("pos_path", ""), editor.getText().toString());
+					}
+				});
+			}
+		};
+		_timer.schedule(ask, (int)(2000));
+		_fab.setText("RunCode");
+		_fab.setTextColor(0xFFFDA893);
+		editor.getColorScheme().setColor(EditorColorScheme.MATCHED_TEXT_BACKGROUND, Color.parseColor("#75800F31"));
+		if (tab100.contains("mpcnullgogo")) {
+			try{
+				_tabsize(Double.parseDouble(tab100.getString("mpcnullgogo", "")));
+			}catch(Exception e){
+				SketchwareUtil.showMessage(getApplicationContext(), "error");
+			}
+		}
+		if (setfont.contains("mfont")) {
+			_editorsetfontfromfile(setfont.getString("mfont", ""));
+		}
+		else {
+			editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
+			editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
+		}
 	}
 	
 	
@@ -1113,124 +1139,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 			
 			       popup.dismiss();
 			_a();
-			
-			
-		});
-		editor.setEventListener(new io.github.rosemoe.sora.interfaces.EditorEventListener() {
-			
-			   		public boolean onRequestFormat(CodeEditor editor, boolean b) {
-										b = true;
-										return b;
-							}
-						@Override
-						public boolean onFormatFail(CodeEditor arg0, Throwable arg1) {
-								 
-								  
-								
-							    return false;
-						}
-			
-						@Override
-						public void onFormatSucceed(CodeEditor arg0) {
-								
-								 
-						}
-							@Override
-							public void onNewTextSet(CodeEditor editor) {
-						                 
-							}
-				
-						@Override
-						public void afterDelete(CodeEditor arg0, CharSequence arg1, int arg2, int arg3, int arg4, int arg5, CharSequence arg6) {
-								
-								 try{
-					typeVl.setText(String.valueOf((long)(Double.parseDouble(arg1.toString()))));
-				}catch(Exception e){
-					typeVl.setText("");
-				}
-								
-						}
-			
-						@Override
-						public void afterInsert(CodeEditor arg0, CharSequence arg1, int arg2, int arg3, int arg4, int arg5, CharSequence arg6) {
-								
-								 try{
-					typeVl.setText(String.valueOf((long)(Double.parseDouble(arg1.toString()))));
-				}catch(Exception e){
-					typeVl.setText("");
-				}
-								
-						}
-						@Override
-						public void beforeReplace(CodeEditor arg0, CharSequence arg1) {
-								
-								 
-						}
-						@Override
-						public void onSelectionChanged(CodeEditor arg0, io.github.rosemoe.sora.text.Cursor arg1) {
-								
-								ask = new TimerTask() {
-					@Override
-					public void run() {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								proanjctor.setVisibility(View.GONE);
-							}
-						});
-					}
-				};
-				_timer.schedule(ask, (int)(500));
-				_viber();
-				proanjctor.setVisibility(View.VISIBLE);
-				if (at.getString("v1", "").equals("true")) {
-					ask = new TimerTask() {
-						@Override
-						public void run() {
-							runOnUiThread(new Runnable() {
-								@Override
-								public void run() {
-									FileUtil.writeFile(shp.getString("pos_path", ""), editor.getText().toString());
-								}
-							});
-						}
-					};
-					_timer.schedule(ask, (int)(1000));
-					if (imap.containsKey("ImageColor")) {
-						save.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-					}
-					else {
-						save.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-						_dialogError();
-					}
-				}
-				else {
-					if (at.getString("v1", "").equals("false")) {
-						proanjctor.setVisibility(View.VISIBLE);
-						if (imap.containsKey("Ninja")) {
-							save.setColorFilter(Color.parseColor(imap.get("Ninja").toString()), PorterDuff.Mode.MULTIPLY);
-						}
-						else {
-							save.setColorFilter(Color.parseColor("#ffffac94"), PorterDuff.Mode.MULTIPLY);
-							_dialogError();
-						}
-					}
-					else {
-						
-					}
-				}
-								
-								
-						}
-			
-						@Override
-						public boolean onRequestFormat(CodeEditor arg0) {
-								
-								 
-							    return false;
-						}
-			
-			
 			
 			
 		});
@@ -1635,7 +1543,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 														finishAffinity();
 													}
 													_fab.hide();
-													XMLLanguage xmlLanguage=new XMLLanguage(); xmlLanguage.setSyntaxCheckEnable(true); editor.setEditorLanguage(xmlLanguage);
 												}
 												else {
 													if (_path.endsWith(".ghost")) {
@@ -3085,11 +2992,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _finalShowPanelSeach() {
-		
-	}
-	
-	
 	public void _adptorList() {
 	}
 	public class MyListViewListAdapter extends BaseAdapter {
@@ -3325,6 +3227,18 @@ public class CodeeditorActivity extends AppCompatActivity {
 		bottomSheetDialog.show();
 	}
 	
+	
+	public void _tabsize(final double _tab) {
+		editor.setTabWidth((int)_tab);
+	}
+	
+	
+	public void _editorsetfontfromfile(final String _files) {
+		editor.setTypefaceText(Typeface.createFromFile(new File(_files)));
+		editor.setTypefaceLineNumber(Typeface.createFromFile(new File(_files)));
+		
+	}
+	
 	public class Recyclerview1Adapter extends RecyclerView.Adapter<Recyclerview1Adapter.ViewHolder> {
 		
 		ArrayList<HashMap<String, Object>> _data;
@@ -3488,6 +3402,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 																												}
 																												else {
 																													imageview2.setImageResource(R.drawable.file);
+																													_fab.shrink();
 																												}
 																											}
 																										}
@@ -3517,12 +3432,15 @@ public class CodeeditorActivity extends AppCompatActivity {
 					}
 					else {
 						textview1.setText("FileNotFound*".concat(Uri.parse(_data.get((int)_position).get("path").toString()).getLastPathSegment()).toLowerCase());
+						_fab.shrink();
 					}
 				}
 				if (_data.get((int)_position).get("path").toString().equals(shp.getString("pos_path", ""))) {
 					_Anim01(textview1);
 					_Anim01(imageview2);
-					_Anim01(editor);
+					
+					_fab.shrink();
+					_clickAnimation(editor);
 					selector.setVisibility(View.VISIBLE);
 					n = 0;
 					if (imap.containsKey("TabTextColor")) {
@@ -3537,7 +3455,9 @@ public class CodeeditorActivity extends AppCompatActivity {
 					n = 0;
 					_Bounce(textview1);
 					_Bounce(imageview2);
-					_Anim01(editor);
+					_clickAnimation(editor);
+					
+					_fab.shrink();
 					if (imap.containsKey("DisplayTextColorTab")) {
 						textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
 					}
@@ -3552,6 +3472,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 							_codeEditor(_data.get((int)_position).get("path").toString());
 							shp.edit().putString("positionTabs", String.valueOf((long)(_position))).commit();
 							shp.edit().putString("pos_path", _data.get((int)_position).get("path").toString()).commit();
+							_fab.shrink();
 							notifyDataSetChanged();
 							if (FileUtil.isExistFile(_data.get((int)_position).get("path").toString())) {
 								_codeEditor(_data.get((int)_position).get("path").toString());
@@ -3565,8 +3486,10 @@ public class CodeeditorActivity extends AppCompatActivity {
 									selector.setVisibility(View.VISIBLE);
 									_Anim01(imageview2);
 									_Anim01(textview1);
+									_clickAnimation(editor);
 									n = 0;
-									_Anim01(editor);
+									
+									_fab.shrink();
 								}
 								else {
 									selector.setVisibility(View.GONE);
@@ -3577,9 +3500,10 @@ public class CodeeditorActivity extends AppCompatActivity {
 										textview1.setTextColor(Color.parseColor("#ffc9fff2"));
 									}
 									_Bounce(textview1);
+									_clickAnimation(editor);
 									_Bounce(imageview2);
 									
-									_Anim01(editor);
+									_fab.shrink();
 									n = 0;
 								}
 							}

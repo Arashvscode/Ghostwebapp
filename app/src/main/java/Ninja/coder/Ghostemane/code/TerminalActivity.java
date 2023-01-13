@@ -66,18 +66,19 @@ import io.github.rosemoe.sora.widget.CodeEditor;
 public class TerminalActivity extends AppCompatActivity {
 	
 	private HashMap<String, Object> imap = new HashMap<>();
+	private String pos = "";
 	
-	private LinearLayout linear3;
-	private LinearLayout linear4;
+	private LinearLayout main;
+	private LinearLayout mrun;
 	private CodeEditor term;
-	private LinearLayout linear5;
+	private LinearLayout mpanl;
 	private ImageView runcode;
 	private TextView arrowup;
 	private TextView arrowleft;
 	private TextView arrowdowen;
 	private TextView arrowrhite;
-	private TextView textview5;
-	private TextView textview7;
+	private TextView undo;
+	private TextView redo;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -101,53 +102,35 @@ public class TerminalActivity extends AppCompatActivity {
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
-		linear3 = findViewById(R.id.linear3);
-		linear4 = findViewById(R.id.linear4);
+		main = findViewById(R.id.main);
+		mrun = findViewById(R.id.mrun);
 		term = findViewById(R.id.term);
-		linear5 = findViewById(R.id.linear5);
+		mpanl = findViewById(R.id.mpanl);
 		runcode = findViewById(R.id.runcode);
 		arrowup = findViewById(R.id.arrowup);
 		arrowleft = findViewById(R.id.arrowleft);
 		arrowdowen = findViewById(R.id.arrowdowen);
 		arrowrhite = findViewById(R.id.arrowrhite);
-		textview5 = findViewById(R.id.textview5);
-		textview7 = findViewById(R.id.textview7);
+		undo = findViewById(R.id.undo);
+		redo = findViewById(R.id.redo);
 		
 		runcode.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				final com.google.android.material.bottomsheet.BottomSheetDialog bottomSheetDialog = new com.google.android.material.bottomsheet.BottomSheetDialog(TerminalActivity.this);
-				
-				View bottomSheetView; bottomSheetView = getLayoutInflater().inflate(R.layout.term1,null );
-				bottomSheetDialog.setContentView(bottomSheetView);
-				
-				bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
-				
-				ImageView mis = (ImageView) bottomSheetView.findViewById(R.id.mis);
-				LinearLayout bg = (LinearLayout) bottomSheetView.findViewById(R.id.bg);
-				io.github.rosemoe.sora.widget.CodeEditor meditor = (io.github.rosemoe.sora.widget.CodeEditor) bottomSheetView.findViewById(R.id.meditor);
-				LinearLayout slector = (LinearLayout) bottomSheetView.findViewById(R.id.slector);
-				meditor.setEditorLanguage(new UniversalLanguage(new io.github.rosemoe.sora.langs.desc.ShellDescription()));
-				
-				android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
-				int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
-				SketchUi.setColor(0xFF1F1B1C);SketchUi.setCornerRadii(new float[]{
-					d*29,d*29,d*29 ,d*29,d*0,d*0 ,d*0,d*0});
-				slector.setElevation(d*5);
-				slector.setBackground(SketchUi);
-				meditor.setLineNumberEnabled(false);
-				final var theme = new a.a.SetThemeForJson();
-				theme.setThemeCodeEditor(meditor,imap,false,TerminalActivity.this);
-				
+				var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(TerminalActivity.this);
+				    ViewGroup viewGroup = findViewById(android.R.id.content);
+						View dialogview = getLayoutInflater().inflate(R.layout.term1, viewGroup, false);
+				TextView tv = dialogview.findViewById(R.id.tv);
+				di.setTitle("Result Code");
 				new AsyncTask<String, String, String>() {
 					@Override
 					protected void onPreExecute() {
-						meditor.setText("");
+						tv.setText("");
 					}
 					@Override
 					protected String doInBackground(String... params) {
 						String _param = params[0];
-						meditor.setText("");
+						tv.setText("");
 						return "";
 					}
 					@Override
@@ -160,18 +143,22 @@ public class TerminalActivity extends AppCompatActivity {
 								@Override
 								public void write(int oneByte) throws java.io.IOException {
 										outputStream.write(oneByte);
-										meditor.setText(new String(outputStream.toByteArray()));
+										tv.setText(new String(outputStream.toByteArray()));
 								}
 						}));
 					}
 				}.execute("");
-				mis.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-						
-						bottomSheetDialog.dismiss();
-						
-					}
-				});
-				bottomSheetDialog.show();
+				di.setNeutralButton("ok", (p, d) -> {
+					
+					          
+					
+								});
+				di.setView(dialogview);
+				di.show();
+				
+				
+				
+				
 			}
 		});
 		
@@ -203,14 +190,14 @@ public class TerminalActivity extends AppCompatActivity {
 			}
 		});
 		
-		textview5.setOnClickListener(new View.OnClickListener() {
+		undo.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				term.redo();
 			}
 		});
 		
-		textview7.setOnClickListener(new View.OnClickListener() {
+		redo.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				term.undo();
@@ -224,8 +211,21 @@ public class TerminalActivity extends AppCompatActivity {
 		term.setLineNumberEnabled(false);
 		imap = new HashMap<>();
 		imap = new Gson().fromJson(FileUtil.readFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"), new TypeToken<HashMap<String, Object>>(){}.getType());
-		 var theme2 = new a.a.SetThemeForJson();
+		var theme2 = new a.a.SetThemeForJson();
 		theme2.setThemeCodeEditor(term,imap,false,TerminalActivity.this);
+		theme2.AddthemetoSattos(this, imap);
+		theme2.addTextColor(undo, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+		theme2.addTextColor(redo, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+		theme2.addTextColor(arrowrhite, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+		theme2.addTextColor(arrowdowen, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+		theme2.addTextColor(arrowleft, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+		theme2.addTextColor(arrowup, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+		theme2.addBackground(this, imap, "BackgroundColorLinear", mpanl, 0xff02102c);
+		theme2.addBackground(this, imap, "BackgroundColorLinear", mrun, 0xff02102c);
+		theme2.addBackground(this, imap, "BackgroundColorLinear", main, 0xff02102c);
+		theme2.addImageColor(runcode, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+		term.setCursorWidth(20f);
+		
 	}
 	
 	

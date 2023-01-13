@@ -13,11 +13,14 @@ import android.text.*;
 import android.text.style.*;
 import android.util.*;
 import android.view.*;
+import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -52,7 +55,10 @@ import xyz.doikki.videoplayer.ijk.*;
 
 public class LeranpdfActivity extends AppCompatActivity {
 	
-	private LinearLayout linear1;
+	private LinearLayout linear2;
+	private LinearLayout mpdfview;
+	private TextView textview1;
+	private ImageView imageview1;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -63,20 +69,30 @@ public class LeranpdfActivity extends AppCompatActivity {
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
-		linear1 = findViewById(R.id.linear1);
+		linear2 = findViewById(R.id.linear2);
+		mpdfview = findViewById(R.id.mpdfview);
+		textview1 = findViewById(R.id.textview1);
+		imageview1 = findViewById(R.id.imageview1);
+		
+		imageview1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				onBackPressed();
+			}
+		});
 	}
 	
 	private void initializeLogic() {
 		if (getIntent().hasExtra("android")) {
-			linear1.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("android")));
+			mpdfview.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("android")));
 		}
 		else {
 			if (getIntent().hasExtra("css")) {
-				linear1.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("css")));
+				mpdfview.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("css")));
 			}
 			else {
 				if (getIntent().hasExtra("java")) {
-					linear1.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("java")));
+					mpdfview.addView(new PdfReader(LeranpdfActivity.this, getIntent().getStringExtra("java")));
 				}
 			}
 		}

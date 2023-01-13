@@ -26,6 +26,8 @@ import android.webkit.*;
 import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -72,7 +74,15 @@ public class MainActivity extends AppCompatActivity {
 	private LinearLayout linear1;
 	private CardView cardview1;
 	private LinearLayout linear2;
+	private LinearLayout linear3;
+	private LinearLayout linear4;
+	private LinearLayout linear5;
 	private ImageView imageview2;
+	private TextView textview1;
+	private TextView textview2;
+	private ProgressBar progressbar1;
+	private TextView textview3;
+	private TextView textview4;
 	
 	private Intent gotopage = new Intent();
 	private TimerTask ask;
@@ -104,7 +114,15 @@ public class MainActivity extends AppCompatActivity {
 		linear1 = findViewById(R.id.linear1);
 		cardview1 = findViewById(R.id.cardview1);
 		linear2 = findViewById(R.id.linear2);
+		linear3 = findViewById(R.id.linear3);
+		linear4 = findViewById(R.id.linear4);
+		linear5 = findViewById(R.id.linear5);
 		imageview2 = findViewById(R.id.imageview2);
+		textview1 = findViewById(R.id.textview1);
+		textview2 = findViewById(R.id.textview2);
+		progressbar1 = findViewById(R.id.progressbar1);
+		textview3 = findViewById(R.id.textview3);
+		textview4 = findViewById(R.id.textview4);
 		vibrator01 = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 	}
 	

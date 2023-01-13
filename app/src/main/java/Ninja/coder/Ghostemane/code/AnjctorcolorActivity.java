@@ -91,8 +91,6 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import io.github.rosemoe.sora.langs.python.*;
 import io.github.rosemoe.sora.langs.python.PythonLanguage;
 import Ninjacoder.CodeFormater.HtmlCodeFormat.HtmlFormatter;
-import io.github.rosemoe.sora.langs.xml.*;
-import io.github.rosemoe.sora.langs.xml.XMLLanguage;
 import com.flask.colorpicker.*;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import android.content.ClipData;
@@ -145,7 +143,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	private LinearLayout linear58;
 	private LinearLayout linear60;
 	private LinearLayout linear63;
-	private LinearLayout linear64;
 	private ImageView imageview29;
 	private ImageView resultViewer;
 	private TextView textview35;
@@ -281,6 +278,7 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	private TextView textviewAUTO_COMP_PANEL_CORNER;
 	private ImageView imageview27;
 	private TextView textview34;
+	private LinearLayout linear64;
 	private LinearLayout linearAUTO_COMP_PANEL_BG;
 	private TextView textviewAUTO_COMP_PANEL_BG;
 	private ImageView imageview28;
@@ -353,7 +351,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		linear58 = findViewById(R.id.linear58);
 		linear60 = findViewById(R.id.linear60);
 		linear63 = findViewById(R.id.linear63);
-		linear64 = findViewById(R.id.linear64);
 		imageview29 = findViewById(R.id.imageview29);
 		resultViewer = findViewById(R.id.resultViewer);
 		textview35 = findViewById(R.id.textview35);
@@ -489,6 +486,7 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		textviewAUTO_COMP_PANEL_CORNER = findViewById(R.id.textviewAUTO_COMP_PANEL_CORNER);
 		imageview27 = findViewById(R.id.imageview27);
 		textview34 = findViewById(R.id.textview34);
+		linear64 = findViewById(R.id.linear64);
 		linearAUTO_COMP_PANEL_BG = findViewById(R.id.linearAUTO_COMP_PANEL_BG);
 		textviewAUTO_COMP_PANEL_BG = findViewById(R.id.textviewAUTO_COMP_PANEL_BG);
 		imageview28 = findViewById(R.id.imageview28);
@@ -760,43 +758,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	}
 	
 	private void initializeLogic() {
-		fonts(getApplicationContext(),getWindow().getDecorView()); 
-	} 
-	  private void fonts(final android.content.Context context, final View v) {
-		    String fontName = "fonts/ghostfont.ttf";
-		 try {
-						Typeface 
-						typeace = Typeface.createFromAsset(getAssets(), fontName);
-						if ((v instanceof ViewGroup)) {
-								ViewGroup vg = (ViewGroup) v;
-								for (int i = 0;
-								i < vg.getChildCount();
-								i++) {
-										View child = vg.getChildAt(i);
-										fonts(context, child);
-								}
-						}
-						else {
-								if ((v instanceof TextView)) {
-										((TextView) v).setTypeface(typeace);
-								}
-								else {
-										if ((v instanceof EditText )) {
-												((EditText) v).setTypeface(typeace);
-										}
-										else {
-												if ((v instanceof Button)) {
-														((Button) v).setTypeface(typeace);
-												}
-										}
-								}
-						}
-				}
-				catch(Exception e)
-				
-				{
-						e.printStackTrace();
-				};
 		_toolbar.setBackgroundColor(0xFF1C1B20);
 		_toolbar.setVisibility(View.GONE);
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
@@ -1200,7 +1161,7 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		editor.setText(java); 
 		
 		editor.setEditorLanguage(new io.github.rosemoe.sora.langs.java.JavaLanguage()); 
-		editor.setEditable(false);
+		editor.setEditable(true);
 		close.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
 				
 				bottomSheetDialog.dismiss();
@@ -1213,7 +1174,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 				Menu menu = popup.getMenu();
 				menu.add("Html code View").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 				menu.add("Java code View").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-				menu.add("Xml code View").setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 					public boolean onMenuItemClick(MenuItem item) {
 						switch (item.getTitle().toString()) {
@@ -1234,16 +1194,6 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 							editor.setEditorLanguage(new io.github.rosemoe.sora.langs.java.JavaLanguage()); 
 							
 							return true;
-							case "Xml code View":
-							
-							xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\">\n\n    <ImageView\n        android:id=\"@+id/thumb\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:scaleType=\"centerCrop\" />\n\n    <ImageView\n        android:id=\"@+id/start_play\"\n        android:layout_width=\"@dimen/dkplayer_play_btn_size\"\n        android:layout_height=\"@dimen/dkplayer_play_btn_size\"\n        android:layout_gravity=\"center\"\n        android:background=\"@drawable/dkplayer_shape_play_bg\"\n        android:padding=\"@dimen/dkplayer_default_spacing\"\n        android:src=\"@drawable/dkplayer_selector_play_button\" />\n\n    <ProgressBar\n        android:id=\"@+id/loading\"\n        android:layout_width=\"@dimen/dkplayer_play_btn_size\"\n        android:layout_height=\"@dimen/dkplayer_play_btn_size\"\n        android:layout_gravity=\"center\"\n        android:indeterminateDrawable=\"@drawable/dkplayer_progress_loading\"\n        android:indeterminateDuration=\"2000\"\n        android:visibility=\"gone\"\n        tools:visibility=\"visible\" />\n\n    <FrameLayout\n        android:id=\"@+id/net_warning_layout\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:background=\"@android:color/black\"\n        android:clickable=\"true\"\n        android:focusable=\"true\"\n        android:visibility=\"gone\">\n\n        <LinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:gravity=\"center\"\n            android:orientation=\"vertical\">\n\n            <TextView\n                android:id=\"@+id/message\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:gravity=\"center\"\n                android:text=\"@string/dkplayer_wifi_tip\"\n                android:textColor=\"@android:color/white\" />\n\n            <TextView\n                android:id=\"@+id/status_btn\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"16dp\"\n                android:background=\"@drawable/dkplayer_shape_status_view_btn\"\n                android:gravity=\"center\"\n                android:paddingLeft=\"16dp\"\n                android:paddingTop=\"4dp\"\n                android:paddingRight=\"16dp\"\n                android:paddingBottom=\"4dp\"\n                android:text=\"@string/dkplayer_continue_play\"\n                android:textColor=\"@android:color/white\" />\n\n        </LinearLayout>\n    </FrameLayout>\n\n</FrameLayout>\n";
-							editor.setText(xml);
-							
-							XMLLanguage xmlLanguage=new XMLLanguage(); 
-							xmlLanguage.setSyntaxCheckEnable(true); 
-							editor.setEditorLanguage(xmlLanguage);
-							
-							return true;
 							default: return false;
 						}
 					}
@@ -1256,6 +1206,48 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		});
 		bottomSheetDialog.setCancelable(false);
 		bottomSheetDialog.show();
+	}
+	
+	
+	public void _ff() {
+		
+	} 
+	  private void fonts(final android.content.Context context, final View v) {
+			    String fontName = "fonts/ghostfont.ttf";
+			 try {
+								Typeface 
+								typeace = Typeface.createFromAsset(getAssets(), fontName);
+								if ((v instanceof ViewGroup)) {
+											ViewGroup vg = (ViewGroup) v;
+											for (int i = 0;
+											i < vg.getChildCount();
+											i++) {
+														View child = vg.getChildAt(i);
+														fonts(context, child);
+											}
+								}
+								else {
+											if ((v instanceof TextView)) {
+														((TextView) v).setTypeface(typeace);
+											}
+											else {
+														if ((v instanceof EditText )) {
+																	((EditText) v).setTypeface(typeace);
+														}
+														else {
+																	if ((v instanceof Button)) {
+																				((Button) v).setTypeface(typeace);
+																	}
+														}
+											}
+								}
+					}
+					catch(Exception e)
+					
+					{
+								e.printStackTrace();
+					};
+			
 	}
 	
 	

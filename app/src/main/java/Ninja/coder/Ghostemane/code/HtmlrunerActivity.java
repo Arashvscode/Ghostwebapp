@@ -211,12 +211,12 @@ public class HtmlrunerActivity extends AppCompatActivity {
 		web.getSettings().setBuiltInZoomControls(true);
 		web.getSettings().setDisplayZoomControls(false);
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
-					   Window Hsi = this.getWindow();
-				 Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-				 Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				
-					   Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
+				Window Hsi = this.getWindow();
+				Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
 		}
+		
 		_toolbar.setVisibility(View.GONE);
 		textview2.setText(Uri.parse(getIntent().getStringExtra("run")).getLastPathSegment());
 		_toolbar.setBackgroundColor(0xFF1F1B1C);

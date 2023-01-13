@@ -197,6 +197,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private LinearLayout CensractorListView1;
 	private LinearLayout ItemsPrtecalViews;
 	private LinearLayout linear4;
+	private GridView gridview1;
 	private ListView CandishenListview1GetMethodFile;
 	private LinearLayout Calciolater;
 	private LinearLayout linear7;
@@ -319,6 +320,7 @@ public class FiledirActivity extends AppCompatActivity {
 		CensractorListView1 = findViewById(R.id.CensractorListView1);
 		ItemsPrtecalViews = findViewById(R.id.ItemsPrtecalViews);
 		linear4 = findViewById(R.id.linear4);
+		gridview1 = findViewById(R.id.gridview1);
 		CandishenListview1GetMethodFile = findViewById(R.id.CandishenListview1GetMethodFile);
 		Calciolater = findViewById(R.id.Calciolater);
 		linear7 = findViewById(R.id.linear7);
@@ -1316,6 +1318,14 @@ public class FiledirActivity extends AppCompatActivity {
 			}
 		});
 		
+		copy.setOnLongClickListener(new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View _view) {
+				
+				return true;
+			}
+		});
+		
 		copy.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -1654,7 +1664,7 @@ public class FiledirActivity extends AppCompatActivity {
 		}
 		Alerter.create(FiledirActivity.this) 
 		.setTitle("GhostWeb IDE")
-		.setText("Version Used = 1.4.6")
+		.setText("Version Used = 1.4.7")
 		.setBackgroundColorInt(0xFF1F1B1C)
 		.show();
 		alterDialogDel = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
@@ -2512,6 +2522,7 @@ public class FiledirActivity extends AppCompatActivity {
 						
 						shp.edit().putString(_key, new Gson().toJson(_listmap2)).commit();
 						shp.edit().putString("positionTabs", String.valueOf((long)(_listmap2.size() - 1))).commit();
+						activitiy.putExtra("htmlcode", _listmap1.get((int)_position).get(_key).toString());
 						startActivity(activitiy);
 						break;
 					}

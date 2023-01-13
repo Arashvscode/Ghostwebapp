@@ -32,6 +32,10 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.*;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
@@ -77,7 +81,7 @@ public class CustomcolorsActivity extends AppCompatActivity {
 	
 	private LinearLayout linear1;
 	private TextInputLayout input;
-	private GridView gridview1;
+	private RecyclerView recyclerview1;
 	private TextView textview1;
 	private ImageView imageview1;
 	private TextInputEditText edittext1;
@@ -105,7 +109,7 @@ public class CustomcolorsActivity extends AppCompatActivity {
 		});
 		linear1 = findViewById(R.id.linear1);
 		input = findViewById(R.id.input);
-		gridview1 = findViewById(R.id.gridview1);
+		recyclerview1 = findViewById(R.id.recyclerview1);
 		textview1 = findViewById(R.id.textview1);
 		imageview1 = findViewById(R.id.imageview1);
 		edittext1 = findViewById(R.id.edittext1);
@@ -135,9 +139,7 @@ public class CustomcolorsActivity extends AppCompatActivity {
 					  d--;
 					 }
 				
-				gridview1.setNumColumns((int)2);
-				gridview1.setAdapter(new Gridview1Adapter(mp));
-				gridview1.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+				recyclerview1.setAdapter(new Recyclerview1Adapter(mp));
 				
 			}
 			private double d;
@@ -164,10 +166,9 @@ public class CustomcolorsActivity extends AppCompatActivity {
 		}catch(Exception e){
 			 
 		}
-		gridview1.setAdapter(new Gridview1Adapter(mp));
-		gridview1.setNumColumns((int)2);
-		gridview1.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
-		_toolbar.setBackgroundColor(Color.TRANSPARENT);
+		recyclerview1.setAdapter(new Recyclerview1Adapter(mp));
+		recyclerview1.setHasFixedSize(true);
+		recyclerview1.setLayoutManager(new LinearLayoutManager(this));
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 			Window w =CustomcolorsActivity.this.getWindow();
 			w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -184,10 +185,7 @@ public class CustomcolorsActivity extends AppCompatActivity {
 		input.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
 		input.setCounterEnabled(true);
 		input.setBoxBackgroundMode(TextInputLayout.BOX_BACKGROUND_FILLED);
-		var gradientDrawable  = new GradientDrawable();
-		gradientDrawable.setColor(0xFF1F1B1C);
-		CustomcolorsActivity.this.getWindow().setBackgroundDrawable(gradientDrawable);
-		input.setBoxBackgroundColor(0xFF151213);
+		input.setBoxBackgroundColor(0xFF424242);
 		_toolbar.setElevation((float)0);
 		_toolbar.setVisibility(View.GONE);
 	}
@@ -209,76 +207,87 @@ public class CustomcolorsActivity extends AppCompatActivity {
 		_view.startAnimation(fade_in);
 	}
 	
-	public class Gridview1Adapter extends BaseAdapter {
+	public class Recyclerview1Adapter extends RecyclerView.Adapter<Recyclerview1Adapter.ViewHolder> {
 		
 		ArrayList<HashMap<String, Object>> _data;
 		
-		public Gridview1Adapter(ArrayList<HashMap<String, Object>> _arr) {
+		public Recyclerview1Adapter(ArrayList<HashMap<String, Object>> _arr) {
 			_data = _arr;
 		}
 		
 		@Override
-		public int getCount() {
+		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+			LayoutInflater _inflater = getLayoutInflater();
+			View _v = _inflater.inflate(R.layout.getcolors, null);
+			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			_v.setLayoutParams(_lp);
+			return new ViewHolder(_v);
+		}
+		
+		@Override
+		public void onBindViewHolder(ViewHolder _holder, final int _position) {
+			View _view = _holder.itemView;
+			
+			final LinearLayout linear6 = _view.findViewById(R.id.linear6);
+			final com.google.android.material.divider.MaterialDivider diver = _view.findViewById(R.id.diver);
+			final LinearLayout colorviews = _view.findViewById(R.id.colorviews);
+			final LinearLayout linear9 = _view.findViewById(R.id.linear9);
+			final LinearLayout linear12 = _view.findViewById(R.id.linear12);
+			final TextView name = _view.findViewById(R.id.name);
+			final TextView idcolor = _view.findViewById(R.id.idcolor);
+			final ImageView viewcolor = _view.findViewById(R.id.viewcolor);
+			final ImageView imageview2 = _view.findViewById(R.id.imageview2);
+			
+			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+				_view.setLayoutParams(_lp);
+			colorviews.setBackgroundColor(Color.parseColor(mp.get((int)_position).get("mycolors").toString()));
+			name.setText("color name : ".concat(mp.get((int)_position).get("ColorName").toString()));
+			idcolor.setText("id color : ".concat(mp.get((int)_position).get("mycolors").toString()));
+			///result code By Ninja coder.ir my love java
+			
+			
+			GradientDrawable vp = new GradientDrawable();
+					vp.setColor(Color.parseColor(mp.get((int)_position).get("mycolors").toString()));
+					vp.setCornerRadius(19);
+					vp.setStroke(0, Color.TRANSPARENT);
+			_clickAnimation(linear6);
+			viewcolor.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+					var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(CustomcolorsActivity.this);
+					    di.setTitle(mp.get((int)_position).get("mycolors").toString());
+					di.setMessage(mp.get((int)_position).get("ColorName").toString());
+					di.setBackground(vp);
+					di.setNeutralButton("ok", (p, d) -> {
+						
+						          
+						
+									});
+					di.show();
+					
+					
+					
+					
+				}
+			});
+			imageview2.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+					SketchwareUtil.CustomToast(getApplicationContext(), "copy Color : ".concat(mp.get((int)_position).get("mycolors").toString()), 0xFFF5F5F5, 16, Color.parseColor(mp.get((int)_position).get("mycolors").toString()), 10, SketchwareUtil.CENTER);
+					((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", mp.get((int)_position).get("mycolors").toString()));
+				}
+			});
+		}
+		
+		@Override
+		public int getItemCount() {
 			return _data.size();
 		}
 		
-		@Override
-		public HashMap<String, Object> getItem(int _index) {
-			return _data.get(_index);
-		}
-		
-		@Override
-		public long getItemId(int _index) {
-			return _index;
-		}
-		
-		@Override
-		public View getView(final int _position, View _v, ViewGroup _container) {
-			LayoutInflater _inflater = getLayoutInflater();
-			View _view = _v;
-			if (_view == null) {
-				_view = _inflater.inflate(R.layout.getcolors, null);
+		public class ViewHolder extends RecyclerView.ViewHolder {
+			public ViewHolder(View v) {
+				super(v);
 			}
-			
-			final LinearLayout linear5 = _view.findViewById(R.id.linear5);
-			final androidx.cardview.widget.CardView cardview1 = _view.findViewById(R.id.cardview1);
-			final LinearLayout linear1 = _view.findViewById(R.id.linear1);
-			final LinearLayout linear2 = _view.findViewById(R.id.linear2);
-			final LinearLayout linear3 = _view.findViewById(R.id.linear3);
-			final LinearLayout linear4 = _view.findViewById(R.id.linear4);
-			final TextView textview1 = _view.findViewById(R.id.textview1);
-			final TextView colorNames = _view.findViewById(R.id.colorNames);
-			final TextView colorshexs = _view.findViewById(R.id.colorshexs);
-			
-			int[] colors = { Color.parseColor("#FFFFFFFF"), Color.parseColor(mp.get((int)_position).get("mycolors").toString())
-				
-				 };
-			    GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors);
-			   gd.setCornerRadius(15);
-			linear1 .setBackground(gd);
-			colorNames.setText(Html.fromHtml("<b>".concat("hex : ".concat(mp.get((int)_position).get("ColorName").toString().concat("</b>")))));
-			colorshexs.setText(Html.fromHtml("<i>".concat("name : ".concat(mp.get((int)_position).get("mycolors").toString().concat("</i>")))));
-			linear1.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View _view) {
-					((ClipboardManager) getSystemService(getApplicationContext().CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("clipboard", mp.get((int)_position).get("mycolors").toString()));
-					SketchwareUtil.CustomToast(getApplicationContext(), "hex : ".concat(mp.get((int)_position).get("ColorName").toString()), 0xFFFFFFFF, 14, Color.parseColor(mp.get((int)_position).get("mycolors").toString()), 16, SketchwareUtil.CENTER);
-					if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
-							Window ninjacoder = CustomcolorsActivity.this.getWindow();
-							ninjacoder.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-							ninjacoder.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-							
-							ninjacoder.setStatusBarColor(Color.parseColor(mp.get((int)_position).get("mycolors").toString()));
-						    ninjacoder.setNavigationBarColor(Color.parseColor(mp.get((int)_position).get("mycolors").toString()));
-					}
-					
-					_toolbar.setBackgroundColor(Color.parseColor(mp.get((int)_position).get("mycolors").toString()));
-				}
-			});
-			_clickAnimation(linear5);
-			_clickAnimation(cardview1);
-			
-			return _view;
 		}
 	}
 	
