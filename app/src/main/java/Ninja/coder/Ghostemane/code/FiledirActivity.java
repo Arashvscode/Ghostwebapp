@@ -2198,164 +2198,197 @@ public class FiledirActivity extends AppCompatActivity {
 	
 	
 	public void _folder() {
-		///result code By Ninja coder.ir my love java
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 		
-		
-		GradientDrawable getColors = new GradientDrawable();
-				getColors.setColor(0xFF1F1B1C);
-				getColors.setCornerRadius(25);
-				getColors.setStroke(1, 0xFFFDA893);
-		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-		    ViewGroup viewGroup = findViewById(android.R.id.content);
-				View dialogview = getLayoutInflater().inflate(R.layout.makefolder, viewGroup, false);
-		com.google.android.material.textfield.TextInputLayout top = dialogview.findViewById(R.id.top);
-		com.google.android.material.textfield.TextInputEditText editor = dialogview.findViewById(R.id.editor);
-		top.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
-		top.setCounterEnabled(true);
-		top.setCounterMaxLength(200);
-		top.setBoxStrokeColor(0xFFFDA893);
-		top.setCounterTextColor(ColorStateList.valueOf(0xFFFDA893));
-		top.setEndIconTintMode(PorterDuff.Mode.MULTIPLY);
-		top.setEndIconTintList(ColorStateList.valueOf(0xFFFFDCB9));
-		top.setEndIconDrawable(R.drawable.close);
-		top.setEndIconOnClickListener(v ->{
-				editor.setText("");
-		});
-		
-		di.setTitle("please Type name folder ");
-		di.setNeutralButton("make folder", (p, d) -> {
+		    .setView(R.layout.makefolder)
+		.setTitle("Type name")
+		.setMessage("")
+		.setCancelable(true)
+		.setPositiveButton("make", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
 			
-			         if (editor.getText().toString().isEmpty()) {
-				top.setError("return type Error \n");
+			       com.google.android.material.textfield.TextInputLayout top = dialog.findViewById(R.id.top);		
+			
+			EditText editor = dialog.findViewById(R.id.editor);		
+			
+			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			if (editor.getText().toString().isEmpty()) {
+				positive.setEnabled(true);
 			}
 			else {
-				CreateFolder = editor.getText().toString();
-				try{
-					
-					if (!FileUtil.isFile(Folder.concat("/".concat(CreateFolder.concat("/"))))) {
-						FileUtil.makeDir(Folder.concat("/".concat(CreateFolder.concat("/"))));
-						_getFiles("");
+				positive.setEnabled(false);
+			}
+			top.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
+			top.setCounterEnabled(true);
+			top.setCounterMaxLength(200);
+			top.setBoxStrokeColor(0xFFFDA893);
+			top.setCounterTextColor(ColorStateList.valueOf(0xFFFDA893));
+			top.setEndIconTintMode(PorterDuff.Mode.MULTIPLY);
+			top.setEndIconTintList(ColorStateList.valueOf(0xFFFFDCB9));
+			top.setEndIconDrawable(R.drawable.close);
+			top.setEndIconOnClickListener(v ->{
+					editor.setText("");
+			});
+			
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             if (editor.getText().toString().isEmpty()) {
+					top.setError("return type Error \n");
+				}
+				else {
+					CreateFolder = editor.getText().toString();
+					try{
+						
+						if (!FileUtil.isFile(Folder.concat("/".concat(CreateFolder.concat("/"))))) {
+							FileUtil.makeDir(Folder.concat("/".concat(CreateFolder.concat("/"))));
+							_getFiles("");
+						}
+						else {
+							
+						}
+					}catch(Exception e){
+						 
+					}
+				}
+				dialog.dismiss();
+								
+						});
+			editor.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (editor.getText().toString().isEmpty()) {
+						positive.setEnabled(true);
 					}
 					else {
-						
+						positive.setEnabled(false);
 					}
-				}catch(Exception e){
-					 
-				}
-			}
-			
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
 						});
-		di.setPositiveButton("dismiss", (p1, d2) -> {
-			
-			          
-			
-						});
-		di.setBackground(getColors);
-		di.setView(dialogview);
-		di.show();
-		
-		
-		
-		
+		});
+		dialog.show();
 	}
 	
 	
 	public void _file() {
-		///result code By Ninja coder.ir my love java
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 		
-		
-		GradientDrawable getColors = new GradientDrawable();
-				getColors.setColor(0xFF1F1B1C);
-				getColors.setCornerRadius(25);
-				getColors.setStroke(1, 0xFFFDA893);
-		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-		    ViewGroup viewGroup = findViewById(android.R.id.content);
-				View dialogview = getLayoutInflater().inflate(R.layout.makefolder, viewGroup, false);
-		com.google.android.material.textfield.TextInputLayout top = dialogview.findViewById(R.id.top);
-		com.google.android.material.textfield.TextInputEditText editor = dialogview.findViewById(R.id.editor);
-		top.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
-		top.setCounterEnabled(true);
-		top.setCounterMaxLength(200);
-		top.setBoxStrokeColor(0xFFFDA893);
-		top.setCounterTextColor(ColorStateList.valueOf(0xFFFDA893));
-		top.setEndIconTintMode(PorterDuff.Mode.MULTIPLY);
-		top.setEndIconTintList(ColorStateList.valueOf(0xFFFFDCB9));
-		top.setEndIconDrawable(R.drawable.close);
-		top.setEndIconOnClickListener(v ->{
-				editor.setText("");
-		});
-		
-		di.setTitle("please Type name file ");
-		di.setNeutralButton("make file ", (p, d) -> {
+		    .setView(R.layout.makefolder)
+		.setTitle("Type name")
+		.setMessage("")
+		.setCancelable(true)
+		.setPositiveButton("make", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
 			
-			         if (editor.getText().toString().isEmpty()) {
-				top.setError("return type Error");
+			       com.google.android.material.textfield.TextInputLayout top = dialog.findViewById(R.id.top);		
+			
+			EditText editor = dialog.findViewById(R.id.editor);		
+			
+			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			if (editor.getText().toString().isEmpty()) {
+				positive.setEnabled(true);
 			}
 			else {
-				mainfile = editor.getText().toString();
-				try{
-					if (mainfile.equals("")) {
-						_file();
-					}
-					else {
-						if (!mainfile.contains("/")) {
-							if (mainfile.contains(".html")) {
-								FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "<!--code by Ghost web IDE version 1.1.4-->\n<!--بهتر است این قسمت حذف نشود -->\n<html lang=\"en\">\n	<head>\n		<!--meta code dont Romved-->\n		<meta charset=\"UTF-8\">\n		<!--code Style -->\n		<style>\n		*{\n		background-color: black;\n		text-align: center;\n		}\n		p , h1 {\n		font-weight: normal;\n		color: #ffffb9;\n		}\n		</style>\n		</head>\n		<!--class Style -->\n	<div class=\"Ghost\">\n	<!--Text Styles -->\n	<h1>Hello word to Ghost web</h1>\n	<p>in paiam faqet bari test ast na hish aml card digeh</p>\n		</div>\n	<!--End codes good luck code by ninja coder-->\n	</html>\n");
-								_getFiles("");
-							}
-							else {
-								if (mainfile.contains(".c")) {
-									FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "////code by Ghost web \n\n");
+				positive.setEnabled(false);
+			}
+			top.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
+			top.setCounterEnabled(true);
+			top.setCounterMaxLength(200);
+			top.setBoxStrokeColor(0xFFFDA893);
+			top.setCounterTextColor(ColorStateList.valueOf(0xFFFDA893));
+			top.setEndIconTintMode(PorterDuff.Mode.MULTIPLY);
+			top.setEndIconTintList(ColorStateList.valueOf(0xFFFFDCB9));
+			top.setEndIconDrawable(R.drawable.close);
+			top.setEndIconOnClickListener(v ->{
+					editor.setText("");
+			});
+			
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             dialog.dismiss();
+				if (editor.getText().toString().isEmpty()) {
+					top.setError("return type Error");
+				}
+				else {
+					mainfile = editor.getText().toString();
+					try{
+						if (mainfile.equals("")) {
+							_file();
+						}
+						else {
+							if (!mainfile.contains("/")) {
+								if (mainfile.contains(".html")) {
+									FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "<!--code by Ghost web IDE version 1.1.4-->\n<!--بهتر است این قسمت حذف نشود -->\n<html lang=\"en\">\n	<head>\n		<!--meta code dont Romved-->\n		<meta charset=\"UTF-8\">\n		<!--code Style -->\n		<style>\n		*{\n		background-color: black;\n		text-align: center;\n		}\n		p , h1 {\n		font-weight: normal;\n		color: #ffffb9;\n		}\n		</style>\n		</head>\n		<!--class Style -->\n	<div class=\"Ghost\">\n	<!--Text Styles -->\n	<h1>Hello word to Ghost web</h1>\n	<p>in paiam faqet bari test ast na hish aml card digeh</p>\n		</div>\n	<!--End codes good luck code by ninja coder-->\n	</html>\n");
 									_getFiles("");
 								}
 								else {
-									if (mainfile.contains(".py")) {
-										FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "#code by Ghost web\n\n#Start code \n\nResult = \"hello\"\nprint(Result)\n#end code tnks ");
+									if (mainfile.contains(".c")) {
+										FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "////code by Ghost web \n\n");
 										_getFiles("");
 									}
 									else {
-										if (mainfile.contains(".cs")) {
-											FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "///code by Ghost web");
+										if (mainfile.contains(".py")) {
+											FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "#code by Ghost web\n\n#Start code \n\nResult = \"hello\"\nprint(Result)\n#end code tnks ");
 											_getFiles("");
 										}
 										else {
-											if (mainfile.contains(".cpp")) {
-												FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "///Code by Ghost web Ide version 1.4.3\n\n\n#include <iosteram>\nvoid Result(bool b){\n    if(!b){\n        \n        cout << \"Hi\";\n    }else{\n        cout << \"Bay\";\n    }\n    \n}\nint main(){\n	Result(true)\n	cout << \"hello\";\n	return 0;\n	\n}\n");
+											if (mainfile.contains(".cs")) {
+												FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "///code by Ghost web");
 												_getFiles("");
 											}
 											else {
-												if (mainfile.contains(".json")) {
-													FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
+												if (mainfile.contains(".cpp")) {
+													FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "///Code by Ghost web Ide version 1.4.3\n\n\n#include <iosteram>\nvoid Result(bool b){\n    if(!b){\n        \n        cout << \"Hi\";\n    }else{\n        cout << \"Bay\";\n    }\n    \n}\nint main(){\n	Result(true)\n	cout << \"hello\";\n	return 0;\n	\n}\n");
 													_getFiles("");
 												}
 												else {
-													if (mainfile.contains(".sh")) {
-														FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "##code by Ghost web\n\necho \"Hello Ninjacoder\"");
+													if (mainfile.contains(".json")) {
+														FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
 														_getFiles("");
 													}
 													else {
-														if (mainfile.contains(".xml")) {
-															FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+														if (mainfile.contains(".sh")) {
+															FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "##code by Ghost web\n\necho \"Hello Ninjacoder\"");
 															_getFiles("");
 														}
 														else {
-															if (mainfile.contains(".java")) {
-																FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost web Ide version 1.4.3\n*/\n\nimport android.widget.*;\nimport java.util.*;\n\n\npublic class ".concat(Uri.parse(mainfile.replace(".java", " ")).getLastPathSegment().concat("{\n    private static Context context;\n    public static main(String[] Result){\n        \n        Toast.maketext(context ,\"Hi to Ghost Web Ide \",Toast.LENGTH_SHORT).show();\n    }\n    public static boolean Bio(){\n        \n        return false;\n    }\n    public static String test(String str){\n        \n        return str;\n    }\n    public static double vorger(){\n        \n        return 0;\n    }\n}")));
+															if (mainfile.contains(".xml")) {
+																FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 																_getFiles("");
 															}
 															else {
-																if (mainfile.contains(".ninja")) {
-																	FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost Web Ide version 1.4.3\n*/\n\nfrom ConText import *\nfrom Printor import printor\npublic class shr \n	\n	 \n".concat(Uri.parse(mainfile.replace(".ninja", " ")).getLastPathSegment().concat("\n\n	val h ? \n	val b ?\n	public Board(v){\n		\n		System.out.At(?0)\n	}\n     public abstract Hsi (){\n     \n         printor.GetText(\"hello\")\n         value 'replace  to -> 0'\n     \n     }\n	\n}\n")));
+																if (mainfile.contains(".java")) {
+																	FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost web Ide version 1.4.3\n*/\n\nimport android.widget.*;\nimport java.util.*;\n\n\npublic class ".concat(Uri.parse(mainfile.replace(".java", " ")).getLastPathSegment().concat("{\n    private static Context context;\n    public static main(String[] Result){\n        \n        Toast.maketext(context ,\"Hi to Ghost Web Ide \",Toast.LENGTH_SHORT).show();\n    }\n    public static boolean Bio(){\n        \n        return false;\n    }\n    public static String test(String str){\n        \n        return str;\n    }\n    public static double vorger(){\n        \n        return 0;\n    }\n}")));
 																	_getFiles("");
 																}
 																else {
-																	if (mainfile.contains(".js")) {
-																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
+																	if (mainfile.contains(".ninja")) {
+																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost Web Ide version 1.4.3\n*/\n\nfrom ConText import *\nfrom Printor import printor\npublic class shr \n	\n	 \n".concat(Uri.parse(mainfile.replace(".ninja", " ")).getLastPathSegment().concat("\n\n	val h ? \n	val b ?\n	public Board(v){\n		\n		System.out.At(?0)\n	}\n     public abstract Hsi (){\n     \n         printor.GetText(\"hello\")\n         value 'replace  to -> 0'\n     \n     }\n	\n}\n")));
 																		_getFiles("");
 																	}
 																	else {
-																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
-																		_getFiles("");
+																		if (mainfile.contains(".js")) {
+																			FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
+																			_getFiles("");
+																		}
+																		else {
+																			FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
+																			_getFiles("");
+																		}
 																	}
 																}
 															}
@@ -2367,35 +2400,46 @@ public class FiledirActivity extends AppCompatActivity {
 									}
 								}
 							}
-						}
-						else {
-							if (FileUtil.isExistFile(Folder.concat("/".concat(mainfile)))) {
-								_getFiles("");
-							}
 							else {
-								
+								if (FileUtil.isExistFile(Folder.concat("/".concat(mainfile)))) {
+									_getFiles("");
+								}
+								else {
+									
+								}
 							}
 						}
+						
+					}catch(Exception e){
+						 
 					}
-					
-				}catch(Exception e){
-					 
 				}
-			}
-			
+								
 						});
-		di.setPositiveButton("dismiss", (p1, d2) -> {
-			
-			          
-			
+			editor.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (editor.getText().toString().isEmpty()) {
+						positive.setEnabled(true);
+					}
+					else {
+						positive.setEnabled(false);
+					}
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
 						});
-		di.setBackground(getColors);
-		di.setView(dialogview);
-		di.show();
-		
-		
-		
-		
+		});
+		dialog.show();
 	}
 	
 	

@@ -773,7 +773,14 @@ public class CodeeditorActivity extends AppCompatActivity {
 			}
 		}
 		if (setfont.contains("mfont")) {
-			_editorsetfontfromfile(setfont.getString("mfont", ""));
+			if (!FileUtil.isFile(setfont.getString("mfont", ""))) {
+				editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
+				editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
+				SketchwareUtil.showMessage(getApplicationContext(), "Custom Font Not Found");
+			}
+			else {
+				_editorsetfontfromfile(setfont.getString("mfont", ""));
+			}
 		}
 		else {
 			editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));

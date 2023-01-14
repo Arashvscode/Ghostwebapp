@@ -1,14 +1,11 @@
 package Ninja.coder.Ghostemane.code;
 
-import android.Manifest;
 import android.animation.*;
 import android.app.*;
 import android.app.Activity;
 import android.content.*;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
@@ -34,8 +31,6 @@ import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -73,12 +68,9 @@ import androidx.core.widget.NestedScrollView;
 
 public class SettingappActivity extends AppCompatActivity {
 	
-	public final int REQ_CD_FILE = 101;
-	
 	private Toolbar _toolbar;
 	private AppBarLayout _app_bar;
 	private CoordinatorLayout _coordinator;
-	private String path = "";
 	
 	private ArrayList<String> string = new ArrayList<>();
 	
@@ -134,7 +126,6 @@ public class SettingappActivity extends AppCompatActivity {
 	private SharedPreferences war;
 	private SharedPreferences kos;
 	private SharedPreferences tab100;
-	private Intent file = new Intent(Intent.ACTION_GET_CONTENT);
 	private SharedPreferences setfont;
 	
 	@Override
@@ -142,20 +133,7 @@ public class SettingappActivity extends AppCompatActivity {
 		super.onCreate(_savedInstanceState);
 		setContentView(R.layout.settingapp);
 		initialize(_savedInstanceState);
-		
-		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1000);
-		} else {
-			initializeLogic();
-		}
-	}
-	
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		if (requestCode == 1000) {
-			initializeLogic();
-		}
+		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
@@ -221,8 +199,6 @@ public class SettingappActivity extends AppCompatActivity {
 		war = getSharedPreferences("war", Activity.MODE_PRIVATE);
 		kos = getSharedPreferences("kos", Activity.MODE_PRIVATE);
 		tab100 = getSharedPreferences("tab100", Activity.MODE_PRIVATE);
-		file.setType("*/*");
-		file.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 		setfont = getSharedPreferences("setfont", Activity.MODE_PRIVATE);
 		
 		linear15.setOnClickListener(new View.OnClickListener() {
@@ -294,38 +270,75 @@ public class SettingappActivity extends AppCompatActivity {
 		linear16.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(SettingappActivity.this);
-				    ViewGroup viewGroup = findViewById(android.R.id.content);
-						View dialogview = getLayoutInflater().inflate(R.layout.fontsetlector, viewGroup, false);
-				com.google.android.material.textfield.TextInputLayout input = dialogview.findViewById(R.id.input);
-				EditText edit = dialogview.findViewById(R.id.edit);
-				di.setTitle("فونت شخصی");
-				di.setMessage("لطفا دقت کنید که حتمان باید فرمت فونت .ttf باشد در غیر این صورت با خطا برنامه متوجه میشوید");
-				input.setErrorIconDrawable(R.drawable.mfont);
-				input.setEndIconVisible(true);
-				input.setEndIconCheckable(true);
-				input.setErrorIconOnClickListener(v ->{
-								
-					      startActivityForResult(file, REQ_CD_FILE);
+				androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(SettingappActivity.this)
+				
+				    .setView(R.layout.fontsetlector)
+				.setTitle("فونت شخصی")
+				.setMessage("لطفا دقت کنید که حتمان باید فرمت فونت .ttf باشد در غیر این صورت با خطا برنامه متوجه میشوید")
+				.setCancelable(true)
+				.setPositiveButton("تایید", null)
+				.setNegativeButton(android.R.string.cancel, null)
+				.setNeutralButton("پیشفرض",null)
+				.create();
+				dialog.setOnShowListener((var) -> {
 					
-						});
-				edit.setText(path);
-				di.setPositiveButton("تایید", (p1, d2) -> {
+					       Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+					Button np = dialog.getButton(android.content.DialogInterface.BUTTON_NEUTRAL);
+					com.google.android.material.textfield.TextInputLayout input = dialog.findViewById(R.id.input);		
 					
-					         setfont.edit().putString("mfont", edit.getText().toString()).commit();
+					EditText edit = dialog.findViewById(R.id.edit);		
 					
+					input.setEndIconDrawable(R.drawable.jvrfont);
+					input.setEndIconVisible(true);
+					input.setEndIconCheckable(true);
+					input.setEndIconOnClickListener(v ->{
+									
+									_jonifile(edit);
+						
+							});
+					
+					if (edit.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					positive.setOnClickListener((vftrororocjj) -> {
+						
+						             setfont.edit().putString("mfont", edit.getText().toString()).commit();
+						dialog.dismiss();
+										
 								});
-				di.setNegativeButton("پیشفرض", (p3, d3) -> {
-					
-					         setfont.edit().remove("mfont").commit();
-					
+					edit.addTextChangedListener(new android.text.TextWatcher() {
+										@Override
+										public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+												final String _charSeq = _param1.toString();
+										         
+							              if (edit.getText().toString().isEmpty()) {
+								positive.setEnabled(false);
+							}
+							else {
+								positive.setEnabled(true);
+							}
+							   
+										}
+						
+										@Override
+										public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										}
+						
+										@Override
+										public void afterTextChanged(android.text.Editable _param1) {
+										}
 								});
-				di.setView(dialogview);
-				di.show();
-				
-				
-				
-				
+					np.setOnClickListener((vftrororocjj) -> {
+						
+						             setfont.edit().remove("mfont").commit();
+						dialog.dismiss();
+										
+								});
+				});
+				dialog.show();
 			}
 		});
 		
@@ -496,41 +509,6 @@ public class SettingappActivity extends AppCompatActivity {
 		}
 	}
 	
-	@Override
-	protected void onActivityResult(int _requestCode, int _resultCode, Intent _data) {
-		super.onActivityResult(_requestCode, _resultCode, _data);
-		
-		switch (_requestCode) {
-			case REQ_CD_FILE:
-			if (_resultCode == Activity.RESULT_OK) {
-				ArrayList<String> _filePath = new ArrayList<>();
-				if (_data != null) {
-					if (_data.getClipData() != null) {
-						for (int _index = 0; _index < _data.getClipData().getItemCount(); _index++) {
-							ClipData.Item _item = _data.getClipData().getItemAt(_index);
-							_filePath.add(FileUtil.convertUriToFilePath(getApplicationContext(), _item.getUri()));
-						}
-					}
-					else {
-						_filePath.add(FileUtil.convertUriToFilePath(getApplicationContext(), _data.getData()));
-					}
-				}
-				if (path.endsWith(".ttf")) {
-					path = _filePath.get((int)(0));
-				}
-				else {
-					SketchwareUtil.showMessage(getApplicationContext(), "Error not File ttf File");
-				}
-			}
-			else {
-				
-			}
-			break;
-			default:
-			break;
-		}
-	}
-	
 	public void _seechackswich() {
 		if (word.getString("getword", "").equals("true")) {
 			checkbox1.setChecked(true);
@@ -595,6 +573,498 @@ public class SettingappActivity extends AppCompatActivity {
 				}
 			}
 		}
+	}
+	
+	
+	public void _jonifile(final EditText _ed) {
+		build = new com.google.android.material.dialog.MaterialAlertDialogBuilder(this);
+		
+		build.setPositiveButton("Exit", (v, o) -> {
+				
+		});
+		build.setTitle("Set font(tiff)");
+		
+		build.setCancelable(false);
+		
+		alertoo = build.create();
+		
+		final ArrayList<String> listStr = new ArrayList<String>();
+		
+		path = "/storage/emulated/0/";
+		
+		final LinearLayout container = new LinearLayout(getApplicationContext());
+		container.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+		LinearLayout.LayoutParams.MATCH_PARENT));
+		container.setOrientation(LinearLayout.VERTICAL);
+		container.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		
+		final LinearLayout header = new LinearLayout(getApplicationContext());
+		header.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT));
+		header.setOrientation(LinearLayout.VERTICAL);
+		header.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		header.setPadding(5, 5, 5, 5);
+		
+		final TextView edit = new TextView(getApplicationContext());
+		edit.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT));
+		
+		edit.setTextSize(14);
+		edit.setTextIsSelectable(true);
+		edit.setText("");
+		
+		edit.setTextColor(0xFFFFFFFF);
+		
+		final ListView List = new ListView(getApplicationContext());
+		List.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+		
+		final LinearLayout options = new LinearLayout(getApplicationContext());
+		options.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT));
+		options.setOrientation(LinearLayout.HORIZONTAL);
+		options.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		
+		final Button back = new Button(getApplicationContext());
+		back.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT));
+		back.setPadding(8, 8, 8, 8);
+		back.setText("Back");
+		back.setTextSize(13);
+		
+		final Button home = new Button(getApplicationContext());
+		home.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT));
+		home.setPadding(8, 8, 8, 8);
+		home.setText("home");
+		home.setTextSize(13);
+		
+		final Button select = new Button(getApplicationContext());
+		select.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+		LinearLayout.LayoutParams.WRAP_CONTENT));
+		select.setPadding(8, 8, 8, 8);
+		select.setText("done");
+		select.setTextSize(13);
+		select.setVisibility(View.INVISIBLE);
+		
+		open(listStr, path);
+		
+		{
+				GradientDrawable GG = new GradientDrawable();
+				GG.setColor(R.color.colorAccent);
+				GG.setCornerRadius((float) 60);
+				GG.setStroke((int) 1, R.color.colorPrimary);
+				RippleDrawable RE = new RippleDrawable(
+				new ColorStateList(new int[][] { new int[] {} }, new int[] { Color.parseColor("#FFFE8CD2") }), GG,
+				null);
+				back.setBackground(GG);
+				home.setBackground(GG);
+				select.setBackground(GG);
+				back.setTextColor(Color.WHITE);
+				home.setTextColor(Color.WHITE);
+				select.setTextColor(Color.WHITE);
+				back.setTypeface(Typeface.MONOSPACE);
+				home.setTypeface(Typeface.MONOSPACE);
+				select.setTypeface(Typeface.MONOSPACE);
+				
+				back.setClickable(true);
+				home.setClickable(true);
+				select.setClickable(true);
+				select.setOnTouchListener(new View.OnTouchListener() {
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+								switch (event.getAction()) {
+										case MotionEvent.ACTION_DOWN: {
+												ObjectAnimator scaleX = new ObjectAnimator();
+												scaleX.setTarget(select);
+												scaleX.setPropertyName("scaleX");
+												scaleX.setFloatValues(0.9f);
+												scaleX.setDuration((int) 5);
+												scaleX.start();
+												
+												ObjectAnimator scaleY = new ObjectAnimator();
+												scaleY.setTarget(select);
+												scaleY.setPropertyName("scaleY");
+												scaleY.setFloatValues(0.9f);
+												scaleY.setDuration((int) 5);
+												scaleY.start();
+												break;
+										}
+										case MotionEvent.ACTION_UP: {
+												
+												ObjectAnimator scaleX = new ObjectAnimator();
+												scaleX.setTarget(select);
+												scaleX.setPropertyName("scaleX");
+												scaleX.setFloatValues((float) 1);
+												scaleX.setDuration((int) 5);
+												scaleX.start();
+												
+												ObjectAnimator scaleY = new ObjectAnimator();
+												scaleY.setTarget(select);
+												scaleY.setPropertyName("scaleY");
+												scaleY.setFloatValues((float) 1);
+												scaleY.setDuration((int) 5);
+												scaleY.start();
+												
+												break;
+										}
+								}
+								return false;
+						}
+				});
+				back.setOnTouchListener(new View.OnTouchListener() {
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+								switch (event.getAction()) {
+										case MotionEvent.ACTION_DOWN: {
+												ObjectAnimator scaleX = new ObjectAnimator();
+												scaleX.setTarget(back);
+												scaleX.setPropertyName("scaleX");
+												scaleX.setFloatValues(0.9f);
+												scaleX.setDuration((int) 5);
+												scaleX.start();
+												
+												ObjectAnimator scaleY = new ObjectAnimator();
+												scaleY.setTarget(back);
+												scaleY.setPropertyName("scaleY");
+												scaleY.setFloatValues(0.9f);
+												scaleY.setDuration((int) 5);
+												scaleY.start();
+												break;
+										}
+										case MotionEvent.ACTION_UP: {
+												
+												ObjectAnimator scaleX = new ObjectAnimator();
+												scaleX.setTarget(back);
+												scaleX.setPropertyName("scaleX");
+												scaleX.setFloatValues((float) 1);
+												scaleX.setDuration((int) 5);
+												scaleX.start();
+												
+												ObjectAnimator scaleY = new ObjectAnimator();
+												scaleY.setTarget(back);
+												scaleY.setPropertyName("scaleY");
+												scaleY.setFloatValues((float) 1);
+												scaleY.setDuration((int) 5);
+												scaleY.start();
+												
+												break;
+										}
+								}
+								return false;
+						}
+				});
+				
+				home.setOnTouchListener(new View.OnTouchListener() {
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+								switch (event.getAction()) {
+										case MotionEvent.ACTION_DOWN: {
+												ObjectAnimator scaleX = new ObjectAnimator();
+												scaleX.setTarget(home);
+												scaleX.setPropertyName("scaleX");
+												scaleX.setFloatValues(0.9f);
+												scaleX.setDuration((int) 5);
+												scaleX.start();
+												
+												ObjectAnimator scaleY = new ObjectAnimator();
+												scaleY.setTarget(home);
+												scaleY.setPropertyName("scaleY");
+												scaleY.setFloatValues(0.9f);
+												scaleY.setDuration((int) 5);
+												scaleY.start();
+												break;
+										}
+										case MotionEvent.ACTION_UP: {
+												
+												ObjectAnimator scaleX = new ObjectAnimator();
+												scaleX.setTarget(home);
+												scaleX.setPropertyName("scaleX");
+												scaleX.setFloatValues((float) 1);
+												scaleX.setDuration((int) 5);
+												scaleX.start();
+												
+												ObjectAnimator scaleY = new ObjectAnimator();
+												scaleY.setTarget(home);
+												scaleY.setPropertyName("scaleY");
+												scaleY.setFloatValues((float) 1);
+												scaleY.setDuration((int) 5);
+												scaleY.start();
+												
+												break;
+										}
+								}
+								return false;
+						}
+				});
+				
+		}
+		DisplayMetrics displayMetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+		int height = displayMetrics.heightPixels;
+		int width = displayMetrics.widthPixels;
+		List.setDividerHeight(0);
+		List.setHorizontalScrollBarEnabled(false);
+		List.setVerticalScrollBarEnabled(false);
+		container.setMinimumHeight(height);
+		container.setMinimumWidth(width);
+		
+		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
+		android.R.layout.simple_list_item_1, listStr) {
+				@Override
+				public View getView(int _position, View convertView, ViewGroup parent) {
+						View view = super.getView(_position, convertView, parent);
+						
+						view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 1));
+						
+						TextView tv = (TextView) view.findViewById(android.R.id.text1);
+						tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+						LinearLayout.LayoutParams.MATCH_PARENT, 1));
+						tv.setTypeface(Typeface.MONOSPACE);
+						
+						tv.setTextColor(0xFFFFFFFF);
+						
+						if (FileUtil.isDirectory(listStr.get((int) (_position)))) {
+								tv.setText("📂  ".concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+						} else {
+								if (FileUtil.isFile(listStr.get((int) (_position)))) {
+										tv.setText("📄  ".concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+								}
+						}
+						
+						ScaleAnimation fade_in = new ScaleAnimation(0.9f, 1f, 0.9f, 1f, Animation.RELATIVE_TO_SELF, 0.5f,
+						Animation.RELATIVE_TO_SELF, 0.7f);
+						fade_in.setDuration(300);
+						fade_in.setFillAfter(true);
+						tv.startAnimation(fade_in);
+						
+						return view;
+				}
+		};
+		List.setAdapter(arrayAdapter);
+		((BaseAdapter) List.getAdapter()).notifyDataSetChanged();
+		
+		back.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+						if (!(path.equals("/storage/emulated/0") || path.equals("/sdcard"))) {
+								String UpFolder = path.substring((int) (0), (int) (path.lastIndexOf("/")));
+								path = UpFolder;
+								
+								edit.setText("");
+								
+								open(listStr, path);
+								final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
+								android.R.layout.simple_list_item_1, listStr) {
+										@Override
+										public View getView(int _position, View convertView, ViewGroup parent) {
+												View view = super.getView(_position, convertView, parent);
+												
+												view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+												LinearLayout.LayoutParams.MATCH_PARENT, 1));
+												
+												TextView tv = (TextView) view.findViewById(android.R.id.text1);
+												tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+												LinearLayout.LayoutParams.MATCH_PARENT, 1));
+												tv.setTypeface(Typeface.MONOSPACE);
+												
+												tv.setTextColor(0xFFFFFFFF);
+												
+												if (FileUtil.isDirectory(listStr.get((int) (_position)))) {
+														tv.setText(
+														"📂  ".concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+												} else {
+														if (FileUtil.isFile(listStr.get((int) (_position)))) {
+																tv.setText("📄  "
+																.concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+														}
+												}
+												
+												ScaleAnimation fade_in = new ScaleAnimation(0.9f, 1f, 0.9f, 1f, Animation.RELATIVE_TO_SELF,
+												0.5f, Animation.RELATIVE_TO_SELF, 0.7f);
+												fade_in.setDuration(300);
+												fade_in.setFillAfter(true);
+												tv.startAnimation(fade_in);
+												
+												return view;
+												
+										}
+								};
+								List.setAdapter(arrayAdapter);
+								((BaseAdapter) List.getAdapter()).notifyDataSetChanged();
+								
+						}
+				}
+		});
+		home.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+						path = "/storage/emulated/0/";
+						edit.setText("");
+						
+						open(listStr, path);
+						final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
+						android.R.layout.simple_list_item_1, listStr) {
+								@Override
+								public View getView(int _position, View convertView, ViewGroup parent) {
+										View view = super.getView(_position, convertView, parent);
+										
+										view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+										LinearLayout.LayoutParams.MATCH_PARENT, 1));
+										
+										TextView tv = (TextView) view.findViewById(android.R.id.text1);
+										tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+										LinearLayout.LayoutParams.MATCH_PARENT, 1));
+										tv.setTypeface(Typeface.MONOSPACE);
+										
+										tv.setTextColor(0xFFFFFFFF);
+										if (FileUtil.isDirectory(listStr.get((int) (_position)))) {
+												tv.setText("📂  ".concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+										} else {
+												if (FileUtil.isFile(listStr.get((int) (_position)))) {
+														tv.setText(
+														"📄  ".concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+												}
+										}
+										
+										ScaleAnimation fade_in = new ScaleAnimation(0.9f, 1f, 0.9f, 1f, Animation.RELATIVE_TO_SELF,
+										0.5f, Animation.RELATIVE_TO_SELF, 0.7f);
+										fade_in.setDuration(300);
+										fade_in.setFillAfter(true);
+										tv.startAnimation(fade_in);
+										
+										return view;
+								}
+						};
+						List.setAdapter(arrayAdapter);
+						((BaseAdapter) List.getAdapter()).notifyDataSetChanged();
+						
+				}
+		});
+		select.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+						
+						_ed.setText(selectedFile);
+						
+						alertoo.dismiss();
+				}
+		});
+		List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						
+						java.io.File check = new java.io.File(listStr.get(position));
+						
+						if (check.isDirectory()) {
+								
+								path = listStr.get(position);
+								
+								select.setVisibility(View.INVISIBLE);
+								open(listStr, path);
+								
+								final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
+								android.R.layout.simple_list_item_1, listStr) {
+										@Override
+										public View getView(int _position, View convertView, ViewGroup parent) {
+												View view = super.getView(_position, convertView, parent);
+												
+												view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+												LinearLayout.LayoutParams.MATCH_PARENT, 1));
+												
+												TextView tv = (TextView) view.findViewById(android.R.id.text1);
+												tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+												LinearLayout.LayoutParams.MATCH_PARENT, 1));
+												tv.setTypeface(Typeface.MONOSPACE);
+												
+												tv.setTextColor(0xFFFFFFFF);
+												
+												if (FileUtil.isDirectory(listStr.get((int) (_position)))) {
+														tv.setText(
+														"📂  ".concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+												} else {
+														if (FileUtil.isFile(listStr.get((int) (_position)))) {
+																tv.setText("📄  "
+																.concat(Uri.parse(listStr.get((int) (_position))).getLastPathSegment()));
+														}
+												}
+												
+												ScaleAnimation fade_in = new ScaleAnimation(0.9f, 1f, 0.9f, 1f, Animation.RELATIVE_TO_SELF,
+												0.5f, Animation.RELATIVE_TO_SELF, 0.7f);
+												fade_in.setDuration(300);
+												fade_in.setFillAfter(true);
+												tv.startAnimation(fade_in);
+												
+												return view;
+										}
+								};
+								List.setAdapter(arrayAdapter);
+								((BaseAdapter) List.getAdapter()).notifyDataSetChanged();
+								
+						} else {
+								
+								List.setSelector(android.R.color.transparent);
+								android.graphics.drawable.GradientDrawable style = new android.graphics.drawable.GradientDrawable();
+								
+								style.setColor(Color.parseColor("#2196F3"));
+								
+								style.setCornerRadius(1);
+								List.setSelector(style);
+								
+								selectedFile = listStr.get(position);
+								
+								edit.setText("selected file : " + selectedFile);
+								
+								select.setVisibility(View.VISIBLE);
+								
+						}
+						
+				}
+		});
+		
+		header.addView(edit);
+		container.addView(header);
+		container.addView(List);
+		options.addView(back);
+		options.addView(home);
+		options.addView(select);
+		container.addView(options);
+		
+		alertoo.setView(container);
+		
+		alertoo.show();
+		
+	}
+	
+	private boolean isDark = false;
+	private String selectedFile = "";
+	private androidx.appcompat.app.AlertDialog alertoo;
+	
+	private void open(ArrayList<String> strings, String wech) {
+			
+			strings.clear();
+			
+			FileUtil.listDir(wech, strings);
+			
+			final class FileComparator implements Comparator<String> {
+					public int compare(String f1, String f2) {
+							if (f1 == f2)
+							return 0;
+							if (FileUtil.isDirectory(f1) && FileUtil.isFile(f2))
+							return -1;
+							if (FileUtil.isFile(f1) && FileUtil.isDirectory(f2))
+							return 1;
+							return f1.compareToIgnoreCase(f2);
+					}
+			}
+			Collections.sort(strings, new FileComparator());
+	}
+	
+	private String path;
+	private com.google.android.material.dialog.MaterialAlertDialogBuilder build;
+	{
+			
 	}
 	
 	
