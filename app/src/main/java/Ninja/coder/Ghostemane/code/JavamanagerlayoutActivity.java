@@ -191,7 +191,7 @@ public class JavamanagerlayoutActivity extends AppCompatActivity {
 		}
 		textinputlayoutsearch.setCounterEnabled(true);
 		textinputlayoutsearch.setCounterTextColor(ColorStateList.valueOf(0xFFFDA893));
-		_toolbar.setBackgroundColor(0xFF1F1B1C);
+		_toolbar.setBackgroundColor(0xFF2B2121);
 		listview1.setHorizontalScrollBarEnabled(false);
 		listview1.setVerticalScrollBarEnabled(false);
 		listview1.setOverScrollMode(ListView.OVER_SCROLL_NEVER);

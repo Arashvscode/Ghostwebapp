@@ -97,36 +97,30 @@ public class ResultActivity extends AppCompatActivity {
 				final int _position = _param3;
 				if (_position == 0) {
 					i3.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Theme.class);
-					startActivity(i3);
+						startActivity(i3);
 				}
 				if (_position == 1) {
 					i1.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Background.class);
-					startActivity(i1);
+						startActivity(i1);
 				}
 				if (_position == 2) {
-					///result code By Ninja coder.ir my love java
-					
-					
-					GradientDrawable b = new GradientDrawable();
-							b.setColor(0xFF1F1B1C);
-							b.setCornerRadius(25);
-							b.setStroke(1, 0xFFFDA893);
 					var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(ResultActivity.this);
 					    di.setTitle("ذخیره و بازیابی");
 					di.setMessage("با انتخاب یکی از گزینه ها ذخیره یا ریست کردن داده های کیبورد برنامه از اول اجرا میشود ولی همچنان تنظیمات برنامه ثابت است فقط تنظیمات کیبورد قابل تغییر است");
 					di.setNeutralButton("ذخیره", (p, d) -> {
 						
 						         i2.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Save.class);
-						startActivity(i2);
+								startActivity(i2);
 						
 									});
 					di.setPositiveButton("ریست", (p1, d2) -> {
 						
 						         i2.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Reset.class);
+								startActivity(i2);
+						i2.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Reset.class);
 						startActivity(i2);
 						
 									});
-					di.setBackground(b);
 					di.show();
 					
 					
@@ -134,8 +128,8 @@ public class ResultActivity extends AppCompatActivity {
 					
 				}
 				if (_position == 3) {
-					i3.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Setting.class);
-					startActivity(i3);
+						i3.setClass(getApplicationContext(), Ninja.coder.Ghostemane.code.Keyboard.Setting.class);
+						startActivity(i3);
 				}
 			}
 		});
@@ -152,6 +146,13 @@ public class ResultActivity extends AppCompatActivity {
 		}
 		listview1.setAdapter(new Listview1Adapter(cdMapResu));
 		((BaseAdapter)listview1.getAdapter()).notifyDataSetChanged();
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
+				   Window ninjacoder = this.getWindow();
+			 ninjacoder.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+			 ninjacoder.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+			
+				   ninjacoder.setStatusBarColor(Color.parseColor("#FF2B2122")); ninjacoder.setNavigationBarColor(Color.parseColor("#FF2B2122"));
+		}
 	}
 	
 	public class Listview1Adapter extends BaseAdapter {

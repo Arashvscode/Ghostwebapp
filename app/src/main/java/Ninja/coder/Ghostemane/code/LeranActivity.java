@@ -152,7 +152,7 @@ public class LeranActivity extends AppCompatActivity {
 		
 		
 		GradientDrawable g = new GradientDrawable();
-				g.setColor(0xFF1F1B1C);
+				g.setColor(0xFF2B2121);
 				g.setCornerRadius(15);
 				g.setStroke(1, 0xFFFDA893);
 		pv.getWindow().setBackgroundDrawable(g);

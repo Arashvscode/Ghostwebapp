@@ -1471,27 +1471,16 @@ public class FiledirActivity extends AppCompatActivity {
 	
 	private void initializeLogic() {
 		
-		linear1.setBackgroundColor(0xFF1F1B1C);
+		linear1.setBackgroundColor(0xFF2B2121);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		AppUpdeat.startRequestNetwork(RequestNetworkController.GET, "https://raw.githubusercontent.com/Arashvscode/GhostWebThemes/main/Themes/Roules/Post/Getr/log.json", "", _AppUpdeat_request_listener);
 		if (war.contains("val")) {
-			if (war.getString("val", "").equals("true")) {
-				Drawable drawable = WallpaperManager.getInstance(FiledirActivity.this).getDrawable();
-				if (drawable != null) {
-						linear1.setBackgroundDrawable(drawable);
-					    _drawer_getColor.setBackgroundDrawable(drawable);
-				}
-				
+			Drawable drawable = WallpaperManager.getInstance(FiledirActivity.this).getDrawable();
+			if (drawable != null) {
+					linear1.setBackgroundDrawable(drawable);
+				    _drawer_getColor.setBackgroundDrawable(drawable);
 			}
-			else {
-				if (war.getString("val", "").equals("false")) {
-					_drawer_getColor.setBackgroundColor(0xFF1F1B1C);
-					linear1.setBackgroundColor(0xFF1F1B1C);
-				}
-				else {
-					
-				}
-			}
+			
 		}
 		try {
 				android.content.pm.PackageInfo pInfo = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0);
@@ -1547,7 +1536,7 @@ public class FiledirActivity extends AppCompatActivity {
 		
 		
 		GradientDrawable u = new GradientDrawable();
-				u.setColor(0xFF1F1B1C);
+				u.setColor(0xFF2B2121);
 				u.setCornerRadius(25);
 				u.setStroke(1, 0xFFF8B09A);
 		progressDilaog.getWindow().setBackgroundDrawable(u);
@@ -1565,7 +1554,7 @@ public class FiledirActivity extends AppCompatActivity {
 				Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 				Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 				
-				Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
+				Hsi.setStatusBarColor(Color.parseColor("#FF2B2121")); Hsi.setNavigationBarColor(Color.parseColor("#FF2B2121"));
 		}
 		getSupportActionBar().hide();
 		
@@ -1584,7 +1573,7 @@ public class FiledirActivity extends AppCompatActivity {
 		
 		
 		
-		_drawer_mcardtest.setCardBackgroundColor(0xFF1F1B1C);
+		_drawer_mcardtest.setCardBackgroundColor(0xFF2B2121);
 		_drawer_mcardtest.setRadius((float)20);
 		_drawer_mcardtest.setCardElevation((float)2);
 		
@@ -1665,7 +1654,7 @@ public class FiledirActivity extends AppCompatActivity {
 		Alerter.create(FiledirActivity.this) 
 		.setTitle("GhostWeb IDE")
 		.setText("Version Used = 1.4.7")
-		.setBackgroundColorInt(0xFF1F1B1C)
+		.setBackgroundColorInt(0xFF2B2121)
 		.show();
 		alterDialogDel = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
 		AlterDialogRname = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
@@ -1697,23 +1686,23 @@ public class FiledirActivity extends AppCompatActivity {
 		AnimUtils.Worker(fabFolder);
 		AnimUtils.Worker(Fabgits);
 		fabAdd.setIconResource(R.drawable.plus);
-		fabAdd.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabAdd.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabAdd.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabAdd.setStrokeWidth(1);
 		fabAdd.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		fabMic.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabMic.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabMic.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabMic.setStrokeWidth(1);
 		fabMic.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		fabCall.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabCall.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabCall.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabCall.setStrokeWidth(1);
 		fabCall.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		fabFile.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabFile.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabFile.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabFile.setStrokeWidth(1);
 		fabFile.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		fabFolder.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabFolder.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabFolder.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabFolder.setStrokeWidth(1);
 		fabFolder.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
@@ -1728,7 +1717,7 @@ public class FiledirActivity extends AppCompatActivity {
 		fabCall.setIconResource(R.drawable.opendes);
 		fabFolder.setIconResource(R.drawable.folder3);
 		fabFile.setIconResource(R.drawable.file);
-		Fabgits.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		Fabgits.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		Fabgits.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		Fabgits.setStrokeWidth(1);
 		///Show All Disane Fab
@@ -2215,10 +2204,10 @@ public class FiledirActivity extends AppCompatActivity {
 			
 			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
 			if (editor.getText().toString().isEmpty()) {
-				positive.setEnabled(true);
+				positive.setEnabled(false);
 			}
 			else {
-				positive.setEnabled(false);
+				positive.setEnabled(true);
 			}
 			top.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
 			top.setCounterEnabled(true);
@@ -2261,10 +2250,10 @@ public class FiledirActivity extends AppCompatActivity {
 										final String _charSeq = _param1.toString();
 								         
 					              if (editor.getText().toString().isEmpty()) {
-						positive.setEnabled(true);
+						positive.setEnabled(false);
 					}
 					else {
-						positive.setEnabled(false);
+						positive.setEnabled(true);
 					}
 					   
 								}
@@ -2300,10 +2289,10 @@ public class FiledirActivity extends AppCompatActivity {
 			
 			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
 			if (editor.getText().toString().isEmpty()) {
-				positive.setEnabled(true);
+				positive.setEnabled(false);
 			}
 			else {
-				positive.setEnabled(false);
+				positive.setEnabled(true);
 			}
 			top.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
 			top.setCounterEnabled(true);
@@ -2342,7 +2331,7 @@ public class FiledirActivity extends AppCompatActivity {
 									}
 									else {
 										if (mainfile.contains(".py")) {
-											FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "#code by Ghost web\n\n#Start code \n\nResult = \"hello\"\nprint(Result)\n#end code tnks ");
+											FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "#Code by Ghost web version 1.4.8\nimport os \n\ndef number01(a,b):\n	return a*b\ndef number02(a,b):\n	return a/b\n	\nprint(number01(20,30))\nprint(number02(30,90))\n\n");
 											_getFiles("");
 										}
 										else {
@@ -2352,12 +2341,12 @@ public class FiledirActivity extends AppCompatActivity {
 											}
 											else {
 												if (mainfile.contains(".cpp")) {
-													FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "///Code by Ghost web Ide version 1.4.3\n\n\n#include <iosteram>\nvoid Result(bool b){\n    if(!b){\n        \n        cout << \"Hi\";\n    }else{\n        cout << \"Bay\";\n    }\n    \n}\nint main(){\n	Result(true)\n	cout << \"hello\";\n	return 0;\n	\n}\n");
+													FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "\n#include<iosteram>\nusing namespace std;\n\nvoid foo(){\n	cout << \"Ghost web ide \" << \"Version\" << \"1.4.8\";\n}\n\nint main(){\n	int b{1};\n	cout << \"Type Number\" << endl;\n	cin >> b >> b + 10 ;\n	cout << \"Done\" << endl;\n}\n");
 													_getFiles("");
 												}
 												else {
 													if (mainfile.contains(".json")) {
-														FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
+														FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "[\n{\n    \"name\":\"hosein\",\n    \"age\":26,\n    \"run\":true,\n    \"liveiniran\":null\n}\n]");
 														_getFiles("");
 													}
 													else {
@@ -2377,12 +2366,12 @@ public class FiledirActivity extends AppCompatActivity {
 																}
 																else {
 																	if (mainfile.contains(".ninja")) {
-																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost Web Ide version 1.4.3\n*/\n\nfrom ConText import *\nfrom Printor import printor\npublic class shr \n	\n	 \n".concat(Uri.parse(mainfile.replace(".ninja", " ")).getLastPathSegment().concat("\n\n	val h ? \n	val b ?\n	public Board(v){\n		\n		System.out.At(?0)\n	}\n     public abstract Hsi (){\n     \n         printor.GetText(\"hello\")\n         value 'replace  to -> 0'\n     \n     }\n	\n}\n")));
+																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost Web Ide version 1.4.8\n*/\n\nfrom ConText import *\nfrom Printor import printor\npublic class shr".concat(Uri.parse(mainfile.replace(".ninja", " ")).getLastPathSegment().concat("\n\n	val h ? \n	val b ?\n	public Board(v){\n		\n		System.out.At(?0)\n	}\n     public abstract Hsi (){\n     \n         printor.GetText(\"hello\")\n         value 'replace  to -> 0'\n     \n     }\n	\n}\n")));
 																		_getFiles("");
 																	}
 																	else {
 																		if (mainfile.contains(".js")) {
-																			FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
+																			FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "console.log('♤♤♤')");
 																			_getFiles("");
 																		}
 																		else {
@@ -2422,10 +2411,10 @@ public class FiledirActivity extends AppCompatActivity {
 										final String _charSeq = _param1.toString();
 								         
 					              if (editor.getText().toString().isEmpty()) {
-						positive.setEnabled(true);
+						positive.setEnabled(false);
 					}
 					else {
-						positive.setEnabled(false);
+						positive.setEnabled(true);
 					}
 					   
 								}

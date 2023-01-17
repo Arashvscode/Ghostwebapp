@@ -95,6 +95,7 @@ public class SettingappActivity extends AppCompatActivity {
 	private TextView textview9;
 	private ImageView imageview1;
 	private TextView textview10;
+	private ImageView imageview7;
 	private TextView textview11;
 	private ImageView imageview2;
 	private TextView textview14;
@@ -107,8 +108,12 @@ public class SettingappActivity extends AppCompatActivity {
 	private MaterialCheckBox checkbox4;
 	private TextView textview5;
 	private MaterialCheckBox checkbox5;
+	private LinearLayout linear18;
+	private LinearLayout linear19;
 	private TextView textview12;
 	private MaterialCheckBox checkbox8;
+	private TextView textview19;
+	private MaterialCheckBox checkbox10;
 	private TextView textview15;
 	private MaterialCheckBox checkbox9;
 	private TextView textview16;
@@ -127,6 +132,8 @@ public class SettingappActivity extends AppCompatActivity {
 	private SharedPreferences kos;
 	private SharedPreferences tab100;
 	private SharedPreferences setfont;
+	private SharedPreferences atx;
+	private SharedPreferences ru;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -170,6 +177,7 @@ public class SettingappActivity extends AppCompatActivity {
 		textview9 = findViewById(R.id.textview9);
 		imageview1 = findViewById(R.id.imageview1);
 		textview10 = findViewById(R.id.textview10);
+		imageview7 = findViewById(R.id.imageview7);
 		textview11 = findViewById(R.id.textview11);
 		imageview2 = findViewById(R.id.imageview2);
 		textview14 = findViewById(R.id.textview14);
@@ -182,8 +190,12 @@ public class SettingappActivity extends AppCompatActivity {
 		checkbox4 = findViewById(R.id.checkbox4);
 		textview5 = findViewById(R.id.textview5);
 		checkbox5 = findViewById(R.id.checkbox5);
+		linear18 = findViewById(R.id.linear18);
+		linear19 = findViewById(R.id.linear19);
 		textview12 = findViewById(R.id.textview12);
 		checkbox8 = findViewById(R.id.checkbox8);
+		textview19 = findViewById(R.id.textview19);
+		checkbox10 = findViewById(R.id.checkbox10);
 		textview15 = findViewById(R.id.textview15);
 		checkbox9 = findViewById(R.id.checkbox9);
 		textview16 = findViewById(R.id.textview16);
@@ -200,6 +212,8 @@ public class SettingappActivity extends AppCompatActivity {
 		kos = getSharedPreferences("kos", Activity.MODE_PRIVATE);
 		tab100 = getSharedPreferences("tab100", Activity.MODE_PRIVATE);
 		setfont = getSharedPreferences("setfont", Activity.MODE_PRIVATE);
+		atx = getSharedPreferences("atx", Activity.MODE_PRIVATE);
+		ru = getSharedPreferences("ru", Activity.MODE_PRIVATE);
 		
 		linear15.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -307,6 +321,7 @@ public class SettingappActivity extends AppCompatActivity {
 						
 						             setfont.edit().putString("mfont", edit.getText().toString()).commit();
 						dialog.dismiss();
+						SketchwareUtil.CustomToast(getApplicationContext(), "فونت : ".concat(edit.getText().toString().trim().concat(" اعمال شد")), 0xFFFDA893, 14, 0xFF1F1B1C, 15, SketchwareUtil.CENTER);
 										
 								});
 					edit.addTextChangedListener(new android.text.TextWatcher() {
@@ -335,6 +350,8 @@ public class SettingappActivity extends AppCompatActivity {
 						
 						             setfont.edit().remove("mfont").commit();
 						dialog.dismiss();
+						SketchwareUtil.CustomToast(getApplicationContext(), "فونت پیشفرض اعمال شد", 0xFFFDA893, 14, 0xFF1F1B1C, 15, SketchwareUtil.CENTER);
+						SketchwareUtil.showMessage(getApplicationContext(), "فونت پیشفرض اعمال شد");
 										
 								});
 				});
@@ -448,14 +465,24 @@ public class SettingappActivity extends AppCompatActivity {
 					
 					
 					war.edit().putString("val", "true").commit();
-					_ShowIn(checkbox8);
 					SketchwareUtil.showMessage(getApplicationContext(), "اعمال شد دوباره وارد برنامه شوید");
 				}
 				else {
-					war.edit().putString("val", "false").commit();
-					vscroll1.setBackgroundColor(0xFF1F1B1C);
+					war.edit().remove("val").commit();
+					vscroll1.setBackgroundColor(0xFF2B2122);
 					SketchwareUtil.showMessage(getApplicationContext(), "خاموش شد دوباره وارد برنامه شوید");
-					_ShowOut(checkbox8);
+				}
+			}
+		});
+		
+		checkbox10.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (checkbox10.isChecked()) {
+					ru.edit().putString("rup", "true").commit();
+				}
+				else {
+					ru.edit().remove("rup").commit();
 				}
 			}
 		});
@@ -481,16 +508,16 @@ public class SettingappActivity extends AppCompatActivity {
 		string.add("4");
 		string.add("6");
 		string.add("8");
-		_toolbar.setBackgroundColor(0xFF1C1B20);
+		_toolbar.setBackgroundColor(0xFF2B2121);
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
 				   Window Hsi = this.getWindow();
 			 Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 			 Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 			
-				   Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
+				   Hsi.setStatusBarColor(Color.parseColor("#FF2B2121")); Hsi.setNavigationBarColor(Color.parseColor("#FF2B2121"));
 		}
 		_toolbar.setVisibility(View.GONE);
-		if (war.getString("val", "").equals("true")) {
+		if (war.contains("val")) {
 			
 				Drawable drawable = WallpaperManager.getInstance(SettingappActivity.this).getDrawable();
 				if (drawable != null) {
@@ -499,14 +526,10 @@ public class SettingappActivity extends AppCompatActivity {
 			
 			
 		}
-		else {
-			if (war.getString("val", "").equals("false")) {
-				vscroll1.setBackgroundColor(0xFF1F1B1C);
-			}
-			else {
-				
-			}
-		}
+		imageview2.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imageview3.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imageview4.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imageview5.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 	}
 	
 	public void _seechackswich() {
@@ -545,6 +568,9 @@ public class SettingappActivity extends AppCompatActivity {
 		}
 		else {
 			checkbox9.setChecked(false);
+		}
+		if (ru.contains("rup")) {
+			checkbox10.setChecked(true);
 		}
 	}
 	

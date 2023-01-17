@@ -179,7 +179,7 @@ public class AboutActivity extends AppCompatActivity {
 			 Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 			 Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 			
-				   Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
+				   Hsi.setStatusBarColor(Color.parseColor("#FF2B2121")); Hsi.setNavigationBarColor(Color.parseColor("#FF2B2121"));
 		}
 		_totalStorage(sd_stor.getStoregeTotalSpaceInGB(), sd_stor.getStoregeAvailableSpaceInGB());
 		if (sd_stor.hasRealRemovableSdCarde()) {

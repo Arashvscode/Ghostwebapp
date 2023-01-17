@@ -219,7 +219,7 @@ public class HtmlrunerActivity extends AppCompatActivity {
 		
 		_toolbar.setVisibility(View.GONE);
 		textview2.setText(Uri.parse(getIntent().getStringExtra("run")).getLastPathSegment());
-		_toolbar.setBackgroundColor(0xFF1F1B1C);
+		_toolbar.setBackgroundColor(0xFF2B2121);
 		pcandmobile.setImageBitmap(web.getFavicon());
 		web.setWebChromeClient(new WebChromeClient() {
 			    @Override

@@ -220,9 +220,9 @@ public class TerminalActivity extends AppCompatActivity {
 		theme2.addTextColor(arrowdowen, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
 		theme2.addTextColor(arrowleft, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
 		theme2.addTextColor(arrowup, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addBackground(this, imap, "BackgroundColorLinear", mpanl, 0xff02102c);
-		theme2.addBackground(this, imap, "BackgroundColorLinear", mrun, 0xff02102c);
-		theme2.addBackground(this, imap, "BackgroundColorLinear", main, 0xff02102c);
+		theme2.addBackground(this, imap, "BackgroundColorLinear", mpanl, 0xFF2B2121);
+		theme2.addBackground(this, imap, "BackgroundColorLinear", mrun, 0xFF2B2121);
+		theme2.addBackground(this, imap, "BackgroundColorLinear", main, 0xFF2B2121);
 		theme2.addImageColor(runcode, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
 		term.setCursorWidth(20f);
 		

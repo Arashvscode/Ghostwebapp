@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		};
 		_timer.schedule(ask, (int)(2000));
+		cardview1.setCardBackgroundColor(0xFF2B2121);
 		cardview1.setCardBackgroundColor(Color.TRANSPARENT);
 		cardview1.setCardElevation((float)0);
 	}

@@ -172,7 +172,7 @@ public class CustomcolorsActivity extends AppCompatActivity {
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 			Window w =CustomcolorsActivity.this.getWindow();
 			w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-			w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF1F1B1C);
+			w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS); w.setStatusBarColor(0xFF2B2121);
 		}
 		///input.setEndIconTintMode(PorterDuff.Mode.MULTIPLY);
 		//input.setEndIconTintList(ColorStateList.valueOf(0xFFFFDCB9));
@@ -185,7 +185,7 @@ public class CustomcolorsActivity extends AppCompatActivity {
 		input.setBoxCornerRadii((float)5, (float)5, (float)5, (float)5);
 		input.setCounterEnabled(true);
 		input.setBoxBackgroundMode(TextInputLayout.BOX_BACKGROUND_FILLED);
-		input.setBoxBackgroundColor(0xFF424242);
+		input.setBoxBackgroundColor(0xFF2B2121);
 		_toolbar.setElevation((float)0);
 		_toolbar.setVisibility(View.GONE);
 	}

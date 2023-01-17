@@ -150,10 +150,17 @@ public class ZipshowActivity extends AppCompatActivity {
 		
 		
 		GradientDrawable sp = new GradientDrawable();
-				sp.setColor(0xFF1F1B1C);
+				sp.setColor(0xFF2B2121);
 				sp.setCornerRadius(25);
 				sp.setStroke(1, 0xFFFDA893);
 		dialogProGress.getWindow().setBackgroundDrawable(sp);
+		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
+				   Window code = this.getWindow();
+			 code.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+			 code.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+			
+				   code.setStatusBarColor(Color.parseColor("#FF2B2121")); code.setNavigationBarColor(Color.parseColor("#FF2B2121"));
+		}
 		try{
 			_install(getIntent().getStringExtra("zipview"));
 		}catch(Exception e){
@@ -170,19 +177,19 @@ public class ZipshowActivity extends AppCompatActivity {
 		
 		
 		fabAdd.setIconResource(R.drawable.plus);
-		fabAdd.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabAdd.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabAdd.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabAdd.setStrokeWidth(1);
 		fabAdd.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		Unzip.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		Unzip.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		Unzip.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		Unzip.setStrokeWidth(1);
 		Unzip.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		fabAddFile.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabAddFile.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabAddFile.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabAddFile.setStrokeWidth(1);
 		fabAddFile.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));
-		fabDeleat.setBackgroundTintList(ColorStateList.valueOf(0xFF1F1B1C));
+		fabDeleat.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabDeleat.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		fabDeleat.setStrokeWidth(1);
 		fabDeleat.setIconTint(ColorStateList.valueOf(0xFFFFFFFF));

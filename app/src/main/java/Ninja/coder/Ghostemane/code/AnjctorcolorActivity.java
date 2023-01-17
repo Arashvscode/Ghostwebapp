@@ -279,9 +279,15 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	private ImageView imageview27;
 	private TextView textview34;
 	private LinearLayout linear64;
+	private LinearLayout linear65;
 	private LinearLayout linearAUTO_COMP_PANEL_BG;
 	private TextView textviewAUTO_COMP_PANEL_BG;
 	private ImageView imageview28;
+	private TextView textview36;
+	private LinearLayout linear66;
+	private LinearLayout linearSELECTION_INSERT;
+	private TextView textviewSELECTION_INSERT;
+	private ImageView imageview31;
 	
 	private SharedPreferences co;
 	private TimerTask pvr;
@@ -487,9 +493,15 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		imageview27 = findViewById(R.id.imageview27);
 		textview34 = findViewById(R.id.textview34);
 		linear64 = findViewById(R.id.linear64);
+		linear65 = findViewById(R.id.linear65);
 		linearAUTO_COMP_PANEL_BG = findViewById(R.id.linearAUTO_COMP_PANEL_BG);
 		textviewAUTO_COMP_PANEL_BG = findViewById(R.id.textviewAUTO_COMP_PANEL_BG);
 		imageview28 = findViewById(R.id.imageview28);
+		textview36 = findViewById(R.id.textview36);
+		linear66 = findViewById(R.id.linear66);
+		linearSELECTION_INSERT = findViewById(R.id.linearSELECTION_INSERT);
+		textviewSELECTION_INSERT = findViewById(R.id.textviewSELECTION_INSERT);
+		imageview31 = findViewById(R.id.imageview31);
 		co = getSharedPreferences("co", Activity.MODE_PRIVATE);
 		
 		imageview29.setOnClickListener(new View.OnClickListener() {
@@ -522,6 +534,8 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 				imap.put("LITERAL", textviewLITERAL.getText().toString());
 				imap.put("AUTO_COMP_PANEL_BG", textviewAUTO_COMP_PANEL_BG.getText().toString());
 				imap.put("AUTO_COMP_PANEL_CORNER", textviewAUTO_COMP_PANEL_CORNER.getText().toString());
+				imap.put("SELECTION_INSERT", textviewSELECTION_INSERT.getText().toString());
+				imap.put("SELECTION_HANDLE", textviewSELECTION_INSERT.getText().toString());
 				FileUtil.writeFile(jsonpath, new Gson().toJson(imap));
 				ViewGroup v = (ViewGroup) ((ViewGroup) AnjctorcolorActivity.this .findViewById(android.R.id.content)).getChildAt(0);
 				
@@ -541,7 +555,7 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 				  
 				                
 				                androidx.cardview.widget.CardView card = customSnackView.findViewById(R.id.card);           
-				card.setCardBackgroundColor(0xFF1F1B1C);
+				card.setCardBackgroundColor(0xFF2B2122);
 				card.setRadius((float)20);
 				card.setCardElevation((float)3);
 				snackbar.dismiss();                    
@@ -755,6 +769,13 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 				_setcolor(linearAUTO_COMP_PANEL_BG, textviewAUTO_COMP_PANEL_BG);
 			}
 		});
+		
+		imageview31.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				_setcolor(linearSELECTION_INSERT, textviewSELECTION_INSERT);
+			}
+		});
 	}
 	
 	private void initializeLogic() {
@@ -764,10 +785,11 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 				Window Hsi = this.getWindow();
 				Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 				Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				
-				Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
+				Hsi.setStatusBarColor(Color.parseColor("#FF2B2121")); 
+				Hsi.setNavigationBarColor(Color.parseColor("#FF2B2121"));
 		}
 		_toolbar.setElevation((float)0);
+		
 		imap = new HashMap<>();
 		jsonpath = "/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost";
 		imap = new Gson().fromJson(FileUtil.readFile(jsonpath), new TypeToken<HashMap<String, Object>>(){}.getType());
@@ -1015,6 +1037,15 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		else {
 			linearAUTO_COMP_PANEL_BG.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFFFFF));
 			textviewAUTO_COMP_PANEL_BG.setText("Null");
+			imageview29.setEnabled(false);
+		}
+		if (imap.containsKey("SELECTION_INSERT") && imap.containsKey("SELECTION_HANDLE")) {
+			textviewSELECTION_INSERT.setText(imap.get("SELECTION_INSERT").toString());
+			linearSELECTION_INSERT.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.parseColor(imap.get("SELECTION_INSERT").toString())));
+		}
+		else {
+			linearSELECTION_INSERT.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFFFFF));
+			textviewSELECTION_INSERT.setText("Null");
 			imageview29.setEnabled(false);
 		}
 	}
