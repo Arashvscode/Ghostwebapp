@@ -94,6 +94,7 @@ public class AnimUtils {
 		animation = null;
 	}
   //  AnimUtils.Worker(imageview2);
+  
 	
 	public static void Worker(View view) {
 		

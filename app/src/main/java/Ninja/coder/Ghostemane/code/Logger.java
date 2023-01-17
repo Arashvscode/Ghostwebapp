@@ -23,7 +23,7 @@ public class Logger {
     private static Thread loggerThread = new Thread() {
         @Override
         public void run() {
-            isRunning = false;
+            isRunning = true;
 
             try {
                 Runtime.getRuntime().exec("logcat -c");
@@ -52,7 +52,7 @@ public class Logger {
     private static volatile boolean isRunning = false;
 
     public static void startLogging() {
-        if (isRunning) {
+        if (!isRunning) {
             loggerThread.start();
         } else {
             throw new IllegalStateException("Logger already running");

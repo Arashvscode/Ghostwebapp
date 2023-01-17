@@ -11,6 +11,8 @@ import android.os.*;
 import java.util.*;
 import android.os.Process;
 import android.util.Log;
+import com.google.android.material.color.DynamicColors;
+
 
 public class ApplicationLoader extends Application {
 	
@@ -19,6 +21,12 @@ public class ApplicationLoader extends Application {
 	
 	public static Context getContext() {
 		return mApplicationContext;
+	}
+	public static void sdo(int pa,int cd){
+		for(int pos = 0;pos < cd;pos++) {
+			
+			
+		}
 	}
 	
 	@Override
@@ -51,6 +59,12 @@ public class ApplicationLoader extends Application {
 				uncaughtExceptionHandler.uncaughtException(thread, throwable);
 			}
 		});
+		if (isAtLeastS() && DynamicColors.isDynamicColorAvailable()) {
+			DynamicColors.applyToActivitiesIfAvailable(this);
+		}
 		super.onCreate();
+	}
+	public static boolean isAtLeastS() {
+		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 	}
 }
