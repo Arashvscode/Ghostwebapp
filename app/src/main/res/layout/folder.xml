@@ -31,6 +31,18 @@
 					android:textSize="12sp"
 					android:textColor="#000000"
 					android:button="@drawable/seeicon" />
+				<ProgressBar
+					android:id="@+id/progressbar1"
+					android:focusable="false"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="3dp"
+					android:layout_marginTop="5dp"
+					android:layout_marginRight="3dp"
+					android:layout_marginBottom="5dp"
+					android:padding="8dp"
+					android:indeterminate="false"
+					style="?android:progressBarStyle" />
 				<ImageView
 					android:id="@+id/imageview1"
 					android:focusable="false"
@@ -38,7 +50,8 @@
 					android:layout_height="50dp"
 					android:padding="5dp"
 					android:src="@drawable/folder"
-					android:scaleType="centerInside" />
+					android:scaleType="centerInside"
+					android:translationX="6.0dp" />
 				<ProgressBar
 					android:id="@+id/prograssTask"
 					android:focusable="false"
@@ -57,7 +70,7 @@
 					android:id="@+id/linear6"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="8dp"
+					android:padding="3dp"
 					android:orientation="horizontal">
 					<TextView
 						android:id="@+id/textview1"
@@ -78,7 +91,7 @@
 					android:id="@+id/linear7"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="8dp"
+					android:padding="2dp"
 					android:orientation="horizontal">
 					<TextView
 						android:id="@+id/textview2"
@@ -108,9 +121,9 @@
 		android:id="@+id/linear5"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:dividerInsetStart="16dp"
+		app:dividerInsetStart="18dp"
 		
-		app:dividerInsetEnd="16dp"
+		app:dividerInsetEnd="18dp"
 		
 		app:dividerColor="#FFFCA893" />
 </LinearLayout>

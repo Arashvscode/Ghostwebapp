@@ -47,7 +47,8 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
-					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					style="@style/Widget.Material3.TextInputLayout.FilledBox"
+					
 					app:boxStrokeColor="#FFFFB9"
 					app:hintTextColor="#FFFFB9"
 					android:textColorHint="#FFFFB9">
@@ -78,7 +79,8 @@
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
 					android:layout_weight="1"
-					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					style="@style/Widget.Material3.TextInputLayout.FilledBox"
+					
 					app:boxStrokeColor="#FFFFB9"
 					app:hintTextColor="#FFFFB9"
 					android:textColorHint="#FFFFB9">

@@ -26,7 +26,7 @@
 			android:id="@+id/vscroll1"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:background="#1F1B1C">
+			android:background="#2B2121">
 			<LinearLayout
 				android:id="@+id/linear1"
 				android:layout_width="match_parent"
@@ -69,8 +69,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
-						android:gravity="right"
-						android:orientation="vertical">
+						android:gravity="right|center_vertical"
+						android:orientation="horizontal">
 						<TextView
 							android:id="@+id/textview10"
 							android:layout_width="wrap_content"
@@ -79,6 +79,12 @@
 							android:text="تم"
 							android:textSize="18sp"
 							android:textColor="#F5F5F5" />
+						<ImageView
+							android:id="@+id/imageview7"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/color"
+							android:scaleType="centerInside" />
 					</LinearLayout>
 					<LinearLayout
 						android:id="@+id/themes"
@@ -88,7 +94,7 @@
 						android:gravity="right|center_vertical"
 						android:orientation="horizontal">
 						<TextView
-							android:id="@+id/textview11"
+							android:id="@+id/tvtheme"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
@@ -99,21 +105,35 @@
 							android:translationX="-15.0dp"
 							android:layout_weight="1" />
 						<ImageView
-							android:id="@+id/imageview2"
+							android:id="@+id/imgtheme"
 							android:layout_width="25dp"
 							android:layout_height="25dp"
 							android:src="@drawable/color"
 							android:scaleType="centerInside"
 							android:translationX="-15.0dp" />
 					</LinearLayout>
-					<TextView
-						android:id="@+id/textview13"
-						android:layout_width="wrap_content"
+					<LinearLayout
+						android:id="@+id/linear20"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
-						android:text="تنظیمات کیبورد"
-						android:textSize="16sp"
-						android:textColor="#F5F5F5" />
+						android:gravity="right|center_vertical"
+						android:orientation="horizontal">
+						<TextView
+							android:id="@+id/textview13"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="تنظیمات کیبورد"
+							android:textSize="16sp"
+							android:textColor="#F5F5F5" />
+						<ImageView
+							android:id="@+id/imageview8"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/keyboard"
+							android:scaleType="centerInside" />
+					</LinearLayout>
 					<LinearLayout
 						android:id="@+id/linear13"
 						android:layout_width="match_parent"
@@ -138,14 +158,28 @@
 							android:scaleType="centerInside"
 							android:translationX="-15.0dp" />
 					</LinearLayout>
-					<TextView
-						android:id="@+id/textview1"
-						android:layout_width="wrap_content"
+					<LinearLayout
+						android:id="@+id/linear21"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
-						android:text="عمومی"
-						android:textSize="20sp"
-						android:textColor="#F5F5F5" />
+						android:gravity="right|center_vertical"
+						android:orientation="horizontal">
+						<TextView
+							android:id="@+id/textview1"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="عمومی"
+							android:textSize="20sp"
+							android:textColor="#F5F5F5" />
+						<ImageView
+							android:id="@+id/imageview9"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/okeye"
+							android:scaleType="centerInside" />
+					</LinearLayout>
 				</LinearLayout>
 				<LinearLayout
 					android:id="@+id/linear3"
@@ -221,14 +255,167 @@
 						android:textColor="#000000"
 						android:button="@drawable/geticon" />
 				</LinearLayout>
-				<TextView
-					android:id="@+id/textview6"
-					android:layout_width="wrap_content"
+				<LinearLayout
+					android:id="@+id/linear22"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="ویرایشگر"
-					android:textSize="20sp"
-					android:textColor="#F5F5F5" />
+					android:gravity="right|center_vertical"
+					android:orientation="vertical">
+					<LinearLayout
+						android:id="@+id/add"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+						<LinearLayout
+							android:id="@+id/linear25"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:gravity="right|center_vertical"
+							android:orientation="horizontal">
+							<TextView
+								android:id="@+id/textview20"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:text="مدیرت فایل"
+								android:textSize="20sp"
+								android:textColor="#F5F5F5" />
+							<ImageView
+								android:id="@+id/imageview11"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:src="@drawable/folder3"
+								android:scaleType="centerInside" />
+						</LinearLayout>
+						<LinearLayout
+							android:id="@+id/linear26"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:orientation="horizontal">
+							<TextView
+								android:id="@+id/textview21"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:text="سایز های عکس و ویدیو را خاموش کنید"
+								android:textSize="14sp"
+								android:textColor="#EEEEEE"
+								android:layout_weight="1" />
+							<com.google.android.material.checkbox.MaterialCheckBox
+								android:id="@+id/checkbox11"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:button="@drawable/geticon" />
+						</LinearLayout>
+					</LinearLayout>
+					<LinearLayout
+						android:id="@+id/reminderadditem"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+						<LinearLayout
+							android:id="@+id/linear27"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:gravity="right|center_vertical"
+							android:orientation="horizontal">
+							<TextView
+								android:id="@+id/textview6"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:text="ویرایشگر"
+								android:textSize="20sp"
+								android:textColor="#F5F5F5" />
+							<ImageView
+								android:id="@+id/imageview10"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:src="@drawable/codeformat"
+								android:scaleType="centerInside" />
+						</LinearLayout>
+						<LinearLayout
+							android:id="@+id/linear28"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:gravity="right"
+							android:orientation="horizontal">
+							<TextView
+								android:id="@+id/textview22"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:text="تکمیل کننده متن را دستی کنید"
+								android:textSize="14sp"
+								android:textColor="#E0E0E0" />
+							<com.google.android.material.checkbox.MaterialCheckBox
+								android:id="@+id/checkbox12"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:button="@drawable/geticon" />
+						</LinearLayout>
+						<LinearLayout
+							android:id="@+id/linear29"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:orientation="horizontal">
+							<TextView
+								android:id="@+id/textview23"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:gravity="right"
+								android:text="ایکون های مولتی پنجره را خاموش کنید"
+								android:textSize="14sp"
+								android:textColor="#E0E0E0"
+								android:layout_weight="1" />
+							<com.google.android.material.checkbox.MaterialCheckBox
+								android:id="@+id/checkbox13"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:button="@drawable/geticon" />
+						</LinearLayout>
+						<LinearLayout
+							android:id="@+id/linear30"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:orientation="horizontal">
+							<TextView
+								android:id="@+id/textview24"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:gravity="right"
+								android:text="صفحه معلق را نمایش بدهید"
+								android:textSize="14sp"
+								android:textColor="#E0E0E0"
+								android:layout_weight="1" />
+							<com.google.android.material.checkbox.MaterialCheckBox
+								android:id="@+id/checkbox14"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:textSize="12sp"
+								android:textColor="#000000"
+								android:button="@drawable/geticon" />
+						</LinearLayout>
+					</LinearLayout>
+				</LinearLayout>
 				<LinearLayout
 					android:id="@+id/linear7"
 					android:layout_width="match_parent"
@@ -259,25 +446,56 @@
 					android:id="@+id/linear12"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:orientation="horizontal">
-					<TextView
-						android:id="@+id/textview12"
-						android:layout_width="wrap_content"
+					android:orientation="vertical">
+					<LinearLayout
+						android:id="@+id/linear18"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
-						android:text="دریافت پس زمینه از سیستم"
-						android:textSize="14sp"
-						android:textColor="#E0E0E0"
-						android:layout_weight="1" />
-					<com.google.android.material.checkbox.MaterialCheckBox
-						android:id="@+id/checkbox8"
-						android:layout_width="wrap_content"
+						android:orientation="horizontal">
+						<TextView
+							android:id="@+id/textview12"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="دریافت پس زمینه از سیستم"
+							android:textSize="14sp"
+							android:textColor="#E0E0E0"
+							android:layout_weight="1" />
+						<com.google.android.material.checkbox.MaterialCheckBox
+							android:id="@+id/checkbox8"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:textSize="12sp"
+							android:textColor="#000000"
+							android:button="@drawable/geticon" />
+					</LinearLayout>
+					<LinearLayout
+						android:id="@+id/linear19"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
-						android:textSize="12sp"
-						android:textColor="#000000"
-						android:button="@drawable/geticon" />
+						android:orientation="horizontal">
+						<TextView
+							android:id="@+id/textview19"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:gravity="right"
+							android:text="تم پیشفرض را فعال کنید"
+							android:textSize="14sp"
+							android:textColor="#EEEEEE"
+							android:layout_weight="1" />
+						<com.google.android.material.checkbox.MaterialCheckBox
+							android:id="@+id/checkbox10"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:textSize="12sp"
+							android:textColor="#000000"
+							android:button="@drawable/geticon" />
+					</LinearLayout>
 				</LinearLayout>
 				<LinearLayout
 					android:id="@+id/linear14"

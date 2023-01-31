@@ -13,13 +13,14 @@
 			android:id="@+id/Mainlinear"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:background="#1F1B1C"
+			android:background="#2B2121"
 			android:gravity="center_vertical"
 			android:orientation="vertical">
 			<LinearLayout
 				android:id="@+id/multytab"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:gravity="center_horizontal|center_vertical"
 				android:orientation="vertical">
 				<LinearLayout
 					android:id="@+id/CustomToolbar"
@@ -128,8 +129,8 @@
 				</LinearLayout>
 				<ProgressBar
 					android:id="@+id/progressbar1"
-					android:layout_width="0dp"
-					android:layout_height="0dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
 					android:padding="8dp"
 					android:indeterminate="true"
 					style="?android:progressBarStyleHorizontal" />
@@ -340,6 +341,6 @@
 		android:layout_marginLeft="16dp"
 		android:layout_marginTop="16dp"
 		android:layout_marginRight="16dp"
-		android:layout_marginBottom="60dp"
+		android:layout_marginBottom="63dp"
 		android:layout_gravity="right|bottom" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

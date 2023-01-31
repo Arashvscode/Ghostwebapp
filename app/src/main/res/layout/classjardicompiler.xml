@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="5dp"
-		android:background="#1F1B1C"
+		android:background="#2B2122"
 		android:orientation="vertical"
 		app:cardElevation="0dp"
 		app:cardCornerRadius="20dp">
@@ -47,7 +47,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
-					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+					style="@style/Widget.Material3.TextInputLayout.FilledBox">
 					<EditText
 						android:id="@+id/input"
 						android:layout_width="match_parent"
@@ -73,7 +73,7 @@
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
 					android:layout_weight="1"
-					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+					style="@style/Widget.Material3.TextInputLayout.FilledBox">
 					<EditText
 						android:id="@+id/output"
 						android:layout_width="match_parent"

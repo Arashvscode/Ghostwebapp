@@ -26,12 +26,12 @@
 			android:id="@+id/vscroll1"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:background="#1F1B1C">
+			android:background="#2B2121">
 			<LinearLayout
 				android:id="@+id/linear1"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="#1F1B1C"
+				android:background="#2B2121"
 				android:orientation="vertical">
 				<LinearLayout
 					android:id="@+id/CustomToolbar"
@@ -1339,6 +1339,49 @@
 							android:padding="8dp"
 							android:src="@drawable/color"
 							android:scaleType="centerInside" />
+					</LinearLayout>
+					<LinearLayout
+						android:id="@+id/linear65"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+						<TextView
+							android:id="@+id/textview36"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="SELECTION_INSERT"
+							android:textSize="12sp"
+							android:textColor="#FFFFFF" />
+						<LinearLayout
+							android:id="@+id/linear66"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:gravity="center_vertical"
+							android:orientation="horizontal">
+							<LinearLayout
+								android:id="@+id/linearSELECTION_INSERT"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:padding="8dp"
+								android:orientation="horizontal" />
+							<TextView
+								android:id="@+id/textviewSELECTION_INSERT"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:padding="8dp"
+								android:text="TextView"
+								android:textSize="12sp"
+								android:textColor="#FFFFFF"
+								android:layout_weight="1" />
+							<ImageView
+								android:id="@+id/imageview31"
+								android:layout_width="25dp"
+								android:layout_height="25dp"
+								android:src="@drawable/color"
+								android:scaleType="centerInside" />
+						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
 			</LinearLayout>
