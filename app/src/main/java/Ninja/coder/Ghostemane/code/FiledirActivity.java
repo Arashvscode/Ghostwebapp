@@ -43,7 +43,6 @@ import androidx.annotation.*;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -61,6 +60,7 @@ import arabware.file.*;
 import arabware.file.ApkUtils;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.bumptech.glide.Glide;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
@@ -108,6 +108,7 @@ import com.google.android.material.divider.MaterialDivider;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 import com.zip4j.progress.ProgressMonitor;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -175,6 +176,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private String doc = "";
 	private String version = "";
 	private double post = 0;
+	private String arm = "";
 	
 	private ArrayList<String> list = new ArrayList<>();
 	private ArrayList<String> folderList = new ArrayList<>();
@@ -192,6 +194,9 @@ public class FiledirActivity extends AppCompatActivity {
 	private ArrayList<String> listStringShareFile = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> hsi = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> upfile = new ArrayList<>();
+	private ArrayList<HashMap<String, Object>> map = new ArrayList<>();
+	private ArrayList<String> str1 = new ArrayList<>();
+	private ArrayList<String> str2 = new ArrayList<>();
 	
 	private LinearLayout linear1;
 	private LinearLayout CensractorListView1;
@@ -220,7 +225,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private Button cansel;
 	private Button setupRanmeFile;
 	private Button cuts;
-	private CardView _drawer_mcardtest;
+	private LinearLayout _drawer_mcardtest;
 	private LinearLayout _drawer_linear1;
 	private LinearLayout _drawer_getColor;
 	private LinearLayout _drawer_linear3;
@@ -273,6 +278,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private RequestNetwork.RequestListener _AppUpdeat_request_listener;
 	private Intent finalintentpostfont = new Intent();
 	private Intent intentgetLogCat = new Intent();
+	private SharedPreferences tmp;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -367,6 +373,7 @@ public class FiledirActivity extends AppCompatActivity {
 		zipCuntishen = getSharedPreferences("zipCuntishen", Activity.MODE_PRIVATE);
 		war = getSharedPreferences("war", Activity.MODE_PRIVATE);
 		AppUpdeat = new RequestNetwork(this);
+		tmp = getSharedPreferences("tmp", Activity.MODE_PRIVATE);
 		
 		CandishenListview1GetMethodFile.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
@@ -1002,7 +1009,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							
 							GradientDrawable a43 = new GradientDrawable();
-									a43.setColor(0xFF1F1B1C);
+									a43.setColor(0xFF2B2121);
 									a43.setCornerRadius(15);
 									a43.setStroke(1, 0xFFFDA893);
 							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
@@ -1038,7 +1045,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							
 							GradientDrawable v800 = new GradientDrawable();
-									v800.setColor(0xFF1F1B1C);
+									v800.setColor(0xFF2B2122);
 									v800.setCornerRadius(15);
 									v800.setStroke(1, 0xFFFDA893);
 							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
@@ -1072,7 +1079,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							
 							GradientDrawable h1 = new GradientDrawable();
-									h1.setColor(0xFF1F1B1C);
+									h1.setColor(0xFF2B2122);
 									h1.setCornerRadius(13);
 									h1.setStroke(1, 0xFFFDA893);
 							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
@@ -1134,7 +1141,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							
 							GradientDrawable vo12001 = new GradientDrawable();
-									vo12001.setColor(0xFF1F1B1C);
+									vo12001.setColor(0xFF2B2121);
 									vo12001.setCornerRadius(13);
 									vo12001.setStroke(1, 0xFFFDA893);
 							new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
@@ -1162,7 +1169,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							
 							GradientDrawable vo12003 = new GradientDrawable();
-									vo12003.setColor(0xFF1F1B1C);
+									vo12003.setColor(0xFF2B2121);
 									vo12003.setCornerRadius(13);
 									vo12003.setStroke(1, 0xFFFDA893);
 							new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
@@ -1190,7 +1197,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							
 							GradientDrawable v8001 = new GradientDrawable();
-									v8001.setColor(0xFF1F1B1C);
+									v8001.setColor(0xFF2B2121);
 									v8001.setCornerRadius(15);
 									v8001.setStroke(1, 0xFFFDA893);
 							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
@@ -1239,6 +1246,7 @@ public class FiledirActivity extends AppCompatActivity {
 						_zipviewandexsert(_position, "path", files);
 						_fontpost(files, "path", post);
 						_themeinstall(files, post, "path");
+						_installproject(files, "path", post);
 					}
 				}
 			}
@@ -1536,9 +1544,10 @@ public class FiledirActivity extends AppCompatActivity {
 		
 		
 		GradientDrawable u = new GradientDrawable();
-				u.setColor(0xFF2B2121);
+				u.setColor(0xFF2B2122);
 				u.setCornerRadius(25);
 				u.setStroke(1, 0xFFF8B09A);
+		linear1.setLayoutParams(new LinearLayout.LayoutParams(SketchwareUtil.getDisplayWidthPixels(getApplicationContext()), SketchwareUtil.getDisplayHeightPixels(getApplicationContext())));
 		progressDilaog.getWindow().setBackgroundDrawable(u);
 		unzip.getWindow().setBackgroundDrawable(u);
 		mprodialog.getWindow().setBackgroundDrawable(u);
@@ -1558,6 +1567,13 @@ public class FiledirActivity extends AppCompatActivity {
 		}
 		getSupportActionBar().hide();
 		
+		var DrawelColors = new GradientDrawable();
+		int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
+		DrawelColors.setColor(0xFF2B2121);
+		DrawelColors.setCornerRadii(new float[]{
+				d*0,d*0,d*24 ,d*24,d*24,d*24 ,d*0,d*0});
+		_drawer_mcardtest.setElevation(d*5);
+		_drawer_mcardtest.setBackground(DrawelColors);
 		
 		final LinearLayout _nav_view = (LinearLayout) findViewById(R.id._nav_view); _nav_view.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
 		CandishenListview1GetMethodFile.setHorizontalScrollBarEnabled(false);
@@ -1573,53 +1589,22 @@ public class FiledirActivity extends AppCompatActivity {
 		
 		
 		
-		_drawer_mcardtest.setCardBackgroundColor(0xFF2B2121);
-		_drawer_mcardtest.setRadius((float)20);
-		_drawer_mcardtest.setCardElevation((float)2);
 		
 		if (FileUtil.isExistFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost")) {
 				 
 		}
 		else {
-				
-			if (new File("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost").length() < 1300) {
-				var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-				    di.setTitle("نصب تم ");
-				di.setMessage("اخطار ممکن است فایل تم دچار تغییراتی شده باشد از جمله ویرایش دستی تم لطفا تایید کنید که تم اصلی براتون نصب بشود");
-				di.setCancelable(false);
-				di.setNeutralButton("نصب", (p, d) -> {
-					
-					         copyOneFileFromAssets("GhostThemeapp.ghost", "/storage/emulated/0/GhostWebIDE/theme/");
+				var materialdialogpost = new MaterialAlertDialogBuilder(FiledirActivity.this);
+			materialdialogpost.setTitle("نصب تم ");
+			materialdialogpost.setMessage("اخطار ممکن است فایل تم دچار تغییراتی شده باشد از جمله ویرایش دستی تم لطفا تایید کنید که تم اصلی براتون نصب بشود");
+			materialdialogpost.setCancelable(false);
+			materialdialogpost.setNeutralButton("نصب", (ppo29237292211, drjj202020) -> {
+					copyOneFileFromAssets("GhostThemeapp.ghost", "/storage/emulated/0/GhostWebIDE/theme/");
 					FileUtil.makeDir("/storage/emulated/0/GhostWebIDE/theme");
-					
-					
-								});
-				di.show();
-				
-				
-				
-				
-				///کمتر
-			}
-			else {
-				var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-				    di.setTitle("نصب تم ");
-				di.setMessage("اخطار ممکن است فایل تم دچار تغییراتی شده باشد از جمله ویرایش دستی تم لطفا تایید کنید که تم اصلی براتون نصب بشود");
-				di.setCancelable(false);
-				di.setNeutralButton("نصب", (p, d) -> {
-					
-					         copyOneFileFromAssets("GhostThemeapp.ghost", "/storage/emulated/0/GhostWebIDE/theme/");
-					FileUtil.makeDir("/storage/emulated/0/GhostWebIDE/theme");
-					
-					
-								});
-				di.show();
-				
-				
-				
-				
-				///بزرگ تر
-			}
+			});
+			materialdialogpost.show();
+			
+			
 		}
 		_refreshTabs();
 		if (FileUtil.isExistFile("/storage/emulated/0/GhostWebIDE/android/Android.jar")) {
@@ -1653,13 +1638,9 @@ public class FiledirActivity extends AppCompatActivity {
 		}
 		Alerter.create(FiledirActivity.this) 
 		.setTitle("GhostWeb IDE")
-		.setText("Version Used = 1.4.7")
+		.setText("Version Used = 1.4.8")
 		.setBackgroundColorInt(0xFF2B2121)
 		.show();
-		alterDialogDel = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-		AlterDialogRname = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-		DialogCopyM = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-		alterDicompiler = new AlertDialog.Builder(this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
 		Calciolater.setVisibility(View.GONE);
 		linearDis.setVisibility(View.GONE);
 		linear9.setVisibility(View.GONE);
@@ -1670,7 +1651,7 @@ public class FiledirActivity extends AppCompatActivity {
 		_AllAnimWork(cansel);
 		///AddNiceNameFab
 		
-		final ExtendedFloatingActionButton fabMic,fabAdd,fabCall,fabFile,fabFolder,Fabgits;
+		final ExtendedFloatingActionButton fabMic,fabAdd,fabCall,fabFile,fabFolder,Fabgits,FabSearchFile,fabproject;
 		///Show id Fab 
 		fabAdd = findViewById(R.id.fabAdd);
 		fabCall = findViewById(R.id.fabCall);
@@ -1678,13 +1659,16 @@ public class FiledirActivity extends AppCompatActivity {
 		fabFile = findViewById(R.id.fabFile);
 		fabFolder = findViewById(R.id.fabFolder);
 		Fabgits = findViewById(R.id.Fabgits);
-		
+		FabSearchFile = findViewById(R.id.FabSearchFile);
+		fabproject = findViewById(R.id.fabproject);
 		AnimUtils.Worker(fabAdd);
 		AnimUtils.Worker(fabCall);
 		AnimUtils.Worker(fabMic);
 		AnimUtils.Worker(fabFile);
 		AnimUtils.Worker(fabFolder);
 		AnimUtils.Worker(Fabgits);
+		AnimUtils.Worker(FabSearchFile);
+		AnimUtils.Worker(fabproject);
 		fabAdd.setIconResource(R.drawable.plus);
 		fabAdd.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
 		fabAdd.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
@@ -1721,11 +1705,28 @@ public class FiledirActivity extends AppCompatActivity {
 		Fabgits.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
 		Fabgits.setStrokeWidth(1);
 		///Show All Disane Fab
+		
+		FabSearchFile.setIconResource(R.drawable.textsearch);
+		FabSearchFile.shrink();
+		FabSearchFile.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
+		FabSearchFile.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
+		FabSearchFile.setStrokeWidth(1);
+		
+		/// new fab mode project linser
+		
+		fabproject.setIconResource(R.drawable.mimagproject);
+		fabproject.shrink();
+		fabproject.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2121));
+		fabproject.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
+		fabproject.setStrokeWidth(1);
+		
 		_initShowOut(fabCall);
 		_initShowOut(fabMic);
 		_initShowOut(fabFile);
 		_initShowOut(fabFolder);
 		_initShowOut(Fabgits);
+		_initShowOut(FabSearchFile);
+		_initShowOut(fabproject);
 		fabAdd.setOnClickListener(v->{
 				
 			
@@ -1737,6 +1738,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowIn(fabFolder);
 				_ShowIn(fabFile);
 				_ShowIn(Fabgits);
+				_ShowIn(FabSearchFile);
+				_ShowIn(fabproject);
 			}
 			else {
 				gv = false;
@@ -1746,6 +1749,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowOut(fabFile);
 				_ShowOut(fabFolder);
 				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
 			}
 		});
 		fabMic.setOnClickListener(v->{
@@ -1760,6 +1765,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowOut(fabFile);
 				_ShowOut(fabFolder);
 				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
 			}
 			else {
 				gv = true;
@@ -1769,13 +1776,14 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowIn(fabFolder);
 				_ShowIn(fabFile);
 				_ShowIn(Fabgits);
+				_ShowIn(FabSearchFile);
+				_ShowIn(fabproject);
 			}
 		});
 		fabCall.setOnClickListener(v->{
 				
 			
-				 _drawer.openDrawer(GravityCompat.START);
-			if (gv) {
+				 if (gv) {
 				gv = false;
 				_ShowOut(fabMic);
 				_ShowOut(fabCall);
@@ -1783,6 +1791,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowOut(fabFile);
 				_ShowOut(fabFolder);
 				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
 			}
 			else {
 				gv = true;
@@ -1791,7 +1801,15 @@ public class FiledirActivity extends AppCompatActivity {
 				fabAdd.setIconResource(R.drawable.close);
 				_ShowIn(fabFolder);
 				_ShowIn(fabFile);
-				_ShowIn(Fabgits);
+				_ShowIn(Fabgits); 
+				_ShowIn(FabSearchFile);
+				_ShowIn(fabproject);
+			}
+			if (!_drawer.isDrawerOpen(GravityCompat.START)) {
+				_drawer.openDrawer(GravityCompat.START);
+			}
+			else {
+				_drawer.closeDrawer(GravityCompat.START);
 			}
 		});
 		fabFile.setOnClickListener(v->{
@@ -1805,6 +1823,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowOut(fabFile);
 				_ShowOut(fabFolder);
 				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
 			}
 			else {
 				gv = true;
@@ -1827,6 +1847,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowOut(fabFile);
 				_ShowOut(fabFolder);
 				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
 			}
 			else {
 				gv = true;
@@ -1834,10 +1856,36 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowIn(fabCall);
 				fabAdd.setIconResource(R.drawable.close);
 				_ShowIn(Fabgits);
+				_ShowIn(FabSearchFile);
 			}
 			_folder();
 		});
 		Fabgits.setOnClickListener(v->{
+				
+			
+				 _installGithub();
+			if (gv) {
+				gv = false;
+				_ShowOut(fabMic);
+				_ShowOut(fabCall);
+				fabAdd.setIconResource(R.drawable.plus);
+				_ShowOut(fabFile);
+				_ShowOut(fabFolder);
+				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
+			}
+			else {
+				gv = true;
+				_ShowIn(fabMic);
+				_ShowIn(fabCall);
+				fabAdd.setIconResource(R.drawable.close);
+				_ShowIn(Fabgits);
+				_ShowIn(FabSearchFile);
+				_ShowIn(fabproject);
+			}
+		});
+		FabSearchFile.setOnClickListener(v->{
 				
 			
 				 if (gv) {
@@ -1848,6 +1896,8 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowOut(fabFile);
 				_ShowOut(fabFolder);
 				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
 			}
 			else {
 				gv = true;
@@ -1855,8 +1905,35 @@ public class FiledirActivity extends AppCompatActivity {
 				_ShowIn(fabCall);
 				fabAdd.setIconResource(R.drawable.close);
 				_ShowIn(Fabgits);
+				_ShowIn(FabSearchFile);
+				_ShowIn(fabproject);
 			}
-			_installGithub();
+			_serachfilebeta();
+		});
+		fabproject.setOnClickListener(v->{
+				
+			
+				 if (gv) {
+				gv = false;
+				_ShowOut(fabMic);
+				_ShowOut(fabCall);
+				fabAdd.setIconResource(R.drawable.plus);
+				_ShowOut(fabFile);
+				_ShowOut(fabFolder);
+				_ShowOut(Fabgits);
+				_ShowOut(FabSearchFile);
+				_ShowOut(fabproject);
+			}
+			else {
+				gv = true;
+				_ShowIn(fabMic);
+				_ShowIn(fabCall);
+				fabAdd.setIconResource(R.drawable.close);
+				_ShowIn(Fabgits);
+				_ShowIn(FabSearchFile);
+				_ShowIn(fabproject);
+			}
+			_importpojectm();
 		});
 		_drawer_mlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
@@ -1941,7 +2018,7 @@ public class FiledirActivity extends AppCompatActivity {
 							
 							         try {
 								
-													new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
+													new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE/".concat(String.valueOf((long)(SketchwareUtil.getRandom((int)(0), (int)(99999)))).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
 								SketchwareUtil.showMessage(getApplicationContext(), "انجام شد در پوشه برنامه");
 								
 											} catch (net.lingala.zip4j.exception.ZipException e) {
@@ -1963,7 +2040,7 @@ public class FiledirActivity extends AppCompatActivity {
 					else {
 						try {
 							
-												new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE".concat(new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").format(mCalender.getTime()).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
+												new net.lingala.zip4j.ZipFile("/storage/emulated/0/GhostWebIDE/".concat(String.valueOf((long)(SketchwareUtil.getRandom((int)(0), (int)(9999)))).concat("theme.AA"))).addFolder(new java.io.File("/storage/emulated/0/GhostWebIDE/theme/"));
 							SketchwareUtil.showMessage(getApplicationContext(), "انجام شد در پوشه برنامه");
 							
 										} catch (net.lingala.zip4j.exception.ZipException e) {
@@ -1996,6 +2073,20 @@ public class FiledirActivity extends AppCompatActivity {
 		abs.setCornerRadius(55f);
 		abs.setColor(Color.parseColor("#91FF95A1"));
 		_drawer_mlist.setSelector(abs);
+		_drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+			          @Override
+			          public void onDrawerSlide(View drawerView, float offset) {
+				            View container = findViewById(R.id.linear1);
+				            container.setTranslationX(offset * ((_drawer.getWidth()/2)+20));
+				          }
+			          @Override public void onDrawerOpened(View drawerView) {
+				          }
+			          @Override public void onDrawerClosed(View drawerView) {
+				          }
+			          @Override public void onDrawerStateChanged(int newState) {
+				
+				          }
+			        });
 	}
 	
 	@Override
@@ -2014,13 +2105,6 @@ public class FiledirActivity extends AppCompatActivity {
 						imageview1.setImageResource(R.drawable.folderhome);
 						imageview1.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.MULTIPLY);
 						linear9.setVisibility(View.GONE);
-						///result code By Ninja coder.ir my love java
-						
-						
-						GradientDrawable aa = new GradientDrawable();
-								aa.setColor(0xFF1F1B1C);
-								aa.setCornerRadius(25);
-								aa.setStroke(1, 0xFFFDA893);
 						new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 						    .setTitle("خروج از برنامه؟")
 						.setMessage("ایا میخواهید از برنامه خارج شوید؟")
@@ -2035,7 +2119,6 @@ public class FiledirActivity extends AppCompatActivity {
 							         gotoback = 0;
 							
 										})
-						.setBackground(aa)
 						.setCancelable(false)
 						.show();
 						
@@ -2062,13 +2145,6 @@ public class FiledirActivity extends AppCompatActivity {
 						imageview1.setImageResource(R.drawable.folderhome);
 						imageview1.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.MULTIPLY);
 						linear9.setVisibility(View.GONE);
-						///result code By Ninja coder.ir my love java
-						
-						
-						GradientDrawable aa = new GradientDrawable();
-								aa.setColor(0xFF1F1B1C);
-								aa.setCornerRadius(25);
-								aa.setStroke(1, 0xFFFDA893);
 						new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 						    .setTitle("خروج از برنامه؟")
 						.setMessage("ایا میخواهید از برنامه خارج شوید؟")
@@ -2083,7 +2159,6 @@ public class FiledirActivity extends AppCompatActivity {
 							         gotoback = 0;
 							
 										})
-						.setBackground(aa)
 						.setCancelable(false)
 						.show();
 						
@@ -2190,8 +2265,8 @@ public class FiledirActivity extends AppCompatActivity {
 		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 		
 		    .setView(R.layout.makefolder)
-		.setTitle("Type name")
-		.setMessage("")
+		.setTitle("Folder")
+		.setMessage("make folder")
 		.setCancelable(true)
 		.setPositiveButton("make", null)
 		.setNegativeButton(android.R.string.cancel, null)
@@ -2223,7 +2298,8 @@ public class FiledirActivity extends AppCompatActivity {
 			
 			positive.setOnClickListener((vftrororocjj) -> {
 				
-				             if (editor.getText().toString().isEmpty()) {
+				             SketchwareUtil.hideKeyboard(getApplicationContext());
+				if (editor.getText().toString().isEmpty()) {
 					top.setError("return type Error \n");
 				}
 				else {
@@ -2275,8 +2351,8 @@ public class FiledirActivity extends AppCompatActivity {
 		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 		
 		    .setView(R.layout.makefolder)
-		.setTitle("Type name")
-		.setMessage("")
+		.setTitle("File")
+		.setMessage("make file")
 		.setCancelable(true)
 		.setPositiveButton("make", null)
 		.setNegativeButton(android.R.string.cancel, null)
@@ -2308,7 +2384,8 @@ public class FiledirActivity extends AppCompatActivity {
 			
 			positive.setOnClickListener((vftrororocjj) -> {
 				
-				             dialog.dismiss();
+				             SketchwareUtil.hideKeyboard(getApplicationContext());
+				dialog.dismiss();
 				if (editor.getText().toString().isEmpty()) {
 					top.setError("return type Error");
 				}
@@ -2323,56 +2400,67 @@ public class FiledirActivity extends AppCompatActivity {
 								if (mainfile.contains(".html")) {
 									FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "<!--code by Ghost web IDE version 1.1.4-->\n<!--بهتر است این قسمت حذف نشود -->\n<html lang=\"en\">\n	<head>\n		<!--meta code dont Romved-->\n		<meta charset=\"UTF-8\">\n		<!--code Style -->\n		<style>\n		*{\n		background-color: black;\n		text-align: center;\n		}\n		p , h1 {\n		font-weight: normal;\n		color: #ffffb9;\n		}\n		</style>\n		</head>\n		<!--class Style -->\n	<div class=\"Ghost\">\n	<!--Text Styles -->\n	<h1>Hello word to Ghost web</h1>\n	<p>in paiam faqet bari test ast na hish aml card digeh</p>\n		</div>\n	<!--End codes good luck code by ninja coder-->\n	</html>\n");
 									_getFiles("");
+									top.setPrefixText("html");
 								}
 								else {
 									if (mainfile.contains(".c")) {
 										FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "////code by Ghost web \n\n");
 										_getFiles("");
+										top.setPrefixText("c");
 									}
 									else {
 										if (mainfile.contains(".py")) {
 											FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "#Code by Ghost web version 1.4.8\nimport os \n\ndef number01(a,b):\n	return a*b\ndef number02(a,b):\n	return a/b\n	\nprint(number01(20,30))\nprint(number02(30,90))\n\n");
 											_getFiles("");
+											top.setPrefixText("python");
 										}
 										else {
 											if (mainfile.contains(".cs")) {
 												FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "///code by Ghost web");
 												_getFiles("");
+												top.setPrefixText("c#");
 											}
 											else {
 												if (mainfile.contains(".cpp")) {
 													FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "\n#include<iosteram>\nusing namespace std;\n\nvoid foo(){\n	cout << \"Ghost web ide \" << \"Version\" << \"1.4.8\";\n}\n\nint main(){\n	int b{1};\n	cout << \"Type Number\" << endl;\n	cin >> b >> b + 10 ;\n	cout << \"Done\" << endl;\n}\n");
 													_getFiles("");
+													top.setPrefixText("c++");
 												}
 												else {
 													if (mainfile.contains(".json")) {
 														FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "[\n{\n    \"name\":\"hosein\",\n    \"age\":26,\n    \"run\":true,\n    \"liveiniran\":null\n}\n]");
 														_getFiles("");
+														top.setPrefixText("json");
 													}
 													else {
 														if (mainfile.contains(".sh")) {
 															FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "##code by Ghost web\n\necho \"Hello Ninjacoder\"");
 															_getFiles("");
+															top.setPrefixText("shell");
 														}
 														else {
 															if (mainfile.contains(".xml")) {
 																FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 																_getFiles("");
+																top.setPrefixText("xml");
 															}
 															else {
 																if (mainfile.contains(".java")) {
 																	FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost web Ide version 1.4.3\n*/\n\nimport android.widget.*;\nimport java.util.*;\n\n\npublic class ".concat(Uri.parse(mainfile.replace(".java", " ")).getLastPathSegment().concat("{\n    private static Context context;\n    public static main(String[] Result){\n        \n        Toast.maketext(context ,\"Hi to Ghost Web Ide \",Toast.LENGTH_SHORT).show();\n    }\n    public static boolean Bio(){\n        \n        return false;\n    }\n    public static String test(String str){\n        \n        return str;\n    }\n    public static double vorger(){\n        \n        return 0;\n    }\n}")));
 																	_getFiles("");
+																	top.setPrefixText("java");
 																}
 																else {
 																	if (mainfile.contains(".ninja")) {
-																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost Web Ide version 1.4.8\n*/\n\nfrom ConText import *\nfrom Printor import printor\npublic class shr".concat(Uri.parse(mainfile.replace(".ninja", " ")).getLastPathSegment().concat("\n\n	val h ? \n	val b ?\n	public Board(v){\n		\n		System.out.At(?0)\n	}\n     public abstract Hsi (){\n     \n         printor.GetText(\"hello\")\n         value 'replace  to -> 0'\n     \n     }\n	\n}\n")));
+																		FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "/*\nCode by Ghost Web Ide version 1.4.8\n*/\n\nfrom ConText import *\nfrom Printor import printor\npublic class shr ".concat(Uri.parse(mainfile.replace(".ninja", " ")).getLastPathSegment().concat("\n{\n	val h ? \n	val b ?\n	public Board(v){\n		\n		System.out.At(?0)\n	}\n	public abstract Hsi (){\n		\n		public synchronized inker(int32 i int32 bpr){\n            printor(inker(i/bpr))\n        }\n		\n	}\n	\n}\n")));
 																		_getFiles("");
+																		top.setPrefixText("ninja");
 																	}
 																	else {
 																		if (mainfile.contains(".js")) {
 																			FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "console.log('♤♤♤')");
 																			_getFiles("");
+																			top.setPrefixText("JavaScript");
 																		}
 																		else {
 																			FileUtil.writeFile(Folder.concat("/".concat(mainfile)), "");
@@ -4507,110 +4595,140 @@ public class FiledirActivity extends AppCompatActivity {
 	
 	
 	public void _project() {
-		///result code By Ninja coder.ir my love java
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
 		
-		
-		GradientDrawable cdm = new GradientDrawable();
-				cdm.setColor(0xFF1F1B1C);
-				cdm.setCornerRadius(15);
-				cdm.setStroke(1, 0xFFFDA893);
-		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-		    ViewGroup viewGroup = findViewById(android.R.id.content);
-				View dialogview = getLayoutInflater().inflate(R.layout.projects, viewGroup, false);
-		EditText editor = dialogview.findViewById(R.id.editor);
-		com.google.android.material.checkbox.MaterialCheckBox ch = dialogview.findViewById(R.id.ch);
-		com.google.android.material.checkbox.MaterialCheckBox ch2 = dialogview.findViewById(R.id.ch2);
-		com.google.android.material.checkbox.MaterialCheckBox ch3 = dialogview.findViewById(R.id.ch3);
-		com.google.android.material.checkbox.MaterialCheckBox ch4 = dialogview.findViewById(R.id.ch4);
-		com.google.android.material.textfield.TextInputLayout te = dialogview.findViewById(R.id.te);
-		HorizontalScrollView hs = dialogview.findViewById(R.id.hs);
-		hs.setHorizontalScrollBarEnabled(false);
-		hs.setVerticalScrollBarEnabled(false);
-		hs.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
-		te.setCounterTextColor(ColorStateList.valueOf(Color.parseColor("#FFF8B09A")));
-		te.setCounterEnabled(true);
-		te.setCounterMaxLength(100);
-		te.setErrorIconDrawable(R.drawable.closehsi);
-		te.setEndIconVisible(true);
-		te.setEndIconOnClickListener(v ->{
-						
-						editor.setText("");
+		    .setView(R.layout.projects)
+		.setTitle("Make project")
+		.setMessage("type name project and setLibrary ")
+		.setCancelable(true)
+		.setPositiveButton("make project", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
 			
-				});
-		te.setErrorEnabled(true);
-		di.setTitle("ایجاد پروژه");
-		di.setMessage("شما میتوانید هم پروژه و هم کتابخانه های زیر را روی پروژه خودتون نصب کنید");
-		di.setBackground(cdm);
-		if (editor.getText().toString().isEmpty()) {
-			te.setError("Empty Name!");
-		}
-		else {
-			te.setErrorEnabled(false);
-		}
-		di.setNeutralButton("makeproject", (p, d) -> {
+			       EditText editor = dialog.findViewById(R.id.editor);		
 			
-			         if (editor.getText().toString().isEmpty()) {
-				SketchwareUtil.showMessage(getApplicationContext(), "نام پروژه را وارد کنید");
+			com.google.android.material.checkbox.MaterialCheckBox ch = dialog.findViewById(R.id.ch);		
+			
+			com.google.android.material.checkbox.MaterialCheckBox ch2 = dialog.findViewById(R.id.ch2);		
+			
+			com.google.android.material.checkbox.MaterialCheckBox ch3 = dialog.findViewById(R.id.ch3);		
+			
+			com.google.android.material.checkbox.MaterialCheckBox ch4 = dialog.findViewById(R.id.ch4);		
+			
+			com.google.android.material.textfield.TextInputLayout te = dialog.findViewById(R.id.te);		
+			
+			HorizontalScrollView hs = dialog.findViewById(R.id.hs);		
+			
+			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			if (editor.getText().toString().isEmpty()) {
+				positive.setEnabled(false);
+				te.setEndIconVisible(false);
 			}
 			else {
-				if (ch.isChecked() || (ch2.isChecked() || (ch3.isChecked() || ch4.isChecked()))) {
-					FileUtil.makeDir(GetTab.concat("/".concat(editor.getText().toString())));
-					_TaskProjectInstallProgessDialog("project.zip", GetTab.concat("/".concat(editor.getText().toString())));
-					_getFiles("");
+				positive.setEnabled(true);
+				te.setEndIconVisible(true);
+			}
+			editor.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (editor.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+						te.setEndIconVisible(false);
+					}
+					else {
+						te.setEndIconVisible(true);
+						positive.setEnabled(true);
+					}
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
+						});
+			hs.setHorizontalScrollBarEnabled(false);
+			hs.setVerticalScrollBarEnabled(false);
+			hs.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
+			te.setCounterTextColor(ColorStateList.valueOf(Color.parseColor("#FFF8B09A")));
+			te.setCounterEnabled(true);
+			te.setCounterMaxLength(100);
+			te.setEndIconDrawable(R.drawable.closehsi);
+			te.setEndIconVisible(true);
+			te.setEndIconOnClickListener(v ->{
+							
+							editor.setText("");
+				
+					});
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             dialog.dismiss();
+				SketchwareUtil.hideKeyboard(getApplicationContext());
+				if (editor.getText().toString().isEmpty()) {
+					SketchwareUtil.showMessage(getApplicationContext(), "نام پروژه را وارد کنید");
 				}
 				else {
-					FileUtil.makeDir(GetTab.concat("/"));
-					_TaskProjectInstallProgessDialog("project.zip", GetTab);
-					_getFiles("");
-				}
-				ask = new TimerTask() {
-					@Override
-					public void run() {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								if (ch.isChecked()) {
-									_TaskProjectInstallProgessDialog("bootstrap5.2.2.zip", GetTab.concat("/".concat(editor.getText().toString())));
-									_getFiles("");
-								}
-								else {
-									
-								}
-								if (ch2.isChecked()) {
-									_TaskProjectInstallProgessDialog("kotlin1.7.20.zip", GetTab.concat("/".concat(editor.getText().toString())));
-									_getFiles("");
-								}
-								else {
-									
-								}
-								if (ch3.isChecked()) {
-									_TaskProjectInstallProgessDialog("typescript4.8.4.zip", GetTab.concat("/".concat(editor.getText().toString())));
-									_getFiles("");
-								}
-								else {
-									
-								}
-								if (ch4.isChecked()) {
-									_TaskProjectInstallProgessDialog("angular9.1.13.zip", GetTab.concat("/".concat(editor.getText().toString())));
-									_getFiles("");
-								}
-								else {
-									
-								}
-							}
-						});
+					if (ch.isChecked() || (ch2.isChecked() || (ch3.isChecked() || ch4.isChecked()))) {
+						FileUtil.makeDir(GetTab.concat("/".concat(editor.getText().toString())));
+						_TaskProjectInstallProgessDialog("project.zip", GetTab.concat("/".concat(editor.getText().toString())));
+						_getFiles("");
 					}
-				};
-				_timer.schedule(ask, (int)(900));
-			}
-			
+					else {
+						FileUtil.makeDir(GetTab.concat("/"));
+						_TaskProjectInstallProgessDialog("project.zip", GetTab);
+						_getFiles("");
+					}
+					ask = new TimerTask() {
+						@Override
+						public void run() {
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									if (ch.isChecked()) {
+										_TaskProjectInstallProgessDialog("bootstrap5.2.2.zip", GetTab.concat("/".concat(editor.getText().toString())));
+										_getFiles("");
+									}
+									else {
+										
+									}
+									if (ch2.isChecked()) {
+										_TaskProjectInstallProgessDialog("kotlin1.7.20.zip", GetTab.concat("/".concat(editor.getText().toString())));
+										_getFiles("");
+									}
+									else {
+										
+									}
+									if (ch3.isChecked()) {
+										_TaskProjectInstallProgessDialog("typescript4.8.4.zip", GetTab.concat("/".concat(editor.getText().toString())));
+										_getFiles("");
+									}
+									else {
+										
+									}
+									if (ch4.isChecked()) {
+										_TaskProjectInstallProgessDialog("angular9.1.13.zip", GetTab.concat("/".concat(editor.getText().toString())));
+										_getFiles("");
+									}
+									else {
+										
+									}
+								}
+							});
+						}
+					};
+					_timer.schedule(ask, (int)(900));
+				}
+				_getFiles("");
+								
 						});
-		di.setView(dialogview);
-		di.show();
-		
-		
-		
-		
+		});
+		dialog.show();
 	}
 	
 	
@@ -5022,13 +5140,6 @@ public class FiledirActivity extends AppCompatActivity {
 	
 	
 	public void _lojiceinstallK() {
-		///result code By Ninja coder.ir my love java
-		
-		
-		GradientDrawable b = new GradientDrawable();
-				b.setColor(0xFF1F1B1C);
-				b.setCornerRadius(20);
-				b.setStroke(1, 0xFFFDA893);
 		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
 		    di.setTitle("کیبورد");
 		di.setMessage("دقت کنید اگر گزینه انتخاب کیبورد را نزدید ابتدا کیبورد را انتخاب کنید سپس تایید کنید با تشکر");
@@ -5050,7 +5161,6 @@ public class FiledirActivity extends AppCompatActivity {
 			  ///تایید کیبورد
 			
 						});
-		di.setBackground(b);
 		di.show();
 		
 		
@@ -5095,6 +5205,10 @@ public class FiledirActivity extends AppCompatActivity {
 				.load(bmp)
 				.placeholder(gradientDrawable)
 				.error(gradientDrawable)
+				.circleCrop()
+				.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+				.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+				.priority(Priority.HIGH)
 				.into(_img);
 				_tv.setText(String.valueOf((long) width) + " x " + String.valueOf((long) height));
 		}
@@ -5218,6 +5332,537 @@ public class FiledirActivity extends AppCompatActivity {
 		}
 	}
 	
+	
+	public void _serachfilebeta() {
+		
+		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+		    ViewGroup viewGroup = findViewById(android.R.id.content);
+				View dialogview = getLayoutInflater().inflate(R.layout.reminderlist, viewGroup, false);
+		com.google.android.material.textfield.TextInputLayout input = dialogview.findViewById(R.id.input);
+		EditText ed = dialogview.findViewById(R.id.ed);
+		ProgressBar bar = dialogview.findViewById(R.id.bar);
+		ListView mlist = dialogview.findViewById(R.id.mlist);
+		TextView error = dialogview.findViewById(R.id.error);
+		TextView result = dialogview.findViewById(R.id.result);
+		bar.setVisibility(View.GONE);
+		error.setVisibility(View.GONE);
+		error.setTextColor(0xFFFDA893);
+		result.setVisibility(View.GONE);
+		di.setTitle("Search File");
+		input.setEndIconCheckable(true);
+		input.setEndIconVisible(true);
+		input.setEndIconDrawable(R.drawable.msearchfileandfolder);
+		input.setEndIconOnClickListener(v ->{
+						
+						try{
+				android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				if(imm.isAcceptingText()){
+					 
+				}else{
+					SketchwareUtil.hideKeyboard(getApplicationContext());
+				}} catch(Exception _e){}
+			
+			input.setVisibility(View.VISIBLE);
+			input.setEnabled(false);
+			map.clear();
+			new Thread(new Runnable() {
+				@Override public void run() {
+					str1.clear();
+					str2.clear();
+					directoryName = Folder;
+					listf(directoryName, str1);
+					for (int post = 0; post < (int)(str1.size()); post++) {
+						{
+							HashMap<String, Object> _item = new HashMap<>();
+							_item.put(str1.get((int)(post)), "mfile");
+							map.add(_item);
+						}
+						
+					}
+					mlist.setAdapter(new MyListViewHsiListAdapter(map));
+					((BaseAdapter)mlist.getAdapter()).notifyDataSetChanged();
+					result.setVisibility(View.VISIBLE);
+					if (!(map.size() == 0)) {
+						error.setText("داده ای پیدا نشد");
+						error.setVisibility(View.VISIBLE);
+						result.setText("Result Item (".concat("0)"));
+					}
+					else {
+						try{
+							result.setText("Result Item (".concat(String.valueOf((long)(map.size())).concat(")")));
+						}catch(Exception e){
+							error.setText(e.toString());
+						}
+					}
+				}
+				public void listf(String directoryName, ArrayList<String> str1) {
+					  final ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
+					progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+					
+					
+					   java.io.File directory = new java.io.File(directoryName);
+					
+					    
+					    java.io.File[] fList = directory.listFiles();
+					   
+					    if(fList != null)
+					        for (java.io.File file : fList) {      
+						            if (file.isFile() && file.getPath().substring(file.getPath().lastIndexOf("/")+1).toLowerCase().contains(ed.getText().toString())) {
+							str2.add(file.getAbsolutePath());                str1.add(file.getPath().substring(file.getPath().lastIndexOf("/")+1));
+							
+							                   } else if (file.isDirectory()) {
+							                listf(file.getPath(), str1);
+							            }
+						        }
+					     }
+				private String directoryName = "";
+				{
+				}
+			}).start();
+			
+				});
+		di.setPositiveButton("بستن", (p1, d2) -> {
+			
+			         try{
+				android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				if(imm.isAcceptingText()){
+					 
+				}else{
+					SketchwareUtil.hideKeyboard(getApplicationContext());
+				}} catch(Exception _e){}
+			
+						});
+		di.setView(dialogview);
+		di.show();
+		
+		
+		
+		
+	}
+	
+	
+	public void _sead() {
+	}
+	public class MyListViewHsiListAdapter extends BaseAdapter {
+				
+				ArrayList<HashMap<String, Object>> _data;
+				
+				public MyListViewHsiListAdapter(ArrayList<HashMap<String, Object>> _arr) {
+						_data = _arr;
+				}
+				
+				@Override
+				public int getCount() {
+						return _data.size();
+				}
+				
+				@Override
+				public HashMap<String, Object> getItem(int _index) {
+						return _data.get(_index);
+				}
+				
+				@Override
+				public long getItemId(int _index) {
+						return _index;
+				}
+				
+				@Override
+				public View getView(final int _position, View _v, ViewGroup _container) {
+						LayoutInflater _inflater = getLayoutInflater();
+						View _view = _v;
+						if (_view == null) {
+								_view = _inflater.inflate(R.layout.aaa, null);
+						}
+						
+			
+						
+			       
+			      final LinearLayout main = _view.findViewById(R.id.main);
+			final TextView tv = _view.findViewById(R.id.tv);
+			final ImageView img = _view.findViewById(R.id.img);
+			tv.setText(Uri.parse(_data.get((int)_position).get("mfiles").toString()).getLastPathSegment());
+			_clickAnimation(main);
+			final String sodocerListMapRemainder = _data.get((int)_position).get("mfiles").toString();
+			if (FileUtil.isDirectory(sodocerListMapRemainder)) {
+				img.setImageResource(R.drawable.folder);
+			}
+			else {
+				if (sodocerListMapRemainder.endsWith(".html")) {
+					SvgShow.GetAsster(getApplicationContext() , img , "file_type_html.svg");
+				}
+				else {
+					if (sodocerListMapRemainder.endsWith(".css")) {
+						SvgShow.GetAsster(getApplicationContext() , img , "file_type_css.svg");
+					}
+					else {
+						if (sodocerListMapRemainder.endsWith(".js")) {
+							SvgShow.GetAsster(getApplicationContext() , img , "file_type_node.svg");
+						}
+						else {
+							if (sodocerListMapRemainder.endsWith(".svg")) {
+								try{
+									SvgShow.GetFileSvg(sodocerListMapRemainder,img,getApplicationContext());
+									
+									
+									
+								}catch(Exception e){
+										SvgShow.GetAsster(getApplicationContext() , imageview1 , "file_type_svg.svg");
+								}
+								
+								
+							}
+							else {
+								if (sodocerListMapRemainder.endsWith(".png")) {
+									_ImageFastShow(sodocerListMapRemainder, img);
+								}
+								else {
+									if (sodocerListMapRemainder.endsWith(".py")) {
+										SvgShow.GetAsster(getApplicationContext() , img , "file_type_python.svg");
+									}
+									else {
+										if (sodocerListMapRemainder.endsWith(".jar")) {
+											SvgShow.GetAsster(getApplicationContext() , img , "file_type_jar.svg");
+										}
+										else {
+											if (sodocerListMapRemainder.endsWith(".scss")) {
+												SvgShow.GetAsster(getApplicationContext() , img , "file_type_scss2.svg");
+											}
+											else {
+												if (sodocerListMapRemainder.endsWith(".json")) {
+													SvgShow.GetAsster(getApplicationContext() , img , "file_type_json2.svg");
+												}
+												else {
+													if (sodocerListMapRemainder.endsWith(".java")) {
+														SvgShow.GetAsster(getApplicationContext() , img , "file_type_java.svg");
+													}
+													else {
+														if (sodocerListMapRemainder.endsWith(".cpp")) {
+															SvgShow.GetAsster(getApplicationContext() , img , "file_type_cpp3.svg");
+														}
+														else {
+															if (sodocerListMapRemainder.endsWith(".c")) {
+																SvgShow.GetAsster(getApplicationContext() , img , "file_type_c3.svg");
+															}
+															else {
+																if (sodocerListMapRemainder.endsWith(".cs")) {
+																	SvgShow.GetAsster(getApplicationContext() , img , "file_type_csharp2.svg");
+																}
+																else {
+																	if (sodocerListMapRemainder.endsWith(".xml")) {
+																		SvgShow.GetAsster(getApplicationContext() , img , "file_type_source.svg");
+																	}
+																	else {
+																		if (sodocerListMapRemainder.endsWith(".ghost")) {
+																			SvgShow.GetAsster(getApplicationContext() , img , "file_type_ink.svg");
+																		}
+																		else {
+																			if (sodocerListMapRemainder.endsWith(".ninja")) {
+																				SvgShow.GetAsster(getApplicationContext() , img , "file_type_ninja.svg");
+																			}
+																			else {
+																				if (sodocerListMapRemainder.endsWith(".sh")) {
+																					SvgShow.GetAsster(getApplicationContext() , img , "rowbash.svg");
+																				}
+																				else {
+																					if (sodocerListMapRemainder.endsWith(".md")) {
+																						SvgShow.GetAsster(getApplicationContext() , img , "mdx.svg");
+																					}
+																					else {
+																						if (sodocerListMapRemainder.endsWith(".mp3")) {
+																							SvgShow.Mp3ImageShow(sodocerListMapRemainder,img,R.drawable.musico,getApplicationContext());
+																						}
+																						else {
+																							if (sodocerListMapRemainder.endsWith(".web")) {
+																								img.setImageResource(R.drawable.webproject);
+																							}
+																							else {
+																								if (sodocerListMapRemainder.endsWith(".php")) {
+																									img.setImageResource(R.drawable.languagephp);
+																								}
+																								else {
+																									if (sodocerListMapRemainder.endsWith(".mp4")) {
+																										img.setImageResource(R.drawable.videothumplaese);
+																									}
+																									else {
+																										if (sodocerListMapRemainder.endsWith(".jpg")) {
+																											Glide.with(getApplicationContext()).load(Uri.parse("file:///".concat(sodocerListMapRemainder))).into(img);
+																										}
+																										else {
+																											if (sodocerListMapRemainder.endsWith(".apk")) {
+																												try { 
+																														
+																														
+																															
+																														android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
+																														android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(sodocerListMapRemainder, 0);
+																														packageInfo.applicationInfo.sourceDir = sodocerListMapRemainder;
+																														packageInfo.applicationInfo.publicSourceDir = sodocerListMapRemainder;
+																														img.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
+																														packageInfo = null;
+																														packageManager = null;
+																														
+																												} catch (Exception e){
+																														e.printStackTrace();
+																												}
+																											}
+																											else {
+																												if (sodocerListMapRemainder.endsWith(".go")) {
+																													img.setImageResource(R.drawable.languagego);
+																												}
+																												else {
+																													if (sodocerListMapRemainder.endsWith(".txt")) {
+																														img.setImageResource(R.drawable.txtfile);
+																													}
+																													else {
+																														if (sodocerListMapRemainder.endsWith(".pdf")) {
+																															img.setImageResource(R.drawable.pdfview);
+																														}
+																														else {
+																															if (sodocerListMapRemainder.endsWith(".zip") || sodocerListMapRemainder.endsWith(".tar")) {
+																																img.setImageResource(R.drawable.zipandtar);
+																															}
+																															else {
+																																if (sodocerListMapRemainder.endsWith(".rar")) {
+																																	img.setImageResource(R.drawable.rartarget);
+																																}
+																																else {
+																																	if (sodocerListMapRemainder.endsWith(".kt")) {
+																																		SvgShow.GetAsster(getApplicationContext() , img , "kotlin.svg");
+																																	}
+																																	else {
+																																		if (sodocerListMapRemainder.endsWith(".rb") || sodocerListMapRemainder.endsWith(".rbw")) {
+																																			SvgShow.GetAsster(getApplicationContext() , img , "ruby.svg");
+																																		}
+																																		else {
+																																			if (sodocerListMapRemainder.endsWith(".dart")) {
+																																				SvgShow.GetAsster(getApplicationContext() , img , "dart.svg");
+																																			}
+																																			else {
+																																				if (sodocerListMapRemainder.endsWith(".swift")) {
+																																					SvgShow.GetAsster(getApplicationContext() , img , "swift.svg");
+																																				}
+																																				else {
+																																					if (sodocerListMapRemainder.endsWith(".gif")) {
+																																						Glide.with(getApplicationContext()).load(Uri.parse("file:///".concat(sodocerListMapRemainder))).into(img);
+																																					}
+																																					else {
+																																						if (sodocerListMapRemainder.endsWith(".ttf") || sodocerListMapRemainder.endsWith(".otf")) {
+																																							img.setImageResource(R.drawable.fontlookimageview);
+																																						}
+																																						else {
+																																							if (sodocerListMapRemainder.endsWith(".AA")) {
+																																								img.setImageResource(R.drawable.resulttheme);
+																																							}
+																																							else {
+																																								SvgShow.GetAsster(getApplicationContext() , img , "default_file.svg");
+																																							}
+																																						}
+																																					}
+																																				}
+																																			}
+																																		}
+																																	}
+																																}
+																															}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+						
+						return _view;
+				}
+		}
+	
+	{
+	}
+	
+	
+	public void _importpojectm() {
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
+		
+		    .setView(R.layout.projectimport)
+		.setTitle("پشتیبان گیری از پروژه ")
+		.setMessage("لطفا مسیر را وارد کنید بدون فایل فقط نام پوشه")
+		.setCancelable(true)
+		.setPositiveButton("قبول", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
+			
+			       Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			EditText edb = dialog.findViewById(R.id.edb);		
+			
+			com.google.android.material.textfield.TextInputLayout input = dialog.findViewById(R.id.input);		
+			
+			if (edb.getText().toString().isEmpty()) {
+				positive.setEnabled(false);
+			}
+			else {
+				positive.setEnabled(true);
+			}
+			edb.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (edb.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
+						});
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             new AsyncTask<String, String, String>() {
+					@Override
+					protected void onPreExecute() {
+						prodel.setTitle("در حال ایجاد پروژه");
+						prodel.setCancelable(false);
+						prodel.setCanceledOnTouchOutside(false);
+						prodel.show();
+					}
+					@Override
+					protected String doInBackground(String... params) {
+						String _param = params[0];
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								if (!FileUtil.isFile(edb.getText().toString())) {
+									try {
+										
+															new net.lingala.zip4j.ZipFile(Folder.concat("/myproject".concat(String.valueOf((long)(SketchwareUtil.getRandom((int)(0), (int)(5682738)))).concat(".project")))).addFolder(new java.io.File(edb.getText().toString()));
+										
+													} catch (net.lingala.zip4j.exception.ZipException e) {
+															showMessage(e.toString());
+													}
+								}
+								else {
+									if (FileUtil.isDirectory(edb.getText().toString())) {
+										try {
+											
+																				new net.lingala.zip4j.ZipFile(new java.io.File(Folder.concat("/myproject".concat(String.valueOf((long)(SketchwareUtil.getRandom((int)(0), (int)(5682738)))).concat(".project"))))).addFile(new java.io.File(edb.getText().toString()));							
+											
+														} catch (net.lingala.zip4j.exception.ZipException e) {
+																showMessage(e.toString());
+														}
+									}
+								}
+							}
+						});
+						return "";
+					}
+					@Override
+					protected void onPostExecute(String _result) {
+						prodel.dismiss();
+						_getFiles("");
+					}
+				}.execute("");
+				dialog.dismiss();
+								
+						});
+		});
+		dialog.show();
+	}
+	
+	
+	public void _installproject(final ArrayList<HashMap<String, Object>> _maps, final String _pathz, final double _number) {
+		if (_maps.get((int)_number).get(_pathz).toString().endsWith(".project")) {
+			var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+			    di.setTitle("نصب پروژه ؟");
+			di.setMessage("آیا میخواهید ".concat(Uri.parse(_maps.get((int)_number).get(_pathz).toString()).getLastPathSegment().concat(" نصب کنید؟")));
+			di.setPositiveButton("نصب", (p1, d2) -> {
+				
+				         new AsyncTask<String, String, String>() {
+					@Override
+					protected void onPreExecute() {
+						prodel.setTitle("instaling project...");
+						prodel.setMessage("install now project ".concat(Uri.parse(_maps.get((int)_number).get(_pathz).toString()).getLastPathSegment().concat(" in your mobile")));
+						prodel.setCancelable(false);
+						prodel.setCanceledOnTouchOutside(false);
+						prodel.show();
+					}
+					@Override
+					protected String doInBackground(String... params) {
+						String _param = params[0];
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								try {
+									
+														new net.lingala.zip4j.ZipFile(_maps.get((int)_number).get(_pathz).toString())
+																.extractAll(Folder);
+									
+												} catch (net.lingala.zip4j.exception.ZipException e) {
+														showMessage(e.toString());
+												}
+								_getFiles("");
+								SketchwareUtil.CustomToast(getApplicationContext(), "project installed to ".concat(Uri.parse(_maps.get((int)_number).get(_pathz).toString()).getLastPathSegment().concat(" your mobile ")), 0xFFFDA893, 16, 0xFF2B2122, 15, SketchwareUtil.CENTER);
+							}
+						});
+						return "";
+					}
+					@Override
+					protected void onPostExecute(String _result) {
+						prodel.dismiss();
+					}
+				}.execute("");
+				
+							});
+			di.setNegativeButton("مشاهده", (p3, d3) -> {
+				
+				         void10.setClass(getApplicationContext(), ZipshowActivity.class);
+				void10.putExtra("zipview", _maps.get((int)_number).get(_pathz).toString());
+				startActivity(void10);
+				
+							});
+			di.setNeutralButton("بستن", (p, d) -> {
+				
+				          
+				
+							});
+			di.show();
+			
+			
+			
+			
+		}
+	}
+	
 	public class CandishenListview1GetMethodFileAdapter extends BaseAdapter {
 		
 		ArrayList<HashMap<String, Object>> _data;
@@ -5255,6 +5900,7 @@ public class FiledirActivity extends AppCompatActivity {
 			final LinearLayout linear4 = _view.findViewById(R.id.linear4);
 			final LinearLayout linear3 = _view.findViewById(R.id.linear3);
 			final com.google.android.material.checkbox.MaterialCheckBox checkbox1 = _view.findViewById(R.id.checkbox1);
+			final ProgressBar progressbar1 = _view.findViewById(R.id.progressbar1);
 			final ImageView imageview1 = _view.findViewById(R.id.imageview1);
 			final ProgressBar prograssTask = _view.findViewById(R.id.prograssTask);
 			final LinearLayout linear6 = _view.findViewById(R.id.linear6);
@@ -5279,6 +5925,29 @@ public class FiledirActivity extends AppCompatActivity {
 			textview1.setText(Uri.parse(files.get((int)_position).get("path").toString()).getLastPathSegment());
 			videoSize.setVisibility(View.GONE);
 			prograssTask.setVisibility(View.GONE);
+			progressbar1.setVisibility(View.GONE);
+			LayoutTransition res10 = new LayoutTransition();
+					res10.enableTransitionType(LayoutTransition.CHANGING);
+					res10.enableTransitionType(LayoutTransition.APPEARING);
+					res10.enableTransitionType(LayoutTransition.DISAPPEARING);
+			
+			res10.enableTransitionType(LayoutTransition.CHANGE_APPEARING);
+					res10.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
+					res10.addTransitionListener(new LayoutTransition.TransitionListener() {
+							@Override
+							public void startTransition(LayoutTransition transition, ViewGroup container, View view,
+							int transitionType) {
+							}
+							@Override
+							public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+									if (view != mcard) {
+											return;
+									}
+									view.requestLayout();
+							}
+					});
+					
+					mcard.setLayoutTransition(res10);
 			if (FileUtil.isDirectory(files.get((int)_position).get("path").toString())) {
 				imageview1.setImageResource(R.drawable.folder);
 				try{
@@ -5308,28 +5977,30 @@ public class FiledirActivity extends AppCompatActivity {
 					textview1.setTextColor(0xFFCE93D8);
 				}
 				else {
-					textview1.setTextColor(0xFFEEEEEE);
-					imageview1.setImageResource(R.drawable.folder);
-				}
-				if (textview1.getText().toString().contains("Android") || textview1.getText().toString().equals("Android")) {
-					imageview1.setImageResource(R.drawable.folderandroid);
-				}
-				else {
-					imageview1.setImageResource(R.drawable.folder);
-				}
-				if (textview1.getText().toString().contains("Download") || textview1.getText().toString().equals("Download")) {
-					imageview1.setImageResource(R.drawable.folderdownload);
-				}
-				else {
-					imageview1.setImageResource(R.drawable.folder);
-				}
-				if (textview1.getText().toString().contains("GhostWebIDE/theme") || textview1.getText().toString().equals("GhostWebIDE/theme")) {
-					imageview1.setImageResource(R.drawable.folder);
-					textview1.setTextColor(0xFFFFC107);
-				}
-				else {
-					textview1.setTextColor(0xFFE0E0E0);
-					imageview1.setImageResource(R.drawable.folder);
+					if (textview1.getText().toString().contains("Android") || textview1.getText().toString().equals("Android")) {
+						imageview1.setImageResource(R.drawable.folderandroid);
+					}
+					else {
+						if (textview1.getText().toString().contains("Download") || textview1.getText().toString().equals("Download")) {
+							imageview1.setImageResource(R.drawable.folderdownload);
+						}
+						else {
+							if (textview1.getText().toString().contains("GhostWebIDE/theme") || textview1.getText().toString().equals("GhostWebIDE/theme")) {
+								imageview1.setImageResource(R.drawable.folder);
+								textview1.setTextColor(0xFFFFC107);
+							}
+							else {
+								if (textview1.getText().toString().contains(".sketchware") || textview1.getText().toString().equals(".sketchware")) {
+									textview1.setTextColor(0xFF90CAF9);
+									imageview1.setImageResource(R.drawable.foldersketchware);
+								}
+								else {
+									textview1.setTextColor(0xFFE0E0E0);
+									imageview1.setImageResource(R.drawable.folder);
+								}
+							}
+						}
+					}
 				}
 			}
 			else {
@@ -5360,6 +6031,9 @@ public class FiledirActivity extends AppCompatActivity {
 								textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
 								
 								videoSize.setVisibility(View.VISIBLE);
+								if (tmp.contains("settmp")) {
+									videoSize.setVisibility(View.GONE);
+								}
 							}
 							else {
 								if (files.get((int)_position).get("path").toString().endsWith(".png")) {
@@ -5373,8 +6047,30 @@ public class FiledirActivity extends AppCompatActivity {
 									videoSize.setVisibility(View.VISIBLE);
 									textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
 									videoSize.setText(String.valueOf(imageWidth).concat("x".concat(String.valueOf(imageHeight))));
-									
-									_ImageFastShow(files.get((int)_position).get("path").toString(), imageview1);
+									Glide.with(getApplicationContext())
+									.load(files.get((int)_position).get("path").toString())
+									.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+									.listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
+										@Override
+										public boolean onLoadFailed(com.bumptech.glide.load.engine.GlideException e, Object model,com.bumptech.glide.request.target.Target<Drawable> target, boolean isFirstResource) {
+											imageview1.setVisibility(View.GONE);
+											progressbar1.setVisibility(View.VISIBLE);
+											return false;
+										}
+										@Override
+										public boolean onResourceReady(Drawable resource, Object model,com.bumptech.glide.request.target.Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource){
+											imageview1.setVisibility(View.VISIBLE);
+											progressbar1.setVisibility(View.GONE);
+											return false;
+										}})
+									.error(R.drawable.close)
+									.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+									.circleCrop()
+									.priority(Priority.HIGH)
+									.into(imageview1);
+									if (tmp.contains("settmp")) {
+										videoSize.setVisibility(View.GONE);
+									}
 								}
 								else {
 									if (files.get((int)_position).get("path").toString().endsWith(".py")) {
@@ -5443,8 +6139,31 @@ public class FiledirActivity extends AppCompatActivity {
 																					}
 																					else {
 																						if (files.get((int)_position).get("path").toString().endsWith(".mp3")) {
-																							SvgShow.Mp3ImageShow(files.get((int)_position).get("path").toString(),imageview1,R.drawable.close,getApplicationContext());
 																							textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
+																							Glide.with(getApplicationContext())
+																							.load(files.get((int)_position).get("path").toString())
+																							.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+																							.listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
+																								@Override
+																								public boolean onLoadFailed(com.bumptech.glide.load.engine.GlideException e, Object model,com.bumptech.glide.request.target.Target<Drawable> target, boolean isFirstResource) {
+																									imageview1.setVisibility(View.GONE);
+																									progressbar1.setVisibility(View.VISIBLE);
+																									return false;
+																								}
+																								@Override
+																								public boolean onResourceReady(Drawable resource, Object model,com.bumptech.glide.request.target.Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource){
+																									imageview1.setVisibility(View.VISIBLE);
+																									progressbar1.setVisibility(View.GONE);
+																									return false;
+																								}})
+																							.error(R.drawable.musico)
+																							.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+																							.circleCrop()
+																							.priority(Priority.HIGH)
+																							.into(imageview1);
+																							if (tmp.contains("settmp")) {
+																								videoSize.setVisibility(View.GONE);
+																							}
 																						}
 																						else {
 																							if (files.get((int)_position).get("path").toString().endsWith(".web")) {
@@ -5467,13 +6186,35 @@ public class FiledirActivity extends AppCompatActivity {
 																										int imageWidth = options.outWidth;
 																										
 																										
-																										videoSize.setText(_VideoWhich(files.get((int)_position).get("path").toString()).concat(" , ".concat(_Videohighlights(files.get((int)_position).get("path").toString()))));
-																										imageview1.setImageResource(R.drawable.videothumplaese);
+																										Glide.with(getApplicationContext())
+																										.load(files.get((int)_position).get("path").toString())
+																										.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+																										.listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
+																											@Override
+																											public boolean onLoadFailed(com.bumptech.glide.load.engine.GlideException e, Object model,com.bumptech.glide.request.target.Target<Drawable> target, boolean isFirstResource) {
+																												imageview1.setVisibility(View.GONE);
+																												progressbar1.setVisibility(View.VISIBLE);
+																												return false;
+																											}
+																											@Override
+																											public boolean onResourceReady(Drawable resource, Object model,com.bumptech.glide.request.target.Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource){
+																												imageview1.setVisibility(View.VISIBLE);
+																												progressbar1.setVisibility(View.GONE);
+																												videoSize.setText(_VideoWhich(files.get((int)_position).get("path").toString()).concat(" , ".concat(_Videohighlights(files.get((int)_position).get("path").toString()))));
+																												return false;
+																											}})
+																										.error(R.drawable.close)
+																										.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+																										.priority(Priority.HIGH)
+																										.circleCrop()
+																										.into(imageview1);
+																										if (tmp.contains("settmp")) {
+																											videoSize.setVisibility(View.GONE);
+																										}
 																									}
 																									else {
 																										if (files.get((int)_position).get("path").toString().endsWith(".jpg")) {
 																											videoSize.setVisibility(View.VISIBLE);
-																											Glide.with(getApplicationContext()).load(Uri.parse("file:///".concat(files.get((int)_position).get("path").toString()))).into(imageview1);
 																											textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
 																											BitmapFactory.Options options = new BitmapFactory.Options();
 																											options.inJustDecodeBounds = true;
@@ -5482,7 +6223,31 @@ public class FiledirActivity extends AppCompatActivity {
 																											int imageWidth = options.outWidth;
 																											
 																											
-																											videoSize.setText(String.valueOf(imageWidth).concat("x".concat(String.valueOf(imageHeight))));
+																											Glide.with(getApplicationContext())
+																											.load(files.get((int)_position).get("path").toString())
+																											.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+																											.listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
+																												@Override
+																												public boolean onLoadFailed(com.bumptech.glide.load.engine.GlideException e, Object model,com.bumptech.glide.request.target.Target<Drawable> target, boolean isFirstResource) {
+																													imageview1.setVisibility(View.GONE);
+																													progressbar1.setVisibility(View.VISIBLE);
+																													return false;
+																												}
+																												@Override
+																												public boolean onResourceReady(Drawable resource, Object model,com.bumptech.glide.request.target.Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource){
+																													imageview1.setVisibility(View.VISIBLE);
+																													progressbar1.setVisibility(View.GONE);
+																													videoSize.setText(String.valueOf(imageWidth).concat("x".concat(String.valueOf(imageHeight))));
+																													return false;
+																												}})
+																											.error(R.drawable.close)
+																											.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+																											.priority(Priority.HIGH)
+																											.circleCrop()
+																											.into(imageview1);
+																											if (tmp.contains("settmp")) {
+																												videoSize.setVisibility(View.GONE);
+																											}
 																										}
 																										else {
 																											if (Token.endsWith(".apk")) {
@@ -5508,6 +6273,9 @@ public class FiledirActivity extends AppCompatActivity {
 																													textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
 																													videoSize.setVisibility(View.VISIBLE);
 																													_prots(Token, imageview1, videoSize);
+																													if (tmp.contains("settmp")) {
+																														videoSize.setVisibility(View.GONE);
+																													}
 																												}
 																												else {
 																													if (Token.endsWith(".go")) {
@@ -5557,12 +6325,31 @@ public class FiledirActivity extends AppCompatActivity {
 																																					else {
 																																						if (Token.endsWith(".gif")) {
 																																							textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
-																																							Glide.with(getApplicationContext()).load(Uri.parse("file:///".concat(Token))).into(imageview1);
+																																							Glide.with(getApplicationContext())
+																																							.load(Token)
+																																							.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+																																							.listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
+																																								@Override
+																																								public boolean onLoadFailed(com.bumptech.glide.load.engine.GlideException e, Object model,com.bumptech.glide.request.target.Target<Drawable> target, boolean isFirstResource) {
+																																									imageview1.setVisibility(View.GONE);
+																																									progressbar1.setVisibility(View.VISIBLE);
+																																									return false;
+																																								}
+																																								@Override
+																																								public boolean onResourceReady(Drawable resource, Object model,com.bumptech.glide.request.target.Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource){
+																																									imageview1.setVisibility(View.VISIBLE);
+																																									progressbar1.setVisibility(View.GONE);
+																																									return false;
+																																								}})
+																																							.error(R.drawable.close)
+																																							.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+																																							.priority(Priority.HIGH)
+																																							.into(imageview1);
 																																						}
 																																						else {
 																																							if (Token.endsWith(".ttf") || Token.endsWith(".otf")) {
-																																								imageview1.setImageResource(R.drawable.fontlookimageview);
 																																								textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
+																																								imageview1.setImageResource(R.drawable.fontlookimageview);
 																																							}
 																																							else {
 																																								if (Token.endsWith(".AA")) {
@@ -5570,9 +6357,15 @@ public class FiledirActivity extends AppCompatActivity {
 																																									textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
 																																								}
 																																								else {
-																																									videoSize.setVisibility(View.GONE);
-																																									SvgShow.GetAsster(getApplicationContext() , imageview1 , "default_file.svg");
-																																									textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
+																																									if (Token.endsWith(".project")) {
+																																										imageview1.setImageResource(R.drawable.webproject);
+																																										textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
+																																									}
+																																									else {
+																																										videoSize.setVisibility(View.GONE);
+																																										SvgShow.GetAsster(getApplicationContext() , imageview1 , "default_file.svg");
+																																										textview2.setText(MFileClass.convertBytes(FileUtil.getFileLength(Token)).concat(", ".concat(MFileClass.getLastModifiedOfFile(Token, "HH:mm, dd/MM/yyyy"))));
+																																									}
 																																								}
 																																							}
 																																						}
@@ -5699,13 +6492,6 @@ public class FiledirActivity extends AppCompatActivity {
 			textview2.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
 				public boolean onLongClick(View _view) {
-					///result code By Ninja coder.ir my love java
-					
-					
-					GradientDrawable cdm = new GradientDrawable();
-							cdm.setColor(0xFF1F1B1C);
-							cdm.setCornerRadius(25);
-							cdm.setStroke(1, 0xFFFDA893);
 					var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
 					    ViewGroup viewGroup = findViewById(android.R.id.content);
 							View dialogview = getLayoutInflater().inflate(R.layout.cutcutdir30101, viewGroup, false);
@@ -5726,7 +6512,6 @@ public class FiledirActivity extends AppCompatActivity {
 						          
 						
 									});
-					di.setBackground(cdm);
 					di.setView(dialogview);
 					di.show();
 					

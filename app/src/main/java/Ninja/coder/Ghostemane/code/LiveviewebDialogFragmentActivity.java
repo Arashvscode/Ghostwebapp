@@ -2,7 +2,9 @@ package Ninja.coder.Ghostemane.code;
 
 import android.animation.*;
 import android.app.*;
+import android.app.Activity;
 import android.content.*;
+import android.content.SharedPreferences;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
@@ -13,10 +15,16 @@ import android.text.*;
 import android.text.style.*;
 import android.util.*;
 import android.view.*;
+import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.*;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -49,35 +57,48 @@ import storage.sdcard.*;
 import xyz.doikki.videoplayer.*;
 import xyz.doikki.videoplayer.exo.*;
 import xyz.doikki.videoplayer.ijk.*;
-import project.gouid.customer.CoreWebView;
 
-public class GouidhtmlActivity extends AppCompatActivity {
+public class LiveviewebDialogFragmentActivity extends DialogFragment {
 	
-	private CoreWebView run;
+	private LinearLayout linear1;
+	private LinearLayout linear2;
+	private WebView mweb;
+	private ImageView imageview1;
+	private TextView textview1;
 	
+	private SharedPreferences shp;
+	
+	@NonNull
 	@Override
-	protected void onCreate(Bundle _savedInstanceState) {
-		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.gouidhtml);
-		initialize(_savedInstanceState);
+	public View onCreateView(@NonNull LayoutInflater _inflater, @Nullable ViewGroup _container, @Nullable Bundle _savedInstanceState) {
+		View _view = _inflater.inflate(R.layout.livevieweb_dialog_fragment, _container, false);
+		initialize(_savedInstanceState, _view);
 		initializeLogic();
+		return _view;
 	}
 	
-	private void initialize(Bundle _savedInstanceState) {
-		run = findViewById(R.id.run);
+	private void initialize(Bundle _savedInstanceState, View _view) {
+		linear1 = _view.findViewById(R.id.linear1);
+		linear2 = _view.findViewById(R.id.linear2);
+		mweb = _view.findViewById(R.id.mweb);
+		mweb.getSettings().setJavaScriptEnabled(true);
+		mweb.getSettings().setSupportZoom(true);
+		imageview1 = _view.findViewById(R.id.imageview1);
+		textview1 = _view.findViewById(R.id.textview1);
+		shp = getContext().getSharedPreferences("shp", Activity.MODE_PRIVATE);
 		
 		//no listener code
 		
 		//no listener code
 		
 		//webviewOnProgressChanged
-		run.setWebChromeClient(new WebChromeClient() {
+		mweb.setWebChromeClient(new WebChromeClient() {
 				@Override public void onProgressChanged(WebView view, int _newProgress) {
 					
 				}
 		});
 		
-		run.setWebViewClient(new WebViewClient() {
+		mweb.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
 				final String _url = _param2;
@@ -92,61 +113,29 @@ public class GouidhtmlActivity extends AppCompatActivity {
 				super.onPageFinished(_param1, _param2);
 			}
 		});
+		
+		imageview1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				dismiss();
+			}
+		});
 	}
 	
 	private void initializeLogic() {
-		run.getUrl("file:///android_asset/index.html");
-	}
-	
-	
-	@Deprecated
-	public void showMessage(String _s) {
-		Toast.makeText(getApplicationContext(), _s, Toast.LENGTH_SHORT).show();
-	}
-	
-	@Deprecated
-	public int getLocationX(View _v) {
-		int _location[] = new int[2];
-		_v.getLocationInWindow(_location);
-		return _location[0];
-	}
-	
-	@Deprecated
-	public int getLocationY(View _v) {
-		int _location[] = new int[2];
-		_v.getLocationInWindow(_location);
-		return _location[1];
-	}
-	
-	@Deprecated
-	public int getRandom(int _min, int _max) {
-		Random random = new Random();
-		return random.nextInt(_max - _min + 1) + _min;
-	}
-	
-	@Deprecated
-	public ArrayList<Double> getCheckedItemPositionsToArray(ListView _list) {
-		ArrayList<Double> _result = new ArrayList<Double>();
-		SparseBooleanArray _arr = _list.getCheckedItemPositions();
-		for (int _iIdx = 0; _iIdx < _arr.size(); _iIdx++) {
-			if (_arr.valueAt(_iIdx))
-			_result.add((double)_arr.keyAt(_iIdx));
+		if (shp.contains("pos_path")) {
+			mweb.loadUrl("file:///".concat(shp.getString("pos_path", "")));
 		}
-		return _result;
 	}
 	
-	@Deprecated
-	public float getDip(int _input) {
-		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, _input, getResources().getDisplayMetrics());
-	}
-	
-	@Deprecated
-	public int getDisplayWidthPixels() {
-		return getResources().getDisplayMetrics().widthPixels;
-	}
-	
-	@Deprecated
-	public int getDisplayHeightPixels() {
-		return getResources().getDisplayMetrics().heightPixels;
+	@Override
+	public void onStart() {
+		super.onStart();
+		if (getDialog() != null) { 
+			int width = ViewGroup.LayoutParams.MATCH_PARENT;
+			int height = ViewGroup.LayoutParams.MATCH_PARENT; 
+			 getDialog().getWindow().setLayout(width, height);
+			getDialog().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0xFF2B2122));
+		}
 	}
 }

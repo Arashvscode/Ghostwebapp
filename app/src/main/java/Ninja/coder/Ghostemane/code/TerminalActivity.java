@@ -34,6 +34,7 @@ import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
@@ -211,21 +212,60 @@ public class TerminalActivity extends AppCompatActivity {
 		term.setLineNumberEnabled(false);
 		imap = new HashMap<>();
 		imap = new Gson().fromJson(FileUtil.readFile("/storage/emulated/0/GhostWebIDE/theme/GhostThemeapp.ghost"), new TypeToken<HashMap<String, Object>>(){}.getType());
-		var theme2 = new a.a.SetThemeForJson();
-		theme2.setThemeCodeEditor(term,imap,false,TerminalActivity.this);
-		theme2.AddthemetoSattos(this, imap);
-		theme2.addTextColor(undo, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addTextColor(redo, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addTextColor(arrowrhite, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addTextColor(arrowdowen, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addTextColor(arrowleft, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addTextColor(arrowup, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		theme2.addBackground(this, imap, "BackgroundColorLinear", mpanl, 0xFF2B2121);
-		theme2.addBackground(this, imap, "BackgroundColorLinear", mrun, 0xFF2B2121);
-		theme2.addBackground(this, imap, "BackgroundColorLinear", main, 0xFF2B2121);
-		theme2.addImageColor(runcode, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
-		term.setCursorWidth(20f);
-		
+		 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+				      
+			       
+			term.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor("#ff869e"));
+			term.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE, Color.parseColor("#ff314d"));
+			term.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE_CURRENT, Color.parseColor("#ff314d"));
+			term.getColorScheme().setColor(EditorColorScheme.NON_PRINTABLE_CHAR, Color.parseColor("#ffb9ffcb"));
+			term.getColorScheme().setColor(EditorColorScheme.CURRENT_LINE, Color.parseColor("#20171717"));
+			term.getColorScheme().setColor(EditorColorScheme.SELECTION_INSERT, Color.parseColor("#c06dff"));
+			term.getColorScheme().setColor(EditorColorScheme.SELECTION_HANDLE, Color.parseColor("#c06dff"));
+			term.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER, Color.parseColor("#d9d9d9"));
+			term.getColorScheme().setColor(EditorColorScheme.LINE_DIVIDER, Color.parseColor("#FF2B2122"));
+			term.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_VALUE, Color.parseColor("#ffffdcb9"));
+			term.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_NAME, Color.parseColor("#FF1B4AD7"));
+			term.getColorScheme().setColor(EditorColorScheme.HTML_TAG, Color.parseColor("#ff92dc"));
+			term.getColorScheme().setColor(EditorColorScheme.TEXT_NORMAL, Color.parseColor("#ffebffd7"));
+			term.getColorScheme().setColor(EditorColorScheme.IDENTIFIER_NAME, Color.parseColor("#626262"));
+			term.getColorScheme().setColor(EditorColorScheme.COMMENT, Color.parseColor("#fff0be4b"));
+			term.getColorScheme().setColor(EditorColorScheme.KEYWORD, Color.parseColor("#ffffa1a1"));
+			term.getColorScheme().setColor(EditorColorScheme.print, Color.parseColor("#ffb4a1ff"));
+			term.getColorScheme().setColor(EditorColorScheme.Ninja, Color.parseColor("#ffffac94"));
+			term.getColorScheme().setColor(EditorColorScheme.LITERAL, Color.parseColor("#ffdea1ff"));
+			term.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_BG, Color.parseColor("#FF2B2122"));
+			term.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_CORNER, Color.parseColor("#ff94ffe7"));
+			term.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, Color.parseColor("#FF2B2122"));
+			term.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#FF2B2122"));
+			runcode.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+			arrowup.setTextColor(0xFFFDA893);
+			arrowleft.setTextColor(0xFFFDA893);
+			arrowdowen.setTextColor(0xFFFDA893);
+			arrowrhite.setTextColor(0xFFFDA893);
+			undo.setTextColor(0xFFFDA893);
+			redo.setTextColor(0xFFFDA893);
+			mrun.setBackgroundColor(0xFF2B2122);
+			mpanl.setBackgroundColor(0xFF2B2122);
+					        
+				    } else {
+				    
+			           var theme2 = new a.a.SetThemeForJson();
+			theme2.setThemeCodeEditor(term,imap,false,TerminalActivity.this);
+			theme2.AddthemetoSattos(this, imap);
+			theme2.addTextColor(undo, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			theme2.addTextColor(redo, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			theme2.addTextColor(arrowrhite, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			theme2.addTextColor(arrowdowen, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			theme2.addTextColor(arrowleft, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			theme2.addTextColor(arrowup, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			theme2.addBackground(this, imap, "BackgroundColorLinear", mpanl, 0xFF2B2121);
+			theme2.addBackground(this, imap, "BackgroundColorLinear", mrun, 0xFF2B2121);
+			theme2.addBackground(this, imap, "BackgroundColorLinear", main, 0xFF2B2121);
+			theme2.addImageColor(runcode, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+			term.setCursorWidth(20f);
+			  
+				    }
 	}
 	
 	

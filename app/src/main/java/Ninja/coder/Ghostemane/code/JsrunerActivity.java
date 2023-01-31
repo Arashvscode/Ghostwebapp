@@ -28,6 +28,7 @@ import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;

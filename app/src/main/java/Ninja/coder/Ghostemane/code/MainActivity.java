@@ -40,6 +40,7 @@ import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
@@ -145,6 +146,32 @@ public class MainActivity extends AppCompatActivity {
 		cardview1.setCardBackgroundColor(0xFF2B2121);
 		cardview1.setCardBackgroundColor(Color.TRANSPARENT);
 		cardview1.setCardElevation((float)0);
+		LayoutTransition ok = new LayoutTransition();
+				ok.enableTransitionType(LayoutTransition.CHANGING);
+				ok.enableTransitionType(LayoutTransition.APPEARING);
+				ok.enableTransitionType(LayoutTransition.DISAPPEARING);
+		
+		ok.enableTransitionType(LayoutTransition.CHANGE_APPEARING);
+				ok.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
+				ok.addTransitionListener(new LayoutTransition.TransitionListener() {
+						@Override
+						public void startTransition(LayoutTransition transition, ViewGroup container, View view,
+						int transitionType) {
+						}
+						@Override
+						public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+								if (view != linear4) {
+										return;
+								}
+								view.requestLayout();
+						}
+				});
+				
+				linear4.setLayoutTransition(ok);
+	}
+	
+	public void _aha(final View _view) {
+		
 	}
 	
 	

@@ -2,6 +2,7 @@ package Ninja.coder.Ghostemane.code;
 
 import android.Manifest;
 import android.animation.*;
+import android.animation.ObjectAnimator;
 import android.app.*;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,6 +28,11 @@ import android.view.*;
 import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.webkit.*;
 import android.widget.*;
 import android.widget.ImageView;
@@ -48,6 +54,7 @@ import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
@@ -194,6 +201,10 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private SharedPreferences setfont;
 	private SharedPreferences atx;
 	private SharedPreferences ru;
+	private ObjectAnimator objectAnim = new ObjectAnimator();
+	private SharedPreferences auto;
+	private SharedPreferences tabimageview;
+	private SharedPreferences moalaqfragment;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -274,6 +285,9 @@ public class CodeeditorActivity extends AppCompatActivity {
 		setfont = getSharedPreferences("setfont", Activity.MODE_PRIVATE);
 		atx = getSharedPreferences("atx", Activity.MODE_PRIVATE);
 		ru = getSharedPreferences("ru", Activity.MODE_PRIVATE);
+		auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+		tabimageview = getSharedPreferences("tabimageview", Activity.MODE_PRIVATE);
+		moalaqfragment = getSharedPreferences("moalaqfragment", Activity.MODE_PRIVATE);
 		
 		stopIntarsenl.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -345,6 +359,10 @@ public class CodeeditorActivity extends AppCompatActivity {
 			public void onClick(View _view) {
 				View popupView = getLayoutInflater().inflate(R.layout.janarite, null);
 				final PopupWindow popup = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+				 LinearLayout   bg = popupView.findViewById(R.id.bg);
+				
+				 
+				
 				 LinearLayout   color = popupView.findViewById(R.id.color);
 				
 				 
@@ -374,20 +392,29 @@ public class CodeeditorActivity extends AppCompatActivity {
 								popup.dismiss();
 						} });
 				
+				bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2121));
 				_clickAnimation(popupView);
-				popup.setAnimationStyle(android.R.style.Animation_Dialog);
-				
+				popup.setAnimationStyle(R.style.hso);
 				popup.showAsDropDown(st, 0,0);
-				
 				popup.setBackgroundDrawable(new BitmapDrawable());
-				st.setRotation((float)(6));
+				objectAnim.setTarget(st);
+				objectAnim.setPropertyName("rotation");
+				objectAnim.setFloatValues((float)(90));
+				objectAnim.setFloatValues((float)(0), (float)(200));
+				objectAnim.setRepeatMode(ValueAnimator.RESTART);
+				objectAnim.start();
 				ask = new TimerTask() {
 					@Override
 					public void run() {
 						runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
-								st.setRotation((float)(0));
+								objectAnim.setTarget(st);
+								objectAnim.setPropertyName("rotation");
+								objectAnim.setFloatValues((float)(0));
+								objectAnim.setFloatValues((float)(200), (float)(0));
+								objectAnim.setRepeatMode(ValueAnimator.REVERSE);
+								objectAnim.start();
 							}
 						});
 					}
@@ -469,6 +496,29 @@ public class CodeeditorActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View _view) {
 				_sysba("    ");
+				if (tab100.contains("mpcnullgogo")) {
+					if (tab100.getString("mpcnullgogo", "").equals("4")) {
+						_sysba("    ");
+					}
+					else {
+						if (tab100.getString("mpcnullgogo", "").equals("6")) {
+							_sysba("      ");
+						}
+						else {
+							if (tab100.getString("mpcnullgogo", "").equals("8")) {
+								_sysba("        ");
+							}
+							else {
+								if (tab100.getString("mpcnullgogo", "").equals("16")) {
+									_sysba("                  ");
+								}
+								else {
+									_sysba("    ");
+								}
+							}
+						}
+					}
+				}
 			}
 		});
 		
@@ -581,9 +631,14 @@ public class CodeeditorActivity extends AppCompatActivity {
 						SketchwareUtil.showMessage(getApplicationContext(), e.toString());
 					}
 					if (shp.getString("pos_path", "").contains(".html")) {
-						htmlrus.setClass(getApplicationContext(), HtmlrunerActivity.class);
-						htmlrus.putExtra("run", shp.getString("pos_path", ""));
-						startActivity(htmlrus);
+						if (moalaqfragment.contains("mpost")) {
+							_fragmentdatapost();
+						}
+						else {
+							htmlrus.setClass(getApplicationContext(), HtmlrunerActivity.class);
+							htmlrus.putExtra("run", shp.getString("pos_path", ""));
+							startActivity(htmlrus);
+						}
 					}
 					else {
 						if (shp.getString("pos_path", "").contains(".json")) {
@@ -694,15 +749,40 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private void initializeLogic() {
 		CrashHandler.INSTANCE.init(this);
 		_fab.shrink();
+		new AsyncTask<String, String, String>() {
+			@Override
+			protected void onPreExecute() {
+				progressbar1.setVisibility(View.VISIBLE);
+				proanjctor.setVisibility(View.VISIBLE);
+			}
+			@Override
+			protected String doInBackground(String... params) {
+				String _param = params[0];
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						_poz();
+					}
+				});
+				return "";
+			}
+			@Override
+			protected void onPostExecute(String _result) {
+				progressbar1.setVisibility(View.GONE);
+				proanjctor.setVisibility(View.GONE);
+			}
+		}.execute("");
 		stopIntarsenl.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFF44336));
 		fileinfo.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFEB3B));
-		backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFFFFF));
+		backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFE91E63));
+		_Ripple_Drawable(backgroundPressBack, "#FFACF784");
+		_Ripple_Drawable(fileinfo, "#FFACF784");
+		_Ripple_Drawable(stopIntarsenl, "#FFACF784");
 		_textAim();
 		_themeInstallLojic();
 		showPanelSearch.setVisibility(View.VISIBLE);
-		_poz();
-		progressbar1.setVisibility(View.GONE);
-		editor.setCursorWidth(3f);
+		editor.setCursorWidth(2f);
+		editor.initgoEditor(proanjctor);
 		badgeview3.setBadgeBackground(Color.TRANSPARENT);
 		badgeview3.setBadgeCount("");
 		_EditorSummery();
@@ -727,40 +807,106 @@ public class CodeeditorActivity extends AppCompatActivity {
 		
 		editor.setLineNumberAlign(Paint.Align.CENTER);
 		
-		
-		var themeForJson2 = new a.a.SetThemeForJson();
-		themeForJson2.setThemeCodeEditor(editor,imap,false,this);
-		themeForJson2.addTextColor(tvtitle, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(typeVl, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(bar1, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(bar2, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview3, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview4, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview5, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview6, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview7, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview8, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview9, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview10, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview11, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview12, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview13, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-		themeForJson2.AddthemetoSattos(this, imap);
-		themeForJson2.addBackground(this, imap, "ToolbarColor", CustomToolbar, 0xff030b34);
-		themeForJson2.addBackground(this, imap, "BackgroundColorLinear", Mainlinear, 0xff02102c);
-		themeForJson2.addImageColor(undo, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
-		themeForJson2.addImageColor(redo, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
-		themeForJson2.addImageColor(st, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
-		themeForJson2.addImageColor(menupopnew, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
-		themeForJson2.mfabcolor(this, _fab, imap);
-		themeForJson2.mfab2(this, _fab, imap);
-		AnimUtils.Worker(menupopnew);
-		AnimUtils.Worker(st);
-		AnimUtils.Worker(undo);
-		AnimUtils.Worker(redo);
-		
+		 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+				      
+			       
+			editor.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor("#ff869e"));
+			editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE, Color.parseColor("#ff314d"));
+			editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE_CURRENT, Color.parseColor("#ff314d"));
+			editor.getColorScheme().setColor(EditorColorScheme.NON_PRINTABLE_CHAR, Color.parseColor("#ffb9ffcb"));
+			editor.getColorScheme().setColor(EditorColorScheme.CURRENT_LINE, Color.parseColor("#20171717"));
+			editor.getColorScheme().setColor(EditorColorScheme.SELECTION_INSERT, Color.parseColor("#c06dff"));
+			editor.getColorScheme().setColor(EditorColorScheme.SELECTION_HANDLE, Color.parseColor("#c06dff"));
+			editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER, Color.parseColor("#d9d9d9"));
+			editor.getColorScheme().setColor(EditorColorScheme.LINE_DIVIDER, Color.parseColor("#FF2B2122"));
+			editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_VALUE, Color.parseColor("#ffffdcb9"));
+			editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_NAME, Color.parseColor("#FF1B4AD7"));
+			editor.getColorScheme().setColor(EditorColorScheme.HTML_TAG, Color.parseColor("#ff92dc"));
+			editor.getColorScheme().setColor(EditorColorScheme.TEXT_NORMAL, Color.parseColor("#ffebffd7"));
+			editor.getColorScheme().setColor(EditorColorScheme.IDENTIFIER_NAME, Color.parseColor("#626262"));
+			editor.getColorScheme().setColor(EditorColorScheme.COMMENT, Color.parseColor("#fff0be4b"));
+			editor.getColorScheme().setColor(EditorColorScheme.KEYWORD, Color.parseColor("#ffffa1a1"));
+			editor.getColorScheme().setColor(EditorColorScheme.print, Color.parseColor("#ffb4a1ff"));
+			editor.getColorScheme().setColor(EditorColorScheme.Ninja, Color.parseColor("#ffffac94"));
+			editor.getColorScheme().setColor(EditorColorScheme.LITERAL, Color.parseColor("#ffdea1ff"));
+			editor.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_BG, Color.parseColor("#FF2B2122"));
+			editor.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_CORNER, Color.parseColor("#ff94ffe7"));
+			editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, Color.parseColor("#FF2B2122"));
+			editor.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#FF2B2122"));
+			
+			CustomToolbar.setBackgroundColor(0xFF2B2122);
+			Mainlinear.setBackgroundColor(0xFF2B2122);
+			redo.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			undo.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			st.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			menupopnew.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			tvtitle.setTextColor(0xFFFDA893);
+			typeVl.setTextColor(0xFFFDA893);
+			themenotfound.setTextColor(0xFFFDA893);
+			textview14.setTextColor(0xFFFDA893);
+			bar1.setTextColor(0xFFFDA893);
+			bar2.setTextColor(0xFFFDA893);
+			textview3.setTextColor(0xFFFDA893);
+			textview4.setTextColor(0xFFFDA893);
+			textview5.setTextColor(0xFFFDA893);
+			textview6.setTextColor(0xFFFDA893);
+			textview11.setTextColor(0xFFFDA893);
+			textview12.setTextColor(0xFFFDA893);
+			textview13.setTextColor(0xFFFDA893);
+			textview8.setTextColor(0xFFFDA893);
+			textview7.setTextColor(0xFFFDA893);
+			textview9.setTextColor(0xFFFDA893);
+			textview10.setTextColor(0xFFFDA893);
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
+					   Window ninjacoder = this.getWindow();
+				 ninjacoder.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+				 ninjacoder.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+				
+					   ninjacoder.setStatusBarColor(Color.parseColor("#FF2B2122")); ninjacoder.setNavigationBarColor(Color.parseColor("#FF2B2122"));
+			}
+			_fab.setStrokeColor(ColorStateList.valueOf(0xFFFDA893));
+			_fab.setStrokeWidth(1);
+			_fab.setIconTint(ColorStateList.valueOf(0xFFEEEEEE));
+			_fab.setTextColor(0xFFFDA893);
+			_fab.setBackgroundTintList(ColorStateList.valueOf(0xFF2B2122));
+					        
+				    } else {
+				    
+			           
+			var themeForJson2 = new a.a.SetThemeForJson();
+			themeForJson2.setThemeCodeEditor(editor,imap,false,this);
+			themeForJson2.addTextColor(tvtitle, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(typeVl, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(bar1, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(bar2, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview3, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview4, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview5, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview6, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview7, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview8, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview9, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview10, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview11, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview12, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview13, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.AddthemetoSattos(this, imap);
+			themeForJson2.addBackground(this, imap, "ToolbarColor", CustomToolbar, 0xff030b34);
+			themeForJson2.addBackground(this, imap, "BackgroundColorLinear", Mainlinear, 0xff02102c);
+			themeForJson2.addImageColor(undo, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+			themeForJson2.addImageColor(redo, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+			themeForJson2.addImageColor(st, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+			themeForJson2.addImageColor(menupopnew, this, "ImageColor", imap, Color.parseColor("#ff94e7ff"));
+			themeForJson2.mfabcolor(this, _fab, imap);
+			themeForJson2.mfab2(this, _fab, imap);
+			AnimUtils.Worker(menupopnew);
+			AnimUtils.Worker(st);
+			AnimUtils.Worker(undo);
+			AnimUtils.Worker(redo);
+			  
+				    }
 		if (ru.contains("rup")) {
 			
 			editor.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor("#ff869e"));
@@ -852,6 +998,9 @@ public class CodeeditorActivity extends AppCompatActivity {
 		else {
 			editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
 			editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
+		}
+		if (auto.contains("mauto")) {
+			editor.setAutoCompletionEnabled(false);
 		}
 	}
 	
@@ -1076,41 +1225,62 @@ public class CodeeditorActivity extends AppCompatActivity {
 		LinearLayout formats = popupView.findViewById(R.id.formats);
 		LinearLayout searchs = popupView.findViewById(R.id.searchs);
 		LinearLayout romveds = popupView.findViewById(R.id.romveds);
-		
-		bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2122));
 		_Animwork(colorpickers);
 		_Animwork(romveds);
 		_Animwork(saves);
 		_Animwork(formats);
 		_Animwork(searchs);
 		_Animwork(links);
-		if (ru.contains("rub")) {
-			colorpicker.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
-			redo.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+		bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2122));
+		 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+				      
+			       colorpicker.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
 			romved.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
 			save.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
 			format.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
 			search.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
 			link.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
-		}
-		if (imap.containsKey("ImageColor")) {
-			colorpicker.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			redo.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			romved.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			save.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			format.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			search.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-			link.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
-		}
-		else {
-			colorpicker.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			romved.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			save.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			format.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			search.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			link.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
-			_dialogError();
-		}
+			bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2122));
+					        
+				    } else {
+				    
+			           colorpicker.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			romved.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			save.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			format.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			search.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			link.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+			bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2122));
+			if (ru.contains("rub")) {
+				colorpicker.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+				romved.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+				save.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+				format.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+				search.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+				link.setColorFilter(0xFFEEEEEE, PorterDuff.Mode.MULTIPLY);
+				bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2122));
+			}
+			else {
+				if (imap.containsKey("ImageColor")) {
+					colorpicker.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
+					romved.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
+					save.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
+					format.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
+					search.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
+					link.setColorFilter(Color.parseColor(imap.get("ImageColor").toString()), PorterDuff.Mode.MULTIPLY);
+				}
+				else {
+					colorpicker.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+					romved.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+					save.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+					format.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+					search.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+					link.setColorFilter(Color.parseColor("#ff94e7ff"), PorterDuff.Mode.MULTIPLY);
+					bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)15, 0xFF2B2122));
+					_dialogError();
+				}
+			}  
+				    }
 		
 		colorpickers.setOnClickListener(v->{
 				
@@ -1149,10 +1319,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 							
 							editor.pasteText();
 							//editor.setSelection(editor.getCursor().getRightLine(), editor.getCursor().getRightColumn());
-							
-							
-							
-							
 					}
 			})
 			.setNegativeButton("لغو", new DialogInterface.OnClickListener() {
@@ -1163,7 +1329,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 							
 					}
 			})
-			
 			
 			.build()
 			.show();
@@ -1190,7 +1355,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 							Alerter.create(CodeeditorActivity.this) 
 							.setTitle("file saved")
 							.setText("Saved file ".concat(Uri.parse(shp.getString("pos_path", "")).getLastPathSegment()))
-							.setBackgroundColorInt(0xFF1F1B1C)
+							.setBackgroundColorInt(0xFF2B2122)
 							.show();
 						}
 						else {
@@ -1220,72 +1385,53 @@ public class CodeeditorActivity extends AppCompatActivity {
 		});
 		links.setOnClickListener((view) -> {
 			
-			       		 LinearLayout linearLayout = new LinearLayout(getApplicationContext());
-					linearLayout.setLayoutParams(new LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-							android.widget.LinearLayout.LayoutParams.MATCH_PARENT));
-					linearLayout.setOrientation(LinearLayout.VERTICAL);
-			
-					
-					linearLayout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-					linearLayout.setPadding(10, 10, 10, 10);
-				
-					String[] arr = editor.getText().toString().split(" ");
-					 StringBuilder build = new StringBuilder();
-			
-					 com.google.android.material.dialog.MaterialAlertDialogBuilder bui = new com.google.android.material.dialog.MaterialAlertDialogBuilder(
-							CodeeditorActivity.this);
-							GradientDrawable gradientDrawable = new GradientDrawable();
-							gradientDrawable.setColor(Color.parseColor("#FF1F1B1C"));
-							gradientDrawable.setStroke(1,Color.parseColor("#FFFFB49D"));
-							gradientDrawable.setCornerRadius(15f);
-							bui.setBackground(gradientDrawable);
-							
-			
-					 TextView textView = new TextView(getApplicationContext());
-					textView.setTextColor(Color.RED);
-					textView.setTextIsSelectable(true);
-			
-					textView.setTextSize((float) 16);
-					bui.setPositiveButton("Copy", (cc, dd) -> {
-				
-							 try {
-									android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(
-											CLIPBOARD_SERVICE);
-									ClipData clip = ClipData.newPlainText("label", textView.getText().toString());
-									Toast.makeText(getApplicationContext() ,"Copy Link",2).show();
-									clipboard.setPrimaryClip(clip);
-							} catch (Exception exception) {
-									exception.printStackTrace();
-							}
-							
-					});
-			
-					for (String one : arr) {
-							if (one.contains("http") || one.contains("www")) {
-					
-									build.append(one).append("\n");
-					
-							}
-				
+			       LinearLayout linearLayout = new LinearLayout(getApplicationContext());
+			linearLayout.setLayoutParams(new LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+			android.widget.LinearLayout.LayoutParams.MATCH_PARENT));
+			linearLayout.setOrientation(LinearLayout.VERTICAL);
+			linearLayout.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+			linearLayout.setPadding(10, 10, 10, 10);
+			String[] arr = editor.getText().toString().split(" ");
+			StringBuilder build = new StringBuilder();
+			com.google.android.material.dialog.MaterialAlertDialogBuilder bui = new com.google.android.material.dialog.MaterialAlertDialogBuilder(
+			CodeeditorActivity.this);
+			TextView textView = new TextView(getApplicationContext());
+			textView.setTextColor(Color.RED);
+			textView.setTextIsSelectable(true);
+			textView.setTextSize((float) 16);
+			bui.setPositiveButton("Copy", (cc, dd) -> {
+					try {
+							android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(
+							CLIPBOARD_SERVICE);
+							ClipData clip = ClipData.newPlainText("label", textView.getText().toString());
+							Toast.makeText(getApplicationContext() ,"Copy Link",2).show();
+							clipboard.setPrimaryClip(clip);
+					} catch (Exception exception) {
+							exception.printStackTrace();
 					}
+					
+			});
 			
-					textView.setText(build.toString().replace("\"", "").replace("\'", "").replace("(", "").replace(")", "")
-							.replace("{", "").replace("}", "").replace("[", "").replace("]", ""));
+			for (String one : arr) {
+					if (one.contains("http") || one.contains("www")) {
+							
+							build.append(one).append("\n");
+							
+					}
+			}
+			textView.setText(build.toString().replace("\"", "").replace("\'", "").replace("(", "").replace(")", "")
+			.replace("{", "").replace("}", "").replace("[", "").replace("]", ""));
+			linearLayout.addView(textView);
+			bui.setView(linearLayout);
+			bui.show();
+			textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
+			textView.setPadding(50, 50, 8, 10);
 			
-					linearLayout.addView(textView);
-			
-					bui.setView(linearLayout);
-			
-					bui.show();
-					textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-					textView.setPadding(50, 50, 8, 10);
 			
 			
 		});
-		popup.setAnimationStyle(android.R.style.Animation_Dialog);
-		
+		popup.setAnimationStyle(R.style.hso);
 		popup.showAsDropDown(_view, 0,0);
-		
 		popup.setBackgroundDrawable(new BitmapDrawable());
 	}
 	
@@ -1619,6 +1765,8 @@ public class CodeeditorActivity extends AppCompatActivity {
 														finishAffinity();
 													}
 													_fab.hide();
+													editor.setEditorLanguage(new HTMLLanguage()); 
+													editor.setAutoCompletionEnabled(false);
 												}
 												else {
 													if (_path.endsWith(".ghost")) {
@@ -1736,7 +1884,8 @@ public class CodeeditorActivity extends AppCompatActivity {
 																			finishAffinity();
 																		}
 																		_fab.setIconResource(R.drawable.play);
-																		
+																		editor.setEditorLanguage(new HTMLLanguage()); 
+																		editor.setAutoCompletionEnabled(false);
 																		_fab.show();
 																	}
 																	else {
@@ -2864,7 +3013,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 	
 	public void _a() {
 		var aaa = new GradientDrawable();
-		aaa.setColor(0xFF1F1B1C);
+		aaa.setColor(0xFF2B2122);
 		aaa.setCornerRadius(15);
 		aaa.setStroke(1, 0xFFFDA893);
 		var di = new MaterialAlertDialogBuilder(this);
@@ -3315,6 +3464,20 @@ public class CodeeditorActivity extends AppCompatActivity {
 		
 	}
 	
+	
+	public void _inifragment() {
+	}
+	private LiveviewebDialogFragmentActivity LiveviewebDialogFragmentActivityN;
+	private FragmentManager LiveviewebDialogFragmentActivityFM;
+	public void test_LiveviewebDialogFragmentActivity () {
+	}
+	
+	
+	public void _fragmentdatapost() {
+		LiveviewebDialogFragmentActivityN = new LiveviewebDialogFragmentActivity();
+		LiveviewebDialogFragmentActivityN.show(getSupportFragmentManager(),"1");
+	}
+	
 	public class Recyclerview1Adapter extends RecyclerView.Adapter<Recyclerview1Adapter.ViewHolder> {
 		
 		ArrayList<HashMap<String, Object>> _data;
@@ -3342,6 +3505,9 @@ public class CodeeditorActivity extends AppCompatActivity {
 			final ImageView imageview2 = _view.findViewById(R.id.imageview2);
 			final TextView textview1 = _view.findViewById(R.id.textview1);
 			
+			if (tabimageview.contains("mtab")) {
+				imageview2.setVisibility(View.GONE);
+			}
 			_fab.shrink();
 			if (_data.isEmpty()) {
 				
@@ -3349,35 +3515,48 @@ public class CodeeditorActivity extends AppCompatActivity {
 			else {
 				RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 				_view.setLayoutParams(_lp);
-				if (ru.contains("rup")) {
-					android.graphics.drawable.GradientDrawable SketchUi30 = new android.graphics.drawable.GradientDrawable();
+				 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+						      
+					       android.graphics.drawable.GradientDrawable SketchUi30 = new android.graphics.drawable.GradientDrawable();
 					int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
 					SketchUi30.setColor(0xFFFDA893);
 					SketchUi30.setCornerRadii(new float[]{
 						d*360,d*360,d*360 ,d*360,d*0,d*0 ,d*0,d*0});
 					selector.setElevation(d*4);
 					selector.setBackground(SketchUi30);
-				}
-				else {
-					if (imap.containsKey("TabBack")) {
-						android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
+							        
+						    } else {
+						    
+					           if (ru.contains("rup")) {
+						android.graphics.drawable.GradientDrawable SketchUi30 = new android.graphics.drawable.GradientDrawable();
 						int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
-						SketchUi.setColor(Color.parseColor(imap.get("TabBack").toString()));
-						SketchUi.setCornerRadii(new float[]{
+						SketchUi30.setColor(0xFFFDA893);
+						SketchUi30.setCornerRadii(new float[]{
 							d*360,d*360,d*360 ,d*360,d*0,d*0 ,d*0,d*0});
 						selector.setElevation(d*4);
-						selector.setBackground(SketchUi);
+						selector.setBackground(SketchUi30);
 					}
 					else {
-						android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
-						int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
-						SketchUi.setColor(Color.parseColor("#ffd1aeff"));
-						SketchUi.setCornerRadii(new float[]{
-							d*360,d*360,d*360 ,d*360,d*0,d*0 ,d*0,d*0});
-						selector.setElevation(d*4);
-						selector.setBackground(SketchUi);
-					}
-				}
+						if (imap.containsKey("TabBack")) {
+							android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
+							int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
+							SketchUi.setColor(Color.parseColor(imap.get("TabBack").toString()));
+							SketchUi.setCornerRadii(new float[]{
+								d*360,d*360,d*360 ,d*360,d*0,d*0 ,d*0,d*0});
+							selector.setElevation(d*4);
+							selector.setBackground(SketchUi);
+						}
+						else {
+							android.graphics.drawable.GradientDrawable SketchUi = new android.graphics.drawable.GradientDrawable();
+							int d = (int) getApplicationContext().getResources().getDisplayMetrics().density;
+							SketchUi.setColor(Color.parseColor("#ffd1aeff"));
+							SketchUi.setCornerRadii(new float[]{
+								d*360,d*360,d*360 ,d*360,d*0,d*0 ,d*0,d*0});
+							selector.setElevation(d*4);
+							selector.setBackground(SketchUi);
+						}
+					}  
+						    }
 				textview1.setText(Uri.parse(_data.get((int)_position).get("path").toString()).getLastPathSegment().toLowerCase());
 				if (FileUtil.isDirectory(_data.get((int)_position).get("path").toString())) {
 					_fab.shrink();
@@ -3523,18 +3702,30 @@ public class CodeeditorActivity extends AppCompatActivity {
 					_clickAnimation(editor);
 					selector.setVisibility(View.VISIBLE);
 					n = 0;
-					textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
-					if (ru.contains("rup")) {
-						textview1.setTextColor(0xFFFDA893);
-					}
-					else {
-						if (imap.containsKey("TabTextColor")) {
+					 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+							      
+						       textview1.setTextColor(0xFFFDA893);
+								        
+							    } else {
+							    
+						           if (imap.containsKey("TabTextColor")) {
 							textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
 						}
 						else {
 							textview1.setTextColor(Color.parseColor("#f4ffc6bc"));
 						}
-					}
+						if (ru.contains("rup")) {
+							textview1.setTextColor(0xFFFDA893);
+						}
+						else {
+							if (imap.containsKey("TabTextColor")) {
+								textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+							}
+							else {
+								textview1.setTextColor(Color.parseColor("#f4ffc6bc"));
+							}
+						}  
+							    }
 				}
 				else {
 					selector.setVisibility(View.GONE);
@@ -3544,18 +3735,30 @@ public class CodeeditorActivity extends AppCompatActivity {
 					_clickAnimation(editor);
 					
 					_fab.shrink();
-					textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
-					if (ru.contains("rup")) {
-						textview1.setTextColor(0xFFEEEEEE);
-					}
-					else {
-						if (imap.containsKey("DisplayTextColorTab")) {
+					 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+							      
+						       textview1.setTextColor(0xFFEEEEEE);
+								        
+							    } else {
+							    
+						           if (imap.containsKey("DisplayTextColorTab")) {
 							textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
 						}
 						else {
 							textview1.setTextColor(Color.parseColor("#ffc9fff2"));
 						}
-					}
+						if (ru.contains("rup")) {
+							textview1.setTextColor(0xFFEEEEEE);
+						}
+						else {
+							if (imap.containsKey("DisplayTextColorTab")) {
+								textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
+							}
+							else {
+								textview1.setTextColor(Color.parseColor("#ffc9fff2"));
+							}
+						}  
+							    }
 				}
 				linear5.setOnClickListener(new View.OnClickListener() {
 					@Override
@@ -3569,18 +3772,30 @@ public class CodeeditorActivity extends AppCompatActivity {
 							if (FileUtil.isExistFile(_data.get((int)_position).get("path").toString())) {
 								_codeEditor(_data.get((int)_position).get("path").toString());
 								if (_data.get((int)_position).get("path").toString().equals(shp.getString("pos_path", ""))) {
-									textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
-									if (ru.contains("rup")) {
-										textview1.setTextColor(0xFFFDA893);
-									}
-									else {
-										if (imap.containsKey("TabTextColor")) {
+									 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+											      
+										       textview1.setTextColor(0xFFFDA893);
+												        
+											    } else {
+											    
+										           if (imap.containsKey("TabTextColor")) {
 											textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
 										}
 										else {
 											textview1.setTextColor(Color.parseColor("#f4ffc6bc"));
 										}
-									}
+										if (ru.contains("rup")) {
+											textview1.setTextColor(0xFFFDA893);
+										}
+										else {
+											if (imap.containsKey("TabTextColor")) {
+												textview1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+											}
+											else {
+												textview1.setTextColor(Color.parseColor("#f4ffc6bc"));
+											}
+										}  
+											    }
 									selector.setVisibility(View.VISIBLE);
 									_Anim01(imageview2);
 									_Anim01(textview1);
@@ -3591,18 +3806,30 @@ public class CodeeditorActivity extends AppCompatActivity {
 								}
 								else {
 									selector.setVisibility(View.GONE);
-									textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
-									if (ru.contains("rup")) {
-										textview1.setTextColor(0xFFEEEEEE);
-									}
-									else {
-										if (imap.containsKey("DisplayTextColorTab")) {
+									 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+											      
+										       textview1.setTextColor(0xFFEEEEEE);
+												        
+											    } else {
+											    
+										           if (imap.containsKey("DisplayTextColorTab")) {
 											textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
 										}
 										else {
 											textview1.setTextColor(Color.parseColor("#ffc9fff2"));
 										}
-									}
+										if (ru.contains("rup")) {
+											textview1.setTextColor(0xFFEEEEEE);
+										}
+										else {
+											if (imap.containsKey("DisplayTextColorTab")) {
+												textview1.setTextColor(Color.parseColor(imap.get("DisplayTextColorTab").toString()));
+											}
+											else {
+												textview1.setTextColor(Color.parseColor("#ffc9fff2"));
+											}
+										}  
+											    }
 									_Bounce(textview1);
 									_clickAnimation(editor);
 									_Bounce(imageview2);
@@ -3699,24 +3926,16 @@ public class CodeeditorActivity extends AppCompatActivity {
 						AnimUtils.Worker(c1); 
 						AnimUtils.Worker(c2);
 						AnimUtils.Worker(c3);
-						mcard.setCardBackgroundColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
-						mtv1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
-						mtv2.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
-						mtv3.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
-						if (ru.contains("rup")) {
-							mcard.setCardBackgroundColor(0xFF2B2122);
+						 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+								      
+							       mcard.setCardBackgroundColor(0xFF5D4037);
 							mtv1.setTextColor(0xFFE0E0E0);
 							mtv2.setTextColor(0xFFE0E0E0);
 							mtv3.setTextColor(0xFFE0E0E0);
-						}
-						else {
-							if (imap.containsKey("BackgroundColorLinear")) {
-								mcard.setCardBackgroundColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
-							}
-							else {
-								mcard.setCardBackgroundColor(0xFF2B2122);
-							}
-							if (imap.containsKey("TabTextColor")) {
+									        
+								    } else {
+								    
+							           if (imap.containsKey("TabTextColor")) {
 								mtv1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
 								mtv2.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
 								mtv3.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
@@ -3726,23 +3945,70 @@ public class CodeeditorActivity extends AppCompatActivity {
 								mtv2.setTextColor(0xFFE0E0E0);
 								mtv3.setTextColor(0xFFE0E0E0);
 							}
-						}
-						mcard.setRadius((float)10);
+							if (imap.containsKey("BackgroundColorLinear")) {
+								mcard.setCardBackgroundColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
+							}
+							else {
+								mcard.setCardBackgroundColor(0xFF4E342E);
+							}
+							if (ru.contains("rup")) {
+								mcard.setCardBackgroundColor(0xFF5D4037);
+								mtv1.setTextColor(0xFFE0E0E0);
+								mtv2.setTextColor(0xFFE0E0E0);
+								mtv3.setTextColor(0xFFE0E0E0);
+							}
+							else {
+								if (imap.containsKey("TabTextColor")) {
+									mtv1.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+									mtv2.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+									mtv3.setTextColor(Color.parseColor(imap.get("TabTextColor").toString()));
+								}
+								else {
+									mtv1.setTextColor(0xFFE0E0E0);
+									mtv2.setTextColor(0xFFE0E0E0);
+									mtv3.setTextColor(0xFFE0E0E0);
+								}
+								if (imap.containsKey("BackgroundColorLinear")) {
+									mcard.setCardBackgroundColor(Color.parseColor(imap.get("BackgroundColorLinear").toString()));
+								}
+								else {
+									mcard.setCardBackgroundColor(0xFF4E342E);
+								}
+							}  
+								    }
+						mcard.setRadius((float)15);
 						mcard.setCardElevation((float)5);
-						popup.setAnimationStyle(android.R.style.Animation_Dialog);
-						
+						popup.setAnimationStyle(R.style.hso);
 						popup.showAsDropDown(linear5, 0,0);
-						
 						popup.setBackgroundDrawable(new BitmapDrawable());
+						
 						return true;
 					}
 				});
-				if (imap.containsKey("TabBack")) {
-					_Ripple_Drawable(linear5, imap.get("TabBack").toString());
-				}
-				else {
-					_Ripple_Drawable(linear5, "#ffd1aeff");
-				}
+				 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+						      
+					       _Ripple_Drawable(linear5, "#ffd1aeff");
+							        
+						    } else {
+						    
+					           if (imap.containsKey("TabBack")) {
+						_Ripple_Drawable(linear5, imap.get("TabBack").toString());
+					}
+					else {
+						_Ripple_Drawable(linear5, "#ffd1aeff");
+					}
+					if (ru.contains("rup")) {
+						_Ripple_Drawable(linear5, "#ffd1aeff");
+					}
+					else {
+						if (imap.containsKey("TabBack")) {
+							_Ripple_Drawable(linear5, imap.get("TabBack").toString());
+						}
+						else {
+							_Ripple_Drawable(linear5, "#ffd1aeff");
+						}
+					}  
+						    }
 				shp.edit().putString("path", new Gson().toJson(_data)).commit();
 			}
 			_Anim(selector);

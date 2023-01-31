@@ -24,7 +24,6 @@ import android.view.animation.*;
 import android.webkit.*;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,6 +41,7 @@ import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
@@ -214,13 +214,13 @@ public class HtmlrunerActivity extends AppCompatActivity {
 				Window Hsi = this.getWindow();
 				Hsi.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 				Hsi.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-				Hsi.setStatusBarColor(Color.parseColor("#1F1B1C")); Hsi.setNavigationBarColor(Color.parseColor("#1F1B1C"));
+				Hsi.setStatusBarColor(Color.parseColor("#FF2B2122"));
+			    Hsi.setNavigationBarColor(Color.parseColor("#FF2B2122"));
 		}
 		
 		_toolbar.setVisibility(View.GONE);
 		textview2.setText(Uri.parse(getIntent().getStringExtra("run")).getLastPathSegment());
 		_toolbar.setBackgroundColor(0xFF2B2121);
-		pcandmobile.setImageBitmap(web.getFavicon());
 		web.setWebChromeClient(new WebChromeClient() {
 			    @Override
 			    public void onReceivedTitle(WebView view, String sTitle) {

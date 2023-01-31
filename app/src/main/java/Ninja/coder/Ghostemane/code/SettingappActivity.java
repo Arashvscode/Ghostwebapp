@@ -38,6 +38,7 @@ import androidx.webkit.*;
 import arabware.file.*;
 import com.allenliu.badgeview.*;
 import com.android.tools.r8.*;
+import com.bumptech.glide.*;
 import com.caverock.androidsvg.*;
 import com.github.angads25.filepicker.*;
 import com.github.junrar.*;
@@ -80,7 +81,7 @@ public class SettingappActivity extends AppCompatActivity {
 	private LinearLayout linear3;
 	private LinearLayout linear4;
 	private LinearLayout linear6;
-	private TextView textview6;
+	private LinearLayout linear22;
 	private LinearLayout linear7;
 	private LinearLayout linear12;
 	private LinearLayout linear14;
@@ -89,23 +90,47 @@ public class SettingappActivity extends AppCompatActivity {
 	private LinearLayout linear10;
 	private LinearLayout linear11;
 	private LinearLayout themes;
-	private TextView textview13;
+	private LinearLayout linear20;
 	private LinearLayout linear13;
-	private TextView textview1;
+	private LinearLayout linear21;
 	private TextView textview9;
 	private ImageView imageview1;
 	private TextView textview10;
 	private ImageView imageview7;
-	private TextView textview11;
-	private ImageView imageview2;
+	private TextView tvtheme;
+	private ImageView imgtheme;
+	private TextView textview13;
+	private ImageView imageview8;
 	private TextView textview14;
 	private ImageView imageview3;
+	private TextView textview1;
+	private ImageView imageview9;
 	private TextView tvword;
 	private MaterialCheckBox checkbox1;
 	private TextView textview2;
 	private MaterialCheckBox checkbox2;
 	private TextView textview4;
 	private MaterialCheckBox checkbox4;
+	private LinearLayout add;
+	private LinearLayout reminderadditem;
+	private LinearLayout linear25;
+	private LinearLayout linear26;
+	private TextView textview20;
+	private ImageView imageview11;
+	private TextView textview21;
+	private MaterialCheckBox checkbox11;
+	private LinearLayout linear27;
+	private LinearLayout linear28;
+	private LinearLayout linear29;
+	private LinearLayout linear30;
+	private TextView textview6;
+	private ImageView imageview10;
+	private TextView textview22;
+	private MaterialCheckBox checkbox12;
+	private TextView textview23;
+	private MaterialCheckBox checkbox13;
+	private TextView textview24;
+	private MaterialCheckBox checkbox14;
 	private TextView textview5;
 	private MaterialCheckBox checkbox5;
 	private LinearLayout linear18;
@@ -134,6 +159,10 @@ public class SettingappActivity extends AppCompatActivity {
 	private SharedPreferences setfont;
 	private SharedPreferences atx;
 	private SharedPreferences ru;
+	private SharedPreferences tmp;
+	private SharedPreferences auto;
+	private SharedPreferences tabimageview;
+	private SharedPreferences moalaqfragment;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -162,7 +191,7 @@ public class SettingappActivity extends AppCompatActivity {
 		linear3 = findViewById(R.id.linear3);
 		linear4 = findViewById(R.id.linear4);
 		linear6 = findViewById(R.id.linear6);
-		textview6 = findViewById(R.id.textview6);
+		linear22 = findViewById(R.id.linear22);
 		linear7 = findViewById(R.id.linear7);
 		linear12 = findViewById(R.id.linear12);
 		linear14 = findViewById(R.id.linear14);
@@ -171,23 +200,47 @@ public class SettingappActivity extends AppCompatActivity {
 		linear10 = findViewById(R.id.linear10);
 		linear11 = findViewById(R.id.linear11);
 		themes = findViewById(R.id.themes);
-		textview13 = findViewById(R.id.textview13);
+		linear20 = findViewById(R.id.linear20);
 		linear13 = findViewById(R.id.linear13);
-		textview1 = findViewById(R.id.textview1);
+		linear21 = findViewById(R.id.linear21);
 		textview9 = findViewById(R.id.textview9);
 		imageview1 = findViewById(R.id.imageview1);
 		textview10 = findViewById(R.id.textview10);
 		imageview7 = findViewById(R.id.imageview7);
-		textview11 = findViewById(R.id.textview11);
-		imageview2 = findViewById(R.id.imageview2);
+		tvtheme = findViewById(R.id.tvtheme);
+		imgtheme = findViewById(R.id.imgtheme);
+		textview13 = findViewById(R.id.textview13);
+		imageview8 = findViewById(R.id.imageview8);
 		textview14 = findViewById(R.id.textview14);
 		imageview3 = findViewById(R.id.imageview3);
+		textview1 = findViewById(R.id.textview1);
+		imageview9 = findViewById(R.id.imageview9);
 		tvword = findViewById(R.id.tvword);
 		checkbox1 = findViewById(R.id.checkbox1);
 		textview2 = findViewById(R.id.textview2);
 		checkbox2 = findViewById(R.id.checkbox2);
 		textview4 = findViewById(R.id.textview4);
 		checkbox4 = findViewById(R.id.checkbox4);
+		add = findViewById(R.id.add);
+		reminderadditem = findViewById(R.id.reminderadditem);
+		linear25 = findViewById(R.id.linear25);
+		linear26 = findViewById(R.id.linear26);
+		textview20 = findViewById(R.id.textview20);
+		imageview11 = findViewById(R.id.imageview11);
+		textview21 = findViewById(R.id.textview21);
+		checkbox11 = findViewById(R.id.checkbox11);
+		linear27 = findViewById(R.id.linear27);
+		linear28 = findViewById(R.id.linear28);
+		linear29 = findViewById(R.id.linear29);
+		linear30 = findViewById(R.id.linear30);
+		textview6 = findViewById(R.id.textview6);
+		imageview10 = findViewById(R.id.imageview10);
+		textview22 = findViewById(R.id.textview22);
+		checkbox12 = findViewById(R.id.checkbox12);
+		textview23 = findViewById(R.id.textview23);
+		checkbox13 = findViewById(R.id.checkbox13);
+		textview24 = findViewById(R.id.textview24);
+		checkbox14 = findViewById(R.id.checkbox14);
 		textview5 = findViewById(R.id.textview5);
 		checkbox5 = findViewById(R.id.checkbox5);
 		linear18 = findViewById(R.id.linear18);
@@ -214,6 +267,10 @@ public class SettingappActivity extends AppCompatActivity {
 		setfont = getSharedPreferences("setfont", Activity.MODE_PRIVATE);
 		atx = getSharedPreferences("atx", Activity.MODE_PRIVATE);
 		ru = getSharedPreferences("ru", Activity.MODE_PRIVATE);
+		tmp = getSharedPreferences("tmp", Activity.MODE_PRIVATE);
+		auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+		tabimageview = getSharedPreferences("tabimageview", Activity.MODE_PRIVATE);
+		moalaqfragment = getSharedPreferences("moalaqfragment", Activity.MODE_PRIVATE);
 		
 		linear15.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -383,7 +440,7 @@ public class SettingappActivity extends AppCompatActivity {
 			}
 		});
 		
-		textview11.setOnClickListener(new View.OnClickListener() {
+		tvtheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				intent.setClass(getApplicationContext(), AnjctorcolorActivity.class);
@@ -433,6 +490,58 @@ public class SettingappActivity extends AppCompatActivity {
 				else {
 					getvb.edit().putString("HsiGamer", "false").commit();
 					_ShowOut(checkbox4);
+				}
+			}
+		});
+		
+		checkbox11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+				final boolean _isChecked = _param2;
+				if (_isChecked) {
+					tmp.edit().putString("settmp", "true").commit();
+				}
+				else {
+					tmp.edit().remove("settmp").commit();
+				}
+			}
+		});
+		
+		checkbox12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+				final boolean _isChecked = _param2;
+				if (_isChecked) {
+					auto.edit().putString("mauto", "true").commit();
+				}
+				else {
+					auto.edit().remove("mauto").commit();
+				}
+			}
+		});
+		
+		checkbox13.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+				final boolean _isChecked = _param2;
+				if (_isChecked) {
+					tabimageview.edit().putString("mtab", "true").commit();
+				}
+				else {
+					tabimageview.edit().remove("mtab").commit();
+				}
+			}
+		});
+		
+		checkbox14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+				final boolean _isChecked = _param2;
+				if (_isChecked) {
+					moalaqfragment.edit().putString("mpost", "true").commit();
+				}
+				else {
+					moalaqfragment.edit().remove("mpost").commit();
 				}
 			}
 		});
@@ -508,6 +617,7 @@ public class SettingappActivity extends AppCompatActivity {
 		string.add("4");
 		string.add("6");
 		string.add("8");
+		string.add("16");
 		_toolbar.setBackgroundColor(0xFF2B2121);
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
 				   Window Hsi = this.getWindow();
@@ -526,10 +636,29 @@ public class SettingappActivity extends AppCompatActivity {
 			
 			
 		}
-		imageview2.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imgtheme.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 		imageview3.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 		imageview4.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
 		imageview5.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imageview8.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imageview9.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		imageview10.setColorFilter(0xFFFDA893, PorterDuff.Mode.MULTIPLY);
+		 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+				      
+			       tvtheme.setText("مدیرت تم )عدم سازگاری در اندروید ۱۲(");
+			tvtheme.setTextColor(Color.RED);
+			themes.setEnabled(false);
+			tvtheme.setEnabled(false);
+			imgtheme.setEnabled(false);
+			checkbox10.setEnabled(false);
+					        
+				    } else {
+				    
+			           themes.setEnabled(true);
+			tvtheme.setEnabled(true);
+			imgtheme.setEnabled(true);
+			checkbox10.setEnabled(true);  
+				    }
 	}
 	
 	public void _seechackswich() {
@@ -572,6 +701,18 @@ public class SettingappActivity extends AppCompatActivity {
 		if (ru.contains("rup")) {
 			checkbox10.setChecked(true);
 		}
+		if (tmp.contains("settmp")) {
+			checkbox11.setChecked(true);
+		}
+		if (auto.contains("mauto")) {
+			checkbox12.setChecked(true);
+		}
+		if (tabimageview.contains("mtab")) {
+			checkbox13.setChecked(true);
+		}
+		if (moalaqfragment.contains("moalaqfragment")) {
+			checkbox14.setChecked(true);
+		}
 	}
 	
 	
@@ -596,6 +737,11 @@ public class SettingappActivity extends AppCompatActivity {
 			else {
 				if (_post.equals("8")) {
 					tab100.edit().putString("mpcnullgogo", "8").commit();
+				}
+				else {
+					if (_post.equals("16")) {
+						tab100.edit().putString("mpcnullgogo", "16").commit();
+					}
 				}
 			}
 		}
