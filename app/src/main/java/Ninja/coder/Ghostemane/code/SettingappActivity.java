@@ -1,6 +1,7 @@
 package Ninja.coder.Ghostemane.code;
 
 import android.animation.*;
+import android.animation.ObjectAnimator;
 import android.app.*;
 import android.app.Activity;
 import android.content.*;
@@ -21,6 +22,11 @@ import android.view.*;
 import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.webkit.*;
 import android.widget.*;
 import android.widget.CompoundButton;
@@ -72,37 +78,45 @@ public class SettingappActivity extends AppCompatActivity {
 	private Toolbar _toolbar;
 	private AppBarLayout _app_bar;
 	private CoordinatorLayout _coordinator;
+	private boolean boolea = false;
+	private boolean mbool01 = false;
+	private boolean mbool02 = false;
+	private boolean mbool03 = false;
+	private boolean mbool04 = false;
 	
 	private ArrayList<String> string = new ArrayList<>();
 	
 	private NestedScrollView vscroll1;
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja linear1;
 	private LinearLayout linear2;
 	private LinearLayout linear3;
-	private LinearLayout linear4;
-	private LinearLayout linear6;
+	private LinearLayout pubilc;
+	private LinearLayout vibreh;
 	private LinearLayout linear22;
-	private LinearLayout linear7;
+	private LinearLayout lineeditor;
 	private LinearLayout linear12;
 	private LinearLayout linear14;
-	private LinearLayout linear15;
-	private LinearLayout linear16;
+	private LinearLayout spacemod;
+	private LinearLayout customfont;
 	private LinearLayout linear10;
 	private LinearLayout linear11;
 	private LinearLayout themes;
-	private LinearLayout linear20;
-	private LinearLayout linear13;
+	private LinearLayout stingkeyboard;
+	private LinearLayout keyboard;
 	private LinearLayout linear21;
 	private TextView textview9;
 	private ImageView imageview1;
+	private ImageView arrow05;
 	private TextView textview10;
 	private ImageView imageview7;
 	private TextView tvtheme;
 	private ImageView imgtheme;
+	private ImageView arrow04;
 	private TextView textview13;
 	private ImageView imageview8;
 	private TextView textview14;
 	private ImageView imageview3;
+	private ImageView arrow03;
 	private TextView textview1;
 	private ImageView imageview9;
 	private TextView tvword;
@@ -114,15 +128,17 @@ public class SettingappActivity extends AppCompatActivity {
 	private LinearLayout add;
 	private LinearLayout reminderadditem;
 	private LinearLayout linear25;
-	private LinearLayout linear26;
+	private LinearLayout size;
+	private ImageView arrow02;
 	private TextView textview20;
 	private ImageView imageview11;
 	private TextView textview21;
 	private MaterialCheckBox checkbox11;
 	private LinearLayout linear27;
-	private LinearLayout linear28;
-	private LinearLayout linear29;
-	private LinearLayout linear30;
+	private LinearLayout autotext;
+	private LinearLayout tab;
+	private LinearLayout fragment;
+	private ImageView arrow01;
 	private TextView textview6;
 	private ImageView imageview10;
 	private TextView textview22;
@@ -133,8 +149,8 @@ public class SettingappActivity extends AppCompatActivity {
 	private MaterialCheckBox checkbox14;
 	private TextView textview5;
 	private MaterialCheckBox checkbox5;
-	private LinearLayout linear18;
-	private LinearLayout linear19;
+	private LinearLayout systemWallper;
+	private LinearLayout defulttheme;
 	private TextView textview12;
 	private MaterialCheckBox checkbox8;
 	private TextView textview19;
@@ -163,6 +179,7 @@ public class SettingappActivity extends AppCompatActivity {
 	private SharedPreferences auto;
 	private SharedPreferences tabimageview;
 	private SharedPreferences moalaqfragment;
+	private ObjectAnimator mdownObjectAnimator = new ObjectAnimator();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -189,30 +206,33 @@ public class SettingappActivity extends AppCompatActivity {
 		linear1 = findViewById(R.id.linear1);
 		linear2 = findViewById(R.id.linear2);
 		linear3 = findViewById(R.id.linear3);
-		linear4 = findViewById(R.id.linear4);
-		linear6 = findViewById(R.id.linear6);
+		pubilc = findViewById(R.id.pubilc);
+		vibreh = findViewById(R.id.vibreh);
 		linear22 = findViewById(R.id.linear22);
-		linear7 = findViewById(R.id.linear7);
+		lineeditor = findViewById(R.id.lineeditor);
 		linear12 = findViewById(R.id.linear12);
 		linear14 = findViewById(R.id.linear14);
-		linear15 = findViewById(R.id.linear15);
-		linear16 = findViewById(R.id.linear16);
+		spacemod = findViewById(R.id.spacemod);
+		customfont = findViewById(R.id.customfont);
 		linear10 = findViewById(R.id.linear10);
 		linear11 = findViewById(R.id.linear11);
 		themes = findViewById(R.id.themes);
-		linear20 = findViewById(R.id.linear20);
-		linear13 = findViewById(R.id.linear13);
+		stingkeyboard = findViewById(R.id.stingkeyboard);
+		keyboard = findViewById(R.id.keyboard);
 		linear21 = findViewById(R.id.linear21);
 		textview9 = findViewById(R.id.textview9);
 		imageview1 = findViewById(R.id.imageview1);
+		arrow05 = findViewById(R.id.arrow05);
 		textview10 = findViewById(R.id.textview10);
 		imageview7 = findViewById(R.id.imageview7);
 		tvtheme = findViewById(R.id.tvtheme);
 		imgtheme = findViewById(R.id.imgtheme);
+		arrow04 = findViewById(R.id.arrow04);
 		textview13 = findViewById(R.id.textview13);
 		imageview8 = findViewById(R.id.imageview8);
 		textview14 = findViewById(R.id.textview14);
 		imageview3 = findViewById(R.id.imageview3);
+		arrow03 = findViewById(R.id.arrow03);
 		textview1 = findViewById(R.id.textview1);
 		imageview9 = findViewById(R.id.imageview9);
 		tvword = findViewById(R.id.tvword);
@@ -224,15 +244,17 @@ public class SettingappActivity extends AppCompatActivity {
 		add = findViewById(R.id.add);
 		reminderadditem = findViewById(R.id.reminderadditem);
 		linear25 = findViewById(R.id.linear25);
-		linear26 = findViewById(R.id.linear26);
+		size = findViewById(R.id.size);
+		arrow02 = findViewById(R.id.arrow02);
 		textview20 = findViewById(R.id.textview20);
 		imageview11 = findViewById(R.id.imageview11);
 		textview21 = findViewById(R.id.textview21);
 		checkbox11 = findViewById(R.id.checkbox11);
 		linear27 = findViewById(R.id.linear27);
-		linear28 = findViewById(R.id.linear28);
-		linear29 = findViewById(R.id.linear29);
-		linear30 = findViewById(R.id.linear30);
+		autotext = findViewById(R.id.autotext);
+		tab = findViewById(R.id.tab);
+		fragment = findViewById(R.id.fragment);
+		arrow01 = findViewById(R.id.arrow01);
 		textview6 = findViewById(R.id.textview6);
 		imageview10 = findViewById(R.id.imageview10);
 		textview22 = findViewById(R.id.textview22);
@@ -243,8 +265,8 @@ public class SettingappActivity extends AppCompatActivity {
 		checkbox14 = findViewById(R.id.checkbox14);
 		textview5 = findViewById(R.id.textview5);
 		checkbox5 = findViewById(R.id.checkbox5);
-		linear18 = findViewById(R.id.linear18);
-		linear19 = findViewById(R.id.linear19);
+		systemWallper = findViewById(R.id.systemWallper);
+		defulttheme = findViewById(R.id.defulttheme);
 		textview12 = findViewById(R.id.textview12);
 		checkbox8 = findViewById(R.id.checkbox8);
 		textview19 = findViewById(R.id.textview19);
@@ -272,7 +294,7 @@ public class SettingappActivity extends AppCompatActivity {
 		tabimageview = getSharedPreferences("tabimageview", Activity.MODE_PRIVATE);
 		moalaqfragment = getSharedPreferences("moalaqfragment", Activity.MODE_PRIVATE);
 		
-		linear15.setOnClickListener(new View.OnClickListener() {
+		spacemod.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				{
@@ -338,7 +360,7 @@ public class SettingappActivity extends AppCompatActivity {
 			}
 		});
 		
-		linear16.setOnClickListener(new View.OnClickListener() {
+		customfont.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(SettingappActivity.this)
@@ -425,7 +447,7 @@ public class SettingappActivity extends AppCompatActivity {
 			}
 		});
 		
-		linear13.setOnClickListener(new View.OnClickListener() {
+		keyboard.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				intent.setClass(getApplicationContext(), ResultActivity.class);
@@ -440,12 +462,68 @@ public class SettingappActivity extends AppCompatActivity {
 			}
 		});
 		
+		arrow05.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (!mbool01) {
+					mbool01 = true;
+					_animdown(arrow05);
+					themes.setVisibility(View.GONE);
+					
+				}
+				else {
+					mbool01 = false;
+					_animup(arrow05);
+					themes.setVisibility(View.VISIBLE);
+					
+				}
+			}
+		});
+		
 		tvtheme.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				intent.setClass(getApplicationContext(), AnjctorcolorActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 				startActivity(intent);
+			}
+		});
+		
+		arrow04.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (!mbool02) {
+					mbool02 = true;
+					_animdown(arrow04);
+					keyboard.setVisibility(View.GONE);
+					
+				}
+				else {
+					mbool02 = false;
+					_animup(arrow04);
+					keyboard.setVisibility(View.VISIBLE);
+					
+				}
+			}
+		});
+		
+		arrow03.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (!mbool03) {
+					mbool03 = true;
+					_animdown(arrow03);
+					vibreh.setVisibility(View.GONE);
+					pubilc.setVisibility(View.GONE);
+					
+				}
+				else {
+					mbool03 = false;
+					_animup(arrow03);
+					vibreh.setVisibility(View.VISIBLE);
+					pubilc.setVisibility(View.VISIBLE);
+					
+				}
 			}
 		});
 		
@@ -494,6 +572,23 @@ public class SettingappActivity extends AppCompatActivity {
 			}
 		});
 		
+		arrow02.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (!mbool04) {
+					mbool04 = true;
+					_animdown(arrow02);
+					size.setVisibility(View.GONE);
+					
+				}
+				else {
+					mbool04 = false;
+					_animup(arrow02);
+					size.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+		
 		checkbox11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
@@ -503,6 +598,36 @@ public class SettingappActivity extends AppCompatActivity {
 				}
 				else {
 					tmp.edit().remove("settmp").commit();
+				}
+			}
+		});
+		
+		arrow01.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (!boolea) {
+					boolea = true;
+					_animdown(arrow01);
+					autotext.setVisibility(View.GONE);
+					tab.setVisibility(View.GONE);
+					fragment.setVisibility(View.GONE);
+					lineeditor.setVisibility(View.GONE);
+					systemWallper.setVisibility(View.GONE);
+					defulttheme.setVisibility(View.GONE);
+					spacemod.setVisibility(View.GONE);
+					customfont.setVisibility(View.GONE);
+				}
+				else {
+					boolea = false;
+					_animup(arrow01);
+					autotext.setVisibility(View.VISIBLE);
+					tab.setVisibility(View.VISIBLE);
+					fragment.setVisibility(View.VISIBLE);
+					lineeditor.setVisibility(View.VISIBLE);
+					systemWallper.setVisibility(View.VISIBLE);
+					defulttheme.setVisibility(View.VISIBLE);
+					spacemod.setVisibility(View.VISIBLE);
+					customfont.setVisibility(View.VISIBLE);
 				}
 			}
 		});
@@ -618,6 +743,21 @@ public class SettingappActivity extends AppCompatActivity {
 		string.add("6");
 		string.add("8");
 		string.add("16");
+		themes.setVisibility(View.GONE);
+		keyboard.setVisibility(View.GONE);
+		pubilc.setVisibility(View.GONE);
+		vibreh.setVisibility(View.GONE);
+		size.setVisibility(View.GONE);
+		///Editor
+		autotext.setVisibility(View.GONE);
+		tab.setVisibility(View.GONE);
+		fragment.setVisibility(View.GONE);
+		lineeditor.setVisibility(View.GONE);
+		systemWallper.setVisibility(View.GONE);
+		defulttheme.setVisibility(View.GONE);
+		spacemod.setVisibility(View.GONE);
+		customfont.setVisibility(View.GONE);
+		
 		_toolbar.setBackgroundColor(0xFF2B2121);
 		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
 				   Window Hsi = this.getWindow();
@@ -710,7 +850,7 @@ public class SettingappActivity extends AppCompatActivity {
 		if (tabimageview.contains("mtab")) {
 			checkbox13.setChecked(true);
 		}
-		if (moalaqfragment.contains("moalaqfragment")) {
+		if (moalaqfragment.contains("mpost")) {
 			checkbox14.setChecked(true);
 		}
 	}
@@ -1237,6 +1377,27 @@ public class SettingappActivity extends AppCompatActivity {
 	private com.google.android.material.dialog.MaterialAlertDialogBuilder build;
 	{
 			
+			
+	}
+	
+	
+	public void _animdown(final ImageView _mimg) {
+		mdownObjectAnimator.setTarget(_mimg);
+		mdownObjectAnimator.setPropertyName("rotation");
+		mdownObjectAnimator.setFloatValues((float)(0));
+		mdownObjectAnimator.setFloatValues((float)(0), (float)(180));
+		mdownObjectAnimator.setRepeatMode(ValueAnimator.RESTART);
+		mdownObjectAnimator.start();
+	}
+	
+	
+	public void _animup(final View _mimg) {
+		mdownObjectAnimator.setTarget(_mimg);
+		mdownObjectAnimator.setPropertyName("rotation");
+		mdownObjectAnimator.setFloatValues((float)(180));
+		mdownObjectAnimator.setFloatValues((float)(180), (float)(0));
+		mdownObjectAnimator.setRepeatMode(ValueAnimator.RESTART);
+		mdownObjectAnimator.start();
 	}
 	
 	

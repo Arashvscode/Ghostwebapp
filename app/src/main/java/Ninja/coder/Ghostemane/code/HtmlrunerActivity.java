@@ -74,7 +74,7 @@ public class HtmlrunerActivity extends AppCompatActivity {
 	private boolean boolean10 = false;
 	private String param = "";
 	
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja linear1;
 	private LinearLayout linear2;
 	private WebView web;
 	private LinearLayout linear3;

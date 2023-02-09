@@ -60,7 +60,7 @@ import xyz.doikki.videoplayer.ijk.*;
 
 public class LiveviewebDialogFragmentActivity extends DialogFragment {
 	
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja param;
 	private LinearLayout linear2;
 	private WebView mweb;
 	private ImageView imageview1;
@@ -78,7 +78,7 @@ public class LiveviewebDialogFragmentActivity extends DialogFragment {
 	}
 	
 	private void initialize(Bundle _savedInstanceState, View _view) {
-		linear1 = _view.findViewById(R.id.linear1);
+		param = _view.findViewById(R.id.param);
 		linear2 = _view.findViewById(R.id.linear2);
 		mweb = _view.findViewById(R.id.mweb);
 		mweb.getSettings().setJavaScriptEnabled(true);
@@ -126,6 +126,11 @@ public class LiveviewebDialogFragmentActivity extends DialogFragment {
 		if (shp.contains("pos_path")) {
 			mweb.loadUrl("file:///".concat(shp.getString("pos_path", "")));
 		}
+		mweb.getSettings().setJavaScriptEnabled(true);
+		mweb.getSettings().setBuiltInZoomControls(true);
+		mweb.getSettings().setDisplayZoomControls(false);
+		Naitivae.FragmentStatusAndNativeView(this,"#FF2B2122");
+		Naitivae.FragmentModeAnim(this,android.R.anim.fade_in);
 	}
 	
 	@Override

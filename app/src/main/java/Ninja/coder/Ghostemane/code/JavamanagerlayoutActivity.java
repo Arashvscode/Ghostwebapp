@@ -2,7 +2,9 @@ package Ninja.coder.Ghostemane.code;
 
 import android.animation.*;
 import android.app.*;
+import android.app.Activity;
 import android.content.*;
+import android.content.SharedPreferences;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
@@ -20,6 +22,7 @@ import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -91,6 +94,8 @@ public class JavamanagerlayoutActivity extends AppCompatActivity {
 	private ImageView imageview1;
 	private EditText edittext1;
 	
+	private SharedPreferences sp;
+	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
@@ -119,6 +124,19 @@ public class JavamanagerlayoutActivity extends AppCompatActivity {
 		textview1 = findViewById(R.id.textview1);
 		imageview1 = findViewById(R.id.imageview1);
 		edittext1 = findViewById(R.id.edittext1);
+		sp = getSharedPreferences("sp", Activity.MODE_PRIVATE);
+		
+		listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4) {
+				final int _position = _param3;
+				sp.edit().putString("data", javacode1.get((int)_position).get("id").toString()).commit();
+				sp.edit().putString("bin", javacode1.get((int)_position).get("code").toString()).commit();
+				sp.edit().putString("fb", javacode1.get((int)_position).get("title").toString()).commit();
+				DialogjavacodeviewDialogFragmentActivityN = new DialogjavacodeviewDialogFragmentActivity();
+				DialogjavacodeviewDialogFragmentActivityN.show(getSupportFragmentManager(),"1");
+			}
+		});
 		
 		imageview1.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -212,6 +230,14 @@ public class JavamanagerlayoutActivity extends AppCompatActivity {
 		_view.startAnimation(fade_in);
 	}
 	
+	
+	public void _exta() {
+	}
+	private DialogjavacodeviewDialogFragmentActivity DialogjavacodeviewDialogFragmentActivityN;
+	private FragmentManager DialogjavacodeviewDialogFragmentActivityFM;
+	public void test_DialogjavacodeviewDialogFragmentActivity () {
+	}
+	
 	public class Listview1Adapter extends BaseAdapter {
 		
 		ArrayList<HashMap<String, Object>> _data;
@@ -268,87 +294,6 @@ public class JavamanagerlayoutActivity extends AppCompatActivity {
 			cardview1.setPreventCornerOverlap(true);
 			_clickAnimation(cardview1);
 			_clickAnimation(linear1);
-			linear1.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View _view) {
-					final AlertDialog dialog1 = new AlertDialog.Builder(JavamanagerlayoutActivity.this).create();
-					View inflate = getLayoutInflater().inflate(R.layout.javacodeview,null); 
-					dialog1.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-					dialog1.setView(inflate);
-					final TextView namecode = (TextView) inflate.findViewById(R.id.namecode);
-					final TextView idcode = (TextView) inflate.findViewById(R.id.idcode);
-					final io.github.rosemoe.sora.widget.CodeEditor editor = (io.github.rosemoe.sora.widget.CodeEditor) inflate.findViewById(R.id.editor);
-					final Button copy = (Button) inflate.findViewById(R.id.copy);
-					final Button nullb = (Button) inflate.findViewById(R.id.nullb);
-					final androidx.cardview.widget.CardView card = (androidx.cardview.widget.CardView) inflate.findViewById(R.id.card);
-					card.setCardBackgroundColor(0xFF1F1B1C);
-					card.setRadius((float)15);
-					card.setCardElevation((float)0);
-					card.setPreventCornerOverlap(true);
-					try{
-						///editor.setColorScheme(new io.github.rosemoe.sora.widget.EditorColorScheme());
-						editor.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor(imap.get("OPERATOR").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE, Color.parseColor(imap.get("BLOCK_LINE").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE_CURRENT, Color.parseColor(imap.get("BLOCK_LINE_CURRENT").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.NON_PRINTABLE_CHAR, Color.parseColor(imap.get("NON_PRINTABLE_CHAR").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.CURRENT_LINE, Color.parseColor(imap.get("CURRENT_LINE").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.SELECTION_INSERT, Color.parseColor(imap.get("SELECTION_INSERT").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.SELECTION_HANDLE, Color.parseColor(imap.get("SELECTION_HANDLE").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER, Color.parseColor(imap.get("LINE_NUMBER").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.LINE_DIVIDER, Color.parseColor(imap.get("LINE_DIVIDER").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, Color.parseColor(imap.get("LINE_NUMBER_BACKGROUND").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor(imap.get("WHOLE_BACKGROUND").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_VALUE, Color.parseColor(imap.get("ATTRIBUTE_VALUE").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_NAME, Color.parseColor(imap.get("ATTRIBUTE_NAME").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.HTML_TAG, Color.parseColor(imap.get("HTML_TAG").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.TEXT_NORMAL, Color.parseColor(imap.get("TEXT_NORMAL").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.IDENTIFIER_NAME, Color.parseColor(imap.get("IDENTIFIER_NAME").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.COMMENT, Color.parseColor(imap.get("COMMENT").toString()));
-						//// for css and other....
-						editor.getColorScheme().setColor(EditorColorScheme.KEYWORD, Color.parseColor(imap.get("KEYWORD").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.print, Color.parseColor(imap.get("print").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.Ninja, Color.parseColor(imap.get("Ninja").toString()));
-						editor.getColorScheme().setColor(EditorColorScheme.LITERAL, Color.parseColor(imap.get("LITERAL").toString()));
-					}catch(Exception e){
-						SketchwareUtil.showMessage(getApplicationContext(), e.toString());
-					}
-					_clickAnimation(editor);
-					editor.setText(javacode1.get((int)_position).get("code").toString());
-					editor.setEditorLanguage(new io.github.rosemoe.sora.langs.java.JavaLanguage()); 
-					editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
-					editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
-					namecode.setText("name : ".concat(javacode1.get((int)_position).get("title").toString()));
-					if (javacode1.get((int)_position).containsKey("id")) {
-						idcode.setText(javacode1.get((int)_position).get("id").toString());
-						idcode.setTextColor(0xFFFFFFFF);
-					}
-					else {
-						idcode.setTextColor(0xFFF44336);
-						idcode.setText("Null Pull id 0");
-					}
-					copy.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-									
-								try {
-								android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE); 
-								ClipData clip = ClipData.newPlainText("label", editor.getText().toString());
-								clipboard.setPrimaryClip(clip);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							dialog1.dismiss();
-							
-							}
-					});
-					nullb.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-									
-								dialog1.dismiss();
-							
-							}
-					});
-					dialog1.setCancelable(false);
-					dialog1.show();
-				}
-			});
 			
 			return _view;
 		}

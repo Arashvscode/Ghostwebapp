@@ -76,7 +76,7 @@ public class AboutActivity extends AppCompatActivity {
 	
 	private ArrayList<HashMap<String, Object>> mp = new ArrayList<>();
 	
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja linear1;
 	private LinearLayout linear2;
 	private LinearLayout linear3;
 	private LinearLayout linear7;

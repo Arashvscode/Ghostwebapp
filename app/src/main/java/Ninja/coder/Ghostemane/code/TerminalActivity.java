@@ -22,6 +22,7 @@ import android.webkit.*;
 import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,11 +70,14 @@ public class TerminalActivity extends AppCompatActivity {
 	private HashMap<String, Object> imap = new HashMap<>();
 	private String pos = "";
 	
-	private LinearLayout main;
+	private PraramnetLayoutNinja main;
 	private LinearLayout mrun;
-	private CodeEditor term;
+	private FrameLayout mFrameLayout;
 	private LinearLayout mpanl;
 	private ImageView runcode;
+	private CodeEditor term;
+	private FrameLayout mFrameLayout2;
+	private ProgressBar mbar1;
 	private TextView arrowup;
 	private TextView arrowleft;
 	private TextView arrowdowen;
@@ -105,9 +109,12 @@ public class TerminalActivity extends AppCompatActivity {
 	private void initialize(Bundle _savedInstanceState) {
 		main = findViewById(R.id.main);
 		mrun = findViewById(R.id.mrun);
-		term = findViewById(R.id.term);
+		mFrameLayout = findViewById(R.id.mFrameLayout);
 		mpanl = findViewById(R.id.mpanl);
 		runcode = findViewById(R.id.runcode);
+		term = findViewById(R.id.term);
+		mFrameLayout2 = findViewById(R.id.mFrameLayout2);
+		mbar1 = findViewById(R.id.mbar1);
 		arrowup = findViewById(R.id.arrowup);
 		arrowleft = findViewById(R.id.arrowleft);
 		arrowdowen = findViewById(R.id.arrowdowen);
@@ -208,6 +215,7 @@ public class TerminalActivity extends AppCompatActivity {
 	
 	private void initializeLogic() {
 		term.setEditorLanguage(new UniversalLanguage(new io.github.rosemoe.sora.langs.desc.ShellDescription()));
+		term.initgoEditor(mbar1);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		term.setLineNumberEnabled(false);
 		imap = new HashMap<>();

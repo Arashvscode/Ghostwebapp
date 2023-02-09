@@ -38,6 +38,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.*;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -198,11 +199,12 @@ public class FiledirActivity extends AppCompatActivity {
 	private ArrayList<String> str1 = new ArrayList<>();
 	private ArrayList<String> str2 = new ArrayList<>();
 	
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja linear1;
 	private LinearLayout CensractorListView1;
 	private LinearLayout ItemsPrtecalViews;
 	private LinearLayout linear4;
 	private GridView gridview1;
+	private LinearLayout postTask;
 	private ListView CandishenListview1GetMethodFile;
 	private LinearLayout Calciolater;
 	private LinearLayout linear7;
@@ -214,6 +216,8 @@ public class FiledirActivity extends AppCompatActivity {
 	private MaterialCheckBox checkbox2;
 	private ImageView imageview1;
 	private RecyclerView recyclerview1;
+	private ProgressBar progressbar1;
+	private TextView textview3;
 	private ImageView imageview2;
 	private TextView textview1;
 	private LinearLayout linearDis;
@@ -327,6 +331,7 @@ public class FiledirActivity extends AppCompatActivity {
 		ItemsPrtecalViews = findViewById(R.id.ItemsPrtecalViews);
 		linear4 = findViewById(R.id.linear4);
 		gridview1 = findViewById(R.id.gridview1);
+		postTask = findViewById(R.id.postTask);
 		CandishenListview1GetMethodFile = findViewById(R.id.CandishenListview1GetMethodFile);
 		Calciolater = findViewById(R.id.Calciolater);
 		linear7 = findViewById(R.id.linear7);
@@ -338,6 +343,8 @@ public class FiledirActivity extends AppCompatActivity {
 		checkbox2 = findViewById(R.id.checkbox2);
 		imageview1 = findViewById(R.id.imageview1);
 		recyclerview1 = findViewById(R.id.recyclerview1);
+		progressbar1 = findViewById(R.id.progressbar1);
+		textview3 = findViewById(R.id.textview3);
 		imageview2 = findViewById(R.id.imageview2);
 		textview1 = findViewById(R.id.textview1);
 		linearDis = findViewById(R.id.linearDis);
@@ -379,876 +386,477 @@ public class FiledirActivity extends AppCompatActivity {
 			@Override
 			public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4) {
 				final int _position = _param3;
-				post = _position;
-				if (Chack) {
-					files.get((int)_position).put("sel", "true");
-					((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
-				}
-				else {
-					files.get((int)_position).put("sel", "false");
-					((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
-					staticstring = files.get((int)_position).get("path").toString();
-					if (FileUtil.isDirectory(files.get((int)_position).get("path").toString())) {
-						Folder = files.get((int)_position).get("path").toString();
-						_getFiles("");
-						overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+				new AsyncTask<String, String, String>() {
+					@Override
+					protected void onPreExecute() {
+						postTask.setVisibility(View.VISIBLE);
+						CandishenListview1GetMethodFile.setVisibility(View.GONE);
 					}
-					else {
-						if (staticstring.endsWith(".txt")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".go")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".css")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".php")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".js")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".html")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".dart")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".kt")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".swift")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".rb")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".rbw")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".c")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".scss")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".cs")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".java")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".json")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".cpp")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".py")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".ghost")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".xml")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".ninja")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".md")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".sh")) {
-							_checkListMap2(_position, "path", files, newlistmap);
-						}
-						if (staticstring.endsWith(".svg")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable asd = new GradientDrawable();
-									asd.setColor(0xFF1F1B1C);
-									asd.setCornerRadius(25);
-									asd.setStroke(1, 0xFFFDA893);
-							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-							    ViewGroup viewGroup = findViewById(android.R.id.content);
-									View dialogview = getLayoutInflater().inflate(R.layout.staticsvg, viewGroup, false);
-							ImageView img = dialogview.findViewById(R.id.img);
-							di.setBackground(asd);
-							di.setTitle("Svg File Show");
-							try{
-								SvgShow.GetFileSvg(staticstring,img,getApplicationContext());
-							}catch(Exception e){
-								SvgShow.GetAsster(getApplicationContext() , img , "file_type_svg.svg");
-							}
-							di.setMessage(Uri.parse(staticstring).getLastPathSegment());
-							di.setNegativeButton("Ok", (p3, d3) -> {
-								
-								          
-								
-											});
-							di.setPositiveButton("Edit", (p1, d2) -> {
-								
-								         _checkListMap2(_position, "path", files, newlistmap);
-								
-											});
-							di.setView(dialogview);
-							di.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".jar")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable asd1 = new GradientDrawable();
-									asd1.setColor(0xFF1F1B1C);
-									asd1.setCornerRadius(25);
-									asd1.setStroke(1, 0xFFFDA893);
-							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-							    di.setTitle("لطفا یکی از گزینه های زیر را انتخاب کنید");
-							di.setMessage("توجه داشته باشید که برای تغییر jar به dex گزینه مناسب را انتخاب کنید ممکن است تغییرات و یا دیکامپایل کردن چند دقیقه طول بکشد یا حتی این عمل انجام نشود");
-							di.setCancelable(false);
-							di.setBackground(asd1);
-							di.setPositiveButton("D8 Convert", (p1, d2) -> {
-								
-								         final AlertDialog dialog1 = new AlertDialog.Builder(FiledirActivity.this).create();
-								View inflate = getLayoutInflater().inflate(R.layout.d8tools,null); 
-								dialog1.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-								dialog1.setView(inflate);
-								final Button convert = (Button) inflate.findViewById(R.id.convert);
-								final Button setoutput = (Button) inflate.findViewById(R.id.setoutput);
-								final androidx.cardview.widget.CardView mcard = (androidx.cardview.widget.CardView) inflate.findViewById(R.id.mcard);
-								final EditText outputjar = (EditText) inflate.findViewById(R.id.outputjar);
-								final EditText inputjar = (EditText) inflate.findViewById(R.id.inputjar);
-								final ProgressBar pro = (ProgressBar) inflate.findViewById(R.id.pro);
-								final com.google.android.material.textfield.TextInputLayout tvin = (com.google.android.material.textfield.TextInputLayout) inflate.findViewById(R.id.tvin);
-								final com.google.android.material.textfield.TextInputLayout tvou = (com.google.android.material.textfield.TextInputLayout) inflate.findViewById(R.id.tvou);
-								
-								mcard.setCardBackgroundColor(0xFF1F1B1C);
-								mcard.setRadius((float)16);
-								mcard.setCardElevation((float)0);
-								inputjar.setText(staticstring.trim());
-								outputjar.setText(GetTab.trim());
-								pro.setVisibility(View.GONE);
-								pro.setMax((int)100);
-								setoutput.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-												
-											var properties = new DialogProperties();
-										
-										properties.selection_mode = DialogConfigs.SINGLE_MODE;
-										properties.selection_type = DialogConfigs.DIR_SELECT;
-										properties.root = new File(DialogConfigs.DEFAULT_DIR);
-										properties.error_dir = new File(DialogConfigs.DEFAULT_DIR);
-										properties.offset = new File(DialogConfigs.DEFAULT_DIR);
-										
-										var dialog = new FilePickerDialog(FiledirActivity.this,properties);
-										
-										dialog.setTitle("Select an output directory");
-										
-										dialog.setDialogSelectionListener((files) -> {
-												
-												outputjar.setText(files[0]);
-										});
-										
-										dialog.show();
-										
-										
-										}
-								});
-								convert.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-												
-											if (outputjar.getText().toString().isEmpty()) {
-											SketchwareUtil.showMessage(getApplicationContext(), "خروجی دیتا نمیتواند خالی باشد اول خروجی را انتخاب کنید");
-										}
-										else {
-											new AsyncTask<String, String, String>() {
-												@Override
-												protected void onPreExecute() {
-													getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-													convert.setText("Convert");
-													pro.setVisibility(View.VISIBLE);
-													convert.setEnabled(false);
-													inputjar.setEnabled(false);
-													outputjar.setEnabled(false);
-													setoutput.setEnabled(false);
-												}
-												@Override
-												protected String doInBackground(String... params) {
-													String _param = params[0];
-													args.clear();
-													
-													args.add("--release");
-													args.add("--lib");
-													args.add("/storage/emulated/0/GhostWebIDE/android/android.jar");
-													
-													args.add("--output");
-													args.add(outputjar.getText().toString());
-													args.add(inputjar.getText().toString());
-													try {
-															
-															D8.main(args.toArray(new String[0]));
-															
-													} catch(final Exception e) {
-															
-														runOnUiThread(() -> {
-															SketchwareUtil.showMessage(getApplicationContext(), e.toString());
-															for (int j = 0; j < (int)(args.size()); j++) {
-																pro.setProgress((int)j);
-															}
-														});
-													}
-													return "";
-												}
-												@Override
-												protected void onPostExecute(String _result) {
-													pro.setVisibility(View.GONE);
-													convert.setEnabled(true);
-													convert.setText("Done");
-													inputjar.setEnabled(false);
-													outputjar.setEnabled(false);
-													setoutput.setEnabled(false);
-													getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-													SketchwareUtil.showMessage(getApplicationContext(), "Convert to ".concat(GetTab.concat("classes.dex")));
-													_getFiles("");
-													dialog1.dismiss();
-												}
-											}.execute("");
-										}
-										
-										}
-								});
-								dialog1.show();
-								
-											});
-							di.setNeutralButton("Dicompile", (p, d) -> {
-								
-								         final AlertDialog dialog1 = new AlertDialog.Builder(FiledirActivity.this).create();
-								View inflate = getLayoutInflater().inflate(R.layout.classjardicompiler,null); 
-								dialog1.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-								dialog1.setView(inflate);
-								final androidx.cardview.widget.CardView card = (androidx.cardview.widget.CardView) inflate.findViewById(R.id.card);
-								final EditText input = (EditText) inflate.findViewById(R.id.input);
-								final EditText output = (EditText) inflate.findViewById(R.id.output);
-								final com.google.android.material.button.MaterialButton out = (com.google.android.material.button.MaterialButton) inflate.findViewById(R.id.out);
-								final com.google.android.material.button.MaterialButton run = (com.google.android.material.button.MaterialButton) inflate.findViewById(R.id.run);
-								final com.google.android.material.textfield.TextInputLayout tvin = (com.google.android.material.textfield.TextInputLayout) inflate.findViewById(R.id.tvin);
-								final com.google.android.material.textfield.TextInputLayout tvou = (com.google.android.material.textfield.TextInputLayout) inflate.findViewById(R.id.tvou);
-								final ProgressBar pros = (ProgressBar) inflate.findViewById(R.id.pros);
-								input.setText(staticstring);
-								pros.setVisibility(View.GONE);
-								card.setCardBackgroundColor(0xFF1F1B1C);
-								card.setRadius((float)16);
-								card.setCardElevation((float)0);
-								output.setText(GetTab);
-								pros.setMax((int)100);
-								out.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-												
-											var properties = new DialogProperties();
-										
-										properties.selection_mode = DialogConfigs.SINGLE_MODE;
-										properties.selection_type = DialogConfigs.DIR_SELECT;
-										properties.root = new File(DialogConfigs.DEFAULT_DIR);
-										properties.error_dir = new File(DialogConfigs.DEFAULT_DIR);
-										properties.offset = new File(DialogConfigs.DEFAULT_DIR);
-										
-										var dialog = new FilePickerDialog(FiledirActivity.this,properties);
-										
-										dialog.setTitle("Select an output directory");
-										
-										dialog.setDialogSelectionListener((files) -> {
-												
-												output.setText(files[0]);
-										});
-										
-										dialog.show();
-										
-										
-										}
-								});
-								run.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
-												
-											if (output.getText().toString().isEmpty()) {
-											SketchwareUtil.showMessage(getApplicationContext(), "خروجی نمیتواند خالی باشد");
-										}
-										else {
-											new AsyncTask<String, String, String>() {
-												@Override
-												protected void onPreExecute() {
-													input.setEnabled(false);
-													output.setEnabled(false);
-													out.setEnabled(false);
-													run.setEnabled(false);
-													pros.setEnabled(true);
-													pros.setVisibility(View.VISIBLE);
-													tvin.setEnabled(false);
-													tvou.setEnabled(false);
-												}
-												@Override
-												protected String doInBackground(String... params) {
-													String _param = params[0];
-													pv.clear();
-													pv.add(input.getText().toString());
-													pv.add("--extraclasspath");
-													pv.add("/storage/emulated/0/GhostWebIDE/android/android.jar");
-													pv.add("--outputdir");
-													pv.add(output.getText().toString());
-													//String[] CFRDicompier = {
-														//	"-jar",
-														//input.getText().toString(),
-														
-													//	"--extraclasspath",
-														
-													//	androidjar.getText().toString(),
-														
-														//"--outputdir",
-													//	output.getText().toString()
-													//};
-													
-													
-													try{
-															org.benf.cfr.reader.Main.main(pv.toArray(new String[0]));
-													}catch(Exception e){
-															
-														
-														
-														runOnUiThread(new Runnable() {
-															@Override
-															public void run() {
-																SketchwareUtil.showMessage(getApplicationContext(), e.toString());
-																for (int c22 = 0; c22 < (int)(pv.size()); c22++) {
-																	pros.setProgress((int)c22);
-																}
-															}
-														});
-													}
-													return "";
-												}
-												@Override
-												protected void onPostExecute(String _result) {
-													tvin.setEnabled(true);
-													tvou.setEnabled(true);
-													input.setEnabled(true);
-													output.setEnabled(true);
-													out.setEnabled(true);
-													run.setEnabled(true);
-													pros.setEnabled(true);
-													pros.setVisibility(View.GONE);
-													_getFiles("");
-													dialog1.dismiss();
-												}
-											}.execute("");
-										}
-										
-										}
-								});
-								dialog1.show();
-								
-											});
-							di.setNegativeButton("viewfile", (p3, d3) -> {
-								
-								         void10.setClass(getApplicationContext(), ZipshowActivity.class);
-								void10.putExtra("zipview", staticstring);
-								startActivity(void10);
-								
-											});
-							di.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".mp3")) {
-							try {
-								    m = new MediaPlayer();
-								        m.setDataSource(staticstring);
-								        m.prepare();
-								    } catch (java.io.IOException e) {
-								        e.printStackTrace();
-								    }
-							final MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(FiledirActivity.this);
-							GradientDrawable bb = new GradientDrawable();
-							bb.setColor(0xff1c1b20);
-							bb.setCornerRadius(25);
-							bb.setStroke(1, 0xFFFDA893);
-							alert.setBackground(bb);
-							ViewGroup viewGroup = findViewById(android.R.id.content);
-							View dialogview = getLayoutInflater().inflate(R.layout.music, viewGroup, false);
-							Button btn = dialogview.findViewById(R.id.btn);
-							Button btn2 =dialogview.findViewById(R.id.btn2);
-							Button btn3= dialogview.findViewById(R.id.btn3);
-							SeekBar seek = dialogview.findViewById(R.id.seek);
-							ImageView image =dialogview.findViewById(R.id.image);
-							alert.setCancelable(false);
-							{
-									final android.media.MediaMetadataRetriever mmr = new android.media.MediaMetadataRetriever();
-									mmr.setDataSource(staticstring);
-									
-									byte [] data = mmr.getEmbeddedPicture();
-									
-									if(data != null)
-									{
-											final Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-											image.setImageBitmap(bitmap);
-									}
-									else
-									{
-									        image.setImageResource(R.drawable.musico);
-											
-									}
-									
-									image.setAdjustViewBounds(true);
-							}
-							
-							seek.setMax((int) m.getDuration() / 90);
-							
-							final Handler mHandler = new Handler();
-							runOnUiThread(new Runnable() {
-									
-									@Override
-									public void run() {
-											if (m != null) {
-													int mCurrentPosition = m.getCurrentPosition() / 90;
-													seek.setProgress(mCurrentPosition);
-											}
-											mHandler.postDelayed(this, 90);
-									}
-							});
-							seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-									
-									@Override
-									public void onStopTrackingTouch(SeekBar seekBar) {
-											
-									}
-									
-									@Override
-									public void onStartTrackingTouch(SeekBar seekBar) {
-											
-									}
-									
-									@Override
-									public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-											if (m != null && fromUser) {
-													m.seekTo(progress * 90);
-													
-											}
-									}
-							});
-							
-							
-							btn3.setOnTouchListener(new View.OnTouchListener() {
-									@Override
-									public boolean onTouch(View v, MotionEvent event) {
-											switch (event.getAction()) {
-													case MotionEvent.ACTION_DOWN: {
-															ObjectAnimator scaleX = new ObjectAnimator();
-															scaleX.setTarget(btn3);
-															scaleX.setPropertyName("scaleX");
-															scaleX.setFloatValues(0.9f);
-															scaleX.setDuration((int) 5);
-															scaleX.start();
-															
-															ObjectAnimator scaleY = new ObjectAnimator();
-															scaleY.setTarget(btn3);
-															scaleY.setPropertyName("scaleY");
-															scaleY.setFloatValues(0.9f);
-															scaleY.setDuration((int) 5);
-															scaleY.start();
-															break;
-													}
-													case MotionEvent.ACTION_UP: {
-															
-															ObjectAnimator scaleX = new ObjectAnimator();
-															scaleX.setTarget(btn3);
-															scaleX.setPropertyName("scaleX");
-															scaleX.setFloatValues((float) 1);
-															scaleX.setDuration((int) 5);
-															scaleX.start();
-															
-															ObjectAnimator scaleY = new ObjectAnimator();
-															scaleY.setTarget(btn3);
-															scaleY.setPropertyName("scaleY");
-															scaleY.setFloatValues((float) 1);
-															scaleY.setDuration((int) 5);
-															scaleY.start();
-															
-															break;
-													}
-											}
-											return false;
-											
-									}
-							});
-							btn.setOnTouchListener(new View.OnTouchListener() {
-									@Override
-									public boolean onTouch(View v, MotionEvent event) {
-											switch (event.getAction()) {
-													case MotionEvent.ACTION_DOWN: {
-															ObjectAnimator scaleX = new ObjectAnimator();
-															scaleX.setTarget(btn);
-															scaleX.setPropertyName("scaleX");
-															scaleX.setFloatValues(0.9f);
-															scaleX.setDuration((int) 5);
-															scaleX.start();
-															
-															ObjectAnimator scaleY = new ObjectAnimator();
-															scaleY.setTarget(btn);
-															scaleY.setPropertyName("scaleY");
-															scaleY.setFloatValues(0.9f);
-															scaleY.setDuration((int) 5);
-															scaleY.start();
-															break;
-													}
-													case MotionEvent.ACTION_UP: {
-															
-															ObjectAnimator scaleX = new ObjectAnimator();
-															scaleX.setTarget(btn);
-															scaleX.setPropertyName("scaleX");
-															scaleX.setFloatValues((float) 1);
-															scaleX.setDuration((int) 5);
-															scaleX.start();
-															
-															ObjectAnimator scaleY = new ObjectAnimator();
-															scaleY.setTarget(btn);
-															scaleY.setPropertyName("scaleY");
-															scaleY.setFloatValues((float) 1);
-															scaleY.setDuration((int) 5);
-															scaleY.start();
-															
-															break;
-													}
-											}
-											return false;
-									}
-							});
-							btn2.setOnTouchListener(new View.OnTouchListener() {
-									@Override
-									public boolean onTouch(View v, MotionEvent event) {
-											switch (event.getAction()) {
-													case MotionEvent.ACTION_DOWN: {
-															ObjectAnimator scaleX = new ObjectAnimator();
-															scaleX.setTarget(btn2);
-															scaleX.setPropertyName("scaleX");
-															scaleX.setFloatValues(0.9f);
-															scaleX.setDuration((int) 5);
-															scaleX.start();
-															
-															ObjectAnimator scaleY = new ObjectAnimator();
-															scaleY.setTarget(btn2);
-															scaleY.setPropertyName("scaleY");
-															scaleY.setFloatValues(0.9f);
-															scaleY.setDuration((int) 5);
-															scaleY.start();
-															break;
-													}
-													case MotionEvent.ACTION_UP: {
-															
-															ObjectAnimator scaleX = new ObjectAnimator();
-															scaleX.setTarget(btn2);
-															scaleX.setPropertyName("scaleX");
-															scaleX.setFloatValues((float) 1);
-															scaleX.setDuration((int) 5);
-															scaleX.start();
-															
-															ObjectAnimator scaleY = new ObjectAnimator();
-															scaleY.setTarget(btn2);
-															scaleY.setPropertyName("scaleY");
-															scaleY.setFloatValues((float) 1);
-															scaleY.setDuration((int) 5);
-															scaleY.start();
-															
-															break;
-													}
-											}
-											return false;
-									}
-							});
-							if (m.isPlaying()) {
-									btn3.setText("ایست");
-							} else {
-									btn3.setText("شروع");
-							}
-							btn.setOnClickListener((vv)-> {
-									
-							});
-							
-							btn2.setOnClickListener((b)-> {
-									
-							});
-							btn3.setOnClickListener((v) -> {
-									
-									if (m.isPlaying()) {
-											btn3.setText("شروع");
-											m.pause();
-									} else {
-											btn3.setText("ایست");
-											m.start();
-									}
-									
-							});
-							final String _btn9 = ("خروج");
-							alert.setPositiveButton(_btn9, (i,v)-> {
-									
-									m.reset();
-									
-									
-							});
-							seek.setProgressTintList(ColorStateList.valueOf(0xFFFF9800));
-							
-							seek.getThumb().setColorFilter((0xFFFF9800), PorterDuff.Mode.MULTIPLY);
-							
-							alert.setView(dialogview);
-							alert.create().show();
-							
-						}
-						if (staticstring.endsWith(".web")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable a43 = new GradientDrawable();
-									a43.setColor(0xFF2B2121);
-									a43.setCornerRadius(15);
-									a43.setStroke(1, 0xFFFDA893);
-							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-							    di.setTitle("نصب پروژه");
-							di.setMessage("آیا میخواهید این پروژه رو نصب کنید؟");
-							projectPath = "/storage/emulated/0/GhostWebIDE/project/data/";
-							
-							di.setNeutralButton("استخراج در همین جا", (p, d) -> {
-								
-								         _TryunZipProject(staticstring, GetTab, "Install Project", "UnZip project ".concat(staticstring));
-								
-											});
-							di.setPositiveButton("استخراج در پوشه برنامه", (p1, d2) -> {
-								
-								         _TryunZipProject(staticstring, projectPath, "Install Project", "UnZip project ".concat(staticstring));
-								
-											});
-							di.setBackground(a43);
-							di.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".mp4")) {
-							govirwFilm.setClass(getApplicationContext(), VideoviewsActivity.class);
-							govirwFilm.putExtra("getPath", staticstring);
-							govirwFilm.putExtra("getTitle", Uri.parse(staticstring).getLastPathSegment());
-							startActivity(govirwFilm);
-						}
-						if (staticstring.endsWith(".png")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable v800 = new GradientDrawable();
-									v800.setColor(0xFF2B2122);
-									v800.setCornerRadius(15);
-									v800.setStroke(1, 0xFFFDA893);
-							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-							    ViewGroup viewGroup = findViewById(android.R.id.content);
-									View dialogview = getLayoutInflater().inflate(R.layout.imgview, viewGroup, false);
-							ImageView img = dialogview.findViewById(R.id.img);
-							di.setTitle("ImageView");
-							img.setImageBitmap(FileUtil.decodeSampleBitmapFromPath(staticstring, 1024, 1024));
-							di.setMessage(Uri.parse(staticstring).getLastPathSegment());
-							di.setCancelable(false);
-							di.setNeutralButton("Ok", (p, d) -> {
-								
-								          
-								
-											});
-							di.setNegativeButton("Convert", (p3, d3) -> {
-								
-								         _pngtotiff(staticstring, staticstring.replace(".png", ".tiff"));
-								
-											});
-							di.setBackground(v800);
-							di.setView(dialogview);
-							di.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".apk")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable h1 = new GradientDrawable();
-									h1.setColor(0xFF2B2122);
-									h1.setCornerRadius(13);
-									h1.setStroke(1, 0xFFFDA893);
-							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-							    ViewGroup viewGroup = findViewById(android.R.id.content);
-									View dialogview = getLayoutInflater().inflate(R.layout.apkfile, viewGroup, false);
-							TextView tv = dialogview.findViewById(R.id.tv);
-							ImageView ico = dialogview.findViewById(R.id.ico);
-							tv.setText(Uri.parse(staticstring).getLastPathSegment());
-							TextView name = dialogview.findViewById(R.id.name);
-							TextView ver = dialogview.findViewById(R.id.ver);
-							TextView code = dialogview.findViewById(R.id.code);
-							TextView tar = dialogview.findViewById(R.id.tar);
-							TextView min = dialogview.findViewById(R.id.min);
-							try{
-								GhostwebApk.setApkPath(staticstring);
-								name.setText(GhostwebApk.getName());
-								ver.setText(GhostwebApk.getVersionName());
-								code.setText(GhostwebApk.getVersionCode());
-								tar.setText(GhostwebApk.getTargetSdkVersion());
-								min.setText(GhostwebApk.getMinSdkVersion());
-								try { 
-										
-										
-											
-										android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
-										android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(staticstring, 0);
-										packageInfo.applicationInfo.sourceDir = staticstring;
-										packageInfo.applicationInfo.publicSourceDir = staticstring;
-										ico.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
-										packageInfo = null;
-										packageManager = null;
-										
-								} catch (Exception e){
-										e.printStackTrace();
+					@Override
+					protected String doInBackground(String... params) {
+						String _param = params[0];
+						runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								post = _position;
+								if (Chack) {
+									files.get((int)_position).put("sel", "true");
+									((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
 								}
-							}catch(Exception e){
-								 
+								else {
+									files.get((int)_position).put("sel", "false");
+									((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
+									staticstring = files.get((int)_position).get("path").toString();
+									if (FileUtil.isDirectory(files.get((int)_position).get("path").toString())) {
+										Folder = files.get((int)_position).get("path").toString();
+										_getFiles("");
+										overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+									}
+									else {
+										if (staticstring.endsWith(".txt")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".go")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".css")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".php")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".js")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".html")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".dart")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".kt")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".swift")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".rb")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".rbw")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".c")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".scss")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".cs")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".java")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".json")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".cpp")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".py")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".ghost")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".xml")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".ninja")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".md")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".sh")) {
+											_checkListMap2(_position, "path", files, newlistmap);
+										}
+										if (staticstring.endsWith(".jar")) {
+											var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+											    di.setTitle("لطفا یکی از گزینه های زیر را انتخاب کنید");
+											di.setMessage("توجه داشته باشید که برای تغییر jar به dex گزینه مناسب را انتخاب کنید ممکن است تغییرات و یا دیکامپایل کردن چند دقیقه طول بکشد یا حتی این عمل انجام نشود");
+											di.setCancelable(false);
+											di.setPositiveButton("D8 Convert", (p1, d2) -> {
+												
+												         _D8convert();
+												
+															});
+											di.setNeutralButton("Dicompile", (p, d) -> {
+												
+												         _dicomplier();
+												
+															});
+											di.setNegativeButton("viewfile", (p3, d3) -> {
+												
+												         void10.setClass(getApplicationContext(), ZipshowActivity.class);
+												void10.putExtra("zipview", staticstring);
+												startActivity(void10);
+												
+															});
+											di.show();
+											
+											
+											
+											
+										}
+										if (staticstring.endsWith(".mp3")) {
+											try {
+												    m = new MediaPlayer();
+												        m.setDataSource(staticstring);
+												        m.prepare();
+												    } catch (java.io.IOException e) {
+												        e.printStackTrace();
+												    }
+											final MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(FiledirActivity.this);
+											GradientDrawable bb = new GradientDrawable();
+											bb.setColor(0xff1c1b20);
+											bb.setCornerRadius(25);
+											bb.setStroke(1, 0xFFFDA893);
+											alert.setBackground(bb);
+											ViewGroup viewGroup = findViewById(android.R.id.content);
+											View dialogview = getLayoutInflater().inflate(R.layout.music, viewGroup, false);
+											Button btn = dialogview.findViewById(R.id.btn);
+											Button btn2 =dialogview.findViewById(R.id.btn2);
+											Button btn3= dialogview.findViewById(R.id.btn3);
+											SeekBar seek = dialogview.findViewById(R.id.seek);
+											ImageView image =dialogview.findViewById(R.id.image);
+											alert.setCancelable(false);
+											{
+													final android.media.MediaMetadataRetriever mmr = new android.media.MediaMetadataRetriever();
+													mmr.setDataSource(staticstring);
+													
+													byte [] data = mmr.getEmbeddedPicture();
+													
+													if(data != null)
+													{
+															final Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+															image.setImageBitmap(bitmap);
+													}
+													else
+													{
+													        image.setImageResource(R.drawable.musico);
+															
+													}
+													
+													image.setAdjustViewBounds(true);
+											}
+											
+											seek.setMax((int) m.getDuration() / 90);
+											
+											final Handler mHandler = new Handler();
+											runOnUiThread(new Runnable() {
+													
+													@Override
+													public void run() {
+															if (m != null) {
+																	int mCurrentPosition = m.getCurrentPosition() / 90;
+																	seek.setProgress(mCurrentPosition);
+															}
+															mHandler.postDelayed(this, 90);
+													}
+											});
+											seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+													
+													@Override
+													public void onStopTrackingTouch(SeekBar seekBar) {
+															
+													}
+													
+													@Override
+													public void onStartTrackingTouch(SeekBar seekBar) {
+															
+													}
+													
+													@Override
+													public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+															if (m != null && fromUser) {
+																	m.seekTo(progress * 90);
+																	
+															}
+													}
+											});
+											
+											
+											btn3.setOnTouchListener(new View.OnTouchListener() {
+													@Override
+													public boolean onTouch(View v, MotionEvent event) {
+															switch (event.getAction()) {
+																	case MotionEvent.ACTION_DOWN: {
+																			ObjectAnimator scaleX = new ObjectAnimator();
+																			scaleX.setTarget(btn3);
+																			scaleX.setPropertyName("scaleX");
+																			scaleX.setFloatValues(0.9f);
+																			scaleX.setDuration((int) 5);
+																			scaleX.start();
+																			
+																			ObjectAnimator scaleY = new ObjectAnimator();
+																			scaleY.setTarget(btn3);
+																			scaleY.setPropertyName("scaleY");
+																			scaleY.setFloatValues(0.9f);
+																			scaleY.setDuration((int) 5);
+																			scaleY.start();
+																			break;
+																	}
+																	case MotionEvent.ACTION_UP: {
+																			
+																			ObjectAnimator scaleX = new ObjectAnimator();
+																			scaleX.setTarget(btn3);
+																			scaleX.setPropertyName("scaleX");
+																			scaleX.setFloatValues((float) 1);
+																			scaleX.setDuration((int) 5);
+																			scaleX.start();
+																			
+																			ObjectAnimator scaleY = new ObjectAnimator();
+																			scaleY.setTarget(btn3);
+																			scaleY.setPropertyName("scaleY");
+																			scaleY.setFloatValues((float) 1);
+																			scaleY.setDuration((int) 5);
+																			scaleY.start();
+																			
+																			break;
+																	}
+															}
+															return false;
+															
+													}
+											});
+											btn.setOnTouchListener(new View.OnTouchListener() {
+													@Override
+													public boolean onTouch(View v, MotionEvent event) {
+															switch (event.getAction()) {
+																	case MotionEvent.ACTION_DOWN: {
+																			ObjectAnimator scaleX = new ObjectAnimator();
+																			scaleX.setTarget(btn);
+																			scaleX.setPropertyName("scaleX");
+																			scaleX.setFloatValues(0.9f);
+																			scaleX.setDuration((int) 5);
+																			scaleX.start();
+																			
+																			ObjectAnimator scaleY = new ObjectAnimator();
+																			scaleY.setTarget(btn);
+																			scaleY.setPropertyName("scaleY");
+																			scaleY.setFloatValues(0.9f);
+																			scaleY.setDuration((int) 5);
+																			scaleY.start();
+																			break;
+																	}
+																	case MotionEvent.ACTION_UP: {
+																			
+																			ObjectAnimator scaleX = new ObjectAnimator();
+																			scaleX.setTarget(btn);
+																			scaleX.setPropertyName("scaleX");
+																			scaleX.setFloatValues((float) 1);
+																			scaleX.setDuration((int) 5);
+																			scaleX.start();
+																			
+																			ObjectAnimator scaleY = new ObjectAnimator();
+																			scaleY.setTarget(btn);
+																			scaleY.setPropertyName("scaleY");
+																			scaleY.setFloatValues((float) 1);
+																			scaleY.setDuration((int) 5);
+																			scaleY.start();
+																			
+																			break;
+																	}
+															}
+															return false;
+													}
+											});
+											btn2.setOnTouchListener(new View.OnTouchListener() {
+													@Override
+													public boolean onTouch(View v, MotionEvent event) {
+															switch (event.getAction()) {
+																	case MotionEvent.ACTION_DOWN: {
+																			ObjectAnimator scaleX = new ObjectAnimator();
+																			scaleX.setTarget(btn2);
+																			scaleX.setPropertyName("scaleX");
+																			scaleX.setFloatValues(0.9f);
+																			scaleX.setDuration((int) 5);
+																			scaleX.start();
+																			
+																			ObjectAnimator scaleY = new ObjectAnimator();
+																			scaleY.setTarget(btn2);
+																			scaleY.setPropertyName("scaleY");
+																			scaleY.setFloatValues(0.9f);
+																			scaleY.setDuration((int) 5);
+																			scaleY.start();
+																			break;
+																	}
+																	case MotionEvent.ACTION_UP: {
+																			
+																			ObjectAnimator scaleX = new ObjectAnimator();
+																			scaleX.setTarget(btn2);
+																			scaleX.setPropertyName("scaleX");
+																			scaleX.setFloatValues((float) 1);
+																			scaleX.setDuration((int) 5);
+																			scaleX.start();
+																			
+																			ObjectAnimator scaleY = new ObjectAnimator();
+																			scaleY.setTarget(btn2);
+																			scaleY.setPropertyName("scaleY");
+																			scaleY.setFloatValues((float) 1);
+																			scaleY.setDuration((int) 5);
+																			scaleY.start();
+																			
+																			break;
+																	}
+															}
+															return false;
+													}
+											});
+											if (m.isPlaying()) {
+													btn3.setText("ایست");
+											} else {
+													btn3.setText("شروع");
+											}
+											btn.setOnClickListener((vv)-> {
+													
+											});
+											
+											btn2.setOnClickListener((b)-> {
+													
+											});
+											btn3.setOnClickListener((v) -> {
+													
+													if (m.isPlaying()) {
+															btn3.setText("شروع");
+															m.pause();
+													} else {
+															btn3.setText("ایست");
+															m.start();
+													}
+													
+											});
+											final String _btn9 = ("خروج");
+											alert.setPositiveButton(_btn9, (i,v)-> {
+													
+													m.reset();
+													
+													
+											});
+											seek.setProgressTintList(ColorStateList.valueOf(0xFFFF9800));
+											
+											seek.getThumb().setColorFilter((0xFFFF9800), PorterDuff.Mode.MULTIPLY);
+											
+											alert.setView(dialogview);
+											alert.create().show();
+											
+										}
+										if (staticstring.endsWith(".mp4")) {
+											govirwFilm.setClass(getApplicationContext(), VideoviewsActivity.class);
+											govirwFilm.putExtra("getPath", staticstring);
+											govirwFilm.putExtra("getTitle", Uri.parse(staticstring).getLastPathSegment());
+											startActivity(govirwFilm);
+										}
+										if (staticstring.endsWith(".apk")) {
+											var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+											    ViewGroup viewGroup = findViewById(android.R.id.content);
+													View dialogview = getLayoutInflater().inflate(R.layout.apkfile, viewGroup, false);
+											TextView tv = dialogview.findViewById(R.id.tv);
+											ImageView ico = dialogview.findViewById(R.id.ico);
+											tv.setText(Uri.parse(staticstring).getLastPathSegment());
+											TextView name = dialogview.findViewById(R.id.name);
+											TextView ver = dialogview.findViewById(R.id.ver);
+											TextView code = dialogview.findViewById(R.id.code);
+											TextView tar = dialogview.findViewById(R.id.tar);
+											TextView min = dialogview.findViewById(R.id.min);
+											try{
+												GhostwebApk.setApkPath(staticstring);
+												name.setText(GhostwebApk.getName());
+												ver.setText(GhostwebApk.getVersionName());
+												code.setText(GhostwebApk.getVersionCode());
+												tar.setText(GhostwebApk.getTargetSdkVersion());
+												min.setText(GhostwebApk.getMinSdkVersion());
+												try { 
+														
+														
+															
+														android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
+														android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(staticstring, 0);
+														packageInfo.applicationInfo.sourceDir = staticstring;
+														packageInfo.applicationInfo.publicSourceDir = staticstring;
+														ico.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
+														packageInfo = null;
+														packageManager = null;
+														
+												} catch (Exception e){
+														e.printStackTrace();
+												}
+											}catch(Exception e){
+												 
+											}
+											di.setNeutralButton("install", (p, d) -> {
+												
+												         try {
+													if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+																			Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
+																					FiledirActivity.this.getPackageName() + ".provider", new java.io.File(staticstring));
+																			Intent intent = new Intent(Intent.ACTION_VIEW);
+																			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+																			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+																			intent.setDataAndType(uri, "application/vnd.android.package-archive");
+																			startActivity(intent);
+														
+																	} else {
+																			Intent intent = new Intent(Intent.ACTION_VIEW);
+																			intent.setDataAndType(Uri.fromFile( new java.io.File(staticstring)),
+																					"application/vnd.android.package-archive");
+																			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+																			startActivity(intent);
+																	}
+													
+												} catch (Exception rr) {
+													showMessage (rr.toString());
+												}
+												
+															});
+											di.setPositiveButton("no", (p1, d2) -> {
+												
+												          
+												
+															});
+											di.setView(dialogview);
+											di.show();
+											
+											
+											
+											
+										}
+										if (staticstring.endsWith(".pdf")) {
+											getabout.setClass(getApplicationContext(), PdfviewActivity.class);
+											getabout.putExtra("pdf", staticstring);
+											getabout.putExtra("t", Uri.parse(staticstring).getLastPathSegment());
+											startActivity(getabout);
+										}
+										_tarview(_position, "path", files);
+										_zipviewandexsert(_position, "path", files);
+										_fontpost(files, "path", post);
+										_themeinstall(files, post, "path");
+										_installproject(files, "path", post);
+										_insertData(_position);
+									}
+								}
 							}
-							di.setNeutralButton("install", (p, d) -> {
-								
-								         
-								
-											});
-							di.setPositiveButton("no", (p1, d2) -> {
-								
-								          
-								
-											});
-							di.setBackground(h1);
-							di.setView(dialogview);
-							di.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".bmp")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable vo12001 = new GradientDrawable();
-									vo12001.setColor(0xFF2B2121);
-									vo12001.setCornerRadius(13);
-									vo12001.setStroke(1, 0xFFFDA893);
-							new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
-							    .setTitle("تغییر دهید")
-							.setMessage("آیا میخواهید ".concat(Uri.parse(staticstring).getLastPathSegment().concat(" تغییر دهید ؟")))
-							.setNeutralButton("بله", (p, d) -> {
-								
-								         _pngtotiff(staticstring, staticstring.replace(".bmp", ".tiff"));
-								
-											})
-							.setPositiveButton("خیر", (p1, d2) -> {
-								
-								          
-								
-											})
-							.setBackground(vo12001)
-							.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".jpg")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable vo12003 = new GradientDrawable();
-									vo12003.setColor(0xFF2B2121);
-									vo12003.setCornerRadius(13);
-									vo12003.setStroke(1, 0xFFFDA893);
-							new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
-							    .setTitle("تغییر دهید")
-							.setMessage("آیا میخواهید ".concat(Uri.parse(staticstring).getLastPathSegment().concat(" تغییر دهید ؟")))
-							.setNeutralButton("بله", (p, d) -> {
-								
-								         _pngtotiff(staticstring, staticstring.replace(".jpg", ".tiff"));
-								
-											})
-							.setPositiveButton("خیر", (p1, d2) -> {
-								
-								          
-								
-											})
-							.setBackground(vo12003)
-							.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".tif") || staticstring.endsWith(".tiff")) {
-							///result code By Ninja coder.ir my love java
-							
-							
-							GradientDrawable v8001 = new GradientDrawable();
-									v8001.setColor(0xFF2B2121);
-									v8001.setCornerRadius(15);
-									v8001.setStroke(1, 0xFFFDA893);
-							var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-							    ViewGroup viewGroup = findViewById(android.R.id.content);
-									View dialogview = getLayoutInflater().inflate(R.layout.imgview, viewGroup, false);
-							ImageView img = dialogview.findViewById(R.id.img);
-							di.setTitle("TiffImageView");
-							Bitmap bitmap = org.beyka.tiffbitmapfactory.TiffBitmapFactory.decodePath(staticstring);
-							final GradientDrawable gradientDrawable = new GradientDrawable();
-									gradientDrawable.setColor(0xFF1F1B1C);
-									gradientDrawable.setStroke(1,ColorStateList.valueOf(Color.parseColor("#FFFFB49D")));
-									gradientDrawable.setCornerRadius(20);
-									Glide.with(getApplicationContext())
-											.load(bitmap)
-											.placeholder(gradientDrawable)
-											.error(gradientDrawable)
-											.into(img);
-							
-							di.setMessage(Uri.parse(staticstring).getLastPathSegment());
-							di.setCancelable(false);
-							di.setNeutralButton("Ok", (p, d) -> {
-								
-								          
-								
-											});
-							di.setNegativeButton("Convert", (p3, d3) -> {
-								
-								         _startConvert(staticstring);
-								
-											});
-							di.setBackground(v8001);
-							di.setView(dialogview);
-							di.show();
-							
-							
-							
-							
-						}
-						if (staticstring.endsWith(".pdf")) {
-							getabout.setClass(getApplicationContext(), PdfviewActivity.class);
-							getabout.putExtra("pdf", staticstring);
-							getabout.putExtra("t", Uri.parse(staticstring).getLastPathSegment());
-							startActivity(getabout);
-						}
-						_tarview(_position, "path", files);
-						_zipviewandexsert(_position, "path", files);
-						_fontpost(files, "path", post);
-						_themeinstall(files, post, "path");
-						_installproject(files, "path", post);
+						});
+						return "";
 					}
-				}
+					@Override
+					protected void onPostExecute(String _result) {
+						postTask.setVisibility(View.GONE);
+						CandishenListview1GetMethodFile.setVisibility(View.VISIBLE);
+					}
+				}.execute("");
 			}
 		});
 		
@@ -1555,6 +1163,7 @@ public class FiledirActivity extends AppCompatActivity {
 		proveg.getWindow().setBackgroundDrawable(u);
 		copydir.getWindow().setBackgroundDrawable(u);
 		copypath.getWindow().setBackgroundDrawable(u);
+		postTask.setVisibility(View.GONE);
 		sd_stor = new SdCardUtil(this);
 		Folder = FileUtil.getExternalStorageDir();
 		_getFiles("");
@@ -1639,7 +1248,9 @@ public class FiledirActivity extends AppCompatActivity {
 		Alerter.create(FiledirActivity.this) 
 		.setTitle("GhostWeb IDE")
 		.setText("Version Used = 1.4.8")
-		.setBackgroundColorInt(0xFF2B2121)
+		.setBackgroundColorInt(0xFF2B2122)
+		.setTitleTypeface(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"))
+		.setTextTypeface(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"))
 		.show();
 		Calciolater.setVisibility(View.GONE);
 		linearDis.setVisibility(View.GONE);
@@ -4660,7 +4271,7 @@ public class FiledirActivity extends AppCompatActivity {
 			te.setCounterEnabled(true);
 			te.setCounterMaxLength(100);
 			te.setEndIconDrawable(R.drawable.closehsi);
-			te.setEndIconVisible(true);
+			te.setEndIconVisible(false);
 			te.setEndIconOnClickListener(v ->{
 							
 							editor.setText("");
@@ -4920,13 +4531,6 @@ public class FiledirActivity extends AppCompatActivity {
 	
 	public void _zipviewandexsert(final double _pos, final String _path, final ArrayList<HashMap<String, Object>> _map) {
 		if (_map.get((int)_pos).get(_path).toString().endsWith(".zip")) {
-			///result code By Ninja coder.ir my love java
-			
-			
-			GradientDrawable dis = new GradientDrawable();
-					dis.setColor(0xFF1F1B1C);
-					dis.setCornerRadius(25);
-					dis.setStroke(1, 0xFFFDA893);
 			var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
 			    di.setTitle("مشاهده گر فایل فشرده");
 			di.setMessage("برای مشاهده یا استخراج یکی از گزینه های زیرا انتخاب کنید دقت کنید که در محل فعلی فایل ها استخراج میشن");
@@ -4999,7 +4603,6 @@ public class FiledirActivity extends AppCompatActivity {
 				}.execute("");
 				
 							});
-			di.setBackground(dis);
 			di.show();
 			
 			
@@ -5354,82 +4957,18 @@ public class FiledirActivity extends AppCompatActivity {
 		input.setEndIconDrawable(R.drawable.msearchfileandfolder);
 		input.setEndIconOnClickListener(v ->{
 						
-						try{
-				android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				if(imm.isAcceptingText()){
-					 
-				}else{
-					SketchwareUtil.hideKeyboard(getApplicationContext());
-				}} catch(Exception _e){}
+						input.setEnabled(false);
+			bar.setVisibility(View.VISIBLE);
+			result.setVisibility(View.VISIBLE);
+			result.setText("Searching .....");
 			
-			input.setVisibility(View.VISIBLE);
-			input.setEnabled(false);
-			map.clear();
-			new Thread(new Runnable() {
-				@Override public void run() {
-					str1.clear();
-					str2.clear();
-					directoryName = Folder;
-					listf(directoryName, str1);
-					for (int post = 0; post < (int)(str1.size()); post++) {
-						{
-							HashMap<String, Object> _item = new HashMap<>();
-							_item.put(str1.get((int)(post)), "mfile");
-							map.add(_item);
-						}
-						
-					}
-					mlist.setAdapter(new MyListViewHsiListAdapter(map));
-					((BaseAdapter)mlist.getAdapter()).notifyDataSetChanged();
-					result.setVisibility(View.VISIBLE);
-					if (!(map.size() == 0)) {
-						error.setText("داده ای پیدا نشد");
-						error.setVisibility(View.VISIBLE);
-						result.setText("Result Item (".concat("0)"));
-					}
-					else {
-						try{
-							result.setText("Result Item (".concat(String.valueOf((long)(map.size())).concat(")")));
-						}catch(Exception e){
-							error.setText(e.toString());
-						}
-					}
-				}
-				public void listf(String directoryName, ArrayList<String> str1) {
-					  final ProgressDialog progressDialog = new ProgressDialog(getApplicationContext());
-					progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-					
-					
-					   java.io.File directory = new java.io.File(directoryName);
-					
-					    
-					    java.io.File[] fList = directory.listFiles();
-					   
-					    if(fList != null)
-					        for (java.io.File file : fList) {      
-						            if (file.isFile() && file.getPath().substring(file.getPath().lastIndexOf("/")+1).toLowerCase().contains(ed.getText().toString())) {
-							str2.add(file.getAbsolutePath());                str1.add(file.getPath().substring(file.getPath().lastIndexOf("/")+1));
-							
-							                   } else if (file.isDirectory()) {
-							                listf(file.getPath(), str1);
-							            }
-						        }
-					     }
-				private String directoryName = "";
-				{
-				}
-			}).start();
+			_searcher(bar, mlist, result, error, ed);
+			input.setEnabled(true);
 			
 				});
 		di.setPositiveButton("بستن", (p1, d2) -> {
 			
-			         try{
-				android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				if(imm.isAcceptingText()){
-					 
-				}else{
-					SketchwareUtil.hideKeyboard(getApplicationContext());
-				}} catch(Exception _e){}
+			          
 			
 						});
 		di.setView(dialogview);
@@ -5512,8 +5051,16 @@ public class FiledirActivity extends AppCompatActivity {
 								
 							}
 							else {
-								if (sodocerListMapRemainder.endsWith(".png")) {
-									_ImageFastShow(sodocerListMapRemainder, img);
+								if (sodocerListMapRemainder.endsWith(".png") || (sodocerListMapRemainder.endsWith(".jpg") || (sodocerListMapRemainder.endsWith(".mp3") || (sodocerListMapRemainder.endsWith(".mp4") || sodocerListMapRemainder.endsWith(".gif"))))) {
+									Glide.with(getApplicationContext())
+									.load(sodocerListMapRemainder)
+									.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
+									.circleCrop()
+									.error(R.drawable.close)
+									.thumbnail((float)0.1d)
+									.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+									.priority(Priority.HIGH)
+									.into(img);
 								}
 								else {
 									if (sodocerListMapRemainder.endsWith(".py")) {
@@ -5568,97 +5115,77 @@ public class FiledirActivity extends AppCompatActivity {
 																						SvgShow.GetAsster(getApplicationContext() , img , "mdx.svg");
 																					}
 																					else {
-																						if (sodocerListMapRemainder.endsWith(".mp3")) {
-																							SvgShow.Mp3ImageShow(sodocerListMapRemainder,img,R.drawable.musico,getApplicationContext());
+																						if (sodocerListMapRemainder.endsWith(".web")) {
+																							img.setImageResource(R.drawable.webproject);
 																						}
 																						else {
-																							if (sodocerListMapRemainder.endsWith(".web")) {
-																								img.setImageResource(R.drawable.webproject);
+																							if (sodocerListMapRemainder.endsWith(".php")) {
+																								img.setImageResource(R.drawable.languagephp);
 																							}
 																							else {
-																								if (sodocerListMapRemainder.endsWith(".php")) {
-																									img.setImageResource(R.drawable.languagephp);
+																								if (sodocerListMapRemainder.endsWith(".apk")) {
+																									try { 
+																											
+																											
+																												
+																											android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
+																											android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(sodocerListMapRemainder, 0);
+																											packageInfo.applicationInfo.sourceDir = sodocerListMapRemainder;
+																											packageInfo.applicationInfo.publicSourceDir = sodocerListMapRemainder;
+																											img.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
+																											packageInfo = null;
+																											packageManager = null;
+																											
+																									} catch (Exception e){
+																											e.printStackTrace();
+																									}
 																								}
 																								else {
-																									if (sodocerListMapRemainder.endsWith(".mp4")) {
-																										img.setImageResource(R.drawable.videothumplaese);
+																									if (sodocerListMapRemainder.endsWith(".go")) {
+																										img.setImageResource(R.drawable.languagego);
 																									}
 																									else {
-																										if (sodocerListMapRemainder.endsWith(".jpg")) {
-																											Glide.with(getApplicationContext()).load(Uri.parse("file:///".concat(sodocerListMapRemainder))).into(img);
+																										if (sodocerListMapRemainder.endsWith(".txt")) {
+																											img.setImageResource(R.drawable.txtfile);
 																										}
 																										else {
-																											if (sodocerListMapRemainder.endsWith(".apk")) {
-																												try { 
-																														
-																														
-																															
-																														android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
-																														android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(sodocerListMapRemainder, 0);
-																														packageInfo.applicationInfo.sourceDir = sodocerListMapRemainder;
-																														packageInfo.applicationInfo.publicSourceDir = sodocerListMapRemainder;
-																														img.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
-																														packageInfo = null;
-																														packageManager = null;
-																														
-																												} catch (Exception e){
-																														e.printStackTrace();
-																												}
+																											if (sodocerListMapRemainder.endsWith(".pdf")) {
+																												img.setImageResource(R.drawable.pdfview);
 																											}
 																											else {
-																												if (sodocerListMapRemainder.endsWith(".go")) {
-																													img.setImageResource(R.drawable.languagego);
+																												if (sodocerListMapRemainder.endsWith(".zip") || sodocerListMapRemainder.endsWith(".tar")) {
+																													img.setImageResource(R.drawable.zipandtar);
 																												}
 																												else {
-																													if (sodocerListMapRemainder.endsWith(".txt")) {
-																														img.setImageResource(R.drawable.txtfile);
+																													if (sodocerListMapRemainder.endsWith(".rar")) {
+																														img.setImageResource(R.drawable.rartarget);
 																													}
 																													else {
-																														if (sodocerListMapRemainder.endsWith(".pdf")) {
-																															img.setImageResource(R.drawable.pdfview);
+																														if (sodocerListMapRemainder.endsWith(".kt")) {
+																															SvgShow.GetAsster(getApplicationContext() , img , "kotlin.svg");
 																														}
 																														else {
-																															if (sodocerListMapRemainder.endsWith(".zip") || sodocerListMapRemainder.endsWith(".tar")) {
-																																img.setImageResource(R.drawable.zipandtar);
+																															if (sodocerListMapRemainder.endsWith(".rb") || sodocerListMapRemainder.endsWith(".rbw")) {
+																																SvgShow.GetAsster(getApplicationContext() , img , "ruby.svg");
 																															}
 																															else {
-																																if (sodocerListMapRemainder.endsWith(".rar")) {
-																																	img.setImageResource(R.drawable.rartarget);
+																																if (sodocerListMapRemainder.endsWith(".dart")) {
+																																	SvgShow.GetAsster(getApplicationContext() , img , "dart.svg");
 																																}
 																																else {
-																																	if (sodocerListMapRemainder.endsWith(".kt")) {
-																																		SvgShow.GetAsster(getApplicationContext() , img , "kotlin.svg");
+																																	if (sodocerListMapRemainder.endsWith(".swift")) {
+																																		SvgShow.GetAsster(getApplicationContext() , img , "swift.svg");
 																																	}
 																																	else {
-																																		if (sodocerListMapRemainder.endsWith(".rb") || sodocerListMapRemainder.endsWith(".rbw")) {
-																																			SvgShow.GetAsster(getApplicationContext() , img , "ruby.svg");
+																																		if (sodocerListMapRemainder.endsWith(".ttf") || sodocerListMapRemainder.endsWith(".otf")) {
+																																			img.setImageResource(R.drawable.fontlookimageview);
 																																		}
 																																		else {
-																																			if (sodocerListMapRemainder.endsWith(".dart")) {
-																																				SvgShow.GetAsster(getApplicationContext() , img , "dart.svg");
+																																			if (sodocerListMapRemainder.endsWith(".AA")) {
+																																				img.setImageResource(R.drawable.resulttheme);
 																																			}
 																																			else {
-																																				if (sodocerListMapRemainder.endsWith(".swift")) {
-																																					SvgShow.GetAsster(getApplicationContext() , img , "swift.svg");
-																																				}
-																																				else {
-																																					if (sodocerListMapRemainder.endsWith(".gif")) {
-																																						Glide.with(getApplicationContext()).load(Uri.parse("file:///".concat(sodocerListMapRemainder))).into(img);
-																																					}
-																																					else {
-																																						if (sodocerListMapRemainder.endsWith(".ttf") || sodocerListMapRemainder.endsWith(".otf")) {
-																																							img.setImageResource(R.drawable.fontlookimageview);
-																																						}
-																																						else {
-																																							if (sodocerListMapRemainder.endsWith(".AA")) {
-																																								img.setImageResource(R.drawable.resulttheme);
-																																							}
-																																							else {
-																																								SvgShow.GetAsster(getApplicationContext() , img , "default_file.svg");
-																																							}
-																																						}
-																																					}
-																																				}
+																																				SvgShow.GetAsster(getApplicationContext() , img , "default_file.svg");
 																																			}
 																																		}
 																																	}
@@ -5810,8 +5337,7 @@ public class FiledirActivity extends AppCompatActivity {
 				         new AsyncTask<String, String, String>() {
 					@Override
 					protected void onPreExecute() {
-						prodel.setTitle("instaling project...");
-						prodel.setMessage("install now project ".concat(Uri.parse(_maps.get((int)_number).get(_pathz).toString()).getLastPathSegment().concat(" in your mobile")));
+						prodel.setTitle("در حال نصب صبر کنید....");
 						prodel.setCancelable(false);
 						prodel.setCanceledOnTouchOutside(false);
 						prodel.show();
@@ -5831,7 +5357,6 @@ public class FiledirActivity extends AppCompatActivity {
 														showMessage(e.toString());
 												}
 								_getFiles("");
-								SketchwareUtil.CustomToast(getApplicationContext(), "project installed to ".concat(Uri.parse(_maps.get((int)_number).get(_pathz).toString()).getLastPathSegment().concat(" your mobile ")), 0xFFFDA893, 16, 0xFF2B2122, 15, SketchwareUtil.CENTER);
 							}
 						});
 						return "";
@@ -5861,6 +5386,471 @@ public class FiledirActivity extends AppCompatActivity {
 			
 			
 		}
+	}
+	
+	
+	public void _searcher(final ProgressBar _bb, final ListView _list, final TextView _done, final TextView _errors, final TextView _edi) {
+		_bb.setVisibility(View.VISIBLE);
+		arm = _edi.getText().toString();
+		map.clear();
+		str1.clear();
+		str2.clear();
+		
+		
+		
+		
+		new Thread(new Runnable() {
+			              @Override
+			              public void run() {
+				 Looper.prepare();
+												directoryName = Folder;
+												listf(directoryName, str1);
+												for(int _repeat12 = 0; _repeat12 < (int)(str1.size()); _repeat12++) {
+															{
+																		HashMap<String, Object> _item = new HashMap<>();
+																		_item.put("mfiles", str1.get((int)(_repeat12)));
+																		map.add(_item);
+															}
+					
+															
+												}
+				
+				                runOnUiThread(new Runnable() {
+					                  @Override
+					                  public void run() {
+						
+																if (!(map.size() == 0))	
+																	try{
+							_list.setAdapter(new MyListViewHsiListAdapter(map));
+						}catch(Exception e){
+							_errors.setText("0");
+						}
+						_done.setVisibility(View.VISIBLE);
+						try{
+							_done.setText("Result Item (".concat(String.valueOf((long)(map.size())).concat(")")));
+						}catch(Exception e){
+							_errors.setText(e.toString());
+						}
+						if (map.size() == 0) {
+							_list.setVisibility(View.GONE);
+							_errors.setText("Not Found Data");
+						}
+						else {
+							_list.setVisibility(View.VISIBLE);
+						}
+						_bb.setVisibility(View.GONE);						
+														//alerto33.dismiss();
+														
+						Looper.loop();
+														  }
+					                });
+				              }
+			            }).start();
+		
+		
+		 
+		
+		
+		
+	}
+	public void listf(final String directoryName, final ArrayList<String> str1) {	              
+				
+				        java.io.File directory = new java.io.File(directoryName);
+				         
+				         java.io.File[] fList = directory.listFiles();
+				        
+				         if(fList != null)
+				             for (java.io.File file : fList) {
+						                   if (file.isFile() && file.getPath().substring(file.getPath().lastIndexOf("/")+1).toLowerCase().contains(arm)) {
+								         str2.add(file.getAbsolutePath());                
+								         str1.add(file.getPath().substring(file.getPath().lastIndexOf("/")+1));
+								         
+								                            } else if (file.isDirectory()) {
+								                         listf(file.getPath(), str1);
+								                     }
+						               }						                																	         
+		          
+		     }
+	private String directoryName = "";
+	private java.io.File directory;
+	private java.io.File[] fList;
+	private java.io.File file;
+	{
+	}
+	
+	
+	public void _insertData(final double _pos) {
+		if (files.get((int)_pos).get("path").toString().endsWith(".tif") || (files.get((int)_pos).get("path").toString().endsWith(".tiff") || (files.get((int)_pos).get("path").toString().endsWith(".png") || (files.get((int)_pos).get("path").toString().endsWith(".jpg") || (files.get((int)_pos).get("path").toString().endsWith(".jpeg") || (files.get((int)_pos).get("path").toString().endsWith(".webp") || (files.get((int)_pos).get("path").toString().endsWith(".bmp") || (files.get((int)_pos).get("path").toString().endsWith(".gif") || files.get((int)_pos).get("path").toString().endsWith(".svg"))))))))) {
+			void10.setClass(getApplicationContext(), ImgshowActivity.class);
+			void10.putExtra("img", files);
+			void10.putExtra("pos", String.valueOf((long)(_pos)));
+			startActivity(void10);
+		}
+	}
+	
+	
+	public void _D8convert() {
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
+		
+		    .setView(R.layout.d8tools)
+		.setTitle("D8 Tools")
+		.setMessage("")
+		.setCancelable(true)
+		.setPositiveButton("ok", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
+			
+			       EditText outputjar = dialog.findViewById(R.id.outputjar);		
+			
+			EditText inputjar = dialog.findViewById(R.id.inputjar);		
+			
+			ProgressBar pro = dialog.findViewById(R.id.pro);		
+			
+			com.google.android.material.textfield.TextInputLayout tvin = dialog.findViewById(R.id.tvin);		
+			
+			com.google.android.material.textfield.TextInputLayout tvou = dialog.findViewById(R.id.tvou);		
+			
+			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			inputjar.setText(staticstring.trim());
+			outputjar.setText(GetTab.trim());
+			pro.setVisibility(View.GONE);
+			if (inputjar.getText().toString().isEmpty()) {
+				positive.setEnabled(false);
+			}
+			else {
+				positive.setEnabled(true);
+			}
+			if (outputjar.getText().toString().isEmpty()) {
+				positive.setEnabled(false);
+			}
+			else {
+				positive.setEnabled(true);
+			}
+			outputjar.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (inputjar.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					if (outputjar.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
+						});
+			inputjar.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (inputjar.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					if (outputjar.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
+						});
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             new AsyncTask<String, String, String>() {
+					@Override
+					protected void onPreExecute() {
+						getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+						pro.setVisibility(View.VISIBLE);
+						inputjar.setEnabled(false);
+						outputjar.setEnabled(false);
+						positive.setEnabled(false);
+					}
+					@Override
+					protected String doInBackground(String... params) {
+						String _param = params[0];
+						args.clear();
+						
+						args.add("--release");
+						args.add("--lib");
+						args.add("/storage/emulated/0/GhostWebIDE/android/android.jar");
+						
+						args.add("--output");
+						args.add(outputjar.getText().toString());
+						args.add(inputjar.getText().toString());
+						try {
+								
+								D8.main(args.toArray(new String[0]));
+								
+						} catch(final Exception e) {
+								
+							runOnUiThread(() -> {
+								SketchwareUtil.showMessage(getApplicationContext(), e.toString());
+							});
+						}
+						return "";
+					}
+					@Override
+					protected void onPostExecute(String _result) {
+						pro.setVisibility(View.GONE);
+						inputjar.setEnabled(false);
+						outputjar.setEnabled(false);
+						positive.setEnabled(false);
+						getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+						SketchwareUtil.showMessage(getApplicationContext(), "Convert to ".concat(GetTab.concat("classes.dex")));
+						_getFiles("");
+						dialog.dismiss();
+					}
+				}.execute("");
+								
+						});
+		});
+		dialog.show();
+	}
+	
+	
+	public void _dicomplier() {
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
+		
+		    .setView(R.layout.classjardicompiler)
+		.setTitle("Dicompiler ")
+		.setMessage("")
+		.setCancelable(true)
+		.setPositiveButton("run", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
+			
+			       EditText input = dialog.findViewById(R.id.input);		
+			
+			EditText output = dialog.findViewById(R.id.output);		
+			
+			com.google.android.material.textfield.TextInputLayout tvin = dialog.findViewById(R.id.tvin);		
+			
+			com.google.android.material.textfield.TextInputLayout tvou = dialog.findViewById(R.id.tvou);		
+			
+			ProgressBar pros = dialog.findViewById(R.id.pros);		
+			
+			input.setText(staticstring);
+			pros.setVisibility(View.GONE);
+			output.setText(GetTab);
+			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             if (output.getText().toString().isEmpty()) {
+					SketchwareUtil.showMessage(getApplicationContext(), "خروجی نمیتواند خالی باشد");
+				}
+				else {
+					new AsyncTask<String, String, String>() {
+						@Override
+						protected void onPreExecute() {
+							input.setEnabled(false);
+							output.setEnabled(false);
+							pros.setEnabled(true);
+							pros.setVisibility(View.VISIBLE);
+							tvin.setEnabled(false);
+							tvou.setEnabled(false);
+							tvou.setEnabled(false);
+							positive.setEnabled(false);
+						}
+						@Override
+						protected String doInBackground(String... params) {
+							String _param = params[0];
+							pv.clear();
+							pv.add(input.getText().toString());
+							pv.add("--extraclasspath");
+							pv.add("/storage/emulated/0/GhostWebIDE/android/android.jar");
+							pv.add("--outputdir");
+							pv.add(output.getText().toString());
+							//String[] CFRDicompier = {
+								//	"-jar",
+								//input.getText().toString(),
+								
+							//	"--extraclasspath",
+								
+							//	androidjar.getText().toString(),
+								
+								//"--outputdir",
+							//	output.getText().toString()
+							//};
+							
+							
+							try{
+									org.benf.cfr.reader.Main.main(pv.toArray(new String[0]));
+							}catch(Exception e){
+									
+								
+								
+								runOnUiThread(new Runnable() {
+									@Override
+									public void run() {
+										SketchwareUtil.showMessage(getApplicationContext(), e.toString());
+										for (int c22 = 0; c22 < (int)(pv.size()); c22++) {
+											pros.setProgress((int)c22);
+										}
+									}
+								});
+							}
+							return "";
+						}
+						@Override
+						protected void onPostExecute(String _result) {
+							tvin.setEnabled(true);
+							tvou.setEnabled(true);
+							input.setEnabled(true);
+							output.setEnabled(true);
+							pros.setEnabled(true);
+							pros.setVisibility(View.GONE);
+							positive.setEnabled(true);
+							_getFiles("");
+							dialog.dismiss();
+						}
+					}.execute("");
+				}
+								
+						});
+		});
+		dialog.show();
+	}
+	
+	
+	public void _rename(final double _pos) {
+		androidx.appcompat.app.AlertDialog dialog = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this)
+		
+		    .setView(R.layout.ranme)
+		.setTitle("Rename")
+		.setMessage("type new name ")
+		.setCancelable(false)
+		.setPositiveButton("Ok", null)
+		.setNegativeButton(android.R.string.cancel, null)
+		.create();
+		dialog.setOnShowListener((var) -> {
+			
+			       EditText editor = dialog.findViewById(R.id.editor);		
+			
+			Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+			editor.setText(Uri.parse(files.get((int)_pos).get("path").toString()).getLastPathSegment());
+			if (editor.getText().toString().isEmpty()) {
+				positive.setEnabled(false);
+			}
+			else {
+				positive.setEnabled(true);
+			}
+			editor.addTextChangedListener(new android.text.TextWatcher() {
+								@Override
+								public void onTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+										final String _charSeq = _param1.toString();
+								         
+					              if (editor.getText().toString().isEmpty()) {
+						positive.setEnabled(false);
+					}
+					else {
+						positive.setEnabled(true);
+					}
+					   
+								}
+				
+								@Override
+								public void beforeTextChanged(CharSequence _param1, int _param2, int _param3, int _param4) {
+								}
+				
+								@Override
+								public void afterTextChanged(android.text.Editable _param1) {
+								}
+						});
+			positive.setOnClickListener((vftrororocjj) -> {
+				
+				             try{
+								File previousname = new File(Uri.parse(files.get((int)_pos).get("path").toString()).getLastPathSegment());
+								File newname = new File(editor.getText().toString());
+								previousname.renameTo(newname);
+								
+						}catch(Exception exception){
+								
+								Toast.makeText(getApplicationContext(), "Error -> " + exception.toString(),Toast.LENGTH_LONG);
+								
+						}
+				_getFiles("");
+				dialog.dismiss();
+								
+						});
+		});
+		dialog.show();
+	}
+	
+	
+	public void _delFileCustom(final double _pos) {
+		var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+		    di.setTitle("Romved File");
+		di.setMessage("romved ".concat(files.get((int)_pos).get("path").toString().concat(" your mobile?")));
+		di.setNeutralButton("no", (p, d) -> {
+			
+			          
+			
+						});
+		di.setPositiveButton("ok", (p1, d2) -> {
+			
+			         new AsyncTask<String, String, String>() {
+				@Override
+				protected void onPreExecute() {
+					prodel.setTitle("Romving ...");
+					prodel.setMessage("removing ".concat(files.get((int)_pos).get("path").toString().concat(" now")));
+					prodel.setCancelable(false);
+					prodel.setCanceledOnTouchOutside(false);
+					prodel.show();
+				}
+				@Override
+				protected String doInBackground(String... params) {
+					String _param = params[0];
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							FileUtil.deleteFile(files.get((int)_pos).get("path").toString());
+						}
+					});
+					return "";
+				}
+				@Override
+				protected void onPostExecute(String _result) {
+					prodel.dismiss();
+					_getFiles("");
+				}
+			}.execute("");
+			
+						});
+		di.show();
+		
+		
+		
+		
 	}
 	
 	public class CandishenListview1GetMethodFileAdapter extends BaseAdapter {
@@ -5906,6 +5896,7 @@ public class FiledirActivity extends AppCompatActivity {
 			final LinearLayout linear6 = _view.findViewById(R.id.linear6);
 			final LinearLayout linear7 = _view.findViewById(R.id.linear7);
 			final TextView textview1 = _view.findViewById(R.id.textview1);
+			final ImageView more = _view.findViewById(R.id.more);
 			final TextView textview2 = _view.findViewById(R.id.textview2);
 			final TextView videoSize = _view.findViewById(R.id.videoSize);
 			
@@ -6143,19 +6134,6 @@ public class FiledirActivity extends AppCompatActivity {
 																							Glide.with(getApplicationContext())
 																							.load(files.get((int)_position).get("path").toString())
 																							.transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade((int)600))
-																							.listener(new com.bumptech.glide.request.RequestListener<Drawable>() {
-																								@Override
-																								public boolean onLoadFailed(com.bumptech.glide.load.engine.GlideException e, Object model,com.bumptech.glide.request.target.Target<Drawable> target, boolean isFirstResource) {
-																									imageview1.setVisibility(View.GONE);
-																									progressbar1.setVisibility(View.VISIBLE);
-																									return false;
-																								}
-																								@Override
-																								public boolean onResourceReady(Drawable resource, Object model,com.bumptech.glide.request.target.Target<Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource){
-																									imageview1.setVisibility(View.VISIBLE);
-																									progressbar1.setVisibility(View.GONE);
-																									return false;
-																								}})
 																							.error(R.drawable.musico)
 																							.diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
 																							.circleCrop()
@@ -6432,6 +6410,44 @@ public class FiledirActivity extends AppCompatActivity {
 				_data.get((int)_position).put("sel", "false");
 				checkbox1.setVisibility(View.GONE);
 			}
+			more.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+					View popupView = getLayoutInflater().inflate(R.layout.panelfilem, null);
+					final PopupWindow popup = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+					 LinearLayout   bg = popupView.findViewById(R.id.bg);
+					
+					 
+					
+					 LinearLayout   ra = popupView.findViewById(R.id.ra);
+					
+					 
+					
+					 LinearLayout   del = popupView.findViewById(R.id.del);
+					
+					 
+					
+					AnimUtils.Worker(ra);
+					AnimUtils.Worker(del);
+					bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b, int c, int d) { this.setCornerRadius(a); this.setStroke(b, c); this.setColor(d); return this; } }.getIns((int)20, (int)1, 0xFFFDA893, 0xFF2B2122));
+					ra.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+									_rename(_position);
+									popup.dismiss();
+							} });
+					
+					del.setOnClickListener(new OnClickListener() { public void onClick(View view) {
+									_delFileCustom(_position);
+									popup.dismiss();
+							} });
+					
+					popup.setAnimationStyle(R.style.hso);
+					
+					popup.showAsDropDown(more, 0,0);
+					
+					popup.setBackgroundDrawable(new BitmapDrawable());
+					
+				}
+			});
 			
 			return _view;
 		}

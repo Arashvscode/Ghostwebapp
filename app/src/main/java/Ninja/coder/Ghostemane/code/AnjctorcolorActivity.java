@@ -115,7 +115,7 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 	private String xml = "";
 	
 	private NestedScrollView vscroll1;
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja linear1;
 	private LinearLayout CustomToolbar;
 	private LinearLayout linear2;
 	private LinearLayout linear4;
@@ -1187,8 +1187,9 @@ public class AnjctorcolorActivity extends AppCompatActivity {
 		ImageView more = (ImageView) bottomSheetView.findViewById(R.id.more);
 		ImageView close = (ImageView) bottomSheetView.findViewById(R.id.close);
 		var setThemeForJson = new a.a.SetThemeForJson();
-				setThemeForJson.setThemeCodeEditor(editor,imap,false,AnjctorcolorActivity.this);
-				
+		setThemeForJson.setThemeCodeEditor(editor,imap,false,AnjctorcolorActivity.this);
+		editor.setEditable(false);
+		
 		java = "package com.myapp.byNinjacoder;\n\nimport java.util.*;\n\npublic class Ninjacoder{\n	public static void postone(int[] p){\n		var input = new Scanner(System.in);\n		int pvr = input.nextInt();\n		if(pvr == 10){\n			System.out.format(\"hello +%d\",pvr);\n		}else{\n			System.out.println(\"Error\");\n	\n		}\n	}\n	\n	protected void Inmap(HashMap<Object,Integer,Boolean>> los){\n		\n		los.put(\"Key\",1,true);\n		los.put(\"Key2\",2,true);\n		los.put(\"Key3\",3,true);\n		los.put(\"Key4\",4,true);\n		los.put(\"Key5\",1,true);\n		los.put(\"Key6\",1,true);\n		los.put(\"Key7\",1,true);\n		los.put(\"Key8\",1,true);\n		los.put(\"Key9\",1,true);\n	}\n}\n";
 		editor.setText(java); 
 		

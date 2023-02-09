@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.*;
 import android.graphics.*;
+import android.graphics.Typeface;
 import android.graphics.drawable.*;
 import android.media.*;
 import android.net.*;
@@ -120,6 +121,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 	
 	private Timer _timer = new Timer();
 	
+	private AnimatedVectorDrawable animation;
 	private ExtendedFloatingActionButton _fab;
 	private String savetojson = "";
 	private String currentWord = "";
@@ -132,13 +134,15 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private double n = 0;
 	private String pos = "";
 	private String variabael = "";
+	private boolean home = false;
 	
 	private ArrayList<HashMap<String, Object>> dexter = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> tabs_listmap = new ArrayList<>();
 	private ArrayList<String> indifier = new ArrayList<>();
 	private ArrayList<HashMap<String, Object>> tags = new ArrayList<>();
+	private ArrayList<HashMap<String, Object>> staticSymbiolPiare = new ArrayList<>();
 	
-	private LinearLayout Mainlinear;
+	private PraramnetLayoutNinja Mainlinear;
 	private LinearLayout multytab;
 	private FrameLayout FrameLayout01;
 	private LinearLayout showPanelSearch;
@@ -154,6 +158,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private TextView tvtitle;
 	private TextView typeVl;
 	private TextView themenotfound;
+	private ImageView image;
 	private ImageView redo;
 	private ImageView undo;
 	private ImageView st;
@@ -162,20 +167,8 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private FrameLayout FrameLayout02;
 	private ProgressBar proanjctor;
 	private BadgeView badgeview3;
-	private TextView textview14;
-	private TextView bar1;
-	private TextView bar2;
-	private TextView textview3;
-	private TextView textview4;
-	private TextView textview5;
-	private TextView textview6;
-	private TextView textview11;
-	private TextView textview12;
-	private TextView textview13;
-	private TextView textview8;
-	private TextView textview7;
-	private TextView textview9;
-	private TextView textview10;
+	private TextView tv;
+	private RecyclerView syspiar;
 	
 	private Intent intentaddFile = new Intent();
 	private Intent htmlrus = new Intent();
@@ -247,6 +240,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 		tvtitle = findViewById(R.id.tvtitle);
 		typeVl = findViewById(R.id.typeVl);
 		themenotfound = findViewById(R.id.themenotfound);
+		image = findViewById(R.id.image);
 		redo = findViewById(R.id.redo);
 		undo = findViewById(R.id.undo);
 		st = findViewById(R.id.st);
@@ -255,20 +249,8 @@ public class CodeeditorActivity extends AppCompatActivity {
 		FrameLayout02 = findViewById(R.id.FrameLayout02);
 		proanjctor = findViewById(R.id.proanjctor);
 		badgeview3 = findViewById(R.id.badgeview3);
-		textview14 = findViewById(R.id.textview14);
-		bar1 = findViewById(R.id.bar1);
-		bar2 = findViewById(R.id.bar2);
-		textview3 = findViewById(R.id.textview3);
-		textview4 = findViewById(R.id.textview4);
-		textview5 = findViewById(R.id.textview5);
-		textview6 = findViewById(R.id.textview6);
-		textview11 = findViewById(R.id.textview11);
-		textview12 = findViewById(R.id.textview12);
-		textview13 = findViewById(R.id.textview13);
-		textview8 = findViewById(R.id.textview8);
-		textview7 = findViewById(R.id.textview7);
-		textview9 = findViewById(R.id.textview9);
-		textview10 = findViewById(R.id.textview10);
+		tv = findViewById(R.id.tv);
+		syspiar = findViewById(R.id.syspiar);
 		word = getSharedPreferences("word", Activity.MODE_PRIVATE);
 		line = getSharedPreferences("line", Activity.MODE_PRIVATE);
 		shp = getSharedPreferences("shp", Activity.MODE_PRIVATE);
@@ -337,6 +319,36 @@ public class CodeeditorActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View _view) {
 				onBackPressed();
+			}
+		});
+		
+		image.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				if (home) {
+					image.setImageResource(R.drawable.eye_false);
+					Drawable d = image.getDrawable();
+					if (d instanceof AnimatedVectorDrawable) {
+							Log.d("testanim", "onCreate: instancefound" + d.toString());
+							animation = (AnimatedVectorDrawable) d;
+							animation.start();
+					}
+					
+					home = false;
+					editor.setEditable(false);
+				}
+				else {
+					image.setImageResource(R.drawable.eye_true);
+					Drawable d = image.getDrawable();
+					if (d instanceof AnimatedVectorDrawable) {
+							Log.d("testanim", "onCreate: instancefound" + d.toString());
+							animation = (AnimatedVectorDrawable) d;
+							animation.start();
+					}
+					
+					editor.setEditable(true);
+					home = true;
+				}
 			}
 		});
 		
@@ -492,7 +504,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 			}
 		});
 		
-		textview14.setOnClickListener(new View.OnClickListener() {
+		tv.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				_sysba("    ");
@@ -519,97 +531,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 						}
 					}
 				}
-			}
-		});
-		
-		bar1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(bar1.getText().toString());
-			}
-		});
-		
-		bar2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(bar2.getText().toString());
-			}
-		});
-		
-		textview3.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba("{");
-			}
-		});
-		
-		textview4.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview4.getText().toString());
-			}
-		});
-		
-		textview5.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba("[ ]");
-			}
-		});
-		
-		textview6.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview6.getText().toString());
-			}
-		});
-		
-		textview11.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba("()");
-			}
-		});
-		
-		textview12.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview12.getText().toString());
-			}
-		});
-		
-		textview13.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview13.getText().toString());
-			}
-		});
-		
-		textview8.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview8.getText().toString());
-			}
-		});
-		
-		textview7.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview7.getText().toString());
-			}
-		});
-		
-		textview9.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview9.getText().toString());
-			}
-		});
-		
-		textview10.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_sysba(textview10.getText().toString());
 			}
 		});
 		
@@ -749,6 +670,8 @@ public class CodeeditorActivity extends AppCompatActivity {
 	private void initializeLogic() {
 		CrashHandler.INSTANCE.init(this);
 		_fab.shrink();
+		_symbloinit();
+		
 		new AsyncTask<String, String, String>() {
 			@Override
 			protected void onPreExecute() {
@@ -772,13 +695,14 @@ public class CodeeditorActivity extends AppCompatActivity {
 				proanjctor.setVisibility(View.GONE);
 			}
 		}.execute("");
+		image.setImageResource(R.drawable.eye_true);
+		home = true;
+		
+		
+		
 		stopIntarsenl.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFF44336));
 		fileinfo.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFFEB3B));
 		backgroundPressBack.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFE91E63));
-		_Ripple_Drawable(backgroundPressBack, "#FFACF784");
-		_Ripple_Drawable(fileinfo, "#FFACF784");
-		_Ripple_Drawable(stopIntarsenl, "#FFACF784");
-		_textAim();
 		_themeInstallLojic();
 		showPanelSearch.setVisibility(View.VISIBLE);
 		editor.setCursorWidth(2f);
@@ -843,20 +767,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 			tvtitle.setTextColor(0xFFFDA893);
 			typeVl.setTextColor(0xFFFDA893);
 			themenotfound.setTextColor(0xFFFDA893);
-			textview14.setTextColor(0xFFFDA893);
-			bar1.setTextColor(0xFFFDA893);
-			bar2.setTextColor(0xFFFDA893);
-			textview3.setTextColor(0xFFFDA893);
-			textview4.setTextColor(0xFFFDA893);
-			textview5.setTextColor(0xFFFDA893);
-			textview6.setTextColor(0xFFFDA893);
-			textview11.setTextColor(0xFFFDA893);
-			textview12.setTextColor(0xFFFDA893);
-			textview13.setTextColor(0xFFFDA893);
-			textview8.setTextColor(0xFFFDA893);
-			textview7.setTextColor(0xFFFDA893);
-			textview9.setTextColor(0xFFFDA893);
-			textview10.setTextColor(0xFFFDA893);
+			tv.setTextColor(0xFFFDA893);
 			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
 					   Window ninjacoder = this.getWindow();
 				 ninjacoder.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -877,21 +788,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 			themeForJson2.setThemeCodeEditor(editor,imap,false,this);
 			themeForJson2.addTextColor(tvtitle, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
 			themeForJson2.addTextColor(typeVl, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(bar1, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(bar2, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview3, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview4, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview5, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview6, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview7, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview8, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview9, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview10, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview11, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview12, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview13, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
-			themeForJson2.addTextColor(textview14, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
+			themeForJson2.addTextColor(tv, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), this, imap);
 			themeForJson2.AddthemetoSattos(this, imap);
 			themeForJson2.addBackground(this, imap, "ToolbarColor", CustomToolbar, 0xff030b34);
 			themeForJson2.addBackground(this, imap, "BackgroundColorLinear", Mainlinear, 0xff02102c);
@@ -907,6 +804,48 @@ public class CodeeditorActivity extends AppCompatActivity {
 			AnimUtils.Worker(redo);
 			  
 				    }
+		tv.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()){
+					case MotionEvent.ACTION_DOWN:{
+						ObjectAnimator scaleX = new ObjectAnimator();
+						scaleX.setTarget(tv);
+						scaleX.setPropertyName("scaleX");
+						scaleX.setFloatValues(0.9f);
+						scaleX.setDuration((int)5);
+						scaleX.start();
+						
+						ObjectAnimator scaleY = new ObjectAnimator();
+						scaleY.setTarget(tv);
+						scaleY.setPropertyName("scaleY");
+						scaleY.setFloatValues(0.9f);
+						scaleY.setDuration((int)5);
+						scaleY.start();
+						break;
+					}
+					case MotionEvent.ACTION_UP:{
+						
+						ObjectAnimator scaleX = new ObjectAnimator();
+						scaleX.setTarget(tv);
+						scaleX.setPropertyName("scaleX");
+						scaleX.setFloatValues((float)1);
+						scaleX.setDuration((int)5);
+						scaleX.start();
+						
+						ObjectAnimator scaleY = new ObjectAnimator();
+						scaleY.setTarget(tv);
+						scaleY.setPropertyName("scaleY");
+						scaleY.setFloatValues((float)1);
+						scaleY.setDuration((int)5);
+						scaleY.start();
+						
+						break;
+					}
+				}
+				return false;
+			}
+		});
 		if (ru.contains("rup")) {
 			
 			editor.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor("#ff869e"));
@@ -942,20 +881,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 			tvtitle.setTextColor(0xFFFDA893);
 			typeVl.setTextColor(0xFFFDA893);
 			themenotfound.setTextColor(0xFFFDA893);
-			textview14.setTextColor(0xFFFDA893);
-			bar1.setTextColor(0xFFFDA893);
-			bar2.setTextColor(0xFFFDA893);
-			textview3.setTextColor(0xFFFDA893);
-			textview4.setTextColor(0xFFFDA893);
-			textview5.setTextColor(0xFFFDA893);
-			textview6.setTextColor(0xFFFDA893);
-			textview11.setTextColor(0xFFFDA893);
-			textview12.setTextColor(0xFFFDA893);
-			textview13.setTextColor(0xFFFDA893);
-			textview8.setTextColor(0xFFFDA893);
-			textview7.setTextColor(0xFFFDA893);
-			textview9.setTextColor(0xFFFDA893);
-			textview10.setTextColor(0xFFFDA893);
+			tv.setTextColor(0xFFFDA893);
 			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) { 
 					   Window ninjacoder = this.getWindow();
 				 ninjacoder.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -990,14 +916,26 @@ public class CodeeditorActivity extends AppCompatActivity {
 				editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
 				editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
 				SketchwareUtil.showMessage(getApplicationContext(), "Custom Font Not Found");
+				tvtitle.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+				typeVl.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+				themenotfound.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+				tv.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
 			}
 			else {
 				_editorsetfontfromfile(setfont.getString("mfont", ""));
+				tvtitle.setTypeface(Typeface.createFromFile(new File(setfont.getString("mfont", ""))));
+				typeVl.setTypeface(Typeface.createFromFile(new File(setfont.getString("mfont", ""))));
+				themenotfound.setTypeface(Typeface.createFromFile(new File(setfont.getString("mfont", ""))));
+				tv.setTypeface(Typeface.createFromFile(new File(setfont.getString("mfont", ""))));
 			}
 		}
 		else {
 			editor.setTypefaceText(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
 			editor.setTypefaceLineNumber(Typeface.createFromAsset(getAssets(), "GhostFont.ttf"));
+			tvtitle.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+			typeVl.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+			themenotfound.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+			tv.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
 		}
 		if (auto.contains("mauto")) {
 			editor.setAutoCompletionEnabled(false);
@@ -2362,598 +2300,6 @@ public class CodeeditorActivity extends AppCompatActivity {
 	}
 	
 	
-	public void _textAim() {
-		bar1.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(bar1);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(bar1);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(bar1);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(bar1);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		bar2.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(bar2);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(bar2);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(bar2);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(bar2);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview3.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview3);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview3);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview3);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview3);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview4.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview4);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview4);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview4);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview4);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview5.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview5);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview5);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview5);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview5);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview6.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview6);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview6);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview6);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview6);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview8.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview8);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview8);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview8);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview8);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview13.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview13);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview13);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview13);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview13);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview7.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview7);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview7);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview7);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview7);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview9.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview9);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview9);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview9);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview9);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview10.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview10);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview10);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview10);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview10);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview11.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview11);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview11);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview11);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview11);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview12.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview12);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview12);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview12);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview12);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-		textview14.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()){
-					case MotionEvent.ACTION_DOWN:{
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview14);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues(0.9f);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview14);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues(0.9f);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						break;
-					}
-					case MotionEvent.ACTION_UP:{
-						
-						ObjectAnimator scaleX = new ObjectAnimator();
-						scaleX.setTarget(textview14);
-						scaleX.setPropertyName("scaleX");
-						scaleX.setFloatValues((float)1);
-						scaleX.setDuration((int)5);
-						scaleX.start();
-						
-						ObjectAnimator scaleY = new ObjectAnimator();
-						scaleY.setTarget(textview14);
-						scaleY.setPropertyName("scaleY");
-						scaleY.setFloatValues((float)1);
-						scaleY.setDuration((int)5);
-						scaleY.start();
-						
-						break;
-					}
-				}
-				return false;
-			}
-		});
-	}
-	
-	
 	public void _themeInstallLojic() {
 		
 	}
@@ -3334,7 +2680,31 @@ public class CodeeditorActivity extends AppCompatActivity {
 			
 		}
 		
-		inputlog.setColorScheme(new SchemeDarcula());
+		
+		inputlog.getColorScheme().setColor(EditorColorScheme.OPERATOR, Color.parseColor("#ff869e"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE, Color.parseColor("#ff314d"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.BLOCK_LINE_CURRENT, Color.parseColor("#ff314d"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.NON_PRINTABLE_CHAR, Color.parseColor("#ffb9ffcb"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.CURRENT_LINE, Color.parseColor("#20171717"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.SELECTION_INSERT, Color.parseColor("#c06dff"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.SELECTION_HANDLE, Color.parseColor("#c06dff"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER, Color.parseColor("#d9d9d9"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.LINE_DIVIDER, Color.parseColor("#FF2B2122"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_VALUE, Color.parseColor("#ffffdcb9"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.ATTRIBUTE_NAME, Color.parseColor("#FF1B4AD7"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.HTML_TAG, Color.parseColor("#ff92dc"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.TEXT_NORMAL, Color.parseColor("#ffebffd7"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.IDENTIFIER_NAME, Color.parseColor("#626262"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.COMMENT, Color.parseColor("#fff0be4b"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.KEYWORD, Color.parseColor("#ffffa1a1"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.print, Color.parseColor("#ffb4a1ff"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.Ninja, Color.parseColor("#ffffac94"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.LITERAL, Color.parseColor("#ffdea1ff"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_BG, Color.parseColor("#FF2B2122"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.AUTO_COMP_PANEL_CORNER, Color.parseColor("#ff94ffe7"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, Color.parseColor("#FF2B2122"));
+		inputlog.getColorScheme().setColor(EditorColorScheme.WHOLE_BACKGROUND, Color.parseColor("#FF2B2122"));
+		editor.setEditable(false);
 		new AsyncTask<String, String, String>() {
 			@Override
 			protected void onPreExecute() {
@@ -3417,7 +2787,7 @@ public class CodeeditorActivity extends AppCompatActivity {
 											try {
 													fos = openFileOutput("crash-journal.log", MODE_PRIVATE);
 													Toast.makeText(getApplicationContext(), "Succeeded", Toast.LENGTH_SHORT).show();
-												    inputlog.setText("");
+													inputlog.setText("");
 											} catch (Exception e) {
 													Toast.makeText(getApplicationContext(), "Failed:" + e, Toast.LENGTH_SHORT).show();
 													e.printStackTrace();
@@ -3476,6 +2846,19 @@ public class CodeeditorActivity extends AppCompatActivity {
 	public void _fragmentdatapost() {
 		LiveviewebDialogFragmentActivityN = new LiveviewebDialogFragmentActivity();
 		LiveviewebDialogFragmentActivityN.show(getSupportFragmentManager(),"1");
+	}
+	
+	
+	public void _symbloinit() {
+		try{
+			java.io.InputStream inputstream5 = getAssets().open("symbol.json");
+			staticSymbiolPiare = new Gson().fromJson(SketchwareUtil.copyFromInputStream(inputstream5), new TypeToken<ArrayList<HashMap<String, Object>>>(){}.getType());
+		}catch(Exception e){
+			SketchwareUtil.showMessage(getApplicationContext(), e.toString());
+		}
+		syspiar.setAdapter(new SyspiarAdapter(staticSymbiolPiare));
+		syspiar.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
+		syspiar.setHasFixedSize(true);
 	}
 	
 	public class Recyclerview1Adapter extends RecyclerView.Adapter<Recyclerview1Adapter.ViewHolder> {
@@ -4012,6 +3395,127 @@ public class CodeeditorActivity extends AppCompatActivity {
 				shp.edit().putString("path", new Gson().toJson(_data)).commit();
 			}
 			_Anim(selector);
+		}
+		
+		@Override
+		public int getItemCount() {
+			return _data.size();
+		}
+		
+		public class ViewHolder extends RecyclerView.ViewHolder {
+			public ViewHolder(View v) {
+				super(v);
+			}
+		}
+	}
+	
+	public class SyspiarAdapter extends RecyclerView.Adapter<SyspiarAdapter.ViewHolder> {
+		
+		ArrayList<HashMap<String, Object>> _data;
+		
+		public SyspiarAdapter(ArrayList<HashMap<String, Object>> _arr) {
+			_data = _arr;
+		}
+		
+		@Override
+		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+			LayoutInflater _inflater = getLayoutInflater();
+			View _v = _inflater.inflate(R.layout.sysset, null);
+			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			_v.setLayoutParams(_lp);
+			return new ViewHolder(_v);
+		}
+		
+		@Override
+		public void onBindViewHolder(ViewHolder _holder, final int _position) {
+			View _view = _holder.itemView;
+			
+			final LinearLayout linear1 = _view.findViewById(R.id.linear1);
+			final TextView textview1 = _view.findViewById(R.id.textview1);
+			
+			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			_view.setLayoutParams(_lp);
+			textview1.setText(_data.get((int)_position).get("post").toString());
+			_clickAnimation(linear1);
+			textview1.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+					_sysba(textview1.getText().toString());
+				}
+			});
+			try{
+				if (setfont.contains("mfont")) {
+					if (!FileUtil.isFile(setfont.getString("mfont", ""))) {
+						SketchwareUtil.showMessage(getApplicationContext(), "Custom Font Not Found");
+						textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+					}
+					else {
+						textview1.setTypeface(Typeface.createFromFile(new File(setfont.getString("mfont", ""))));
+					}
+				}
+				else {
+					textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/ghostfont.ttf"), 0);
+				}
+			}catch(Exception e){
+				SketchwareUtil.showMessage(getApplicationContext(), e.toString());
+			}
+			textview1.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					switch (event.getAction()){
+						case MotionEvent.ACTION_DOWN:{
+							ObjectAnimator scaleX = new ObjectAnimator();
+							scaleX.setTarget(textview1);
+							scaleX.setPropertyName("scaleX");
+							scaleX.setFloatValues(0.9f);
+							scaleX.setDuration((int)5);
+							scaleX.start();
+							
+							ObjectAnimator scaleY = new ObjectAnimator();
+							scaleY.setTarget(textview1);
+							scaleY.setPropertyName("scaleY");
+							scaleY.setFloatValues(0.9f);
+							scaleY.setDuration((int)5);
+							scaleY.start();
+							break;
+						}
+						case MotionEvent.ACTION_UP:{
+							
+							ObjectAnimator scaleX = new ObjectAnimator();
+							scaleX.setTarget(textview1);
+							scaleX.setPropertyName("scaleX");
+							scaleX.setFloatValues((float)1);
+							scaleX.setDuration((int)5);
+							scaleX.start();
+							
+							ObjectAnimator scaleY = new ObjectAnimator();
+							scaleY.setTarget(textview1);
+							scaleY.setPropertyName("scaleY");
+							scaleY.setFloatValues((float)1);
+							scaleY.setDuration((int)5);
+							scaleY.start();
+							
+							break;
+						}
+					}
+					return false;
+				}
+			});
+			 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+					      
+				       textview1.setTextColor(0xFFFDA893);
+						        
+					    } else {
+					    
+				           if (ru.contains("rub")) {
+					textview1.setTextColor(0xFFFDA893);
+				}
+				else {
+					var maintheme = new a.a.SetThemeForJson();
+					maintheme.addTextColor(textview1, "SyombolBarTextColor", Color.parseColor("#FFFFA0FB"), CodeeditorActivity.this, imap);
+					maintheme.buildandpost();
+				}  
+					    }
 		}
 		
 		@Override

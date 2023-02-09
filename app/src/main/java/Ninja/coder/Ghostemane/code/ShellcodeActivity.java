@@ -57,7 +57,7 @@ public class ShellcodeActivity extends AppCompatActivity {
 	
 	private String shellcomment = "";
 	
-	private LinearLayout linear1;
+	private PraramnetLayoutNinja linear1;
 	private ScrollView vscroll1;
 	private LinearLayout linear2;
 	private TextView tv;
