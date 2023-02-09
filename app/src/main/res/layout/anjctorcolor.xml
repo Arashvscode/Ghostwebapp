@@ -27,7 +27,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:background="#2B2121">
-			<LinearLayout
+			<Ninja.coder.Ghostemane.code.PraramnetLayoutNinja
 				android:id="@+id/linear1"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -1384,7 +1384,7 @@
 						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
-			</LinearLayout>
+			</Ninja.coder.Ghostemane.code.PraramnetLayoutNinja>
 		</androidx.core.widget.NestedScrollView>
 	</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

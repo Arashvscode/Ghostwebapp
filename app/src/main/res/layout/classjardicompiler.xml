@@ -5,37 +5,17 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
-	<androidx.cardview.widget.CardView
+	<LinearLayout
 		android:id="@+id/card"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="5dp"
-		android:background="#2B2122"
-		android:orientation="vertical"
-		app:cardElevation="0dp"
-		app:cardCornerRadius="20dp">
+		android:orientation="vertical">
 		<LinearLayout
 			android:id="@+id/linear2"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical">
-			<LinearLayout
-				android:id="@+id/linear3"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:padding="8dp"
-				android:orientation="horizontal">
-				<TextView
-					android:id="@+id/textview2"
-					android:focusable="false"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="Dicompiler"
-					android:textSize="18sp"
-					android:textColor="#FDA893"
-					android:fontFamily="@font/GhostFont" />
-			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/linear4"
 				android:layout_width="match_parent"
@@ -47,7 +27,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
-					style="@style/Widget.Material3.TextInputLayout.FilledBox">
+					style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 					<EditText
 						android:id="@+id/input"
 						android:layout_width="match_parent"
@@ -65,6 +45,8 @@
 				android:id="@+id/linear5"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+				android:layout_marginBottom="5dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
 				<com.google.android.material.textfield.TextInputLayout
@@ -73,7 +55,7 @@
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
 					android:layout_weight="1"
-					style="@style/Widget.Material3.TextInputLayout.FilledBox">
+					style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 					<EditText
 						android:id="@+id/output"
 						android:layout_width="match_parent"
@@ -86,26 +68,13 @@
 						
 						android:fontFamily="@font/GhostFont" />
 				</com.google.android.material.textfield.TextInputLayout>
-				<com.google.android.material.button.MaterialButton
-					android:id="@+id/out"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:gravity="center_horizontal|center_vertical"
-					android:text="out"
-					android:textSize="12sp"
-					android:textColor="#FFFFFF"
-					android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-					app:backgroundTint="@color/colorPrimary"
-					app:cornerRadius="25dp"
-					style="@style/Widget.MaterialComponents.Button"
-					
-					android:fontFamily="@font/GhostFont" />
 			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/linear6"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:layout_marginTop="3dp"
+				android:layout_marginBottom="3dp"
 				android:padding="8dp"
 				android:gravity="center_horizontal|center_vertical"
 				android:orientation="vertical">
@@ -117,22 +86,7 @@
 					android:padding="8dp"
 					android:indeterminate="true"
 					style="?android:progressBarStyleHorizontal" />
-				<com.google.android.material.button.MaterialButton
-					android:id="@+id/run"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:gravity="center_horizontal|center_vertical"
-					android:text="Dicompile "
-					android:textSize="12sp"
-					android:textColor="#FFFFFF"
-					android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-					app:backgroundTint="@color/colorPrimary"
-					app:cornerRadius="25dp"
-					style="@style/Widget.MaterialComponents.Button"
-					
-					android:fontFamily="@font/GhostFont" />
 			</LinearLayout>
 		</LinearLayout>
-	</androidx.cardview.widget.CardView>
+	</LinearLayout>
 </LinearLayout>

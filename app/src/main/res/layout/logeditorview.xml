@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:padding="8dp"
-		android:background="#1C1B20"
+		android:background="@android:color/transparent"
 		android:gravity="center_vertical"
 		android:orientation="horizontal">
 		<TextView
@@ -45,7 +45,6 @@
 		android:id="@+id/logeditor"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="#151213"
 		android:orientation="vertical">
 		<io.github.rosemoe.sora.widget.CodeEditor
 			android:id="@+id/inputlog"
@@ -56,7 +55,7 @@
 			android:background="@android:color/transparent"
 			android:gravity="left|top"
 			android:textSize="16sp"
-			android:textColor="#151213"
+			android:textColor="#2B2122"
 			android:hint="No Log...."
 			android:textColorHint="#F5F5F5" />
 	</LinearLayout>

@@ -9,7 +9,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical">
-		<LinearLayout
+		<Ninja.coder.Ghostemane.code.PraramnetLayoutNinja
 			android:id="@+id/Mainlinear"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
@@ -95,6 +95,13 @@
 								android:textSize="16sp"
 								android:textColor="#F44336"
 								android:layout_weight="1" />
+							<ImageView
+								android:id="@+id/image"
+								android:layout_width="25dp"
+								android:layout_height="25dp"
+								android:layout_marginRight="9dp"
+								android:src="@drawable/mfont"
+								android:scaleType="centerInside" />
 							<ImageView
 								android:id="@+id/redo"
 								android:layout_width="25dp"
@@ -182,156 +189,29 @@
 				android:id="@+id/newLayoutSymbolBar"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:padding="8dp"
+				android:padding="3dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
 				<com.allenliu.badgeview.BadgeView
 					android:id="@+id/badgeview3"
 					android:layout_width="30dp"
 					android:layout_height="30dp"
-					android:padding="2dp"
-					android:layout_weight="1" />
+					android:padding="2dp" />
 				<TextView
-					android:id="@+id/textview14"
+					android:id="@+id/tv"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
 					android:text="Tab"
 					android:textSize="14sp"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/bar1"
-					android:layout_width="wrap_content"
+					android:textColor="#FFFFFF" />
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/syspiar"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="&lt;"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/bar2"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="&gt;"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview3"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="{"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview4"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="}"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview5"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="["
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview6"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="]"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview11"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="("
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview12"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text=")"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview13"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text=":"
-					android:textSize="16sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview8"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text=","
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview7"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text=";"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview9"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="-"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
-				<TextView
-					android:id="@+id/textview10"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="/"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="#FFFFFF"
-					android:layout_weight="1" />
+					android:padding="8dp" />
 			</LinearLayout>
-		</LinearLayout>
+		</Ninja.coder.Ghostemane.code.PraramnetLayoutNinja>
 	</LinearLayout>
      <Ninja.coder.Ghostemane.code.ExrtaFab
      app:shapeAppearanceOverlay="@style/fab_square" 

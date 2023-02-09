@@ -27,7 +27,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:background="#2B2121">
-			<LinearLayout
+			<Ninja.coder.Ghostemane.code.PraramnetLayoutNinja
 				android:id="@+id/linear1"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -71,6 +71,13 @@
 						android:padding="8dp"
 						android:gravity="right|center_vertical"
 						android:orientation="horizontal">
+						<ImageView
+							android:id="@+id/arrow05"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/arrow_down"
+							android:scaleType="centerInside"
+							android:rotation="180" />
 						<TextView
 							android:id="@+id/textview10"
 							android:layout_width="wrap_content"
@@ -78,7 +85,8 @@
 							android:padding="8dp"
 							android:text="تم"
 							android:textSize="18sp"
-							android:textColor="#F5F5F5" />
+							android:textColor="#F5F5F5"
+							android:layout_weight="1" />
 						<ImageView
 							android:id="@+id/imageview7"
 							android:layout_width="30dp"
@@ -113,12 +121,19 @@
 							android:translationX="-15.0dp" />
 					</LinearLayout>
 					<LinearLayout
-						android:id="@+id/linear20"
+						android:id="@+id/stingkeyboard"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
 						android:gravity="right|center_vertical"
 						android:orientation="horizontal">
+						<ImageView
+							android:id="@+id/arrow04"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/arrow_down"
+							android:scaleType="centerInside"
+							android:rotation="180" />
 						<TextView
 							android:id="@+id/textview13"
 							android:layout_width="wrap_content"
@@ -126,7 +141,8 @@
 							android:padding="8dp"
 							android:text="تنظیمات کیبورد"
 							android:textSize="16sp"
-							android:textColor="#F5F5F5" />
+							android:textColor="#F5F5F5"
+							android:layout_weight="1" />
 						<ImageView
 							android:id="@+id/imageview8"
 							android:layout_width="30dp"
@@ -135,7 +151,7 @@
 							android:scaleType="centerInside" />
 					</LinearLayout>
 					<LinearLayout
-						android:id="@+id/linear13"
+						android:id="@+id/keyboard"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
@@ -165,6 +181,13 @@
 						android:padding="8dp"
 						android:gravity="right|center_vertical"
 						android:orientation="horizontal">
+						<ImageView
+							android:id="@+id/arrow03"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:src="@drawable/arrow_down"
+							android:scaleType="centerInside"
+							android:rotation="180" />
 						<TextView
 							android:id="@+id/textview1"
 							android:layout_width="wrap_content"
@@ -172,7 +195,8 @@
 							android:padding="8dp"
 							android:text="عمومی"
 							android:textSize="20sp"
-							android:textColor="#F5F5F5" />
+							android:textColor="#F5F5F5"
+							android:layout_weight="1" />
 						<ImageView
 							android:id="@+id/imageview9"
 							android:layout_width="30dp"
@@ -206,7 +230,7 @@
 						android:button="@drawable/geticon" />
 				</LinearLayout>
 				<LinearLayout
-					android:id="@+id/linear4"
+					android:id="@+id/pubilc"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
@@ -231,7 +255,7 @@
 						android:button="@drawable/geticon" />
 				</LinearLayout>
 				<LinearLayout
-					android:id="@+id/linear6"
+					android:id="@+id/vibreh"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
@@ -273,6 +297,13 @@
 							android:padding="8dp"
 							android:gravity="right|center_vertical"
 							android:orientation="horizontal">
+							<ImageView
+								android:id="@+id/arrow02"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:src="@drawable/arrow_down"
+								android:scaleType="centerInside"
+								android:rotation="180" />
 							<TextView
 								android:id="@+id/textview20"
 								android:layout_width="wrap_content"
@@ -280,7 +311,8 @@
 								android:padding="8dp"
 								android:text="مدیرت فایل"
 								android:textSize="20sp"
-								android:textColor="#F5F5F5" />
+								android:textColor="#F5F5F5"
+								android:layout_weight="1" />
 							<ImageView
 								android:id="@+id/imageview11"
 								android:layout_width="30dp"
@@ -289,7 +321,7 @@
 								android:scaleType="centerInside" />
 						</LinearLayout>
 						<LinearLayout
-							android:id="@+id/linear26"
+							android:id="@+id/size"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
@@ -325,6 +357,13 @@
 							android:padding="8dp"
 							android:gravity="right|center_vertical"
 							android:orientation="horizontal">
+							<ImageView
+								android:id="@+id/arrow01"
+								android:layout_width="30dp"
+								android:layout_height="30dp"
+								android:src="@drawable/arrow_down"
+								android:scaleType="centerInside"
+								android:rotation="180" />
 							<TextView
 								android:id="@+id/textview6"
 								android:layout_width="wrap_content"
@@ -332,7 +371,8 @@
 								android:padding="8dp"
 								android:text="ویرایشگر"
 								android:textSize="20sp"
-								android:textColor="#F5F5F5" />
+								android:textColor="#F5F5F5"
+								android:layout_weight="1" />
 							<ImageView
 								android:id="@+id/imageview10"
 								android:layout_width="30dp"
@@ -341,7 +381,7 @@
 								android:scaleType="centerInside" />
 						</LinearLayout>
 						<LinearLayout
-							android:id="@+id/linear28"
+							android:id="@+id/autotext"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
@@ -365,7 +405,7 @@
 								android:button="@drawable/geticon" />
 						</LinearLayout>
 						<LinearLayout
-							android:id="@+id/linear29"
+							android:id="@+id/tab"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
@@ -390,7 +430,7 @@
 								android:button="@drawable/geticon" />
 						</LinearLayout>
 						<LinearLayout
-							android:id="@+id/linear30"
+							android:id="@+id/fragment"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:padding="8dp"
@@ -417,7 +457,7 @@
 					</LinearLayout>
 				</LinearLayout>
 				<LinearLayout
-					android:id="@+id/linear7"
+					android:id="@+id/lineeditor"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
@@ -448,7 +488,7 @@
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 					<LinearLayout
-						android:id="@+id/linear18"
+						android:id="@+id/systemWallper"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
@@ -472,7 +512,7 @@
 							android:button="@drawable/geticon" />
 					</LinearLayout>
 					<LinearLayout
-						android:id="@+id/linear19"
+						android:id="@+id/defulttheme"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:padding="8dp"
@@ -523,7 +563,7 @@
 						android:button="@drawable/geticon" />
 				</LinearLayout>
 				<LinearLayout
-					android:id="@+id/linear15"
+					android:id="@+id/spacemod"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
@@ -547,7 +587,7 @@
 						android:translationX="-15.0dp" />
 				</LinearLayout>
 				<LinearLayout
-					android:id="@+id/linear16"
+					android:id="@+id/customfont"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
@@ -570,7 +610,7 @@
 						android:scaleType="centerInside"
 						android:translationX="-15.0dp" />
 				</LinearLayout>
-			</LinearLayout>
+			</Ninja.coder.Ghostemane.code.PraramnetLayoutNinja>
 		</androidx.core.widget.NestedScrollView>
 	</LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

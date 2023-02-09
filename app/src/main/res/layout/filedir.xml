@@ -27,7 +27,7 @@
 			android:layout_height="match_parent"
 			android:orientation="vertical"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior">
-			<LinearLayout
+			<Ninja.coder.Ghostemane.code.PraramnetLayoutNinja
 				android:id="@+id/linear1"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -123,6 +123,29 @@
 						android:padding="8dp"
 						android:numColumns="3"
 						android:stretchMode="columnWidth" />
+					<LinearLayout
+						android:id="@+id/postTask"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:gravity="center_horizontal|center_vertical"
+						android:orientation="vertical">
+						<ProgressBar
+							android:id="@+id/progressbar1"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:indeterminate="true"
+							style="?android:progressBarStyleHorizontal" />
+						<TextView
+							android:id="@+id/textview3"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:padding="8dp"
+							android:text="Loading..."
+							android:textSize="16sp"
+							android:textColor="#FDA893" />
+					</LinearLayout>
 					<ListView
 						android:id="@+id/CandishenListview1GetMethodFile"
 						android:layout_width="match_parent"
@@ -240,7 +263,7 @@
 							android:textColor="#000000" />
 					</LinearLayout>
 				</LinearLayout>
-			</LinearLayout>
+			</Ninja.coder.Ghostemane.code.PraramnetLayoutNinja>
 		</LinearLayout>
 <LinearLayout
         android:layout_width="wrap_content"

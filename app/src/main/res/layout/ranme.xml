@@ -1,0 +1,28 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/textinputlayout1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp"
+		android:orientation="vertical"
+		style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+		<EditText
+			android:id="@+id/editor"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:textSize="14sp"
+			android:textColor="#FDA893"
+			android:hint="Type new name ...."
+			android:textColorHint="#FDA893"
+			android:focusable="true"
+			
+			android:fontFamily="@font/GhostFont" />
+	</com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

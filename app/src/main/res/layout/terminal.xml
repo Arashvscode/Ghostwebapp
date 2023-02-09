@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
-	<LinearLayout
+	<Ninja.coder.Ghostemane.code.PraramnetLayoutNinja
 		android:id="@+id/main"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -15,7 +15,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:padding="8dp"
-			android:gravity="right"
+			android:gravity="right|center_vertical"
 			android:orientation="horizontal">
 			<ImageView
 				android:id="@+id/runcode"
@@ -24,13 +24,34 @@
 				android:src="@drawable/play"
 				android:scaleType="centerInside" />
 		</LinearLayout>
-		<io.github.rosemoe.sora.widget.CodeEditor
-			android:id="@+id/term"
+		<FrameLayout
+			android:id="@+id/mFrameLayout"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:padding="8dp"
-			android:orientation="vertical"
-			android:layout_weight="1" />
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			android:layout_weight="1">
+			<io.github.rosemoe.sora.widget.CodeEditor
+				android:id="@+id/term"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:padding="8dp"
+				android:orientation="vertical" />
+			<FrameLayout
+				android:id="@+id/mFrameLayout2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="right"
+				android:orientation="vertical">
+				<ProgressBar
+					android:id="@+id/mbar1"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:indeterminate="false"
+					style="?android:progressBarStyle"
+					android:layout_gravity="right" />
+			</FrameLayout>
+		</FrameLayout>
 		<LinearLayout
 			android:id="@+id/mpanl"
 			android:layout_width="match_parent"
@@ -92,5 +113,5 @@
 				android:textColor="#F8B09A"
 				android:layout_weight="1" />
 		</LinearLayout>
-	</LinearLayout>
+	</Ninja.coder.Ghostemane.code.PraramnetLayoutNinja>
 </LinearLayout>
