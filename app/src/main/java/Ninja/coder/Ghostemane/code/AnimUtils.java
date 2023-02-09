@@ -36,17 +36,14 @@ public class AnimUtils {
 	}
 	
 	public static void ResultCd(View view) {
-		
 		RotateAnimation rotateAnimation = new RotateAnimation(360, 0, Animation.RELATIVE_TO_SELF, 0.5f,
 		Animation.RELATIVE_TO_SELF, 0.5f);
 		rotateAnimation.setInterpolator(new AccelerateInterpolator());
 		rotateAnimation.setDuration(3000);
 		view.startAnimation(rotateAnimation);
-		
 	}
 	
 	public static void Amin01(View view) {
-		
 		TranslateAnimation translateAnimation = new TranslateAnimation(300, 0, 0, 0);
 		Animation alphaAnimation = new AlphaAnimation(0, 1);
 		translateAnimation.setDuration(300);
@@ -64,21 +61,16 @@ public class AnimUtils {
 	}
 	
 	public static void Amin03(View view) {
-		
 		Animation animation = new ScaleAnimation(0f, 1f, 0, 1f, Animation.RELATIVE_TO_SELF, 0f,
 		Animation.RELATIVE_TO_SELF, 1f);
 		animation.setFillAfter(true);
 		animation.setDuration(300);
 		view.setAnimation(animation);
-		
 	}
 	
-	
 	public static void Amin04(View view, Activity activity) {
-		
 		Animation animation;
 		animation = AnimationUtils.loadAnimation(activity, android.R.anim.slide_in_left);
-		
 		animation.setDuration(300);
 		view.startAnimation(animation);
 		animation = null;
@@ -93,8 +85,8 @@ public class AnimUtils {
 		view.startAnimation(animation);
 		animation = null;
 	}
-  //  AnimUtils.Worker(imageview2);
-  
+	//  AnimUtils.Worker(imageview2);
+	
 	
 	public static void Worker(View view) {
 		
@@ -177,7 +169,5 @@ public class AnimUtils {
 		new int[] { color1, color2 }));
 		
 	}
-	
-	
 	
 }
