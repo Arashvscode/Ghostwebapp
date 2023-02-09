@@ -180,6 +180,12 @@ android:theme="@style/AppTheme.Theme.Transparent"
 			android:screenOrientation="portrait"
 			android:windowSoftInputMode="stateHidden" />
 		<activity
+			android:name=".ImgshowActivity"
+			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+			android:hardwareAccelerated="true"
+			android:supportsPictureInPicture="true"
+			android:screenOrientation="portrait" />
+		<activity
 			android:name=".DebugActivity"
 			android:screenOrientation="portrait" />
 		<uses-library
