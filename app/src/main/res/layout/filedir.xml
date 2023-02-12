@@ -146,14 +146,11 @@
 							android:textSize="16sp"
 							android:textColor="#FDA893" />
 					</LinearLayout>
-					<ListView
-						android:id="@+id/CandishenListview1GetMethodFile"
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recyclerview2"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:padding="8dp"
-						android:dividerHeight="0dp"
-						android:divider="@null"
-						android:choiceMode="none" />
+						android:padding="8dp" />
 					<LinearLayout
 						android:id="@+id/Calciolater"
 						android:layout_width="match_parent"
