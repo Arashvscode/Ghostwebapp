@@ -31,7 +31,6 @@ import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -73,6 +72,7 @@ import com.google.gson.reflect.TypeToken;
 import com.lxj.xpopup.*;
 import com.mukesh.*;
 import com.neo.highlight.*;
+import com.skydoves.powermenu.*;
 import com.tapadoo.alerter.*;
 import com.zip4j.*;
 import java.io.*;
@@ -178,6 +178,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private String version = "";
 	private double post = 0;
 	private String arm = "";
+	private double newpos = 0;
 	
 	private ArrayList<String> list = new ArrayList<>();
 	private ArrayList<String> folderList = new ArrayList<>();
@@ -205,7 +206,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private LinearLayout linear4;
 	private GridView gridview1;
 	private LinearLayout postTask;
-	private ListView CandishenListview1GetMethodFile;
+	private RecyclerView recyclerview2;
 	private LinearLayout Calciolater;
 	private LinearLayout linear7;
 	private LinearLayout linear6;
@@ -283,6 +284,7 @@ public class FiledirActivity extends AppCompatActivity {
 	private Intent finalintentpostfont = new Intent();
 	private Intent intentgetLogCat = new Intent();
 	private SharedPreferences tmp;
+	private PowerMenu mmenuitempos;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -332,7 +334,7 @@ public class FiledirActivity extends AppCompatActivity {
 		linear4 = findViewById(R.id.linear4);
 		gridview1 = findViewById(R.id.gridview1);
 		postTask = findViewById(R.id.postTask);
-		CandishenListview1GetMethodFile = findViewById(R.id.CandishenListview1GetMethodFile);
+		recyclerview2 = findViewById(R.id.recyclerview2);
 		Calciolater = findViewById(R.id.Calciolater);
 		linear7 = findViewById(R.id.linear7);
 		linear6 = findViewById(R.id.linear6);
@@ -382,512 +384,6 @@ public class FiledirActivity extends AppCompatActivity {
 		AppUpdeat = new RequestNetwork(this);
 		tmp = getSharedPreferences("tmp", Activity.MODE_PRIVATE);
 		
-		CandishenListview1GetMethodFile.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4) {
-				final int _position = _param3;
-				new AsyncTask<String, String, String>() {
-					@Override
-					protected void onPreExecute() {
-						postTask.setVisibility(View.VISIBLE);
-						CandishenListview1GetMethodFile.setVisibility(View.GONE);
-					}
-					@Override
-					protected String doInBackground(String... params) {
-						String _param = params[0];
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
-								post = _position;
-								if (Chack) {
-									files.get((int)_position).put("sel", "true");
-									((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
-								}
-								else {
-									files.get((int)_position).put("sel", "false");
-									((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
-									staticstring = files.get((int)_position).get("path").toString();
-									if (FileUtil.isDirectory(files.get((int)_position).get("path").toString())) {
-										Folder = files.get((int)_position).get("path").toString();
-										_getFiles("");
-										overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-									}
-									else {
-										if (staticstring.endsWith(".txt")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".go")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".css")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".php")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".js")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".html")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".dart")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".kt")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".swift")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".rb")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".rbw")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".c")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".scss")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".cs")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".java")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".json")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".cpp")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".py")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".ghost")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".xml")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".ninja")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".md")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".sh")) {
-											_checkListMap2(_position, "path", files, newlistmap);
-										}
-										if (staticstring.endsWith(".jar")) {
-											var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-											    di.setTitle("لطفا یکی از گزینه های زیر را انتخاب کنید");
-											di.setMessage("توجه داشته باشید که برای تغییر jar به dex گزینه مناسب را انتخاب کنید ممکن است تغییرات و یا دیکامپایل کردن چند دقیقه طول بکشد یا حتی این عمل انجام نشود");
-											di.setCancelable(false);
-											di.setPositiveButton("D8 Convert", (p1, d2) -> {
-												
-												         _D8convert();
-												
-															});
-											di.setNeutralButton("Dicompile", (p, d) -> {
-												
-												         _dicomplier();
-												
-															});
-											di.setNegativeButton("viewfile", (p3, d3) -> {
-												
-												         void10.setClass(getApplicationContext(), ZipshowActivity.class);
-												void10.putExtra("zipview", staticstring);
-												startActivity(void10);
-												
-															});
-											di.show();
-											
-											
-											
-											
-										}
-										if (staticstring.endsWith(".mp3")) {
-											try {
-												    m = new MediaPlayer();
-												        m.setDataSource(staticstring);
-												        m.prepare();
-												    } catch (java.io.IOException e) {
-												        e.printStackTrace();
-												    }
-											final MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(FiledirActivity.this);
-											GradientDrawable bb = new GradientDrawable();
-											bb.setColor(0xff1c1b20);
-											bb.setCornerRadius(25);
-											bb.setStroke(1, 0xFFFDA893);
-											alert.setBackground(bb);
-											ViewGroup viewGroup = findViewById(android.R.id.content);
-											View dialogview = getLayoutInflater().inflate(R.layout.music, viewGroup, false);
-											Button btn = dialogview.findViewById(R.id.btn);
-											Button btn2 =dialogview.findViewById(R.id.btn2);
-											Button btn3= dialogview.findViewById(R.id.btn3);
-											SeekBar seek = dialogview.findViewById(R.id.seek);
-											ImageView image =dialogview.findViewById(R.id.image);
-											alert.setCancelable(false);
-											{
-													final android.media.MediaMetadataRetriever mmr = new android.media.MediaMetadataRetriever();
-													mmr.setDataSource(staticstring);
-													
-													byte [] data = mmr.getEmbeddedPicture();
-													
-													if(data != null)
-													{
-															final Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-															image.setImageBitmap(bitmap);
-													}
-													else
-													{
-													        image.setImageResource(R.drawable.musico);
-															
-													}
-													
-													image.setAdjustViewBounds(true);
-											}
-											
-											seek.setMax((int) m.getDuration() / 90);
-											
-											final Handler mHandler = new Handler();
-											runOnUiThread(new Runnable() {
-													
-													@Override
-													public void run() {
-															if (m != null) {
-																	int mCurrentPosition = m.getCurrentPosition() / 90;
-																	seek.setProgress(mCurrentPosition);
-															}
-															mHandler.postDelayed(this, 90);
-													}
-											});
-											seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-													
-													@Override
-													public void onStopTrackingTouch(SeekBar seekBar) {
-															
-													}
-													
-													@Override
-													public void onStartTrackingTouch(SeekBar seekBar) {
-															
-													}
-													
-													@Override
-													public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-															if (m != null && fromUser) {
-																	m.seekTo(progress * 90);
-																	
-															}
-													}
-											});
-											
-											
-											btn3.setOnTouchListener(new View.OnTouchListener() {
-													@Override
-													public boolean onTouch(View v, MotionEvent event) {
-															switch (event.getAction()) {
-																	case MotionEvent.ACTION_DOWN: {
-																			ObjectAnimator scaleX = new ObjectAnimator();
-																			scaleX.setTarget(btn3);
-																			scaleX.setPropertyName("scaleX");
-																			scaleX.setFloatValues(0.9f);
-																			scaleX.setDuration((int) 5);
-																			scaleX.start();
-																			
-																			ObjectAnimator scaleY = new ObjectAnimator();
-																			scaleY.setTarget(btn3);
-																			scaleY.setPropertyName("scaleY");
-																			scaleY.setFloatValues(0.9f);
-																			scaleY.setDuration((int) 5);
-																			scaleY.start();
-																			break;
-																	}
-																	case MotionEvent.ACTION_UP: {
-																			
-																			ObjectAnimator scaleX = new ObjectAnimator();
-																			scaleX.setTarget(btn3);
-																			scaleX.setPropertyName("scaleX");
-																			scaleX.setFloatValues((float) 1);
-																			scaleX.setDuration((int) 5);
-																			scaleX.start();
-																			
-																			ObjectAnimator scaleY = new ObjectAnimator();
-																			scaleY.setTarget(btn3);
-																			scaleY.setPropertyName("scaleY");
-																			scaleY.setFloatValues((float) 1);
-																			scaleY.setDuration((int) 5);
-																			scaleY.start();
-																			
-																			break;
-																	}
-															}
-															return false;
-															
-													}
-											});
-											btn.setOnTouchListener(new View.OnTouchListener() {
-													@Override
-													public boolean onTouch(View v, MotionEvent event) {
-															switch (event.getAction()) {
-																	case MotionEvent.ACTION_DOWN: {
-																			ObjectAnimator scaleX = new ObjectAnimator();
-																			scaleX.setTarget(btn);
-																			scaleX.setPropertyName("scaleX");
-																			scaleX.setFloatValues(0.9f);
-																			scaleX.setDuration((int) 5);
-																			scaleX.start();
-																			
-																			ObjectAnimator scaleY = new ObjectAnimator();
-																			scaleY.setTarget(btn);
-																			scaleY.setPropertyName("scaleY");
-																			scaleY.setFloatValues(0.9f);
-																			scaleY.setDuration((int) 5);
-																			scaleY.start();
-																			break;
-																	}
-																	case MotionEvent.ACTION_UP: {
-																			
-																			ObjectAnimator scaleX = new ObjectAnimator();
-																			scaleX.setTarget(btn);
-																			scaleX.setPropertyName("scaleX");
-																			scaleX.setFloatValues((float) 1);
-																			scaleX.setDuration((int) 5);
-																			scaleX.start();
-																			
-																			ObjectAnimator scaleY = new ObjectAnimator();
-																			scaleY.setTarget(btn);
-																			scaleY.setPropertyName("scaleY");
-																			scaleY.setFloatValues((float) 1);
-																			scaleY.setDuration((int) 5);
-																			scaleY.start();
-																			
-																			break;
-																	}
-															}
-															return false;
-													}
-											});
-											btn2.setOnTouchListener(new View.OnTouchListener() {
-													@Override
-													public boolean onTouch(View v, MotionEvent event) {
-															switch (event.getAction()) {
-																	case MotionEvent.ACTION_DOWN: {
-																			ObjectAnimator scaleX = new ObjectAnimator();
-																			scaleX.setTarget(btn2);
-																			scaleX.setPropertyName("scaleX");
-																			scaleX.setFloatValues(0.9f);
-																			scaleX.setDuration((int) 5);
-																			scaleX.start();
-																			
-																			ObjectAnimator scaleY = new ObjectAnimator();
-																			scaleY.setTarget(btn2);
-																			scaleY.setPropertyName("scaleY");
-																			scaleY.setFloatValues(0.9f);
-																			scaleY.setDuration((int) 5);
-																			scaleY.start();
-																			break;
-																	}
-																	case MotionEvent.ACTION_UP: {
-																			
-																			ObjectAnimator scaleX = new ObjectAnimator();
-																			scaleX.setTarget(btn2);
-																			scaleX.setPropertyName("scaleX");
-																			scaleX.setFloatValues((float) 1);
-																			scaleX.setDuration((int) 5);
-																			scaleX.start();
-																			
-																			ObjectAnimator scaleY = new ObjectAnimator();
-																			scaleY.setTarget(btn2);
-																			scaleY.setPropertyName("scaleY");
-																			scaleY.setFloatValues((float) 1);
-																			scaleY.setDuration((int) 5);
-																			scaleY.start();
-																			
-																			break;
-																	}
-															}
-															return false;
-													}
-											});
-											if (m.isPlaying()) {
-													btn3.setText("ایست");
-											} else {
-													btn3.setText("شروع");
-											}
-											btn.setOnClickListener((vv)-> {
-													
-											});
-											
-											btn2.setOnClickListener((b)-> {
-													
-											});
-											btn3.setOnClickListener((v) -> {
-													
-													if (m.isPlaying()) {
-															btn3.setText("شروع");
-															m.pause();
-													} else {
-															btn3.setText("ایست");
-															m.start();
-													}
-													
-											});
-											final String _btn9 = ("خروج");
-											alert.setPositiveButton(_btn9, (i,v)-> {
-													
-													m.reset();
-													
-													
-											});
-											seek.setProgressTintList(ColorStateList.valueOf(0xFFFF9800));
-											
-											seek.getThumb().setColorFilter((0xFFFF9800), PorterDuff.Mode.MULTIPLY);
-											
-											alert.setView(dialogview);
-											alert.create().show();
-											
-										}
-										if (staticstring.endsWith(".mp4")) {
-											govirwFilm.setClass(getApplicationContext(), VideoviewsActivity.class);
-											govirwFilm.putExtra("getPath", staticstring);
-											govirwFilm.putExtra("getTitle", Uri.parse(staticstring).getLastPathSegment());
-											startActivity(govirwFilm);
-										}
-										if (staticstring.endsWith(".apk")) {
-											var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
-											    ViewGroup viewGroup = findViewById(android.R.id.content);
-													View dialogview = getLayoutInflater().inflate(R.layout.apkfile, viewGroup, false);
-											TextView tv = dialogview.findViewById(R.id.tv);
-											ImageView ico = dialogview.findViewById(R.id.ico);
-											tv.setText(Uri.parse(staticstring).getLastPathSegment());
-											TextView name = dialogview.findViewById(R.id.name);
-											TextView ver = dialogview.findViewById(R.id.ver);
-											TextView code = dialogview.findViewById(R.id.code);
-											TextView tar = dialogview.findViewById(R.id.tar);
-											TextView min = dialogview.findViewById(R.id.min);
-											try{
-												GhostwebApk.setApkPath(staticstring);
-												name.setText(GhostwebApk.getName());
-												ver.setText(GhostwebApk.getVersionName());
-												code.setText(GhostwebApk.getVersionCode());
-												tar.setText(GhostwebApk.getTargetSdkVersion());
-												min.setText(GhostwebApk.getMinSdkVersion());
-												try { 
-														
-														
-															
-														android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
-														android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(staticstring, 0);
-														packageInfo.applicationInfo.sourceDir = staticstring;
-														packageInfo.applicationInfo.publicSourceDir = staticstring;
-														ico.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
-														packageInfo = null;
-														packageManager = null;
-														
-												} catch (Exception e){
-														e.printStackTrace();
-												}
-											}catch(Exception e){
-												 
-											}
-											di.setNeutralButton("install", (p, d) -> {
-												
-												         try {
-													if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-																			Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
-																					FiledirActivity.this.getPackageName() + ".provider", new java.io.File(staticstring));
-																			Intent intent = new Intent(Intent.ACTION_VIEW);
-																			intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-																			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-																			intent.setDataAndType(uri, "application/vnd.android.package-archive");
-																			startActivity(intent);
-														
-																	} else {
-																			Intent intent = new Intent(Intent.ACTION_VIEW);
-																			intent.setDataAndType(Uri.fromFile( new java.io.File(staticstring)),
-																					"application/vnd.android.package-archive");
-																			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-																			startActivity(intent);
-																	}
-													
-												} catch (Exception rr) {
-													showMessage (rr.toString());
-												}
-												
-															});
-											di.setPositiveButton("no", (p1, d2) -> {
-												
-												          
-												
-															});
-											di.setView(dialogview);
-											di.show();
-											
-											
-											
-											
-										}
-										if (staticstring.endsWith(".pdf")) {
-											getabout.setClass(getApplicationContext(), PdfviewActivity.class);
-											getabout.putExtra("pdf", staticstring);
-											getabout.putExtra("t", Uri.parse(staticstring).getLastPathSegment());
-											startActivity(getabout);
-										}
-										_tarview(_position, "path", files);
-										_zipviewandexsert(_position, "path", files);
-										_fontpost(files, "path", post);
-										_themeinstall(files, post, "path");
-										_installproject(files, "path", post);
-										_insertData(_position);
-									}
-								}
-							}
-						});
-						return "";
-					}
-					@Override
-					protected void onPostExecute(String _result) {
-						postTask.setVisibility(View.GONE);
-						CandishenListview1GetMethodFile.setVisibility(View.VISIBLE);
-					}
-				}.execute("");
-			}
-		});
-		
-		CandishenListview1GetMethodFile.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			@Override
-			public boolean onItemLongClick(AdapterView<?> _param1, View _param2, int _param3, long _param4) {
-				final int _position = _param3;
-				if (Chack) {
-					Chack = false;
-					linearDis.setVisibility(View.GONE);
-					linear9.setVisibility(View.VISIBLE);
-					_cleardata();
-					_getFiles("");
-				}
-				else {
-					Chack = true;
-					files.get((int)_position).put("sel", "true");
-					getItems.setText("Select".concat(String.valueOf((long)(conter))));
-					conter = 1;
-					linearDis.setVisibility(View.VISIBLE);
-					imageview1.setImageResource(R.drawable.close);
-					imageview1.setColorFilter(0xFFE57373, PorterDuff.Mode.MULTIPLY);
-					linear9.setVisibility(View.VISIBLE);
-					((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
-					zipCuntishen.edit().putString("gozip", "true").commit();
-					zipCuntishen.edit().putString("inzip", files.get((int)_position).get("path").toString()).commit();
-				}
-				return true;
-			}
-		});
-		
 		checkbox2.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -898,7 +394,7 @@ public class FiledirActivity extends AppCompatActivity {
 						isAllSet = false;
 						getItems.setText("Select ".concat("0"));
 						conter = 0;
-						((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
+						
 					}
 					else {
 						checkbox2.setChecked(true);
@@ -906,7 +402,7 @@ public class FiledirActivity extends AppCompatActivity {
 						isAllSet = true;
 						getItems.setText("Select".concat(String.valueOf((long)(conter))));
 						conter = index;
-						((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
+						
 					}
 				}
 			}
@@ -1185,9 +681,6 @@ public class FiledirActivity extends AppCompatActivity {
 		_drawer_mcardtest.setBackground(DrawelColors);
 		
 		final LinearLayout _nav_view = (LinearLayout) findViewById(R.id._nav_view); _nav_view.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
-		CandishenListview1GetMethodFile.setHorizontalScrollBarEnabled(false);
-		CandishenListview1GetMethodFile.setVerticalScrollBarEnabled(false);
-		CandishenListview1GetMethodFile.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
 		_drawer_mlist.setHorizontalScrollBarEnabled(false);
 		_drawer_mlist.setVerticalScrollBarEnabled(false);
 		_drawer_mlist.setOverScrollMode(ListView.OVER_SCROLL_NEVER);
@@ -1704,7 +1197,7 @@ public class FiledirActivity extends AppCompatActivity {
 	public void onBackPressed() {
 		if (Chack) {
 			_cleardata();
-			((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
+			
 		}
 		else {
 			if (sd_stor.hasRealRemovableSdCarde()) {
@@ -1858,15 +1351,16 @@ public class FiledirActivity extends AppCompatActivity {
 			index++;
 		}
 		if (list.size() == 0) {
-			CandishenListview1GetMethodFile.setVisibility(View.GONE);
+			recyclerview2.setVisibility(View.GONE);
 			Calciolater.setVisibility(View.VISIBLE);
 		}
 		else {
-			CandishenListview1GetMethodFile.setVisibility(View.VISIBLE);
+			recyclerview2.setVisibility(View.VISIBLE);
 			Calciolater.setVisibility(View.GONE);
 		}
-		CandishenListview1GetMethodFile.setAdapter(new CandishenListview1GetMethodFileAdapter(files));
-		((BaseAdapter)CandishenListview1GetMethodFile.getAdapter()).notifyDataSetChanged();
+		recyclerview2.setAdapter(new Recyclerview2Adapter(files));
+		recyclerview2.setLayoutManager(new LinearLayoutManager(this));
+		recyclerview2.setHasFixedSize(true);
 		_distreeview();
 		_isCopyOrMove();
 	}
@@ -5853,36 +5347,565 @@ public class FiledirActivity extends AppCompatActivity {
 		
 	}
 	
-	public class CandishenListview1GetMethodFileAdapter extends BaseAdapter {
+	
+	public void _dataOnClickItemList(final double _pos) {
+		newpos = _pos;
+		if (staticstring.endsWith(".txt")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".go")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".css")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".php")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".js")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".html")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".dart")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".kt")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".swift")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".rb")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".rbw")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".c")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".scss")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".cs")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".java")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".json")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".cpp")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".py")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".ghost")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".xml")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".ninja")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".md")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".sh")) {
+			_checkListMap2(newpos, "path", files, newlistmap);
+		}
+		if (staticstring.endsWith(".jar")) {
+			var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+			    di.setTitle("لطفا یکی از گزینه های زیر را انتخاب کنید");
+			di.setMessage("توجه داشته باشید که برای تغییر jar به dex گزینه مناسب را انتخاب کنید ممکن است تغییرات و یا دیکامپایل کردن چند دقیقه طول بکشد یا حتی این عمل انجام نشود");
+			di.setCancelable(false);
+			di.setPositiveButton("D8 Convert", (p1, d2) -> {
+				
+				         _D8convert();
+				
+							});
+			di.setNeutralButton("Dicompile", (p, d) -> {
+				
+				         _dicomplier();
+				
+							});
+			di.setNegativeButton("viewfile", (p3, d3) -> {
+				
+				         void10.setClass(getApplicationContext(), ZipshowActivity.class);
+				void10.putExtra("zipview", staticstring);
+				startActivity(void10);
+				
+							});
+			di.show();
+			
+			
+			
+			
+		}
+		if (staticstring.endsWith(".mp3")) {
+			try {
+				    m = new MediaPlayer();
+				        m.setDataSource(staticstring);
+				        m.prepare();
+				    } catch (java.io.IOException e) {
+				        e.printStackTrace();
+				    }
+			final MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(FiledirActivity.this);
+			GradientDrawable bb = new GradientDrawable();
+			bb.setColor(0xff1c1b20);
+			bb.setCornerRadius(25);
+			bb.setStroke(1, 0xFFFDA893);
+			alert.setBackground(bb);
+			ViewGroup viewGroup = findViewById(android.R.id.content);
+			View dialogview = getLayoutInflater().inflate(R.layout.music, viewGroup, false);
+			Button btn = dialogview.findViewById(R.id.btn);
+			Button btn2 =dialogview.findViewById(R.id.btn2);
+			Button btn3= dialogview.findViewById(R.id.btn3);
+			SeekBar seek = dialogview.findViewById(R.id.seek);
+			ImageView image =dialogview.findViewById(R.id.image);
+			alert.setCancelable(false);
+			{
+					final android.media.MediaMetadataRetriever mmr = new android.media.MediaMetadataRetriever();
+					mmr.setDataSource(staticstring);
+					
+					byte [] data = mmr.getEmbeddedPicture();
+					
+					if(data != null)
+					{
+							final Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+							image.setImageBitmap(bitmap);
+					}
+					else
+					{
+					        image.setImageResource(R.drawable.musico);
+							
+					}
+					
+					image.setAdjustViewBounds(true);
+			}
+			
+			seek.setMax((int) m.getDuration() / 90);
+			
+			final Handler mHandler = new Handler();
+			runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+							if (m != null) {
+									int mCurrentPosition = m.getCurrentPosition() / 90;
+									seek.setProgress(mCurrentPosition);
+							}
+							mHandler.postDelayed(this, 90);
+					}
+			});
+			seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+					
+					@Override
+					public void onStopTrackingTouch(SeekBar seekBar) {
+							
+					}
+					
+					@Override
+					public void onStartTrackingTouch(SeekBar seekBar) {
+							
+					}
+					
+					@Override
+					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+							if (m != null && fromUser) {
+									m.seekTo(progress * 90);
+									
+							}
+					}
+			});
+			
+			
+			btn3.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+							switch (event.getAction()) {
+									case MotionEvent.ACTION_DOWN: {
+											ObjectAnimator scaleX = new ObjectAnimator();
+											scaleX.setTarget(btn3);
+											scaleX.setPropertyName("scaleX");
+											scaleX.setFloatValues(0.9f);
+											scaleX.setDuration((int) 5);
+											scaleX.start();
+											
+											ObjectAnimator scaleY = new ObjectAnimator();
+											scaleY.setTarget(btn3);
+											scaleY.setPropertyName("scaleY");
+											scaleY.setFloatValues(0.9f);
+											scaleY.setDuration((int) 5);
+											scaleY.start();
+											break;
+									}
+									case MotionEvent.ACTION_UP: {
+											
+											ObjectAnimator scaleX = new ObjectAnimator();
+											scaleX.setTarget(btn3);
+											scaleX.setPropertyName("scaleX");
+											scaleX.setFloatValues((float) 1);
+											scaleX.setDuration((int) 5);
+											scaleX.start();
+											
+											ObjectAnimator scaleY = new ObjectAnimator();
+											scaleY.setTarget(btn3);
+											scaleY.setPropertyName("scaleY");
+											scaleY.setFloatValues((float) 1);
+											scaleY.setDuration((int) 5);
+											scaleY.start();
+											
+											break;
+									}
+							}
+							return false;
+							
+					}
+			});
+			btn.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+							switch (event.getAction()) {
+									case MotionEvent.ACTION_DOWN: {
+											ObjectAnimator scaleX = new ObjectAnimator();
+											scaleX.setTarget(btn);
+											scaleX.setPropertyName("scaleX");
+											scaleX.setFloatValues(0.9f);
+											scaleX.setDuration((int) 5);
+											scaleX.start();
+											
+											ObjectAnimator scaleY = new ObjectAnimator();
+											scaleY.setTarget(btn);
+											scaleY.setPropertyName("scaleY");
+											scaleY.setFloatValues(0.9f);
+											scaleY.setDuration((int) 5);
+											scaleY.start();
+											break;
+									}
+									case MotionEvent.ACTION_UP: {
+											
+											ObjectAnimator scaleX = new ObjectAnimator();
+											scaleX.setTarget(btn);
+											scaleX.setPropertyName("scaleX");
+											scaleX.setFloatValues((float) 1);
+											scaleX.setDuration((int) 5);
+											scaleX.start();
+											
+											ObjectAnimator scaleY = new ObjectAnimator();
+											scaleY.setTarget(btn);
+											scaleY.setPropertyName("scaleY");
+											scaleY.setFloatValues((float) 1);
+											scaleY.setDuration((int) 5);
+											scaleY.start();
+											
+											break;
+									}
+							}
+							return false;
+					}
+			});
+			btn2.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+							switch (event.getAction()) {
+									case MotionEvent.ACTION_DOWN: {
+											ObjectAnimator scaleX = new ObjectAnimator();
+											scaleX.setTarget(btn2);
+											scaleX.setPropertyName("scaleX");
+											scaleX.setFloatValues(0.9f);
+											scaleX.setDuration((int) 5);
+											scaleX.start();
+											
+											ObjectAnimator scaleY = new ObjectAnimator();
+											scaleY.setTarget(btn2);
+											scaleY.setPropertyName("scaleY");
+											scaleY.setFloatValues(0.9f);
+											scaleY.setDuration((int) 5);
+											scaleY.start();
+											break;
+									}
+									case MotionEvent.ACTION_UP: {
+											
+											ObjectAnimator scaleX = new ObjectAnimator();
+											scaleX.setTarget(btn2);
+											scaleX.setPropertyName("scaleX");
+											scaleX.setFloatValues((float) 1);
+											scaleX.setDuration((int) 5);
+											scaleX.start();
+											
+											ObjectAnimator scaleY = new ObjectAnimator();
+											scaleY.setTarget(btn2);
+											scaleY.setPropertyName("scaleY");
+											scaleY.setFloatValues((float) 1);
+											scaleY.setDuration((int) 5);
+											scaleY.start();
+											
+											break;
+									}
+							}
+							return false;
+					}
+			});
+			if (m.isPlaying()) {
+					btn3.setText("ایست");
+			} else {
+					btn3.setText("شروع");
+			}
+			btn.setOnClickListener((vv)-> {
+					
+			});
+			
+			btn2.setOnClickListener((b)-> {
+					
+			});
+			btn3.setOnClickListener((v) -> {
+					
+					if (m.isPlaying()) {
+							btn3.setText("شروع");
+							m.pause();
+					} else {
+							btn3.setText("ایست");
+							m.start();
+					}
+					
+			});
+			final String _btn9 = ("خروج");
+			alert.setPositiveButton(_btn9, (i,v)-> {
+					
+					m.reset();
+					
+					
+			});
+			seek.setProgressTintList(ColorStateList.valueOf(0xFFFF9800));
+			
+			seek.getThumb().setColorFilter((0xFFFF9800), PorterDuff.Mode.MULTIPLY);
+			
+			alert.setView(dialogview);
+			alert.create().show();
+			
+		}
+		if (staticstring.endsWith(".mp4")) {
+			govirwFilm.setClass(getApplicationContext(), VideoviewsActivity.class);
+			govirwFilm.putExtra("getPath", staticstring);
+			govirwFilm.putExtra("getTitle", Uri.parse(staticstring).getLastPathSegment());
+			startActivity(govirwFilm);
+		}
+		if (staticstring.endsWith(".apk")) {
+			var di = new com.google.android.material.dialog.MaterialAlertDialogBuilder(FiledirActivity.this);
+			    ViewGroup viewGroup = findViewById(android.R.id.content);
+					View dialogview = getLayoutInflater().inflate(R.layout.apkfile, viewGroup, false);
+			TextView tv = dialogview.findViewById(R.id.tv);
+			ImageView ico = dialogview.findViewById(R.id.ico);
+			tv.setText(Uri.parse(staticstring).getLastPathSegment());
+			TextView name = dialogview.findViewById(R.id.name);
+			TextView ver = dialogview.findViewById(R.id.ver);
+			TextView code = dialogview.findViewById(R.id.code);
+			TextView tar = dialogview.findViewById(R.id.tar);
+			TextView min = dialogview.findViewById(R.id.min);
+			try{
+				GhostwebApk.setApkPath(staticstring);
+				name.setText(GhostwebApk.getName());
+				ver.setText(GhostwebApk.getVersionName());
+				code.setText(GhostwebApk.getVersionCode());
+				tar.setText(GhostwebApk.getTargetSdkVersion());
+				min.setText(GhostwebApk.getMinSdkVersion());
+				try { 
+						
+						
+							
+						android.content.pm.PackageManager packageManager = FiledirActivity.this.getPackageManager();
+						android.content.pm.PackageInfo packageInfo = packageManager.getPackageArchiveInfo(staticstring, 0);
+						packageInfo.applicationInfo.sourceDir = staticstring;
+						packageInfo.applicationInfo.publicSourceDir = staticstring;
+						ico.setImageDrawable(packageInfo.applicationInfo.loadIcon(packageManager));
+						packageInfo = null;
+						packageManager = null;
+						
+				} catch (Exception e){
+						e.printStackTrace();
+				}
+			}catch(Exception e){
+				 
+			}
+			di.setNeutralButton("install", (p, d) -> {
+				
+				         try {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+											Uri uri = androidx.core.content.FileProvider.getUriForFile(getApplicationContext(),
+													FiledirActivity.this.getPackageName() + ".provider", new java.io.File(staticstring));
+											Intent intent = new Intent(Intent.ACTION_VIEW);
+											intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+											intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+											intent.setDataAndType(uri, "application/vnd.android.package-archive");
+											startActivity(intent);
+						
+									} else {
+											Intent intent = new Intent(Intent.ACTION_VIEW);
+											intent.setDataAndType(Uri.fromFile( new java.io.File(staticstring)),
+													"application/vnd.android.package-archive");
+											intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+											startActivity(intent);
+									}
+					
+				} catch (Exception rr) {
+					showMessage (rr.toString());
+				}
+				
+							});
+			di.setPositiveButton("no", (p1, d2) -> {
+				
+				          
+				
+							});
+			di.setView(dialogview);
+			di.show();
+			
+			
+			
+			
+		}
+		if (staticstring.endsWith(".pdf")) {
+			getabout.setClass(getApplicationContext(), PdfviewActivity.class);
+			getabout.putExtra("pdf", staticstring);
+			getabout.putExtra("t", Uri.parse(staticstring).getLastPathSegment());
+			startActivity(getabout);
+		}
+		_tarview(newpos, "path", files);
+		_zipviewandexsert(newpos, "path", files);
+		_fontpost(files, "path", newpos);
+		_themeinstall(files, newpos, "path");
+		_installproject(files, "path", newpos);
+		_insertData(newpos);
+	}
+	
+	
+	public void _listviewViewBinding(final TextView _textview1, final ImageView _imageView1) {
+		if (_textview1.getText().toString().contains("GhostWebIDE") || _textview1.getText().toString().equals("GhostWebIDE")) {
+			_imageView1.setImageResource(R.drawable.foldercog);
+			_textview1.setTextColor(0xFFCE93D8);
+		}
+		else {
+			if (_textview1.getText().toString().contains("Android") || _textview1.getText().toString().equals("Android")) {
+				_imageView1.setImageResource(R.drawable.folderandroid);
+			}
+			else {
+				if (_textview1.getText().toString().contains("Download") || _textview1.getText().toString().equals("Download")) {
+					_imageView1.setImageResource(R.drawable.folderdownload);
+				}
+				else {
+					if (_textview1.getText().toString().contains("GhostWebIDE/theme") || _textview1.getText().toString().equals("GhostWebIDE/theme")) {
+						_imageView1.setImageResource(R.drawable.folder);
+						_textview1.setTextColor(0xFFFFC107);
+					}
+					else {
+						if (_textview1.getText().toString().contains(".sketchware") || _textview1.getText().toString().equals(".sketchware")) {
+							_textview1.setTextColor(0xFF90CAF9);
+							_imageView1.setImageResource(R.drawable.foldersketchware);
+						}
+						else {
+							_textview1.setTextColor(0xFFE0E0E0);
+							_imageView1.setImageResource(R.drawable.folder);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void _onClickItem(final double _pos) {
+		new AsyncTask<String, String, String>() {
+			@Override
+			protected void onPreExecute() {
+				postTask.setVisibility(View.VISIBLE);
+				recyclerview2.setVisibility(View.GONE);
+			}
+			@Override
+			protected String doInBackground(String... params) {
+				String _param = params[0];
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						post = _pos;
+						if (Chack) {
+							files.get((int)_pos).put("sel", "true");
+							recyclerview2.setAdapter(new Recyclerview2Adapter(files));
+						}
+						else {
+							files.get((int)_pos).put("sel", "false");
+							recyclerview2.setAdapter(new Recyclerview2Adapter(files));
+							staticstring = files.get((int)_pos).get("path").toString();
+							if (FileUtil.isDirectory(staticstring)) {
+								Folder = staticstring;
+								_getFiles("");
+								overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+							}
+							else {
+								_dataOnClickItemList(post);
+							}
+						}
+					}
+				});
+				return "";
+			}
+			@Override
+			protected void onPostExecute(String _result) {
+				postTask.setVisibility(View.GONE);
+				recyclerview2.setVisibility(View.VISIBLE);
+			}
+		}.execute("");
+	}
+	
+	
+	public void _onLongClickItem(final double _postInitUser) {
+		if (Chack) {
+			Chack = false;
+			linearDis.setVisibility(View.GONE);
+			linear9.setVisibility(View.VISIBLE);
+			_cleardata();
+			_getFiles("");
+		}
+		else {
+			Chack = true;
+			files.get((int)_postInitUser).put("sel", "true");
+			getItems.setText("Select".concat(String.valueOf((long)(conter))));
+			conter = 1;
+			linearDis.setVisibility(View.VISIBLE);
+			imageview1.setImageResource(R.drawable.close);
+			imageview1.setColorFilter(0xFFE57373, PorterDuff.Mode.MULTIPLY);
+			linear9.setVisibility(View.VISIBLE);
+			recyclerview2.setAdapter(new Recyclerview2Adapter(files));
+			zipCuntishen.edit().putString("gozip", "true").commit();
+			zipCuntishen.edit().putString("inzip", files.get((int)_postInitUser).get("path").toString()).commit();
+		}
+	}
+	
+	public class Recyclerview2Adapter extends RecyclerView.Adapter<Recyclerview2Adapter.ViewHolder> {
 		
 		ArrayList<HashMap<String, Object>> _data;
 		
-		public CandishenListview1GetMethodFileAdapter(ArrayList<HashMap<String, Object>> _arr) {
+		public Recyclerview2Adapter(ArrayList<HashMap<String, Object>> _arr) {
 			_data = _arr;
 		}
 		
 		@Override
-		public int getCount() {
-			return _data.size();
-		}
-		
-		@Override
-		public HashMap<String, Object> getItem(int _index) {
-			return _data.get(_index);
-		}
-		
-		@Override
-		public long getItemId(int _index) {
-			return _index;
-		}
-		
-		@Override
-		public View getView(final int _position, View _v, ViewGroup _container) {
+		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			LayoutInflater _inflater = getLayoutInflater();
-			View _view = _v;
-			if (_view == null) {
-				_view = _inflater.inflate(R.layout.folder, null);
-			}
+			View _v = _inflater.inflate(R.layout.folder, null);
+			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			_v.setLayoutParams(_lp);
+			return new ViewHolder(_v);
+		}
+		
+		@Override
+		public void onBindViewHolder(ViewHolder _holder, final int _position) {
+			View _view = _holder.itemView;
 			
 			final LinearLayout mcard = _view.findViewById(R.id.mcard);
 			final com.google.android.material.divider.MaterialDivider linear5 = _view.findViewById(R.id.linear5);
@@ -5900,6 +5923,21 @@ public class FiledirActivity extends AppCompatActivity {
 			final TextView textview2 = _view.findViewById(R.id.textview2);
 			final TextView videoSize = _view.findViewById(R.id.videoSize);
 			
+			RecyclerView.LayoutParams _lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			_view.setLayoutParams(_lp);
+			mcard.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View _view) {
+					_onClickItem(_position);
+				}
+			});
+			mcard.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View _view) {
+					_onLongClickItem(_position);
+					return true;
+				}
+			});
 			Token = files.get((int)_position).get("path").toString();
 			_clickAnimation(mcard);
 			_clickAnimation(linear5);
@@ -5963,36 +6001,7 @@ public class FiledirActivity extends AppCompatActivity {
 					textview1.setAlpha((float)(1));
 					textview2.setAlpha((float)(1));
 				}
-				if (textview1.getText().toString().contains("GhostWebIDE") || textview1.getText().toString().equals("GhostWebIDE")) {
-					imageview1.setImageResource(R.drawable.foldercog);
-					textview1.setTextColor(0xFFCE93D8);
-				}
-				else {
-					if (textview1.getText().toString().contains("Android") || textview1.getText().toString().equals("Android")) {
-						imageview1.setImageResource(R.drawable.folderandroid);
-					}
-					else {
-						if (textview1.getText().toString().contains("Download") || textview1.getText().toString().equals("Download")) {
-							imageview1.setImageResource(R.drawable.folderdownload);
-						}
-						else {
-							if (textview1.getText().toString().contains("GhostWebIDE/theme") || textview1.getText().toString().equals("GhostWebIDE/theme")) {
-								imageview1.setImageResource(R.drawable.folder);
-								textview1.setTextColor(0xFFFFC107);
-							}
-							else {
-								if (textview1.getText().toString().contains(".sketchware") || textview1.getText().toString().equals(".sketchware")) {
-									textview1.setTextColor(0xFF90CAF9);
-									imageview1.setImageResource(R.drawable.foldersketchware);
-								}
-								else {
-									textview1.setTextColor(0xFFE0E0E0);
-									imageview1.setImageResource(R.drawable.folder);
-								}
-							}
-						}
-					}
-				}
+				_listviewViewBinding(textview1, imageview1);
 			}
 			else {
 				if (files.get((int)_position).get("path").toString().endsWith(".html")) {
@@ -6388,19 +6397,18 @@ public class FiledirActivity extends AppCompatActivity {
 			else {
 				checkbox1.setChecked(false);
 			}
-			checkbox1.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View _view) {
-					if (checkbox1.isChecked()) {
-						_data.get((int)_position).put("sel", "true");
-						conter++;
-						getItems.setText("Select ".concat(String.valueOf((long)(conter))));
-					}
-					else {
-						_data.get((int)_position).put("sel", "false");
-						conter--;
-						getItems.setText("Select ".concat(String.valueOf((long)(conter))));
-					}
+			checkbox1.setOnClickListener(v->{
+					
+				
+					 if (checkbox1.isChecked()) {
+					_data.get((int)_position).put("sel", "true");
+					conter++;
+					getItems.setText("Select ".concat(String.valueOf((long)(conter))));
+				}
+				else {
+					_data.get((int)_position).put("sel", "false");
+					conter--;
+					getItems.setText("Select ".concat(String.valueOf((long)(conter))));
 				}
 			});
 			if (Chack) {
@@ -6410,46 +6418,59 @@ public class FiledirActivity extends AppCompatActivity {
 				_data.get((int)_position).put("sel", "false");
 				checkbox1.setVisibility(View.GONE);
 			}
-			more.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View _view) {
-					View popupView = getLayoutInflater().inflate(R.layout.panelfilem, null);
-					final PopupWindow popup = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-					 LinearLayout   bg = popupView.findViewById(R.id.bg);
+			more.setOnClickListener(v->{
 					
-					 
-					
-					 LinearLayout   ra = popupView.findViewById(R.id.ra);
-					
-					 
-					
-					 LinearLayout   del = popupView.findViewById(R.id.del);
-					
-					 
-					
-					AnimUtils.Worker(ra);
-					AnimUtils.Worker(del);
-					bg.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b, int c, int d) { this.setCornerRadius(a); this.setStroke(b, c); this.setColor(d); return this; } }.getIns((int)20, (int)1, 0xFFFDA893, 0xFF2B2122));
-					ra.setOnClickListener(new OnClickListener() { public void onClick(View view) {
-									_rename(_position);
-									popup.dismiss();
-							} });
-					
-					del.setOnClickListener(new OnClickListener() { public void onClick(View view) {
-									_delFileCustom(_position);
-									popup.dismiss();
-							} });
-					
-					popup.setAnimationStyle(R.style.hso);
-					
-					popup.showAsDropDown(more, 0,0);
-					
-					popup.setBackgroundDrawable(new BitmapDrawable());
-					
-				}
+				
+					 mmenuitempos = new PowerMenu.Builder(FiledirActivity.this)
+				.addItem(new PowerMenuItem("تغییر نام"))
+				.addItem(new PowerMenuItem("حذف"))
+				.addItem(new PowerMenuItem("افزودن به پروژه"))
+				.build();//   my telegram channel sketchware95
+				mmenuitempos.setAnimation(MenuAnimation.FADE);//   my telegram channel sketchware95
+				mmenuitempos.setMenuRadius((float)15);
+				mmenuitempos.setShowBackground(false);
+				mmenuitempos.setBackgroundColor(0xFF2B2121);
+				mmenuitempos.setMenuColor(0xFF2B2122);
+				mmenuitempos.setSelectedEffect(true);//   my telegram channel sketchware95
+				mmenuitempos.setDivider(new ColorDrawable(0xFFFDA893));
+				mmenuitempos.setTextColor(0xFFEEEEEE);//   my telegram channel sketchware95
+				mmenuitempos.setSelectedTextColor(0xFFFDA893);
+				mmenuitempos.setCircularEffect(CircularEffect.INNER);//   my telegram channel sketchware95
+				mmenuitempos.setHeaderView(R.layout.menu);
+				mmenuitempos.setTextSize((int)14);
+				mmenuitempos.showAsDropDown(more);
+				mmenuitempos.setAutoDismiss(true);
+				mmenuitempos.setOnMenuItemClickListener(new OnMenuItemClickListener<PowerMenuItem>(){
+					   @Override
+					     public void onItemClick(int position, PowerMenuItem item){
+						          switch((int)position) {
+							case ((int)0): {
+								_rename(_position);
+								break;
+							}
+							case ((int)1): {
+								_delFileCustom(_position);
+								break;
+							}
+							case ((int)2): {
+								SketchwareUtil.showMessage(getApplicationContext(), "soon");
+								break;
+							}
+						}
+					}
+				});//   my telegram channel sketchware95
 			});
-			
-			return _view;
+		}
+		
+		@Override
+		public int getItemCount() {
+			return _data.size();
+		}
+		
+		public class ViewHolder extends RecyclerView.ViewHolder {
+			public ViewHolder(View v) {
+				super(v);
+			}
 		}
 	}
 	
